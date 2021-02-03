@@ -1,0 +1,87 @@
+@page "/interaction"
+
+@using VisNetwork.Blazor.Models
+
+<h1>Interaction</h1>
+
+<div>
+    <button @onclick="SelectNode1Click">Select Node 1</button>
+    <button @onclick="SelectNode2Click">Select Node 2</button>
+    <button @onclick="SelectNode3Click">Select Node 3</button>
+    <button @onclick="SelectEdge12Click">Select Edge 1-2</button>
+    <button @onclick="SelectEdge23Click">Select Edge 2-3</button>
+    <button @onclick="SetSelection">SetSelection Node1 and Edge 1-2</button>
+    <button @onclick="GetSelection">GetSelection</button>
+    <button @onclick="GetSelectedNodes">GetSelectedNodes</button>
+    <button @onclick="GetSelectedEdges">GetSelectedEdges</button>
+    <button @onclick="ClearClick">Clear selection</button>
+
+    <Network @ref="network" Id="my-id" Data="@data" class="vis-network-container" />
+
+    <p>GetSelection: @selection</p>
+    <p>GetSelectedNodes: @selectedNodes</p>
+    <p>GetSelectedEdges: @selectedEdges</p>
+</div>
+
+@code {
+    private Network network;
+
+    private NetworkData data;
+
+    private string selection;
+    private string selectedNodes;
+    private string selectedEdges;
+
+    private async Task SelectNode1Click() => await network.SelectNodes(new[] { "1" });
+    private async Task SelectNode2Click() => await network.SelectNodes(new[] { "2" });
+    private async Task SelectNode3Click() => await network.SelectNodes(new[] { "3" });
+    private async Task SelectEdge12Click() => await network.SelectEdges(new[] { "1-2" });
+    private async Task SelectEdge23Click() => await network.SelectEdges(new[] { "2-3" });
+    private async Task GetSelection()
+    {
+        var result = await network.GetSelection();
+        selection = string.Concat("Nodes:", string.Join(", ", result.Nodes), " Edges:", string.Join(", ", result.Edges));
+    }
+    private async Task SetSelection()
+    {
+        await network.SetSelection(new NodeEdgeComposite { Nodes = new[] { "1" }, Edges = new[] { "1-2" } });
+
+    }
+    private async Task GetSelectedNodes()
+    {
+        var nodeIds = await network.GetSelectedNodes();
+        selectedNodes = string.Concat("Nodes:", string.Join(", ", nodeIds));
+    }
+
+    private async Task GetSelectedEdges()
+    {
+        var edgeIds = await network.GetSelectedEdges();
+        selectedEdges = string.Concat("Edges:", string.Join(", ", edgeIds));
+    }
+
+    private async Task ClearClick()
+    {
+        selection = string.Empty;
+        selectedNodes = string.Empty;
+        selectedEdges = string.Empty;
+        await network.UnselectAll();
+    }
+
+    public Interaction()
+    {
+        var nodes = new List<Node>();
+        var edges = new List<Edge>();
+
+        nodes.Add(new Node("1", "Node 1", 1, "circle"));
+        nodes.Add(new Node("2", "Node 2", 2, "ellipse"));
+        edges.Add(new Edge("1", "2") { Id = "1-2" });
+        nodes.Add(new Node("3", "Node 3", 4, "database"));
+        edges.Add(new Edge("2", "3") { Id = "2-3" });
+
+        data = new NetworkData
+        {
+            Edges = edges,
+            Nodes = nodes
+        };
+    }
+}

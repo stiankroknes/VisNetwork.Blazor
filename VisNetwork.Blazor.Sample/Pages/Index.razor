@@ -1,0 +1,31 @@
+﻿@page "/"
+
+@using VisNetwork.Blazor.Models
+
+<h1>VisNetwork Samples</h1>
+
+<div>
+    <Network Id="my-id" Data="@data" class="vis-network-container" />
+</div>
+
+@code {
+    private NetworkData data;
+
+    public Index()
+    {
+        var nodes = new List<Node>();
+        var edges = new List<Edge>();
+
+        nodes.Add(new Node("1", "Node 1", 1, "circle"));
+        nodes.Add(new Node("2", "Node 2", 2, "ellipse"));
+        edges.Add(new Edge("1", "2"));
+        nodes.Add(new Node("3", "Node 3", 4, "database"));
+        edges.Add(new Edge("2", "3"));
+
+        data = new NetworkData
+        {
+            Edges = edges,
+            Nodes = nodes
+        };
+    }
+}

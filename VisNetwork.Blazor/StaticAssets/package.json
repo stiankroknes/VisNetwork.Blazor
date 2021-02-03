@@ -1,0 +1,14 @@
+{
+  "scripts": {
+    "build:Debug": "webpack --mode development",
+    "build:Release": "webpack --mode production"
+  },
+  "devDependencies": {
+    "ts-loader": "8.0.6",
+    "typescript": "4.0.3",
+    "vis-data": "^7.1.0",
+    "vis-network": "^8.4.0",
+    "webpack": "5.1.3",
+    "webpack-cli": "4.1.0"
+  }
+}

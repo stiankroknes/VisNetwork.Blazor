@@ -1,0 +1,36 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Razor">
+
+  <!--<Import Project="StaticAssets\StaticAssets.targets" />-->
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+    <!-- <TargetFrameworks>netstandard2.1;net5.0</TargetFrameworks> -->
+    <RazorLangVersion Condition=" '$(TargetFramework)' != 'net5.0' ">3.0</RazorLangVersion>
+    <RootNamespace>VisNetwork.Blazor</RootNamespace>
+     <AssemblyTitle>VisNetwork Blazor</AssemblyTitle>
+    <Authors>Stian Kroknes</Authors>
+    <AssemblyName>VisNetwork.Blazor</AssemblyName>
+    <PackageId>VisNetwork.Blazor</PackageId>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageTags>blazor;razor;vis-network</PackageTags>
+    <!-- <PackageIconUrl>https://raw.githubusercontent.com/stiankroknes/VisNetwork.Blazor/main/assets/visnetwork_logo_64x64.png</PackageIconUrl> -->
+    <PackageProjectUrl>https://github.com/stiankroknes/VisNetwork.Blazor</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/stiankroknes/VisNetwork.Blazor</RepositoryUrl>
+    <Description>Blazor component for vis.js/vis-network.</Description>
+    <Version>0.0.4</Version>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <SupportedPlatform Include="browser" />
+    <Content Update="StaticAssets\*" Pack="false" />
+  </ItemGroup>
+
+  <ItemGroup Condition="'$(TargetFramework)' == 'net5.0'">
+    <PackageReference Include="Microsoft.AspNetCore.Components" Version="5.0.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="5.0.0" />
+  </ItemGroup>
+
+  <ItemGroup Condition="'$(TargetFramework)' == 'netstandard2.1'">
+    <PackageReference Include="Microsoft.AspNetCore.Components" Version="3.1.9" />
+    <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="3.1.9" />
+  </ItemGroup>
+</Project>

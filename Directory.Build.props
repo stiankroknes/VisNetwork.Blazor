@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project>
+  <PropertyGroup>
+    <!-- <PackageOutputPath>$(MSBuildThisFileDirectory)artifacts</PackageOutputPath> -->
+    <!-- <VersionSuffix>dev</VersionSuffix> -->
+    <LangVersion>latest</LangVersion>
+    <!-- <Nullable>enable</Nullable> -->
+    <Features>strict</Features>
+  </PropertyGroup>
+
+  <!-- Warnings and errors -->
+  <PropertyGroup>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <!-- Don't make missing XML docs a fatal build error, but still surface so we have visibility into undocumented APIs. -->
+    <WarningsNotAsErrors>$(WarningsNotAsErrors);CS1591</WarningsNotAsErrors>
+  </PropertyGroup>
+
+</Project>
