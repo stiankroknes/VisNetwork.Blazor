@@ -12,8 +12,8 @@ namespace VisNetwork.Blazor.Tests
         [Fact]
         public void Network_render_basic_structure()
         {
-            var mockJS = Services.AddMockJSRuntime(JSRuntimeMockMode.Strict);
-            var jsInvocation = mockJS.SetupVoid("BlazorVisNetwork.create", argumentsMatcher: arg => {
+            JSInterop.Mode = JSRuntimeMode.Strict;
+            var jsInvocation = JSInterop.SetupVoid("BlazorVisNetwork.create", invocationMatcher: arg => {
                 
                 return true;
             });    
