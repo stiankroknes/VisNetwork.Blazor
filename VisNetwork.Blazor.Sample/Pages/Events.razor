@@ -12,11 +12,16 @@
         OnHidePopup="NetworkHidePopup" class="vis-network-container" />
 </div>
 
+<div>
+    <button @onclick="Clear">Clear</button>
+</div>
+
 <table class="table">
     <thead>
         <tr>
             <th>Time</th>
             <th>Event</th>
+            <th>Data</th>
         </tr>
     </thead>
     <tbody>
@@ -62,9 +67,10 @@
     private void AddEventData(string name, string data)
     {
         var eventData = new EventData { Timestamp = DateTime.Now, Name = name, Data = data, CssClass = "event-new" };
-        events.ForEach(e => e.CssClass = (eventData.Timestamp - e.Timestamp) < TimeSpan.FromMilliseconds(200)
-        ? "event-close"
-        : "event-old");
+        events.ForEach(e => 
+            e.CssClass = (eventData.Timestamp - e.Timestamp) < TimeSpan.FromMilliseconds(200)
+                ? "event-close"
+                : "event-old");
 
         events.Insert(0, eventData);
 
@@ -75,6 +81,8 @@
 
         StateHasChanged();
     }
+
+    private void Clear() => events.Clear();
 
     private async Task AddEventDataAsync(string name, string data)
     {

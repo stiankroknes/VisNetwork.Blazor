@@ -2,7 +2,7 @@
 
 namespace VisNetwork.Blazor.Models
 {
-   
+
     public class ColorType
     {
         public ColorType() { }
@@ -36,5 +36,26 @@ namespace VisNetwork.Blazor.Models
     {
         public IReadOnlyCollection<string> Nodes { get; set; }
         public IReadOnlyCollection<string> Edges { get; set; }
+    }
+
+    
+    public class NodeEdgeSelection
+    {
+        public IReadOnlyCollection<NodeSelection> Nodes { get; set; }
+        public IReadOnlyCollection<EdgeSelection> Edges { get; set; }
+    }
+
+    public class NodeSelection
+    {
+        public string Id { get; set; }
+        public double X { get; set; }
+        public double Y { get; set; }
+    }
+
+    public class EdgeSelection
+    {
+        public string Id { get; set; }
+        public string FromId { get; set; }
+        public string ToId { get; set; }
     }
 }

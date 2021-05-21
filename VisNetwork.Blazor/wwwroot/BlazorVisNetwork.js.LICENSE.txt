@@ -21,39 +21,13 @@
 	 * Licensed under the MIT license */
 
 /**
-	 * vis-util
-	 * https://github.com/visjs/vis-util
-	 *
-	 * utilitie collection for visjs
-	 *
-	 * @version 4.3.4
-	 * @date    2020-08-01T15:11:53.524Z
-	 *
-	 * @copyright (c) 2011-2017 Almende B.V, http://almende.com
-	 * @copyright (c) 2017-2019 visjs contributors, https://github.com/visjs
-	 *
-	 * @license
-	 * vis.js is dual licensed under both
-	 *
-	 *   1. The Apache 2.0 License
-	 *      http://www.apache.org/licenses/LICENSE-2.0
-	 *
-	 *   and
-	 *
-	 *   2. The MIT License
-	 *      http://opensource.org/licenses/MIT
-	 *
-	 * vis.js may be distributed under either license.
-	 */
-
-/**
  * vis-data
  * http://visjs.org/
  *
  * Manage unstructured data using DataSet. Add, update, and remove data, and listen for changes in the data.
  *
- * @version 7.1.0
- * @date    2020-10-13T20:44:00.711Z
+ * @version 7.1.2
+ * @date    2021-01-08T20:37:11.601Z
  *
  * @copyright (c) 2011-2017 Almende B.V, http://almende.com
  * @copyright (c) 2017-2019 visjs contributors, https://github.com/visjs
@@ -78,8 +52,8 @@
  *
  * A dynamic, browser-based visualization library.
  *
- * @version 8.4.0
- * @date    2020-10-14T20:29:58.474Z
+ * @version 9.0.4
+ * @date    2021-03-16T05:41:40.818Z
  *
  * @copyright (c) 2011-2017 Almende B.V, http://almende.com
  * @copyright (c) 2017-2019 visjs contributors, https://github.com/visjs

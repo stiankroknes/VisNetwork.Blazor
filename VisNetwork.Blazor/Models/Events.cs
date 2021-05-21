@@ -37,7 +37,7 @@ namespace VisNetwork.Blazor.Models
 
     public class DeselectClickEvent : BaseClickEvent
     {
-        public NodeEdgeComposite PreviousSelection { get; set; }
+        public NodeEdgeSelection PreviousSelection { get; set; }
     }
 
     public class DrawingEvent

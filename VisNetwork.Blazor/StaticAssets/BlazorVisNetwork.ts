@@ -75,15 +75,30 @@ export default class BlazorVisNetwork {
             if (eventName === 'afterDrawing' ||
                 eventName === 'beforeDrawing') {
                 const data = { canvasDataUrl: '' };
-                // try {
-                //     data.canvasDataUrl = e.canvas.toDataURL();
-                // } catch {
-                //     // ignore
-                // }
+                const canvasContext = e as CanvasRenderingContext2D;
                 component.invokeMethodAsync("EventCallback", eventName, JSON.stringify(data));
+
             } else {
-                var params = JSON.stringify(e);
+
+                var params;
+                try {
+                    params = JSON.stringify(e);
+                }
+                catch(error) {
+                    //  TypeError: cyclic object value: Occurs for deselectNode/Edge event, consider other solutions.
+                    const seen = [];
+                    params = JSON.stringify(e, function (key, val) {
+                        if (val != null && typeof val == 'object') {
+                            if (seen.indexOf(val) >= 0) {
+                                return;
+                            }
+                            seen.push(val);
+                        }
+                        return val;
+                    });
+                }
                 component.invokeMethodAsync("EventCallback", eventName, params);
+
             }
         };
 
@@ -106,7 +121,7 @@ export default class BlazorVisNetwork {
     }
 
     // Clustering
-    
+
     static clusterOutliers(element: HTMLElement) {
         const network: network.Network = this.getNetworkById(element.id);
         // options?: network.ClusterOptions

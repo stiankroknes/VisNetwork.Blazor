@@ -16,7 +16,7 @@
     <PackageProjectUrl>https://github.com/stiankroknes/VisNetwork.Blazor</PackageProjectUrl>
     <RepositoryUrl>https://github.com/stiankroknes/VisNetwork.Blazor</RepositoryUrl>
     <Description>Blazor component for vis.js/vis-network.</Description>
-    <Version>0.0.4</Version>
+    <Version>0.0.5</Version>
   </PropertyGroup>
 
   <ItemGroup>
