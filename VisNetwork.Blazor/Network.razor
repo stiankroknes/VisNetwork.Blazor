@@ -84,6 +84,10 @@
         {
             Id = $"blazor-network-{Guid.NewGuid().ToString()}";
         }
+        else
+        {
+            JS?.SetData(element, thisReference, Data);
+        }
     }
 
     //protected override async Task OnAfterRenderAsync(bool firstRender)
