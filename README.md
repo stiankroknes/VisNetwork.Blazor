@@ -48,4 +48,3 @@ dotnet add package VisNetwork.Blazor
 ```
 
 ### Providing custom options
--
