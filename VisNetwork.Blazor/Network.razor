@@ -10,6 +10,9 @@
 @code {
     private DotNetObjectReference<Network> thisReference;
     private ElementReference element;
+    private bool firstRenderComplete;
+    private NetworkData currentData;
+
     //private readonly Lazy<Task<IJSObjectReference>> moduleTask;
 
     [Parameter] public string Id { get; set; }
@@ -58,6 +61,13 @@
     // Event triggered by the configuration module.
     // TODO
 
+    /// <summary>
+    /// This event is fired when the network has been setup through interop and
+    /// the JavaScript network object is available.
+    /// </summary>
+    [Parameter]
+    public EventCallback SetupCompletedCallback { get; set; }
+
     public Network()
     {
         thisReference = DotNetObjectReference.Create(this);
@@ -67,7 +77,12 @@
 
     async ValueTask IAsyncDisposable.DisposeAsync()
     {
-        thisReference.Dispose();
+        if (firstRenderComplete)
+        {
+            await JS.Destroy(element);
+        }
+
+        thisReference?.Dispose();
         //if (moduleTask.IsValueCreated)
         //{
         // var module = await moduleTask.Value;
@@ -77,17 +92,20 @@
         await Task.CompletedTask;
     }
 
-    protected override void OnParametersSet()
+    protected override async Task OnParametersSetAsync()
     {
-        base.OnParametersSet();
         if (string.IsNullOrWhiteSpace(Id))
         {
             Id = $"blazor-network-{Guid.NewGuid().ToString()}";
         }
-        else
+
+        if (firstRenderComplete && currentData != Data)
         {
-            JS?.SetData(element, thisReference, Data);
+            currentData = Data;
+            await JS.SetData(element, thisReference, Data);
         }
+
+        await base.OnParametersSetAsync();
     }
 
     //protected override async Task OnAfterRenderAsync(bool firstRender)
@@ -108,10 +126,13 @@
             {
                 options = new NetworkOptions();
             }
+
             await JS.CreateNetwork(element, thisReference, options, Data).AsTask();
+            firstRenderComplete = true;
+            await SetupCompletedCallback.InvokeAsync(this);
             await SetEventListeners();
         }
-    } //: JS.SetData(element, thisReference, Config.Data).AsTask();
+    }
 
     internal async Task SetEventListeners()
     {
@@ -180,34 +201,34 @@
 
     // Global
     public async Task SetData(NetworkData data) =>
-        await JS.SetData(element, thisReference, data);
+    await JS.SetData(element, thisReference, data);
 
     // Canvas
     public async Task Redraw() =>
-        await JS.Redraw(element, thisReference);
+    await JS.Redraw(element, thisReference);
 
     // Clustering
     public async Task ClusterOutliers() =>
-        await JS.ClusterOutliers(element, thisReference);
+    await JS.ClusterOutliers(element, thisReference);
 
     // Selection
     public async Task<string[]> GetSelectedNodes() =>
-        await JS.GetSelectedNodes(element, thisReference);
+    await JS.GetSelectedNodes(element, thisReference);
 
     public async Task SelectNodes(string[] nodeIds) =>
-        await JS.SelectNodes(element, thisReference, nodeIds);
+    await JS.SelectNodes(element, thisReference, nodeIds);
 
     public async Task<string[]> GetSelectedEdges() =>
-        await JS.GetSelectedEdges(element, thisReference);
+    await JS.GetSelectedEdges(element, thisReference);
     public async Task SelectEdges(string[] nodeIds) =>
-        await JS.SelectEdges(element, thisReference, nodeIds);
+    await JS.SelectEdges(element, thisReference, nodeIds);
 
     public async Task<NodeEdgeComposite> GetSelection() =>
-        await JS.GetSelection(element, thisReference);
+    await JS.GetSelection(element, thisReference);
 
     public async Task<NodeEdgeComposite> SetSelection(NodeEdgeComposite composite) =>
-        await JS.SetSelection(element, thisReference, composite);
+    await JS.SetSelection(element, thisReference, composite);
 
     public async Task<NodeEdgeComposite> UnselectAll() =>
-        await JS.UnselectAll(element, thisReference);
+    await JS.UnselectAll(element, thisReference);
 }

@@ -25,7 +25,7 @@ export default class BlazorVisNetwork {
                 return null;
             }
 
-            throw new Error("Could not find the network with id: " + id + " network.length: " + this.networks.length);
+            throw new Error("Could not find the network with id: '" + id + "', network.length: " + this.networks.length);
         }
         else if (!networkHolder.network) {
 
@@ -61,6 +61,18 @@ export default class BlazorVisNetwork {
     static setData(element: HTMLElement, data: network.Data) {
         const network: network.Network = this.getNetworkById(element.id);
         network.setData(data);
+    }
+
+    static destroy(element: HTMLElement) {
+        console.log('VisNetwork.Blazor: [destroy] ', element);
+
+        const network: network.Network = this.getNetworkById(element.id);
+        if (network !== null)
+        {
+            network.destroy();
+            this.networks.splice(this.networks.findIndex(item => item.id === element.id), 1);
+            console.log('VisNetwork.Blazor: [destroy] done.');
+        }
     }
 
     static on(element: HTMLElement, component: DotNetObjectReference, eventName: network.NetworkEvents) {
