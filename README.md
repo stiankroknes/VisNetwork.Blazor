@@ -1,6 +1,6 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](/LICENSE)
 [![GitHub issues](https://img.shields.io/github/issues/stiankroknes/visNetwork.blazor)](https://github.com/stiankroknes/VisNetwork.Blazor/issues)
-[![GitHub forks](https://img.shields.io/github/forks/stiankroknes/visNetwork.blazor)](https://github.com/stiankroknes/VisNetwork.Blazornetwork/members)
+[![GitHub forks](https://img.shields.io/github/forks/stiankroknes/visNetwork.blazor)](https://github.com/stiankroknes/VisNetwork.Blazor/network/members)
 [![GitHub stars](https://img.shields.io/github/stars/stiankroknes/visNetwork.blazor)](https://github.com/stiankroknes/VisNetwork.Blazor/stargazers)
 
 [![NuGet Downloads (official NuGet)](https://img.shields.io/nuget/dt/VisNetwork.Blazor?label=NuGet%20Downloads)](https://www.nuget.org/packages/VisNetwork.Blazor/)
