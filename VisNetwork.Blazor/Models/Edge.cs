@@ -20,7 +20,7 @@ namespace VisNetwork.Blazor.Models
         // public int? Width { get; set; } 
         public bool? Physics { get; set; }
         public int? SelectionWidth { get; set; }// TODO: vis supports: function(width) {return width*2;}
-
+        public Arrows Arrows { get; set; }
     }
 
     public class Edge : EdgeOption, IEquatable<Edge>
