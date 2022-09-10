@@ -95,7 +95,7 @@
     {
         public bool? Enabled { get; set; }
         public BarnesHutOption BarnesHut { get; set; }
-        public ForceAtlast2BasedOption ForceAtlas2Based { get; set; }
+        public ForceAtlas2BasedOption ForceAtlas2Based { get; set; }
         public RepulsionOption Repulsion { get; set; }
         public HierarchicalRepulsionOption HierarchicalRepulsion { get; set; }
         public decimal? MaxVelocity { get; set; }
@@ -122,7 +122,7 @@
         public double? AvoidOverlap { get; set; }
     }
 
-    public class ForceAtlast2BasedOption
+    public class ForceAtlas2BasedOption
     {
         public decimal? Theta { get; set; }
         public int? GravitationalConstant { get; set; }
