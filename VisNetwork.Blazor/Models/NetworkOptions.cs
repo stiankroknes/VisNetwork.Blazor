@@ -95,7 +95,7 @@
     {
         public bool? Enabled { get; set; }
         public BarnesHutOption BarnesHut { get; set; }
-        public ForceAtlast2BasedOption ForceAtlast2Based { get; set; }
+        public ForceAtlast2BasedOption ForceAtlas2Based { get; set; }
         public RepulsionOption Repulsion { get; set; }
         public HierarchicalRepulsionOption HierarchicalRepulsion { get; set; }
         public decimal? MaxVelocity { get; set; }
