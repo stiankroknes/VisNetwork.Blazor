@@ -2,11 +2,12 @@
 
   <!--<Import Project="StaticAssets\StaticAssets.targets" />-->
   <PropertyGroup>
-    <TargetFramework>net5.0</TargetFramework>
-    <!-- <TargetFrameworks>netstandard2.1;net5.0</TargetFrameworks> -->
-    <RazorLangVersion Condition=" '$(TargetFramework)' != 'net5.0' ">3.0</RazorLangVersion>
-    <RootNamespace>VisNetwork.Blazor</RootNamespace>
-     <AssemblyTitle>VisNetwork Blazor</AssemblyTitle>
+	<TargetFrameworks>netstandard2.1;net6</TargetFrameworks>
+	<RazorLangVersion>3.0</RazorLangVersion>
+	<IsPackable>true</IsPackable>
+	<OutputType>Library</OutputType>
+	<RootNamespace>VisNetwork.Blazor</RootNamespace>
+    <AssemblyTitle>VisNetwork Blazor</AssemblyTitle>
     <Authors>Stian Kroknes</Authors>
     <AssemblyName>VisNetwork.Blazor</AssemblyName>
     <PackageId>VisNetwork.Blazor</PackageId>
@@ -14,23 +15,24 @@
     <PackageTags>blazor;razor;vis-network</PackageTags>
     <!-- <PackageIconUrl>https://raw.githubusercontent.com/stiankroknes/VisNetwork.Blazor/main/assets/visnetwork_logo_64x64.png</PackageIconUrl> -->
     <PackageProjectUrl>https://github.com/stiankroknes/VisNetwork.Blazor</PackageProjectUrl>
+	<!--<PackageReleaseNotes>Change target framework to .NET Standard 2.1.</PackageReleaseNotes>-->
     <RepositoryUrl>https://github.com/stiankroknes/VisNetwork.Blazor</RepositoryUrl>
     <Description>Blazor component for vis.js/vis-network.</Description>
-    <Version>0.0.9</Version>
+    <Version>0.0.10</Version>
   </PropertyGroup>
 
   <ItemGroup>
     <SupportedPlatform Include="browser" />
     <Content Update="StaticAssets\*" Pack="false" />
   </ItemGroup>
-
-  <ItemGroup Condition="'$(TargetFramework)' == 'net5.0'">
-    <PackageReference Include="Microsoft.AspNetCore.Components" Version="5.0.11" />
-    <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="5.0.11" />
+	
+  <ItemGroup Condition="'$(TargetFramework)' == 'net6'">
+    <PackageReference Include="Microsoft.AspNetCore.Components" Version="6.0.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="6.0.0" />
   </ItemGroup>
 
   <ItemGroup Condition="'$(TargetFramework)' == 'netstandard2.1'">
-    <PackageReference Include="Microsoft.AspNetCore.Components" Version="3.1.15" />
-    <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="3.1.15" />
+    <PackageReference Include="Microsoft.AspNetCore.Components" Version="3.1.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="3.1.0" />
   </ItemGroup>
 </Project>
