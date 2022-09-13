@@ -63,6 +63,16 @@ export default class BlazorVisNetwork {
         network.setData(data);
     }
 
+    static setOptions(element: HTMLElement, options: network.Options) {
+        const network: network.Network = this.getNetworkById(element.id);
+        network.setOptions(options);
+    }
+
+    static setSize(element: HTMLElement, width: string, height: string) {
+        const network: network.Network = this.getNetworkById(element.id);
+        network.setSize(width, height);
+    }
+
     static destroy(element: HTMLElement) {
         console.log('VisNetwork.Blazor: [destroy] ', element);
 
