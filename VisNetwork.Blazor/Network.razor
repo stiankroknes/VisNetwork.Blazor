@@ -2,6 +2,7 @@
 @implements IAsyncDisposable
 
 @using System.Text.Json
+@using System.Globalization
 @using VisNetwork.Blazor.Models;
 
 <div id="@Id" class="blazor-vis-network" @ref="element" @attributes="@ExtraAttributes">
@@ -201,7 +202,13 @@
 
     // Global
     public async Task SetData(NetworkData data) =>
-    await JS.SetData(element, thisReference, data);
+        await JS.SetData(element, thisReference, data);
+
+    public async Task SetOptions(NetworkOptions options) =>
+       await JS.SetOptions(element, thisReference, options);
+
+    public async Task SetSize(int width, int height) =>
+        await JS.SetSize(element, thisReference, width.ToString(), height.ToString());
 
     // Canvas
     public async Task Redraw() =>

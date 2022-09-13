@@ -1,0 +1,55 @@
+﻿@page "/options"
+@using VisNetwork.Blazor.Models
+
+<h3>Options</h3>
+
+<div>
+    <button @onclick="ChangeOptionClick">Change options</button>
+    <Network @ref="network" Id="my-id" Data="@data" Options="EditorConstructionOptions" class="vis-network-container" />
+</div>
+
+@code {
+    private NetworkData data;
+    private Network network;
+
+    public Options()
+    {
+        var nodes = new List<Node>();
+        var edges = new List<Edge>();
+
+        nodes.Add(new Node("1", "Node 1", 1, "circle"));
+        nodes.Add(new Node("2", "Node 2", 2, "ellipse"));
+        edges.Add(new Edge("1", "2"));
+        nodes.Add(new Node("3", "Node 3", 4, "database"));
+        edges.Add(new Edge("2", "3"));
+
+        data = new NetworkData
+            {
+                Edges = edges,
+                Nodes = nodes
+            };
+    }
+
+    private NetworkOptions EditorConstructionOptions(Network network)
+    {
+        return new NetworkOptions
+            {
+                AutoResize = true,
+                Nodes = new NodeOption
+                {
+                    BorderWidth = 1
+                }
+            };
+    }
+
+    private async Task ChangeOptionClick()
+    {
+        await network.SetOptions(new NetworkOptions
+            {
+                Nodes = new NodeOption
+                {
+                    BorderWidth = 15
+                }
+            });
+    }
+}

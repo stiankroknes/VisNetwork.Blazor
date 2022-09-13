@@ -19,6 +19,12 @@ namespace VisNetwork.Blazor.Models
         public static ValueTask SetData(this IJSRuntime jsRuntime, ElementReference element, DotNetObjectReference<Network> component, NetworkData data) =>
             jsRuntime.InvokeVoidAsync($"{VisNetworkInteropName}.setData", element, SerializeIgnoreNull(data));
 
+        public static ValueTask SetOptions(this IJSRuntime jsRuntime, ElementReference element, DotNetObjectReference<Network> component, NetworkOptions options) =>
+            jsRuntime.InvokeVoidAsync($"{VisNetworkInteropName}.setOptions", element, SerializeIgnoreNull(options));
+
+        public static ValueTask SetSize(this IJSRuntime jsRuntime, ElementReference element, DotNetObjectReference<Network> component, string width, string height) =>
+            jsRuntime.InvokeVoidAsync($"{VisNetworkInteropName}.setSize", element, width, height);
+
         public static ValueTask Destroy(this IJSRuntime jsRuntime, ElementReference element) =>
            jsRuntime.InvokeVoidAsync($"{VisNetworkInteropName}.destroy", element);
 
