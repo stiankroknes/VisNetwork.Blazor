@@ -1,6 +1,9 @@
 ﻿using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
 using System.Text.Json;
+#if NET6_0
+using System.Text.Json.Serialization;
+#endif
 using System.Threading.Tasks;
 
 namespace VisNetwork.Blazor.Models
@@ -51,7 +54,7 @@ namespace VisNetwork.Blazor.Models
 
         public static ValueTask<NodeEdgeComposite> GetSelection(this IJSRuntime jsRuntime, ElementReference element, DotNetObjectReference<Network> component) =>
             jsRuntime.InvokeAsync<NodeEdgeComposite>($"{VisNetworkInteropName}.getSelection", element);
-            
+
         public static ValueTask<NodeEdgeComposite> UnselectAll(this IJSRuntime jsRuntime, ElementReference element, DotNetObjectReference<Network> component) =>
             jsRuntime.InvokeAsync<NodeEdgeComposite>($"{VisNetworkInteropName}.unselectAll", element);
 
@@ -59,7 +62,12 @@ namespace VisNetwork.Blazor.Models
         {
             var jsonSerializerOptions = new JsonSerializerOptions
             {
+#if NETSTANDARD2_1
                 IgnoreNullValues = true,
+#endif
+#if NET6_0
+                DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull,
+#endif
                 PropertyNamingPolicy = JsonNamingPolicy.CamelCase
             };
 
