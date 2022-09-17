@@ -9,37 +9,37 @@
 </div>
 
 @code {
-    private NetworkData data;
+private NetworkData data;
 
-    public Shapes()
+public Shapes()
+{
+    var nodes = new HashSet<Node>();
+    var edges = new HashSet<Edge>();
+
+    var types = new[] {
+        "ellipse", "circle", "database", "box", "text",
+        "image", "circularImage", "diamond", "dot", "star", "triangle", "triangleDown", "hexagon", "square", "icon"
+    };
+
+    int idx = 1;
+    foreach (var type in types)
     {
-        var nodes = new HashSet<Node>();
-        var edges = new HashSet<Edge>();
-
-        var types = new[] {
-            "ellipse", "circle", "database", "box", "text",
-            "image", "circularImage", "diamond", "dot", "star", "triangle", "triangleDown", "hexagon", "square", "icon"
-        };
-
-        int idx = 1;
-        foreach (var type in types)
+        nodes.Add(new Node(idx.ToString(), $"{type} {idx}", idx, type)
         {
-            nodes.Add(new Node(idx.ToString(), $"{type} {idx}", idx, type)
-            {
-                Image = type == "image" || type == "circularImage"
-                    ? @"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAHElEQVQI12P4//8/w38GIAXDIBKE0DHxgljNBAAO9TXL0Y4OHwAAAABJRU5ErkJggg=="
-                    : null,
-                Icon = type == "icon"
-                    ? new Icon { Face = "iconic", Code = "oi oi-cloudy", /* TODO: does not work */ }
-                    : null
-            });
-            idx++;
-        }
-
-        data = new NetworkData
-        {
-            Edges = edges,
-            Nodes = nodes
-        };
+            Image = type == "image" || type == "circularImage"
+                ? @"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAHElEQVQI12P4//8/w38GIAXDIBKE0DHxgljNBAAO9TXL0Y4OHwAAAABJRU5ErkJggg=="
+                : null,
+            Icon = type == "icon"
+                ? new Icon { Face = "iconic", Code = "oi oi-cloudy", /* TODO: does not work */ }
+                : null
+        });
+        idx++;
     }
+
+    data = new NetworkData
+    {
+        Edges = edges,
+        Nodes = nodes
+    };
+}
 }

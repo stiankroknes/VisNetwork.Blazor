@@ -26,103 +26,103 @@
     </thead>
     <tbody>
         @foreach (var ev in events)
-        {
-            <tr class="@ev.CssClass">
+    {
+        <tr class="@ev.CssClass">
                 <td>@ev.Timestamp.ToString("hh:MM:ss fff")</td>
                 <td>@ev.Name</td>
                 <td>@ev.Data</td>
             </tr>
-        }
+    }
     </tbody>
 </table>
 
 @code {
-    private NetworkData data;
-    private List<EventData> events = new List<EventData>();
+private NetworkData data;
+private List<EventData> events = new List<EventData>();
 
-    public Events()
+public Events()
+{
+    var nodes = new List<Node>();
+    var edges = new List<Edge>();
+
+    nodes.Add(new Node("1", "Node 1", 1, "circle"));
+    nodes.Add(new Node("2", "Node 2", 2, "ellipse"));
+    edges.Add(new Edge("1", "2") { Id = "1-2" });
+    nodes.Add(new Node("3", "Node 3", 4, "database"));
+    edges.Add(new Edge("2", "3") { Id = "2-3" });
+
+    data = new NetworkData
     {
-        var nodes = new List<Node>();
-        var edges = new List<Edge>();
+        Edges = edges,
+        Nodes = nodes
+    };
+}
 
-        nodes.Add(new Node("1", "Node 1", 1, "circle"));
-        nodes.Add(new Node("2", "Node 2", 2, "ellipse"));
-        edges.Add(new Edge("1", "2") { Id = "1-2" });
-        nodes.Add(new Node("3", "Node 3", 4, "database"));
-        edges.Add(new Edge("2", "3") { Id = "2-3" });
+private void AddEvent<T>(string name, T eventArg)
+{
+    var serialized = SerializeArgs(eventArg);
+    AddEventData(name, serialized);
+}
 
-        data = new NetworkData
-        {
-            Edges = edges,
-            Nodes = nodes
-        };
+private void AddEventData(string name, string data)
+{
+    var eventData = new EventData { Timestamp = DateTime.Now, Name = name, Data = data, CssClass = "event-new" };
+    events.ForEach(e => 
+        e.CssClass = (eventData.Timestamp - e.Timestamp) < TimeSpan.FromMilliseconds(200)
+            ? "event-close"
+            : "event-old");
+
+    events.Insert(0, eventData);
+
+    if (events.Count > 500)
+    {
+        events.RemoveAt(events.Count - 1);
     }
 
-    private void AddEvent<T>(string name, T eventArg)
+    StateHasChanged();
+}
+
+private void Clear() => events.Clear();
+
+private async Task AddEventDataAsync(string name, string data)
+{
+    AddEventData(name, data);
+    await Task.CompletedTask;
+}
+
+private void NetworkSelectEdge(ClickEvent eventArg) => AddEvent("selectEdge", eventArg);
+
+private void NetworkDeselectEdge(DeselectClickEvent eventArg) => AddEvent("deselectEdge", eventArg);
+
+private void NetworkSelectNode(ClickEvent eventArg) => AddEvent("selectNode", eventArg);
+
+private void NetworkDeselectNode(DeselectClickEvent eventArg) => AddEvent("deselectNode", eventArg);
+
+private void NetworkOnClick(ClickEvent eventArg) => AddEvent("click", eventArg);
+
+private void NetworkBeforeDrawing(DrawingEvent eventArg) => AddEvent("beforeDrawing", eventArg);
+
+private void NetworkAfterDrawing(DrawingEvent eventArg) => AddEvent("afterDrawing", eventArg);
+
+private async Task NetworkShowPopup(string id) => await AddEventDataAsync("showPopup", id);
+
+private async Task NetworkHidePopup(string id) => await AddEventDataAsync("hidePopup", id);
+
+private static string SerializeArgs<T>(T instance)
+{
+    var jsonSerializerOptions = new JsonSerializerOptions
     {
-        var serialized = SerializeArgs(eventArg);
-        AddEventData(name, serialized);
-    }
+        PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
+    };
 
-    private void AddEventData(string name, string data)
-    {
-        var eventData = new EventData { Timestamp = DateTime.Now, Name = name, Data = data, CssClass = "event-new" };
-        events.ForEach(e => 
-            e.CssClass = (eventData.Timestamp - e.Timestamp) < TimeSpan.FromMilliseconds(200)
-                ? "event-close"
-                : "event-old");
+    return JsonSerializer.Serialize(instance, jsonSerializerOptions);
+}
 
-        events.Insert(0, eventData);
-
-        if (events.Count > 500)
-        {
-            events.RemoveAt(events.Count - 1);
-        }
-
-        StateHasChanged();
-    }
-
-    private void Clear() => events.Clear();
-
-    private async Task AddEventDataAsync(string name, string data)
-    {
-        AddEventData(name, data);
-        await Task.CompletedTask;
-    }
-
-    private void NetworkSelectEdge(ClickEvent eventArg) => AddEvent("selectEdge", eventArg);
-
-    private void NetworkDeselectEdge(DeselectClickEvent eventArg) => AddEvent("deselectEdge", eventArg);
-
-    private void NetworkSelectNode(ClickEvent eventArg) => AddEvent("selectNode", eventArg);
-
-    private void NetworkDeselectNode(DeselectClickEvent eventArg) => AddEvent("deselectNode", eventArg);
-
-    private void NetworkOnClick(ClickEvent eventArg) => AddEvent("click", eventArg);
-
-    private void NetworkBeforeDrawing(DrawingEvent eventArg) => AddEvent("beforeDrawing", eventArg);
-
-    private void NetworkAfterDrawing(DrawingEvent eventArg) => AddEvent("afterDrawing", eventArg);
-
-    private async Task NetworkShowPopup(string id) => await AddEventDataAsync("showPopup", id);
-
-    private async Task NetworkHidePopup(string id) => await AddEventDataAsync("hidePopup", id);
-
-    private static string SerializeArgs<T>(T instance)
-    {
-        var jsonSerializerOptions = new JsonSerializerOptions
-        {
-            PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
-        };
-
-        return JsonSerializer.Serialize(instance, jsonSerializerOptions);
-    }
-
-    private class EventData
-    {
-        public DateTime Timestamp { get; set; }
-        public string Name { get; set; }
-        public string Data { get; set; }
-        public string CssClass { get; set; }
-    }
+private class EventData
+{
+    public DateTime Timestamp { get; set; }
+    public string Name { get; set; }
+    public string Data { get; set; }
+    public string CssClass { get; set; }
+}
 }

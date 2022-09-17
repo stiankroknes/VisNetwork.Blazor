@@ -1,9 +1,8 @@
-namespace VisNetwork.Blazor.Models
+namespace VisNetwork.Blazor.Models;
+
+public class Arrows
 {
-    public class Arrows
-    {
-        public ArrowsOptions To { get; set; }
-        public ArrowsOptions Middle { get; set; }
-        public ArrowsOptions From { get; set; }
-    }
+    public ArrowsOptions To { get; set; }
+    public ArrowsOptions Middle { get; set; }
+    public ArrowsOptions From { get; set; }
 }

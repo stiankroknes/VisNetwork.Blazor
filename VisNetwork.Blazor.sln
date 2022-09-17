@@ -9,6 +9,20 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VisNetwork.Blazor.Tests", "
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VisNetwork.Blazor.Sample", "VisNetwork.Blazor.Sample\VisNetwork.Blazor.Sample.csproj", "{42C8C0D1-0643-4994-9707-85C01123BAE7}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "01_SolutionItems", "01_SolutionItems", "{3CBCABCF-0147-48CD-A75C-F1FE45CF00AC}"
+	ProjectSection(SolutionItems) = preProject
+		.gitignore = .gitignore
+		Directory.Build.props = Directory.Build.props
+		README.md = README.md
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "workflows", "workflows", "{CE1441A6-B946-47B2-A3FA-207FDCD80645}"
+	ProjectSection(SolutionItems) = preProject
+		.github\workflows\azure-static-web-apps-salmon-dune-0701e470f.yml = .github\workflows\azure-static-web-apps-salmon-dune-0701e470f.yml
+		.github\workflows\codeql-analysis.yml = .github\workflows\codeql-analysis.yml
+		.github\workflows\publish.yml = .github\workflows\publish.yml
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -58,6 +72,9 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{CE1441A6-B946-47B2-A3FA-207FDCD80645} = {3CBCABCF-0147-48CD-A75C-F1FE45CF00AC}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {202F8EA3-FC74-4C3D-9DCA-B624622BC3D4}
