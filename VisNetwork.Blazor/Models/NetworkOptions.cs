@@ -6,7 +6,7 @@
         public string Width { get; set; }
         public string Height { get; set; }
         public string Locale { get; set; }
-        public bool? ClickToUSe { get; set; }
+        public bool? ClickToUse { get; set; }
 
         public ConfigureOptions Configure { get; set; }
 
