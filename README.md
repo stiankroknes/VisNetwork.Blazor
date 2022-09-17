@@ -42,9 +42,31 @@ dotnet add package VisNetwork.Blazor
 
 ## vis-network
 
-* Add a `Network` component in your .razor file and configure it as you need.
+* Add a `Network` component in your .razor file and configure it as you need. See Sample-app for example usage.
 ```html
 <Network Id="my-id" Data="@data" />
 ```
 
 ### Providing custom options
+
+To provide custom options the `Options` parameter can be used.
+
+```html
+<Network Id="my-id" Data="@data" Options="EditorConstructionOptions" />
+```
+
+```csharp
+private NetworkOptions EditorConstructionOptions(Network network)
+{
+    return new NetworkOptions
+        {
+            AutoResize = true,
+            Nodes = new NodeOption
+            {
+                BorderWidth = 1
+            }
+        };
+}
+```
+
+Options can also be applied to the `Network` using the `SetOptions` API method.
