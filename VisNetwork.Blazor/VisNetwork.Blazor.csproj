@@ -20,7 +20,7 @@
 		<SymbolPackageFormat>snupkg</SymbolPackageFormat>
 		<IncludeSymbols>true</IncludeSymbols>
 		<Description>Blazor component for vis.js/vis-network.</Description>
-		<Version>0.0.10</Version>
+		<Version>0.0.11</Version>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(TargetFramework)' == 'netstandard2.1'">
