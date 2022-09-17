@@ -16,6 +16,8 @@
 		<PackageProjectUrl>https://github.com/stiankroknes/VisNetwork.Blazor</PackageProjectUrl>
 		<!--<PackageReleaseNotes>Change target framework to .NET Standard 2.1.</PackageReleaseNotes>-->
 		<RepositoryUrl>https://github.com/stiankroknes/VisNetwork.Blazor</RepositoryUrl>
+		<PublishRepositoryUrl>true</PublishRepositoryUrl>
+		<IncludeSymbols>true</IncludeSymbols>
 		<Description>Blazor component for vis.js/vis-network.</Description>
 		<Version>0.0.10</Version>
 	</PropertyGroup>
@@ -47,6 +49,10 @@
 		<Exec Command="npm run build:Release" WorkingDirectory="StaticAssets" />
 	</Target>-->
 
+	<ItemGroup>
+		<PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.1.1" PrivateAssets="All"/>
+	</ItemGroup>
+	
 	<ItemGroup Condition="'$(TargetFramework)' == 'net6'">
 		<PackageReference Include="Microsoft.AspNetCore.Components" Version="6.0.0" />
 		<PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="6.0.0" />
