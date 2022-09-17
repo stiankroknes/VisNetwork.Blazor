@@ -1,10 +1,9 @@
 ﻿using System.Collections.Generic;
 
-namespace VisNetwork.Blazor.Models
+namespace VisNetwork.Blazor.Models;
+
+public class NetworkData
 {
-    public class NetworkData
-    {
-        public IReadOnlyCollection<Edge> Edges { get; set; }
-        public IReadOnlyCollection<Node> Nodes { get; set; }
-    }
+    public IReadOnlyCollection<Edge> Edges { get; set; }
+    public IReadOnlyCollection<Node> Nodes { get; set; }
 }

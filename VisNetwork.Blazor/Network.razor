@@ -9,233 +9,233 @@
 </div>
 
 @code {
-    private DotNetObjectReference<Network> thisReference;
-    private ElementReference element;
-    private bool firstRenderComplete;
-    private NetworkData currentData;
+private DotNetObjectReference<Network> thisReference;
+private ElementReference element;
+private bool firstRenderComplete;
+private NetworkData currentData;
 
-    //private readonly Lazy<Task<IJSObjectReference>> moduleTask;
+//private readonly Lazy<Task<IJSObjectReference>> moduleTask;
 
-    [Parameter] public string Id { get; set; }
+[Parameter] public string Id { get; set; }
 
-    /// <summary>
-    /// Sets the options action to create the <see cref="NetworkOptions"/>.
-    /// </summary>
-    [Parameter] public Func<Network, NetworkOptions> Options { get; set; }
+/// <summary>
+/// Sets the options action to create the <see cref="NetworkOptions"/>.
+/// </summary>
+[Parameter] public Func<Network, NetworkOptions> Options { get; set; }
 
-    /// <summary>
-    /// The network data.
-    /// </summary>
-    [Parameter] public NetworkData Data { get; set; }
+/// <summary>
+/// The network data.
+/// </summary>
+[Parameter] public NetworkData Data { get; set; }
 
-    [Parameter(CaptureUnmatchedValues = true)] public Dictionary<string, object> ExtraAttributes { get; set; }
+[Parameter(CaptureUnmatchedValues = true)] public Dictionary<string, object> ExtraAttributes { get; set; }
 
-    // Events triggered by human interaction, selection, dragging etc.
-    [Parameter] public EventCallback<ClickEvent> OnClick { get; set; }
+// Events triggered by human interaction, selection, dragging etc.
+[Parameter] public EventCallback<ClickEvent> OnClick { get; set; }
 
-    [Parameter] public EventCallback<ClickEvent> OnSelectNode { get; set; }
-    [Parameter] public EventCallback<DeselectClickEvent> OnDeselectNode { get; set; }
+[Parameter] public EventCallback<ClickEvent> OnSelectNode { get; set; }
+[Parameter] public EventCallback<DeselectClickEvent> OnDeselectNode { get; set; }
 
-    [Parameter] public EventCallback<ClickEvent> OnSelectEdge { get; set; }
-    [Parameter] public EventCallback<DeselectClickEvent> OnDeselectEdge { get; set; }
+[Parameter] public EventCallback<ClickEvent> OnSelectEdge { get; set; }
+[Parameter] public EventCallback<DeselectClickEvent> OnDeselectEdge { get; set; }
 
-    [Parameter] public EventCallback<string> OnShowPopup { get; set; }
+[Parameter] public EventCallback<string> OnShowPopup { get; set; }
 
-    [Parameter] public EventCallback<string> OnHidePopup { get; set; }
+[Parameter] public EventCallback<string> OnHidePopup { get; set; }
 
-    // Events triggered the physics simulation. Can be used to trigger GUI updates.
-    // TODO
+// Events triggered the physics simulation. Can be used to trigger GUI updates.
+// TODO
 
-    // Event triggered by the canvas.
-    // TODO
-
-
-    // Events triggered by the rendering module. Can be used to draw custom elements on the canvas.
-    // TOOD
-    [Parameter] public EventCallback<DrawingEvent> OnBeforeDrawing { get; set; }
-    [Parameter] public EventCallback<DrawingEvent> OnAfterDrawing { get; set; }
-
-    // Event triggered by the view module.
-    // TODO
+// Event triggered by the canvas.
+// TODO
 
 
-    // Event triggered by the configuration module.
-    // TODO
+// Events triggered by the rendering module. Can be used to draw custom elements on the canvas.
+// TOOD
+[Parameter] public EventCallback<DrawingEvent> OnBeforeDrawing { get; set; }
+[Parameter] public EventCallback<DrawingEvent> OnAfterDrawing { get; set; }
 
-    /// <summary>
-    /// This event is fired when the network has been setup through interop and
-    /// the JavaScript network object is available.
-    /// </summary>
-    [Parameter]
-    public EventCallback SetupCompletedCallback { get; set; }
+// Event triggered by the view module.
+// TODO
 
-    public Network()
+
+// Event triggered by the configuration module.
+// TODO
+
+/// <summary>
+/// This event is fired when the network has been setup through interop and
+/// the JavaScript network object is available.
+/// </summary>
+[Parameter]
+public EventCallback SetupCompletedCallback { get; set; }
+
+public Network()
+{
+    thisReference = DotNetObjectReference.Create(this);
+    //moduleTask = new(() => JS.InvokeAsync<IJSObjectReference>(
+    // "import", "./_content/VisNetwork.Blazor/BlazorVisNetwork.js").AsTask());
+}
+
+async ValueTask IAsyncDisposable.DisposeAsync()
+{
+    if (firstRenderComplete)
     {
-        thisReference = DotNetObjectReference.Create(this);
-        //moduleTask = new(() => JS.InvokeAsync<IJSObjectReference>(
-        // "import", "./_content/VisNetwork.Blazor/BlazorVisNetwork.js").AsTask());
+        await JS.Destroy(element);
     }
 
-    async ValueTask IAsyncDisposable.DisposeAsync()
-    {
-        if (firstRenderComplete)
-        {
-            await JS.Destroy(element);
-        }
-
-        thisReference?.Dispose();
-        //if (moduleTask.IsValueCreated)
-        //{
-        // var module = await moduleTask.Value;
-        // await module.DisposeAsync();
-        //}
-
-        await Task.CompletedTask;
-    }
-
-    protected override async Task OnParametersSetAsync()
-    {
-        if (string.IsNullOrWhiteSpace(Id))
-        {
-            Id = $"blazor-network-{Guid.NewGuid().ToString()}";
-        }
-
-        if (firstRenderComplete && currentData != Data)
-        {
-            currentData = Data;
-            await JS.SetData(element, thisReference, Data);
-        }
-
-        await base.OnParametersSetAsync();
-    }
-
-    //protected override async Task OnAfterRenderAsync(bool firstRender)
+    thisReference?.Dispose();
+    //if (moduleTask.IsValueCreated)
     //{
-    // if (firstRender)
-    // {
     // var module = await moduleTask.Value;
-    // await module.InvokeVoidAsync("create", element, thisReference, Config);
-    // }
+    // await module.DisposeAsync();
     //}
 
-    protected override async Task OnAfterRenderAsync(bool firstRender)
-    {
-        if (firstRender)
-        {
-            var options = Options?.Invoke(this);
-            if (options == null)
-            {
-                options = new NetworkOptions();
-            }
+    await Task.CompletedTask;
+}
 
-            await JS.CreateNetwork(element, thisReference, options, Data).AsTask();
-            firstRenderComplete = true;
-            await SetupCompletedCallback.InvokeAsync(this);
-            await SetEventListeners();
-        }
+protected override async Task OnParametersSetAsync()
+{
+    if (string.IsNullOrWhiteSpace(Id))
+    {
+        Id = $"blazor-network-{Guid.NewGuid().ToString()}";
     }
 
-    internal async Task SetEventListeners()
+    if (firstRenderComplete && currentData != Data)
     {
-        if (OnClick.HasDelegate)
-        {
-            await JS.SetEventListener(element, thisReference, "click"); ;
-        }
-        if (OnSelectNode.HasDelegate)
-        {
-            await JS.SetEventListener(element, thisReference, "selectNode"); ;
-        }
-        if (OnDeselectNode.HasDelegate)
-        {
-            await JS.SetEventListener(element, thisReference, "deselectNode"); ;
-        }
-        if (OnSelectEdge.HasDelegate)
-        {
-            await JS.SetEventListener(element, thisReference, "selectEdge"); ;
-        }
-        if (OnDeselectEdge.HasDelegate)
-        {
-            await JS.SetEventListener(element, thisReference, "deselectEdge"); ;
-        }
-        if (OnShowPopup.HasDelegate)
-        {
-            await JS.SetEventListener(element, thisReference, "showPopup"); ;
-        }
-        if (OnHidePopup.HasDelegate)
-        {
-            await JS.SetEventListener(element, thisReference, "hidePopup"); ;
-        }
-
-        // Rendering
-        if (OnBeforeDrawing.HasDelegate)
-        {
-            await JS.SetEventListener(element, thisReference, "beforeDrawing"); ;
-        }
-
-        if (OnAfterDrawing.HasDelegate)
-        {
-            await JS.SetEventListener(element, thisReference, "afterDrawing"); ;
-        }
+        currentData = Data;
+        await JS.SetData(element, thisReference, Data);
     }
 
-    [JSInvokable]
-    public async Task EventCallback(string eventName, string eventJson)
+    await base.OnParametersSetAsync();
+}
+
+//protected override async Task OnAfterRenderAsync(bool firstRender)
+//{
+// if (firstRender)
+// {
+// var module = await moduleTask.Value;
+// await module.InvokeVoidAsync("create", element, thisReference, Config);
+// }
+//}
+
+protected override async Task OnAfterRenderAsync(bool firstRender)
+{
+    if (firstRender)
     {
-        var jsonOptions = new JsonSerializerOptions { PropertyNamingPolicy = JsonNamingPolicy.CamelCase };
-
-        var eventTask = eventName switch
+        var options = Options?.Invoke(this);
+        if (options == null)
         {
-            "click" => OnClick.InvokeAsync(JsonSerializer.Deserialize<ClickEvent>(eventJson, jsonOptions)),
-            "selectNode" => OnSelectNode.InvokeAsync(JsonSerializer.Deserialize<ClickEvent>(eventJson, jsonOptions)),
-            "deselectNode" => OnDeselectNode.InvokeAsync(JsonSerializer.Deserialize<DeselectClickEvent>(eventJson, jsonOptions)),
-            "selectEdge" => OnSelectEdge.InvokeAsync(JsonSerializer.Deserialize<ClickEvent>(eventJson, jsonOptions)),
-            "deselectEdge" => OnDeselectEdge.InvokeAsync(JsonSerializer.Deserialize<DeselectClickEvent>(eventJson, jsonOptions)),
-            "showPopup" => OnShowPopup.InvokeAsync(eventJson),
-            "hidePopup" => OnHidePopup.InvokeAsync(eventJson),
-            "beforeDrawing" => OnBeforeDrawing.InvokeAsync(JsonSerializer.Deserialize<DrawingEvent>(eventJson, jsonOptions)),
-            "afterDrawing" => OnAfterDrawing.InvokeAsync(JsonSerializer.Deserialize<DrawingEvent>(eventJson, jsonOptions)),
-            _ => Task.CompletedTask
-        };
+            options = new NetworkOptions();
+        }
 
-        await eventTask;
+        await JS.CreateNetwork(element, thisReference, options, Data).AsTask();
+        firstRenderComplete = true;
+        await SetupCompletedCallback.InvokeAsync(this);
+        await SetEventListeners();
+    }
+}
+
+internal async Task SetEventListeners()
+{
+    if (OnClick.HasDelegate)
+    {
+        await JS.SetEventListener(element, thisReference, "click"); ;
+    }
+    if (OnSelectNode.HasDelegate)
+    {
+        await JS.SetEventListener(element, thisReference, "selectNode"); ;
+    }
+    if (OnDeselectNode.HasDelegate)
+    {
+        await JS.SetEventListener(element, thisReference, "deselectNode"); ;
+    }
+    if (OnSelectEdge.HasDelegate)
+    {
+        await JS.SetEventListener(element, thisReference, "selectEdge"); ;
+    }
+    if (OnDeselectEdge.HasDelegate)
+    {
+        await JS.SetEventListener(element, thisReference, "deselectEdge"); ;
+    }
+    if (OnShowPopup.HasDelegate)
+    {
+        await JS.SetEventListener(element, thisReference, "showPopup"); ;
+    }
+    if (OnHidePopup.HasDelegate)
+    {
+        await JS.SetEventListener(element, thisReference, "hidePopup"); ;
     }
 
-    // Global
-    public async Task SetData(NetworkData data) =>
-        await JS.SetData(element, thisReference, data);
+    // Rendering
+    if (OnBeforeDrawing.HasDelegate)
+    {
+        await JS.SetEventListener(element, thisReference, "beforeDrawing"); ;
+    }
 
-    public async Task SetOptions(NetworkOptions options) =>
-       await JS.SetOptions(element, thisReference, options);
+    if (OnAfterDrawing.HasDelegate)
+    {
+        await JS.SetEventListener(element, thisReference, "afterDrawing"); ;
+    }
+}
 
-    public async Task SetSize(int width, int height) =>
-        await JS.SetSize(element, thisReference, width.ToString(), height.ToString());
+[JSInvokable]
+public async Task EventCallback(string eventName, string eventJson)
+{
+    var jsonOptions = new JsonSerializerOptions { PropertyNamingPolicy = JsonNamingPolicy.CamelCase };
 
-    // Canvas
-    public async Task Redraw() =>
-    await JS.Redraw(element, thisReference);
+    var eventTask = eventName switch
+    {
+        "click" => OnClick.InvokeAsync(JsonSerializer.Deserialize<ClickEvent>(eventJson, jsonOptions)),
+        "selectNode" => OnSelectNode.InvokeAsync(JsonSerializer.Deserialize<ClickEvent>(eventJson, jsonOptions)),
+        "deselectNode" => OnDeselectNode.InvokeAsync(JsonSerializer.Deserialize<DeselectClickEvent>(eventJson, jsonOptions)),
+        "selectEdge" => OnSelectEdge.InvokeAsync(JsonSerializer.Deserialize<ClickEvent>(eventJson, jsonOptions)),
+        "deselectEdge" => OnDeselectEdge.InvokeAsync(JsonSerializer.Deserialize<DeselectClickEvent>(eventJson, jsonOptions)),
+        "showPopup" => OnShowPopup.InvokeAsync(eventJson),
+        "hidePopup" => OnHidePopup.InvokeAsync(eventJson),
+        "beforeDrawing" => OnBeforeDrawing.InvokeAsync(JsonSerializer.Deserialize<DrawingEvent>(eventJson, jsonOptions)),
+        "afterDrawing" => OnAfterDrawing.InvokeAsync(JsonSerializer.Deserialize<DrawingEvent>(eventJson, jsonOptions)),
+        _ => Task.CompletedTask
+    };
 
-    // Clustering
-    public async Task ClusterOutliers() =>
-    await JS.ClusterOutliers(element, thisReference);
+    await eventTask;
+}
 
-    // Selection
-    public async Task<string[]> GetSelectedNodes() =>
-    await JS.GetSelectedNodes(element, thisReference);
+// Global
+public async Task SetData(NetworkData data) =>
+    await JS.SetData(element, thisReference, data);
 
-    public async Task SelectNodes(string[] nodeIds) =>
-    await JS.SelectNodes(element, thisReference, nodeIds);
+public async Task SetOptions(NetworkOptions options) =>
+   await JS.SetOptions(element, thisReference, options);
 
-    public async Task<string[]> GetSelectedEdges() =>
-    await JS.GetSelectedEdges(element, thisReference);
-    public async Task SelectEdges(string[] nodeIds) =>
-    await JS.SelectEdges(element, thisReference, nodeIds);
+public async Task SetSize(int width, int height) =>
+    await JS.SetSize(element, thisReference, width.ToString(), height.ToString());
 
-    public async Task<NodeEdgeComposite> GetSelection() =>
-    await JS.GetSelection(element, thisReference);
+// Canvas
+public async Task Redraw() =>
+await JS.Redraw(element, thisReference);
 
-    public async Task<NodeEdgeComposite> SetSelection(NodeEdgeComposite composite) =>
-    await JS.SetSelection(element, thisReference, composite);
+// Clustering
+public async Task ClusterOutliers() =>
+await JS.ClusterOutliers(element, thisReference);
 
-    public async Task<NodeEdgeComposite> UnselectAll() =>
-    await JS.UnselectAll(element, thisReference);
+// Selection
+public async Task<string[]> GetSelectedNodes() =>
+await JS.GetSelectedNodes(element, thisReference);
+
+public async Task SelectNodes(string[] nodeIds) =>
+await JS.SelectNodes(element, thisReference, nodeIds);
+
+public async Task<string[]> GetSelectedEdges() =>
+await JS.GetSelectedEdges(element, thisReference);
+public async Task SelectEdges(string[] nodeIds) =>
+await JS.SelectEdges(element, thisReference, nodeIds);
+
+public async Task<NodeEdgeComposite> GetSelection() =>
+await JS.GetSelection(element, thisReference);
+
+public async Task<NodeEdgeComposite> SetSelection(NodeEdgeComposite composite) =>
+await JS.SetSelection(element, thisReference, composite);
+
+public async Task<NodeEdgeComposite> UnselectAll() =>
+await JS.UnselectAll(element, thisReference);
 }
