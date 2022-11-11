@@ -4,18 +4,17 @@ using Xunit;
 
 namespace VisNetwork.Blazor.Tests;
 
-namespace VisNetwork.Blazor.Tests;
-
 public class NetworkTests : TestContext
 {
     [Fact]
     public void Network_render_basic_structure()
     {
         JSInterop.Mode = JSRuntimeMode.Strict;
-        var jsInvocation = JSInterop.SetupVoid("BlazorVisNetwork.create", invocationMatcher: arg => {
-            
+        var jsInvocation = JSInterop.SetupVoid("BlazorVisNetwork.create", invocationMatcher: arg =>
+        {
+
             return true;
-        });    
+        });
 
         // Act
         var cut = RenderComponent<Network>();
@@ -31,7 +30,7 @@ public class NetworkTests : TestContext
     // {
     //     var mockJS = Services.AddMockJSRuntime(JSRuntimeMockMode.Strict);
     //     var jsInvocation = mockJS.SetupVoid("BlazorVisNetwork.create", argumentsMatcher: arg => {
-            
+
     //         return true;
     //     });    
 
