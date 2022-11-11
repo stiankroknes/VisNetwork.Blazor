@@ -2,9 +2,10 @@
 
 	<!--<Import Project="StaticAssets\StaticAssets.targets" />-->
 	<PropertyGroup>
-		<TargetFrameworks>netstandard2.1;net6;net7.0</TargetFrameworks>
+		<TargetFrameworks>net6.0;net7.0</TargetFrameworks>
 		<IsPackable>true</IsPackable>
 		<OutputType>Library</OutputType>
+		<!--<Nullable>enable</Nullable>-->
 		<RootNamespace>VisNetwork.Blazor</RootNamespace>
 		<AssemblyTitle>VisNetwork Blazor</AssemblyTitle>
 		<Authors>Stian Kroknes</Authors>
@@ -20,21 +21,17 @@
 		<SymbolPackageFormat>snupkg</SymbolPackageFormat>
 		<IncludeSymbols>true</IncludeSymbols>
 		<Description>Blazor component for vis.js/vis-network.</Description>
-		<Version>0.0.11</Version>
+		<Version>0.0.12</Version>
 	</PropertyGroup>
 
-	<PropertyGroup Condition="'$(TargetFramework)' == 'netstandard2.1'">
-		<RazorLangVersion>3.0</RazorLangVersion>
-	</PropertyGroup>
-
-	<PropertyGroup Condition="'$(TargetFramework)' == 'net6'">
+	<PropertyGroup Condition="'$(TargetFramework)' == 'net6.0'">
 		<RazorLangVersion>6.0</RazorLangVersion>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(TargetFramework)' == 'net7.0'">
 		<RazorLangVersion>7.0</RazorLangVersion>
 	</PropertyGroup>
-	
+
 	<ItemGroup>
 		<SupportedPlatform Include="browser" />
 		<Content Update="StaticAssets\*" Pack="false" />
@@ -45,6 +42,7 @@
 		<Exec Command="npm run build:Debug" WorkingDirectory="StaticAssets" />
 	</Target>
 
+	<ItemGroup Condition="'$(TargetFramework)' == 'net6.0'">
 	<Target Name="PreBuild" BeforeTargets="PreBuildEvent" Condition="'$(Configuration)'=='Release'">
 		<Exec Command="npm install" WorkingDirectory="StaticAssets" />
 		<Exec Command="npm run build:Release" WorkingDirectory="StaticAssets" />
@@ -53,19 +51,15 @@
 	<ItemGroup>
 		<PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.1.1" PrivateAssets="All"/>
 	</ItemGroup>
-	
-	<ItemGroup Condition="'$(TargetFramework)' == 'net6'">
+
+	<ItemGroup Condition="'$(TargetFramework)' == 'net7.0'">
+		<PackageReference Include="Microsoft.AspNetCore.Components" Version="7.0.0" />
+		<PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="7.0.0" />
+	</ItemGroup>
+
+	<ItemGroup Condition="'$(TargetFramework)' == 'net6.0'">
 		<PackageReference Include="Microsoft.AspNetCore.Components" Version="6.0.0" />
 		<PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="6.0.0" />
 	</ItemGroup>
 
-	<ItemGroup Condition="'$(TargetFramework)' == 'net7.0'">
-		<PackageReference Include="Microsoft.AspNetCore.Components" Version="7.0.0-rc.1.22427.2" />
-		<PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="7.0.0-rc.1.22427.2" />
-	</ItemGroup>
-
-	<ItemGroup Condition="'$(TargetFramework)' == 'netstandard2.1'">
-		<PackageReference Include="Microsoft.AspNetCore.Components" Version="3.1.0" />
-		<PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="3.1.0" />
-	</ItemGroup>
 </Project>
