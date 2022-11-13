@@ -5,23 +5,19 @@
 		<TargetFrameworks>net6.0;net7.0</TargetFrameworks>
 		<IsPackable>true</IsPackable>
 		<OutputType>Library</OutputType>
-		<!--<Nullable>enable</Nullable>-->
-		<RootNamespace>VisNetwork.Blazor</RootNamespace>
-		<AssemblyTitle>VisNetwork Blazor</AssemblyTitle>
-		<Authors>Stian Kroknes</Authors>
-		<AssemblyName>VisNetwork.Blazor</AssemblyName>
-		<PackageId>VisNetwork.Blazor</PackageId>
+		<Nullable>enable</Nullable>
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>
 		<PackageTags>blazor;razor;vis-network</PackageTags>
-		<!-- <PackageIconUrl>https://raw.githubusercontent.com/stiankroknes/VisNetwork.Blazor/main/assets/visnetwork_logo_64x64.png</PackageIconUrl> -->
 		<PackageProjectUrl>https://github.com/stiankroknes/VisNetwork.Blazor</PackageProjectUrl>
-		<!--<PackageReleaseNotes>Change target framework to .NET Standard 2.1.</PackageReleaseNotes>-->
-		<RepositoryUrl>https://github.com/stiankroknes/VisNetwork.Blazor</RepositoryUrl>
-		<PublishRepositoryUrl>true</PublishRepositoryUrl>
 		<SymbolPackageFormat>snupkg</SymbolPackageFormat>
 		<IncludeSymbols>true</IncludeSymbols>
 		<Description>Blazor component for vis.js/vis-network.</Description>
-		<Version>0.0.12</Version>
+		<MinVerTagPrefix>v</MinVerTagPrefix>
+		<RepositoryUrl>https://github.com/stiankroknes/VisNetwork.Blazor</RepositoryUrl>
+		<PublishRepositoryUrl>true</PublishRepositoryUrl>
+		<EmbedUntrackedSources>true</EmbedUntrackedSources>
+		<Deterministic>true</Deterministic>
+		<ContinuousIntegrationBuild Condition="'$(GITHUB_ACTIONS)' == 'true'">true</ContinuousIntegrationBuild>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(TargetFramework)' == 'net6.0'">
@@ -50,6 +46,7 @@
 
 	<ItemGroup>
 		<PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.1.1" PrivateAssets="All"/>
+		<PackageReference Include="MinVer" Version="4.1.0" PrivateAssets="All" />
 	</ItemGroup>
 
 	<ItemGroup Condition="'$(TargetFramework)' == 'net7.0'">
