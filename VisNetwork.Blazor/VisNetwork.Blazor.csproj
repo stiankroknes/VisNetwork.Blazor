@@ -13,6 +13,8 @@
 		<IncludeSymbols>true</IncludeSymbols>
 		<Description>Blazor component for vis.js/vis-network.</Description>
 		<MinVerTagPrefix>v</MinVerTagPrefix>
+		<MinVerMinimumMajorMinor>1.0</MinVerMinimumMajorMinor>
+		<MinVerDefaultPreReleasePhase>preview</MinVerDefaultPreReleasePhase>
 		<RepositoryUrl>https://github.com/stiankroknes/VisNetwork.Blazor</RepositoryUrl>
 		<PublishRepositoryUrl>true</PublishRepositoryUrl>
 		<EmbedUntrackedSources>true</EmbedUntrackedSources>

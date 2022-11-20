@@ -11,21 +11,30 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
+      with:
+          fetch-depth: 0
+
     - name: Setup .NET 6
       uses: actions/setup-dotnet@v1
       with:
         dotnet-version: 6.0.x
+
     - name: Setup .NET 7
       uses: actions/setup-dotnet@v1
       with:
         dotnet-version: 7.0.x
-        include-prerelease: true
-    - name: Install dependencies
+
+    - name: Restore dependencies
       run: dotnet restore
+
     - name: Build
       run: dotnet build --configuration Release --no-restore
-    - name: Publish VisNetwork.Blazor
-      uses: brandedoutcast/publish-nuget@v2.5.2
-      with:
-          PROJECT_FILE_PATH: VisNetwork.Blazor/VisNetwork.Blazor.csproj
-          NUGET_KEY: ${{secrets.NUGET_API_KEY}}
+    
+    - name: Test
+      run: dotnet test -c Release --no-build --verbosity normal
+
+    - name: Pack
+      run: dotnet pack VisNetwork.Blazor/VisNetwork.Blazor.csproj -c Release --no-restore --no-build --include-symbols -p:SymbolPackageFormat=snupkg -o .
+
+    - name: Push to NuGet
+      run: dotnet nuget push *.nupkg --skip-duplicate -s https://api.nuget.org/v3/index.json -k ${{secrets.NUGET_API_KEY}}
