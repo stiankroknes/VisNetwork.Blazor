@@ -28,16 +28,11 @@ dotnet add package VisNetwork.Blazor
 @using VisNetwork.Blazor
 ```
 
-* Add the below Javascript and CSS links to your `index.html` file.
-```html
-<head>
-    <link href="_content/VisNetwork.Blazor/blazor-vis-network.css" rel="stylesheet" />
-</head>
-<body>
-    ...
-    <script src="_content/VisNetwork.Blazor/BlazorVisNetwork.js"></script>
-    ...
-</body>
+* Add the following to the relevant sections of `Program.cs`.
+```csharp
+using VisNetwork.Blazor;
+
+builder.Services.AddVisNetwork();
 ```
 
 ## vis-network
@@ -52,20 +47,20 @@ dotnet add package VisNetwork.Blazor
 To provide custom options the `Options` parameter can be used.
 
 ```html
-<Network Id="my-id" Data="@data" Options="EditorConstructionOptions" />
+<Network Id="my-id" Data="@data" Options="NetworkOptions" />
 ```
 
 ```csharp
-private NetworkOptions EditorConstructionOptions(Network network)
+private NetworkOptions NetworkOptions(Network network)
 {
     return new NetworkOptions
+    {
+        AutoResize = true,
+        Nodes = new NodeOption
         {
-            AutoResize = true,
-            Nodes = new NodeOption
-            {
-                BorderWidth = 1
-            }
-        };
+            BorderWidth = 1
+        }
+    };
 }
 ```
 

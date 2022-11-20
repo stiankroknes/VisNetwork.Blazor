@@ -29,6 +29,14 @@
 	</PropertyGroup>
 
 	<ItemGroup>
+	  <Compile Remove="JSModule.Methods.cs" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <None Include="JSModules\JSModule.Base.cs" />
+	</ItemGroup>
+
+	<ItemGroup>
 		<SupportedPlatform Include="browser" />
 		<Content Update="StaticAssets\*" Pack="false" />
 	</ItemGroup>
@@ -45,7 +53,7 @@
 	</Target>-->
 
 	<ItemGroup>
-		<PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.1.1" PrivateAssets="All"/>
+		<PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.1.1" PrivateAssets="All" />
 		<PackageReference Include="MinVer" Version="4.1.0" PrivateAssets="All" />
 	</ItemGroup>
 

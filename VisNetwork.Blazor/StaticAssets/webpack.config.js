@@ -4,15 +4,23 @@ module.exports = (env, args) => ({
     resolve: { extensions: ['.ts', '.js'] },
     devtool: args.mode === 'development' ? 'source-map' : false,
     module: {
-        rules: [{ test: /\.ts?$/, loader: 'ts-loader' }]
+        rules: [
+            {
+                test: /\.ts?$/,
+                loader: 'ts-loader',
+                exclude: [/node_modules/]
+            }]
     },
     entry: './BlazorVisNetwork.ts',
+    experiments: {
+        outputModule: true,
+    },
     output: {
-        // Place output in wwwroot and export a top-level 'BlazorVisNetwork' object
         path: path.join(__dirname, '..', 'wwwroot'),
         filename: 'BlazorVisNetwork.js',
-        libraryTarget: 'var',
-        library: 'BlazorVisNetwork',
-        libraryExport: 'default'
+        library: {
+            // do not specify a `name` here
+            type: 'module',
+        }
     }
 });
