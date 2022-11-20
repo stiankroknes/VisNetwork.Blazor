@@ -17,9 +17,7 @@ public partial class Network : IAsyncDisposable
     private NetworkData currentData;
 
     [Inject]
-    public IJSRuntime JS { get; set; }
-
-    //private readonly Lazy<Task<IJSObjectReference>> moduleTask;
+    internal IJSModule JS { get; set; }
 
     [Parameter] public string Id { get; set; }
 
@@ -128,32 +126,35 @@ public partial class Network : IAsyncDisposable
     public Network()
     {
         thisReference = DotNetObjectReference.Create(this);
-        //moduleTask = new(() => JS.InvokeAsync<IJSObjectReference>(
-        // "import", "./_content/VisNetwork.Blazor/BlazorVisNetwork.js").AsTask());
     }
 
     async ValueTask IAsyncDisposable.DisposeAsync()
     {
         if (firstRenderComplete)
         {
-            await JS.Destroy(element);
+            var task = JS.Destroy(element);
+
+            thisReference?.Dispose();
+
+            try
+            {
+                await task;
+            }
+            catch when (task.IsCanceled)
+            {
+            }
+            catch (JSDisconnectedException)
+            {
+            }
         }
-
-        thisReference?.Dispose();
-        //if (moduleTask.IsValueCreated)
-        //{
-        // var module = await moduleTask.Value;
-        // await module.DisposeAsync();
-        //}
-
-        await Task.CompletedTask;
+        // TOdO
     }
 
     protected override async Task OnParametersSetAsync()
     {
         if (string.IsNullOrWhiteSpace(Id))
         {
-            Id = $"blazor-network-{Guid.NewGuid().ToString()}";
+            Id = $"blazor-network-{Guid.NewGuid()}";
         }
 
         if (firstRenderComplete && currentData != Data)
@@ -164,15 +165,6 @@ public partial class Network : IAsyncDisposable
 
         await base.OnParametersSetAsync();
     }
-
-    //protected override async Task OnAfterRenderAsync(bool firstRender)
-    //{
-    // if (firstRender)
-    // {
-    // var module = await moduleTask.Value;
-    // await module.InvokeVoidAsync("create", element, thisReference, Config);
-    // }
-    //}
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
@@ -293,31 +285,32 @@ public partial class Network : IAsyncDisposable
 
     // Canvas
     public async Task Redraw() =>
-    await JS.Redraw(element, thisReference);
+        await JS.Redraw(element, thisReference);
 
     // Clustering
     public async Task ClusterOutliers() =>
-    await JS.ClusterOutliers(element, thisReference);
+        await JS.ClusterOutliers(element, thisReference);
 
     // Selection
     public async Task<string[]> GetSelectedNodes() =>
-    await JS.GetSelectedNodes(element, thisReference);
+        await JS.GetSelectedNodes(element, thisReference);
 
     public async Task SelectNodes(string[] nodeIds) =>
-    await JS.SelectNodes(element, thisReference, nodeIds);
+        await JS.SelectNodes(element, thisReference, nodeIds);
 
     public async Task<string[]> GetSelectedEdges() =>
-    await JS.GetSelectedEdges(element, thisReference);
+        await JS.GetSelectedEdges(element, thisReference);
+
     public async Task SelectEdges(string[] nodeIds) =>
-    await JS.SelectEdges(element, thisReference, nodeIds);
+        await JS.SelectEdges(element, thisReference, nodeIds);
 
     public async Task<NodeEdgeComposite> GetSelection() =>
-    await JS.GetSelection(element, thisReference);
+        await JS.GetSelection(element, thisReference);
 
     public async Task<NodeEdgeComposite> SetSelection(NodeEdgeComposite composite) =>
-    await JS.SetSelection(element, thisReference, composite);
+        await JS.SetSelection(element, thisReference, composite);
 
     public async Task<NodeEdgeComposite> UnselectAll() =>
-    await JS.UnselectAll(element, thisReference);
+        await JS.UnselectAll(element, thisReference);
 }
 #nullable enable
