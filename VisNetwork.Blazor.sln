@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.4.32804.182
 MinimumVisualStudioVersion = 15.0.26124.0
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VisNetwork.Blazor", "VisNetwork.Blazor\VisNetwork.Blazor.csproj", "{447C836A-E731-4D51-B18A-A175D9859D9B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VisNetwork.Blazor", "src\VisNetwork.Blazor\VisNetwork.Blazor.csproj", "{447C836A-E731-4D51-B18A-A175D9859D9B}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VisNetwork.Blazor.Tests", "VisNetwork.Blazor.Tests\VisNetwork.Blazor.Tests.csproj", "{003DC19C-CA50-48FD-B9DA-94CD938F2C4E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VisNetwork.Blazor.Tests", "tests\VisNetwork.Blazor.Tests\VisNetwork.Blazor.Tests.csproj", "{003DC19C-CA50-48FD-B9DA-94CD938F2C4E}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VisNetwork.Blazor.Sample", "VisNetwork.Blazor.Sample\VisNetwork.Blazor.Sample.csproj", "{42C8C0D1-0643-4994-9707-85C01123BAE7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VisNetwork.Blazor.Sample", "sample\VisNetwork.Blazor.Sample\VisNetwork.Blazor.Sample.csproj", "{42C8C0D1-0643-4994-9707-85C01123BAE7}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "01_SolutionItems", "01_SolutionItems", "{3CBCABCF-0147-48CD-A75C-F1FE45CF00AC}"
 	ProjectSection(SolutionItems) = preProject
