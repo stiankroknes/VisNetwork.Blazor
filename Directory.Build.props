@@ -12,6 +12,11 @@
 
 	<!-- Warnings and errors -->
 	<PropertyGroup>
+		<AnalysisLevel>latest</AnalysisLevel>
+		<AnalysisModeSecurity>All</AnalysisModeSecurity>
+		<AnalysisModePerformance>Recommended</AnalysisModePerformance>
+		<CodeAnalysisTreatWarningsAsErrors>true</CodeAnalysisTreatWarningsAsErrors>
+
 		<TreatWarningsAsErrors>true</TreatWarningsAsErrors>
 		<!-- Don't make missing XML docs a fatal build error, but still surface so we have visibility into undocumented APIs. -->
 		<WarningsNotAsErrors>$(WarningsNotAsErrors);CS1591</WarningsNotAsErrors>
