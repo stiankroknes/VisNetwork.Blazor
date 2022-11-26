@@ -1,0 +1,529 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Class PhysicsOptions
+   | VisNetwork.Blazor </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Class PhysicsOptions
+   | VisNetwork.Blazor ">
+    <meta name="generator" content="docfx 2.56.7.0">
+    
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="stylesheet" href="../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../styles/docfx.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet"> 
+    <meta property="docfx:navrel" content="../toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+    
+    <meta property="docfx:rel" content="../">
+    
+  </head>  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div class="container body-content">
+        
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first="First" data-prev="Previous" data-next="Next" data-last="Last"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="VisNetwork.Blazor.Models.PhysicsOptions">
+  
+  
+  <h1 id="VisNetwork_Blazor_Models_PhysicsOptions" data-uid="VisNetwork.Blazor.Models.PhysicsOptions" class="text-break">Class PhysicsOptions
+  </h1>
+  <div class="markdown level0 summary"></div>
+  <div class="markdown level0 conceptual"></div>
+  <div class="inheritance">
+    <h5>Inheritance</h5>
+    <div class="level0"><span class="xref">System.Object</span></div>
+    <div class="level1"><span class="xref">PhysicsOptions</span></div>
+  </div>
+  <h6><strong>Namespace</strong>: <a class="xref" href="VisNetwork.Blazor.Models.html">VisNetwork.Blazor.Models</a></h6>
+  <h6><strong>Assembly</strong>: VisNetwork.Blazor.dll</h6>
+  <h5 id="VisNetwork_Blazor_Models_PhysicsOptions_syntax">Syntax</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public class PhysicsOptions : object</code></pre>
+  </div>
+  <h3 id="properties">Properties
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/stiankroknes/VisNetwork.Blazor/new/main/apiSpec/new?filename=VisNetwork_Blazor_Models_PhysicsOptions_AdaptiveTimestep.md&amp;value=---%0Auid%3A%20VisNetwork.Blazor.Models.PhysicsOptions.AdaptiveTimestep%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/stiankroknes/VisNetwork.Blazor/blob/main/src/VisNetwork.Blazor/Models/PhysicsOptions.cs/#L73">View Source</a>
+  </span>
+  <a id="VisNetwork_Blazor_Models_PhysicsOptions_AdaptiveTimestep_" data-uid="VisNetwork.Blazor.Models.PhysicsOptions.AdaptiveTimestep*"></a>
+  <h4 id="VisNetwork_Blazor_Models_PhysicsOptions_AdaptiveTimestep" data-uid="VisNetwork.Blazor.Models.PhysicsOptions.AdaptiveTimestep">AdaptiveTimestep</h4>
+  <div class="markdown level1 summary"><p>If this is enabled, the timestep will intelligently be adapted (only during the stabilization stage if stabilization is enabled!) to greatly decrease stabilization times.
+The timestep configured above is taken as the minimum timestep
+The default is true.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool? AdaptiveTimestep { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Nullable</span>&lt;<span class="xref">System.Boolean</span>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/stiankroknes/VisNetwork.Blazor/new/main/apiSpec/new?filename=VisNetwork_Blazor_Models_PhysicsOptions_BarnesHut.md&amp;value=---%0Auid%3A%20VisNetwork.Blazor.Models.PhysicsOptions.BarnesHut%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/stiankroknes/VisNetwork.Blazor/blob/main/src/VisNetwork.Blazor/Models/PhysicsOptions.cs/#L16">View Source</a>
+  </span>
+  <a id="VisNetwork_Blazor_Models_PhysicsOptions_BarnesHut_" data-uid="VisNetwork.Blazor.Models.PhysicsOptions.BarnesHut*"></a>
+  <h4 id="VisNetwork_Blazor_Models_PhysicsOptions_BarnesHut" data-uid="VisNetwork.Blazor.Models.PhysicsOptions.BarnesHut">BarnesHut</h4>
+  <div class="markdown level1 summary"><p>Options for BarnesHut solver. Recommended solver for non-hierarchical layouts.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public BarnesHutOption BarnesHut { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="VisNetwork.Blazor.Models.BarnesHutOption.html">BarnesHutOption</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/stiankroknes/VisNetwork.Blazor/new/main/apiSpec/new?filename=VisNetwork_Blazor_Models_PhysicsOptions_Enabled.md&amp;value=---%0Auid%3A%20VisNetwork.Blazor.Models.PhysicsOptions.Enabled%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/stiankroknes/VisNetwork.Blazor/blob/main/src/VisNetwork.Blazor/Models/PhysicsOptions.cs/#L11">View Source</a>
+  </span>
+  <a id="VisNetwork_Blazor_Models_PhysicsOptions_Enabled_" data-uid="VisNetwork.Blazor.Models.PhysicsOptions.Enabled*"></a>
+  <h4 id="VisNetwork_Blazor_Models_PhysicsOptions_Enabled" data-uid="VisNetwork.Blazor.Models.PhysicsOptions.Enabled">Enabled</h4>
+  <div class="markdown level1 summary"><p>Toggle the physics system on or off. This property is optional.
+If you define any of the options below and enabled is undefined, this will be set to true.
+The default is true.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool? Enabled { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Nullable</span>&lt;<span class="xref">System.Boolean</span>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/stiankroknes/VisNetwork.Blazor/new/main/apiSpec/new?filename=VisNetwork_Blazor_Models_PhysicsOptions_ForceAtlas2Based.md&amp;value=---%0Auid%3A%20VisNetwork.Blazor.Models.PhysicsOptions.ForceAtlas2Based%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/stiankroknes/VisNetwork.Blazor/blob/main/src/VisNetwork.Blazor/Models/PhysicsOptions.cs/#L21">View Source</a>
+  </span>
+  <a id="VisNetwork_Blazor_Models_PhysicsOptions_ForceAtlas2Based_" data-uid="VisNetwork.Blazor.Models.PhysicsOptions.ForceAtlas2Based*"></a>
+  <h4 id="VisNetwork_Blazor_Models_PhysicsOptions_ForceAtlas2Based" data-uid="VisNetwork.Blazor.Models.PhysicsOptions.ForceAtlas2Based">ForceAtlas2Based</h4>
+  <div class="markdown level1 summary"><p>Options for Force Atlas 2 solver.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ForceAtlas2BasedOption ForceAtlas2Based { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="VisNetwork.Blazor.Models.ForceAtlas2BasedOption.html">ForceAtlas2BasedOption</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/stiankroknes/VisNetwork.Blazor/new/main/apiSpec/new?filename=VisNetwork_Blazor_Models_PhysicsOptions_HierarchicalRepulsion.md&amp;value=---%0Auid%3A%20VisNetwork.Blazor.Models.PhysicsOptions.HierarchicalRepulsion%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/stiankroknes/VisNetwork.Blazor/blob/main/src/VisNetwork.Blazor/Models/PhysicsOptions.cs/#L33">View Source</a>
+  </span>
+  <a id="VisNetwork_Blazor_Models_PhysicsOptions_HierarchicalRepulsion_" data-uid="VisNetwork.Blazor.Models.PhysicsOptions.HierarchicalRepulsion*"></a>
+  <h4 id="VisNetwork_Blazor_Models_PhysicsOptions_HierarchicalRepulsion" data-uid="VisNetwork.Blazor.Models.PhysicsOptions.HierarchicalRepulsion">HierarchicalRepulsion</h4>
+  <div class="markdown level1 summary"><p>Options for the hierarchical repulsion model.
+Based on the repulsion solver but the levels are taken into account and the forces are normalized.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public HierarchicalRepulsionOption HierarchicalRepulsion { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="VisNetwork.Blazor.Models.HierarchicalRepulsionOption.html">HierarchicalRepulsionOption</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/stiankroknes/VisNetwork.Blazor/new/main/apiSpec/new?filename=VisNetwork_Blazor_Models_PhysicsOptions_MaxVelocity.md&amp;value=---%0Auid%3A%20VisNetwork.Blazor.Models.PhysicsOptions.MaxVelocity%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/stiankroknes/VisNetwork.Blazor/blob/main/src/VisNetwork.Blazor/Models/PhysicsOptions.cs/#L39">View Source</a>
+  </span>
+  <a id="VisNetwork_Blazor_Models_PhysicsOptions_MaxVelocity_" data-uid="VisNetwork.Blazor.Models.PhysicsOptions.MaxVelocity*"></a>
+  <h4 id="VisNetwork_Blazor_Models_PhysicsOptions_MaxVelocity" data-uid="VisNetwork.Blazor.Models.PhysicsOptions.MaxVelocity">MaxVelocity</h4>
+  <div class="markdown level1 summary"><p>The physics module limits the maximum velocity of the nodes to increase the time to stabilization. This is the maximum value.
+The default is 50.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public decimal? MaxVelocity { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Nullable</span>&lt;<span class="xref">System.Decimal</span>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/stiankroknes/VisNetwork.Blazor/new/main/apiSpec/new?filename=VisNetwork_Blazor_Models_PhysicsOptions_MinVelocity.md&amp;value=---%0Auid%3A%20VisNetwork.Blazor.Models.PhysicsOptions.MinVelocity%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/stiankroknes/VisNetwork.Blazor/blob/main/src/VisNetwork.Blazor/Models/PhysicsOptions.cs/#L45">View Source</a>
+  </span>
+  <a id="VisNetwork_Blazor_Models_PhysicsOptions_MinVelocity_" data-uid="VisNetwork.Blazor.Models.PhysicsOptions.MinVelocity*"></a>
+  <h4 id="VisNetwork_Blazor_Models_PhysicsOptions_MinVelocity" data-uid="VisNetwork.Blazor.Models.PhysicsOptions.MinVelocity">MinVelocity</h4>
+  <div class="markdown level1 summary"><p>Once the minimum velocity is reached for all nodes, we assume the network has been stabilized and the simulation stops.
+The default is 0.1.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public decimal? MinVelocity { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Nullable</span>&lt;<span class="xref">System.Decimal</span>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/stiankroknes/VisNetwork.Blazor/new/main/apiSpec/new?filename=VisNetwork_Blazor_Models_PhysicsOptions_Repulsion.md&amp;value=---%0Auid%3A%20VisNetwork.Blazor.Models.PhysicsOptions.Repulsion%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/stiankroknes/VisNetwork.Blazor/blob/main/src/VisNetwork.Blazor/Models/PhysicsOptions.cs/#L27">View Source</a>
+  </span>
+  <a id="VisNetwork_Blazor_Models_PhysicsOptions_Repulsion_" data-uid="VisNetwork.Blazor.Models.PhysicsOptions.Repulsion*"></a>
+  <h4 id="VisNetwork_Blazor_Models_PhysicsOptions_Repulsion" data-uid="VisNetwork.Blazor.Models.PhysicsOptions.Repulsion">Repulsion</h4>
+  <div class="markdown level1 summary"><p>Options for repulsion solver. Assumes nodes have a simplified repulsion field around them.
+It's force linearly decreases from 1(at 0.5<em>nodeDistance and smaller) to 0 (at 2</em>nodeDistance).</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public RepulsionOption Repulsion { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="VisNetwork.Blazor.Models.RepulsionOption.html">RepulsionOption</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/stiankroknes/VisNetwork.Blazor/new/main/apiSpec/new?filename=VisNetwork_Blazor_Models_PhysicsOptions_Solver.md&amp;value=---%0Auid%3A%20VisNetwork.Blazor.Models.PhysicsOptions.Solver%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/stiankroknes/VisNetwork.Blazor/blob/main/src/VisNetwork.Blazor/Models/PhysicsOptions.cs/#L52">View Source</a>
+  </span>
+  <a id="VisNetwork_Blazor_Models_PhysicsOptions_Solver_" data-uid="VisNetwork.Blazor.Models.PhysicsOptions.Solver*"></a>
+  <h4 id="VisNetwork_Blazor_Models_PhysicsOptions_Solver" data-uid="VisNetwork.Blazor.Models.PhysicsOptions.Solver">Solver</h4>
+  <div class="markdown level1 summary"><p>Possible options: 'barnesHut', 'repulsion', 'hierarchicalRepulsion', 'forceAtlas2Based'.
+When setting the hierarchical layout, the hierarchical repulsion solver is automatically selected, regardless of what you fill in here.
+The default is barnesHut.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string? Solver { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Nullable</span>&lt;<span class="xref">System.String</span>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/stiankroknes/VisNetwork.Blazor/new/main/apiSpec/new?filename=VisNetwork_Blazor_Models_PhysicsOptions_Stabilization.md&amp;value=---%0Auid%3A%20VisNetwork.Blazor.Models.PhysicsOptions.Stabilization%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/stiankroknes/VisNetwork.Blazor/blob/main/src/VisNetwork.Blazor/Models/PhysicsOptions.cs/#L57">View Source</a>
+  </span>
+  <a id="VisNetwork_Blazor_Models_PhysicsOptions_Stabilization_" data-uid="VisNetwork.Blazor.Models.PhysicsOptions.Stabilization*"></a>
+  <h4 id="VisNetwork_Blazor_Models_PhysicsOptions_Stabilization" data-uid="VisNetwork.Blazor.Models.PhysicsOptions.Stabilization">Stabilization</h4>
+  <div class="markdown level1 summary"><p>Options for stabilization.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public StabilizationOption Stabilization { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="VisNetwork.Blazor.Models.StabilizationOption.html">StabilizationOption</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/stiankroknes/VisNetwork.Blazor/new/main/apiSpec/new?filename=VisNetwork_Blazor_Models_PhysicsOptions_Timestep.md&amp;value=---%0Auid%3A%20VisNetwork.Blazor.Models.PhysicsOptions.Timestep%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/stiankroknes/VisNetwork.Blazor/blob/main/src/VisNetwork.Blazor/Models/PhysicsOptions.cs/#L65">View Source</a>
+  </span>
+  <a id="VisNetwork_Blazor_Models_PhysicsOptions_Timestep_" data-uid="VisNetwork.Blazor.Models.PhysicsOptions.Timestep*"></a>
+  <h4 id="VisNetwork_Blazor_Models_PhysicsOptions_Timestep" data-uid="VisNetwork.Blazor.Models.PhysicsOptions.Timestep">Timestep</h4>
+  <div class="markdown level1 summary"><p>The physics simulation is discrete. This means we take a step in time, calculate the forces, move the nodes and take another step.
+If you increase this number the steps will be too large and the network can get unstable.
+If you see a lot of jittery movement in the network, you may want to reduce this value a little.
+The default is 0.5.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public decimal? Timestep { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Nullable</span>&lt;<span class="xref">System.Decimal</span>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/stiankroknes/VisNetwork.Blazor/new/main/apiSpec/new?filename=VisNetwork_Blazor_Models_PhysicsOptions_Wind.md&amp;value=---%0Auid%3A%20VisNetwork.Blazor.Models.PhysicsOptions.Wind%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/stiankroknes/VisNetwork.Blazor/blob/main/src/VisNetwork.Blazor/Models/PhysicsOptions.cs/#L79">View Source</a>
+  </span>
+  <a id="VisNetwork_Blazor_Models_PhysicsOptions_Wind_" data-uid="VisNetwork.Blazor.Models.PhysicsOptions.Wind*"></a>
+  <h4 id="VisNetwork_Blazor_Models_PhysicsOptions_Wind" data-uid="VisNetwork.Blazor.Models.PhysicsOptions.Wind">Wind</h4>
+  <div class="markdown level1 summary"><p>A force that pushes all non-fixed nodes in the given direction.
+Requires all nodes are connected to nodes which are 'fixed' otherwise non-attached nodes will keep moving indefinitely.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public WindOption Wind { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="VisNetwork.Blazor.Models.WindOption.html">WindOption</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/stiankroknes/VisNetwork.Blazor/new/main/apiSpec/new?filename=VisNetwork_Blazor_Models_PhysicsOptions.md&amp;value=---%0Auid%3A%20VisNetwork.Blazor.Models.PhysicsOptions%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
+                  </li>
+                  <li>
+                    <a href="https://github.com/stiankroknes/VisNetwork.Blazor/blob/main/src/VisNetwork.Blazor/Models/PhysicsOptions.cs/#L4" class="contribution-link">View Source</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+                <h5>In This Article</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            Copyright (c) Stian Kroknes
+            
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>
