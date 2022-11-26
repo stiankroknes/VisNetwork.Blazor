@@ -5,6 +5,11 @@ on:
     tags:
       - '*.*.*'
 
+env:
+  DOTNET_NOLOGO: true                     # Disable the .NET logo in the console output
+  DOTNET_SKIP_FIRST_TIME_EXPERIENCE: true # Disable the .NET first time experience to skip caching NuGet packages and speed up the build
+  DOTNET_CLI_TELEMETRY_OPTOUT: true       # Disable sending .NET CLI telemetry to Microsoft
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -34,7 +39,44 @@ jobs:
       run: dotnet test -c Release --no-build --verbosity normal
 
     - name: Pack
-      run: dotnet pack src\VisNetwork.Blazor/VisNetwork.Blazor.csproj -c Release --no-restore --no-build --include-symbols -p:SymbolPackageFormat=snupkg -o .
+      run: dotnet pack src\VisNetwork.Blazor/VisNetwork.Blazor.csproj -c Release --no-restore --no-build --include-symbols -p:SymbolPackageFormat=snupkg -o artifacts
 
-    - name: Push to NuGet
-      run: dotnet nuget push *.nupkg --skip-duplicate -s https://api.nuget.org/v3/index.json -k ${{secrets.NUGET_API_KEY}}
+    - name: Upload Nuget Artifact
+      uses: actions/upload-artifact@v3
+      with:
+        name: release-nuget
+        path: artifacts
+
+
+  deploy-nuget:
+    runs-on: ubuntu-latest
+    name: Deploy to NuGet Packages
+    needs: [build]
+    
+    steps:
+      - name: Download NuGet Artifact
+        uses: actions/download-artifact@v2
+        with:
+           name: release-nuget
+           path: artifacts    
+
+      - name: Push to NuGet
+        run: dotnet nuget push artifacts\*.nupkg --skip-duplicate -s https://api.nuget.org/v3/index.json -k ${{secrets.NUGET_API_KEY}}
+
+  deploy-docs:
+    name: Deploy Docs
+    needs: [build, deploy-nuget]
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Build Documentation
+      uses: nikeee/docfx-action@v1.0.0
+      with:
+        args: docs/docfx.json
+
+    - name: Deploy to GitHub Pages
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: ./docs/_site
