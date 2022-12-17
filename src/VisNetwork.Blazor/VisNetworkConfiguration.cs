@@ -7,7 +7,7 @@ public static class VisNetworkConfiguration
     public static IServiceCollection AddVisNetwork(this IServiceCollection services)
     {
         services.AddSingleton<IVersionProvider, VersionProvider>();
-        services.AddSingleton<IJSModule, JSModule>();
+        services.AddScoped<IJSModule, JSModule>();
         return services;
-    }    
+    }
 }
