@@ -24,6 +24,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "workflows", "workflows", "{
 		.github\workflows\publish.yml = .github\workflows\publish.yml
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VisNetwork.Blazor.UITests", "tests\VisNetwork.Blazor.UITests\VisNetwork.Blazor.UITests.csproj", "{64BA44BA-AC41-4F67-A166-C0479B5AADBA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -70,6 +72,18 @@ Global
 		{42C8C0D1-0643-4994-9707-85C01123BAE7}.Release|x64.Build.0 = Release|Any CPU
 		{42C8C0D1-0643-4994-9707-85C01123BAE7}.Release|x86.ActiveCfg = Release|Any CPU
 		{42C8C0D1-0643-4994-9707-85C01123BAE7}.Release|x86.Build.0 = Release|Any CPU
+		{64BA44BA-AC41-4F67-A166-C0479B5AADBA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{64BA44BA-AC41-4F67-A166-C0479B5AADBA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{64BA44BA-AC41-4F67-A166-C0479B5AADBA}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{64BA44BA-AC41-4F67-A166-C0479B5AADBA}.Debug|x64.Build.0 = Debug|Any CPU
+		{64BA44BA-AC41-4F67-A166-C0479B5AADBA}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{64BA44BA-AC41-4F67-A166-C0479B5AADBA}.Debug|x86.Build.0 = Debug|Any CPU
+		{64BA44BA-AC41-4F67-A166-C0479B5AADBA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{64BA44BA-AC41-4F67-A166-C0479B5AADBA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{64BA44BA-AC41-4F67-A166-C0479B5AADBA}.Release|x64.ActiveCfg = Release|Any CPU
+		{64BA44BA-AC41-4F67-A166-C0479B5AADBA}.Release|x64.Build.0 = Release|Any CPU
+		{64BA44BA-AC41-4F67-A166-C0479B5AADBA}.Release|x86.ActiveCfg = Release|Any CPU
+		{64BA44BA-AC41-4F67-A166-C0479B5AADBA}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
