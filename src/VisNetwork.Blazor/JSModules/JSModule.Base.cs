@@ -37,6 +37,7 @@ public partial class JSModule : IAsyncDisposable
         }
         catch (Exception exception) when (exception is JSDisconnectedException or ObjectDisposedException or TaskCanceledException)
         {
+            // ignored
         }
     }
 
@@ -59,7 +60,7 @@ public partial class JSModule : IAsyncDisposable
         }
     }
 
-    public async ValueTask DisposeAsync() => await DisposeAsync(true);
+    public ValueTask DisposeAsync() => DisposeAsync(true);
 
     private async ValueTask DisposeAsync(bool disposing)
     {
@@ -69,26 +70,25 @@ public partial class JSModule : IAsyncDisposable
             {
                 isAsyncDisposed = true;
 
-                if (disposing)
+                if (disposing && moduleTask != null)
                 {
-                    if (moduleTask != null)
+                    var moduleInstance = await moduleTask;
+                    var disposableTask = moduleInstance.DisposeAsync();
+
+                    try
                     {
-                        var moduleInstance = await moduleTask;
-                        var disposableTask = moduleInstance.DisposeAsync();
-
-                        try
-                        {
-                            await disposableTask;
-                        }
-                        catch when (disposableTask.IsCanceled)
-                        {
-                        }
-                        catch (JSDisconnectedException)
-                        {
-                        }
-
-                        moduleTask = null;
+                        await disposableTask;
                     }
+                    catch when (disposableTask.IsCanceled)
+                    {
+                        // Ignore
+                    }
+                    catch (JSDisconnectedException)
+                    {
+                        // Ignore
+                    }
+
+                    moduleTask = null;
                 }
             }
         }

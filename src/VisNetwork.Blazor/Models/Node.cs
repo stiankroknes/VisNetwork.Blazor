@@ -2,6 +2,7 @@
 
 namespace VisNetwork.Blazor.Models;
 
+[System.Diagnostics.CodeAnalysis.SuppressMessage("Major Code Smell", "S4035:Classes implementing \"IEquatable<T>\" should be sealed", Justification = "<Pending>")]
 public class Node : NodeOption, IEquatable<Node>
 {
     /// <summary>
@@ -22,7 +23,7 @@ public class Node : NodeOption, IEquatable<Node>
     }
     public override bool Equals(object? obj) => obj is Node other && Equals(other);
 
-    public bool Equals(Node? other) => other is not null && other != null && other.Id == Id;
+    public bool Equals(Node? other) => other is not null && other.Id == Id;
 
     public override int GetHashCode() => Id?.GetHashCode() ?? 0;
 }

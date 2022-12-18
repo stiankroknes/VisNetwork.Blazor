@@ -53,7 +53,10 @@ public class NetworkOptions
     /// <value></value>
     public NodeOption? Nodes { get; set; }
 
+
+#pragma warning disable S1135 // Track uses of "TODO" tags
     // TODO groups, can add group:'myGroup' to node, and define styling for groups here
+#pragma warning restore S1135 // Track uses of "TODO" tags
 
     /// <summary>
     /// Options for the layout module.

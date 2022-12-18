@@ -31,14 +31,6 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-	  <Compile Remove="JSModule.Methods.cs" />
-	</ItemGroup>
-
-	<ItemGroup>
-	  <None Include="JSModules\JSModule.Base.cs" />
-	</ItemGroup>
-
-	<ItemGroup>
 		<SupportedPlatform Include="browser" />
 		<Content Update="StaticAssets\*" Pack="false" />
 	</ItemGroup>
@@ -55,8 +47,16 @@
 	</Target>-->
 
 	<ItemGroup>
+		<PackageReference Include="AsyncFixer" Version="1.6.0">
+			<PrivateAssets>all</PrivateAssets>
+			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+		</PackageReference>
+		<PackageReference Include="SonarAnalyzer.CSharp" Version="8.50.0.58025">
+			<PrivateAssets>all</PrivateAssets>
+			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+		</PackageReference>
 		<PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.1.1" PrivateAssets="All" />
-		<PackageReference Include="MinVer" Version="4.1.0" PrivateAssets="All" />
+		<PackageReference Include="MinVer" Version="4.2.0" PrivateAssets="All" />
 	</ItemGroup>
 
 	<ItemGroup Condition="'$(TargetFramework)' == 'net7.0'">

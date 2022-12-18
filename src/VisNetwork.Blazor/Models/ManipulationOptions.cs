@@ -4,6 +4,7 @@
 /// The options for the manipulation module.
 /// The manipulation module acts as the camera that looks on the canvas. Does the animation, zooming and focusing.
 /// </summary>
+[System.Diagnostics.CodeAnalysis.SuppressMessage("Info Code Smell", "S1135:Track uses of \"TODO\" tags", Justification = "<Pending>")]
 public class ManipulationOptions
 {
     public bool? Enabled { get; set; }

@@ -141,8 +141,9 @@ public class NodeOption
     /// </summary>
     public string? Shape { get; set; }
 
-
+#pragma warning disable S125 // Sections of code should not be commented out
     //public NodeShapePropertiesOption? ShapeProperties { get; set; }
+#pragma warning restore S125 // Sections of code should not be commented out
 
     /// <summary>
     /// The size is used to determine the size of node shapes that do not have the label inside of them. 

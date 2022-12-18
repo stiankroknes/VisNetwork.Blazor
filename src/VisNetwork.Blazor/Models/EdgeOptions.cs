@@ -1,8 +1,4 @@
-﻿using System;
-using System.Drawing;
-using System.Xml.Linq;
-
-namespace VisNetwork.Blazor.Models;
+﻿namespace VisNetwork.Blazor.Models;
 
 public class EdgeOption
 {
@@ -93,7 +89,20 @@ public class EdgeOption
     /// </summary>
     public int? SelectionWidth { get; set; }
 
-    // public int? Width { get; set; } 
+    /// <summary>
+    /// The width of the edge. If <see cref="Value"/> is set, this is not used.
+    /// </summary>
+    public int? Width { get; set; }
+
+    /// <summary>
+    /// If a number is specified, the maximum width of the edge's label is set to the value. The edge's label's lines will be broken on spaces to stay below the maximum.
+    /// </summary>
+    public int? WidthConstraint { get; set; }
+
+    /// <summary>
+    /// When a value is set, the edges' width will be scaled using the options in the scaling object defined above. 
+    /// </summary>
+    public int? Value { get; set; }
 
     /// <summary>
     /// Option for circle drawn when to and from nodes are the same.

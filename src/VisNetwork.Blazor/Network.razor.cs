@@ -98,6 +98,7 @@ public partial class Network : IAsyncDisposable
 
     [Parameter] public EventCallback<string> OnHidePopup { get; set; }
 
+#pragma warning disable S1135 // Track uses of "TODO" tags
     // Events triggered the physics simulation. Can be used to trigger GUI updates.
     // TODO
 
@@ -107,14 +108,18 @@ public partial class Network : IAsyncDisposable
 
     // Events triggered by the rendering module. Can be used to draw custom elements on the canvas.
     // TOOD
+#pragma warning restore S1135 // Track uses of "TODO" tags
+
     [Parameter] public EventCallback<DrawingEvent> OnBeforeDrawing { get; set; }
     [Parameter] public EventCallback<DrawingEvent> OnAfterDrawing { get; set; }
 
+#pragma warning disable S1135 // Track uses of "TODO" tags
     // Event triggered by the view module.
     // TODO
 
     // Event triggered by the configuration module.
     // TODO
+#pragma warning restore S1135 // Track uses of "TODO" tags
 
     /// <summary>
     /// This event is fired when the network has been setup through interop and
@@ -142,12 +147,13 @@ public partial class Network : IAsyncDisposable
             }
             catch when (task.IsCanceled)
             {
+                // ignored
             }
             catch (JSDisconnectedException)
             {
+                // ignored
             }
         }
-        // TOdO
     }
 
     protected override async Task OnParametersSetAsync()
@@ -187,66 +193,67 @@ public partial class Network : IAsyncDisposable
     {
         if (OnClick.HasDelegate)
         {
-            await JS.SetEventListener(element, thisReference, "click"); ;
+            await JS.SetEventListener(element, thisReference, "click");
         }
         if (OnDoubleClick.HasDelegate)
         {
-            await JS.SetEventListener(element, thisReference, "doubleClick"); ;
+            await JS.SetEventListener(element, thisReference, "doubleClick");
         }
         if (OnContext.HasDelegate)
         {
-            await JS.SetEventListener(element, thisReference, "oncontext"); ;
+            await JS.SetEventListener(element, thisReference, "oncontext");
         }
         if (OnHold.HasDelegate)
         {
-            await JS.SetEventListener(element, thisReference, "hold"); ;
+            await JS.SetEventListener(element, thisReference, "hold");
         }
         if (OnRelease.HasDelegate)
         {
-            await JS.SetEventListener(element, thisReference, "release"); ;
+            await JS.SetEventListener(element, thisReference, "release");
         }
         if (OnSelect.HasDelegate)
         {
-            await JS.SetEventListener(element, thisReference, "select"); ;
+            await JS.SetEventListener(element, thisReference, "select");
         }
         if (OnSelectNode.HasDelegate)
         {
-            await JS.SetEventListener(element, thisReference, "selectNode"); ;
+            await JS.SetEventListener(element, thisReference, "selectNode");
         }
         if (OnDeselectNode.HasDelegate)
         {
-            await JS.SetEventListener(element, thisReference, "deselectNode"); ;
+            await JS.SetEventListener(element, thisReference, "deselectNode");
         }
         if (OnSelectEdge.HasDelegate)
         {
-            await JS.SetEventListener(element, thisReference, "selectEdge"); ;
+            await JS.SetEventListener(element, thisReference, "selectEdge");
         }
         if (OnDeselectEdge.HasDelegate)
         {
-            await JS.SetEventListener(element, thisReference, "deselectEdge"); ;
+            await JS.SetEventListener(element, thisReference, "deselectEdge");
         }
         if (OnShowPopup.HasDelegate)
         {
-            await JS.SetEventListener(element, thisReference, "showPopup"); ;
+            await JS.SetEventListener(element, thisReference, "showPopup");
         }
         if (OnHidePopup.HasDelegate)
         {
-            await JS.SetEventListener(element, thisReference, "hidePopup"); ;
+            await JS.SetEventListener(element, thisReference, "hidePopup");
         }
 
         // Rendering
         if (OnBeforeDrawing.HasDelegate)
         {
-            await JS.SetEventListener(element, thisReference, "beforeDrawing"); ;
+            await JS.SetEventListener(element, thisReference, "beforeDrawing");
         }
 
         if (OnAfterDrawing.HasDelegate)
         {
-            await JS.SetEventListener(element, thisReference, "afterDrawing"); ;
+            await JS.SetEventListener(element, thisReference, "afterDrawing");
         }
     }
 
     [JSInvokable]
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("AsyncUsage", "AsyncFixer01:Unnecessary async/await usage", Justification = "<Pending>")]
     public async Task EventCallback(string eventName, string eventJson)
     {
         var jsonOptions = new JsonSerializerOptions { PropertyNamingPolicy = JsonNamingPolicy.CamelCase };

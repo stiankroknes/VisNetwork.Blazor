@@ -18,12 +18,14 @@ public class ConfigureOptions
     /// </summary>
     public string? Filter { get; set; }
 
+#pragma warning disable S125 // Sections of code should not be commented out
     /// <summary>
     /// This allows you to put the configure list in another HTML container than below the network. 
     /// </summary>
     //public ElementReference Container {get;set;}
+#pragma warning restore S125 // Sections of code should not be commented out
 
-    /// <summary>
+        /// <summary>
     /// Show the generate options button at the bottom of the configurator.
     /// The default is true.
     /// </summary>
