@@ -182,6 +182,8 @@ public class EdgeSmoothOptions
     /// Accepted options: ['horizontal', 'vertical', 'none']. This options is only used with the cubicBezier curves. 
     /// When true, horizontal is chosen, when false, the direction that is larger (x distance between nodes vs y distance between nodes) is used. 
     /// If the x distance is larger, horizontal. This is ment to be used with hierarchical layouts.
+    /// JS lib supports bool or string
+    /// Default is false/none
     /// </summary>
     /// <value></value>
     public string? ForceDirection { get; set; }
