@@ -10,19 +10,6 @@
 		<Features>strict</Features>
 	</PropertyGroup>
 
-	<ItemGroup>
-		<PackageReference Include="SonarAnalyzer.CSharp" Version="8.51.0.59060">
-			<PrivateAssets>all</PrivateAssets>
-			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-		</PackageReference>
-		<PackageReference Include="AsyncFixer" Version="1.6.0">
-			<PrivateAssets>all</PrivateAssets>
-			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-		</PackageReference>
-		<PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.1.1" PrivateAssets="All" />
-		<PackageReference Include="MinVer" Version="4.2.0" PrivateAssets="All" />
-	</ItemGroup>
-
 	<!-- Warnings and errors -->
 	<PropertyGroup>
 		<AnalysisLevel>latest</AnalysisLevel>
