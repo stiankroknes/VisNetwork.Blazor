@@ -13,6 +13,9 @@ namespace VisNetwork.Blazor.UITests.Pages
             PageTestContext = pageTestContext;
         }
 
+        protected ILocator GetByRoleHeading(string name) =>
+            Page.GetByRole(AriaRole.Heading, new() { NameString = name });
+
         protected ILocator GetByRoleButton(string name) =>
             Page.GetByRole(AriaRole.Button, new() { NameString = name });
 

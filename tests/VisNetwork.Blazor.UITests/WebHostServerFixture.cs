@@ -14,6 +14,14 @@ using Xunit.Abstractions;
 
 namespace VisNetwork.Blazor.UITests;
 
+[CollectionDefinition("WebHostServerCollection")]
+public class WebHostServerCollectionDefinition : ICollectionFixture<BlazorWebAssemblyWebHostFixture>
+{
+    // This class has no code, and is never created. Its purpose is simply
+    // to be the place to apply [CollectionDefinition] and all the
+    // ICollectionFixture<> interfaces.
+}
+
 public abstract class WebHostServerFixture : IDisposable
 {
     private readonly Lazy<Uri> rootUriInitializer;
@@ -22,7 +30,7 @@ public abstract class WebHostServerFixture : IDisposable
 
     public IHost Host { get; set; } = default!;
 
-    public WebHostServerFixture()
+    protected WebHostServerFixture()
     {
         rootUriInitializer = new Lazy<Uri>(() => new Uri(StartAndGetRootUri()));
     }
@@ -69,16 +77,25 @@ public abstract class WebHostServerFixture : IDisposable
             .Addresses.Single();
     }
 
-    public virtual void Dispose()
+    public void Dispose()
     {
-        Host?.Dispose();
-        Host?.StopAsync();
+        Dispose(true);
+        GC.SuppressFinalize(this);
+    }
+
+    protected virtual void Dispose(bool disposing)
+    {
+        if (disposing)
+        {
+            Host?.Dispose();
+            Host?.StopAsync();
+        }
     }
 
     protected abstract IHost CreateWebHost();
 }
 
-public class BlazorWebAssemblyWebHostFixture<TProgram> : WebHostServerFixture
+public class BlazorWebAssemblyWebHostFixture : WebHostServerFixture
 {
     private readonly IMessageSink messageSink;
 
@@ -98,7 +115,7 @@ public class BlazorWebAssemblyWebHostFixture<TProgram> : WebHostServerFixture
             .ConfigureHostConfiguration(config =>
             {
                 // Make UseStaticWebAssets work
-                var applicationPath = typeof(TProgram).Assembly.Location;
+                var applicationPath = typeof(Sample.App).Assembly.Location;
                 var applicationDirectory = Path.GetDirectoryName(applicationPath);
 
                 var name = Path.ChangeExtension(applicationPath, ".staticwebassets.runtime.json");
@@ -111,7 +128,7 @@ public class BlazorWebAssemblyWebHostFixture<TProgram> : WebHostServerFixture
             })
             .ConfigureWebHost(webHostBuilder => webHostBuilder
                 .UseKestrel()
-                .UseSolutionRelativeContentRoot(typeof(TProgram).Assembly.GetName().Name!)
+                .UseSolutionRelativeContentRoot(typeof(Sample.App).Assembly.GetName().Name!)
                 .UseStaticWebAssets()
                 .UseUrls($"http://127.0.0.1:0") // :0 allows to choose a port automatically
                 .ConfigureServices(services =>

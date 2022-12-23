@@ -1,32 +1,42 @@
-﻿using VisNetwork.Blazor.UITests.Pages;
+﻿using Microsoft.Playwright;
+using VisNetwork.Blazor.UITests.Pages;
 using Xunit.Abstractions;
 
 namespace VisNetwork.Blazor.UITests
 {
+    [Collection("WebHostServerCollection")]
     public class InteractionTests : TestBase
     {
-        public InteractionTests(BlazorWebAssemblyWebHostFixture<AssemblyClassLocator> fixture, ITestOutputHelper testOutputHelper) : base(fixture, testOutputHelper)
+        public InteractionTests(BlazorWebAssemblyWebHostFixture fixture, ITestOutputHelper testOutputHelper) : base(fixture, testOutputHelper)
         {
         }
 
-        ////[Fact]
-        ////public async Task Test1()
-        ////{
-        ////    var page = new InteractionPage(GetPageTestContext());
+        [Fact]
+        public async Task SelectNode1()
+        {
+            var page = new InteractionPage(GetPageTestContext());
+            await page.GotoAsync();
+            await page.SelectNode1();
 
-        ////    await page.GotoAsync();
+            await page.GetSelectionClick();
 
-        ////    await page.SelectNode1();
+            await Expect(page.GetSelectionText()).ToContainTextAsync("Nodes:1 Edges:1-2");
 
-        ////    await Expect(page.GetSelection()).ToContainTextAsync("123");
+            await page.CaptureNetworkImage();
+        }
 
-        ////    await page.CaptureNetworkImage();
+        [Fact]
+        public async Task SelectEdge12Click()
+        {
+            var page = new InteractionPage(GetPageTestContext());
+            await page.GotoAsync();
+            await page.SelectEdge12Click();
 
-        ////    //await page.ClickAsync("#IncrementBtn");
-        ////    // Selectors are not only CSS selectors. You can use xpath, css, or text selectors
-        ////    // By default there is a timeout of 30s. If the selector isn't found after the timeout, an exception is thrown.
-        ////    // More about selectors: https://playwright.dev/#version=v1.4.2&path=docs%2Fselectors.md
-        ////    //await page.WaitForSelectorAsync("text=Current count: 1");
-        ////}
+            await page.GetSelectionClick();
+
+            await Expect(page.GetSelectionText()).ToContainTextAsync("Edges:1-2");
+
+            await page.CaptureNetworkImage();
+        }
     }
 }

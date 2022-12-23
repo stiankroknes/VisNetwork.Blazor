@@ -18,9 +18,9 @@
 
     <Network @ref="network" Id="my-id" Data="@data" class="vis-network-container" />
 
-    <p aria-label="selection">GetSelection: @selection</p>
-    <p aria-label="selectedNodes">GetSelectedNodes: @selectedNodes</p>
-    <p aria-label="selectedEdges">GetSelectedEdges: @selectedEdges</p>
+    <p data-testid="selectionParagraph">GetSelection: @selection</p>
+    <p data-testid="selectedNodesParagraph">GetSelectedNodes: @selectedNodes</p>
+    <p data-testid="selectedEdgesParagraph">GetSelectedEdges: @selectedEdges</p>
 </div>
 
 @code {

@@ -4,13 +4,15 @@ using Xunit.Abstractions;
 
 namespace VisNetwork.Blazor.UITests
 {
+    [Collection("WebHostServerCollection")]
     public class IndexTests : TestBase
     {
-        public IndexTests(BlazorWebAssemblyWebHostFixture<AssemblyClassLocator> fixture, ITestOutputHelper testOutputHelper) : base(fixture, testOutputHelper)
+        public IndexTests(BlazorWebAssemblyWebHostFixture fixture, ITestOutputHelper testOutputHelper) : base(fixture, testOutputHelper)
         {
         }
 
         [Fact]
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Info Code Smell", "S1135:Track uses of \"TODO\" tags", Justification = "<Pending>")]
         public async Task Test1()
         {
             //await Context.Tracing.StartAsync(new()
@@ -25,6 +27,10 @@ namespace VisNetwork.Blazor.UITests
             await page.GotoAsync();
 
             await page.CaptureNetworkImage();
+
+            await Expect(page.Heading).ToBeVisibleAsync();
+            
+            // TODO: compare screenshot with baseline.
 
             //await Context.Tracing.StopAsync(new TracingStopOptions
             //{

@@ -2,25 +2,27 @@
 
 namespace VisNetwork.Blazor.UITests.Pages
 {
-    internal class IndexPage
+    internal class IndexPage : BasePage
     {
         private readonly IPage page;
         private readonly ILocator networkDiv;
+        private readonly ILocator heading;
 
-        private PageTestContext pageTestContext;
-
-        public IndexPage(PageTestContext pageTestContext)
+        public IndexPage(PageTestContext pageTestContext) : base(pageTestContext)
         {
-            this.pageTestContext = pageTestContext;
-
             page = pageTestContext.Page;
             networkDiv = page.Locator("#my-id");
+            heading = GetByRoleHeading("VisNetwork Samples");
         }
 
         public async Task GotoAsync()
         {
-            await page.GotoAsync(pageTestContext.RootUrl);
+            await page.GotoAsync(PageTestContext.RootUrl);
         }
+
+        public ILocator Network => networkDiv;
+
+        public ILocator Heading => heading;
 
         public async Task CaptureNetworkImage()
         {
@@ -29,12 +31,6 @@ namespace VisNetwork.Blazor.UITests.Pages
                 Path = "screenshot.png",
             });
         }
-
-        //public async Task SearchAsync(string text)
-        //{
-        //    await networkDiv.FillAsync(text);
-        //    await networkDiv.PressAsync("Enter");
-        //}
     }
 }
 

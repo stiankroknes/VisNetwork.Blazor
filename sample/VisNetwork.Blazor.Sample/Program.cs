@@ -12,6 +12,3 @@ builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.
 builder.Services.AddVisNetwork();
 
 await builder.Build().RunAsync();
-
-
-public class AssemblyClassLocator { }

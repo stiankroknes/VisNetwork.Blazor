@@ -11,10 +11,10 @@ namespace VisNetwork.Blazor.UITests
         public required ITestOutputHelper OutputHelper { get; init; }
     }
 
-    public abstract class TestBase : IClassFixture<BlazorWebAssemblyWebHostFixture<AssemblyClassLocator>>, IAsyncLifetime
+    public abstract class TestBase : IAsyncLifetime
     {
-        private static readonly Task<IPlaywright> playwrightTask = Microsoft.Playwright.Playwright.CreateAsync();
-        private static readonly Lazy<bool> BrowsersInstalled = new(InstallBrowsers);
+        private readonly Task<IPlaywright> playwrightTask = Microsoft.Playwright.Playwright.CreateAsync();
+        private readonly Lazy<bool> BrowsersInstalled = new(InstallBrowsers);
 
         private readonly List<IBrowserContext> browserContexts = new();
         protected ITestOutputHelper TestOutputHelper { get; }
@@ -26,21 +26,14 @@ namespace VisNetwork.Blazor.UITests
 
         public IPage Page { get; private set; } = null!;
 
-        protected BlazorWebAssemblyWebHostFixture<AssemblyClassLocator> Fixture { get; }
+        protected BlazorWebAssemblyWebHostFixture Fixture { get; }
 
-        public TestBase(BlazorWebAssemblyWebHostFixture<AssemblyClassLocator> fixture, ITestOutputHelper testOutputHelper)
+        protected TestBase(BlazorWebAssemblyWebHostFixture fixture, ITestOutputHelper testOutputHelper)
         {
             Fixture = fixture;
             TestOutputHelper = testOutputHelper;
-            _ = Fixture.RootUri; // start webhost
+            _ = Fixture.RootUri; // ensure webhost started
             _ = BrowsersInstalled.Value;
-        }
-
-        public async Task<IBrowserContext> NewContext(BrowserNewContextOptions? options = null)
-        {
-            var context = await Browser.NewContextAsync(options).ConfigureAwait(false);
-            browserContexts.Add(context);
-            return context;
         }
 
         private static bool InstallBrowsers()
@@ -50,13 +43,18 @@ namespace VisNetwork.Blazor.UITests
             {
                 Environment.Exit(exitCode);
             }
+
             return exitCode == 0;
         }
 
-        public virtual BrowserNewContextOptions ContextOptions()
+        public async Task<IBrowserContext> NewContext(BrowserNewContextOptions? options = null)
         {
-            return null!;
+            var context = await Browser.NewContextAsync(options).ConfigureAwait(false);
+            browserContexts.Add(context);
+            return context;
         }
+
+        public virtual BrowserNewContextOptions ContextOptions() => null!;
 
         public async Task InitializeAsync()
         {
@@ -68,8 +66,8 @@ namespace VisNetwork.Blazor.UITests
             Playwright.Selectors.SetTestIdAttribute("data-testid");
             Browser = await Playwright.Firefox.LaunchAsync(new BrowserTypeLaunchOptions
             {
-                Headless = false,
-                SlowMo = 5000,
+                //Headless = false,
+                //SlowMo = 5000,
                 TracesDir = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile)
             });
 
@@ -100,5 +98,4 @@ namespace VisNetwork.Blazor.UITests
 
         public static IAPIResponseAssertions Expect(IAPIResponse response) => Assertions.Expect(response);
     }
-
 }
