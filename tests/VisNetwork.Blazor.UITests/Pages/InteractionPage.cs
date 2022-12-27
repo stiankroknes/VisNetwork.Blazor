@@ -1,4 +1,5 @@
 ﻿using Microsoft.Playwright;
+using System.Runtime.CompilerServices;
 
 namespace VisNetwork.Blazor.UITests.Pages
 {
@@ -55,13 +56,13 @@ namespace VisNetwork.Blazor.UITests.Pages
             //await layoutPage.GotoInteraction();
         }
 
-        public async Task SelectNode1() => await selectNode1Button.ClickAsync(new LocatorClickOptions { ClickCount = 2 });
-        public async Task SelectNode2() => await selectNode2Button.ClickAsync(new LocatorClickOptions { ClickCount = 2 });
-        public async Task SelectNode3() => await selectNode3Button.ClickAsync(new LocatorClickOptions { ClickCount = 2 });
+        public async Task SelectNode1() => await selectNode1Button.ClickAsync();
+        public async Task SelectNode2() => await selectNode2Button.ClickAsync();
+        public async Task SelectNode3() => await selectNode3Button.ClickAsync();
 
-        public async Task SelectEdge12Click() => await selectEdge12Button.ClickAsync(new LocatorClickOptions { ClickCount = 2 });
-        public async Task SelectEdge23Click() => await selectEdge23Button.ClickAsync(new LocatorClickOptions { ClickCount = 2 });
-        public async Task SelectNode1AndEdge12() => await setSelectionNode1AndEdge12Button.ClickAsync(new LocatorClickOptions { ClickCount = 2 });
+        public async Task SelectEdge12Click() => await selectEdge12Button.ClickAsync();
+        public async Task SelectEdge23Click() => await selectEdge23Button.ClickAsync();
+        public async Task SelectNode1AndEdge12() => await setSelectionNode1AndEdge12Button.ClickAsync();
 
         //public async Task<string?> GetSelectionText() => await selectionParagraph.TextContentAsync();
         //public async Task<string?> GetSelectedNodesText() => await selectedNodesParagraph.TextContentAsync();
@@ -77,18 +78,7 @@ namespace VisNetwork.Blazor.UITests.Pages
 
         public async Task ClearSelection() => await clearSelectionButton.ClickAsync();
 
-        public async Task CaptureNetworkImage()
-        {
-            await networkDiv.ScreenshotAsync(new()
-            {
-                Path = $"screenshot_{nameof(InteractionPage)}.png",
-            });
-        }
-
-        //public async Task SearchAsync(string text)
-        //{
-        //    await networkDiv.FillAsync(text);
-        //    await networkDiv.PressAsync("Enter");
-        //}
+        public async Task<byte[]> CaptureNetworkImage([CallerMemberName] string? caller = null) =>
+            await TakeScreenshot(networkDiv, nameof(IndexPage), caller);
     }
 }

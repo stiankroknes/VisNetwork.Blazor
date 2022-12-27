@@ -20,6 +20,7 @@
       our websites deps files will fail to find their assembly references.
     -->
 		<PreserveCompilationContext>true</PreserveCompilationContext>
+		<NeutralLanguage>en-US</NeutralLanguage>
 	</PropertyGroup>
 
 	<Target Name="CopyAditionalFiles" AfterTargets="Build" Condition="'$(TargetFramework)'!=''">
@@ -36,9 +37,9 @@
 		</ItemGroup>
 		<Copy SourceFiles="@(DepsJsonFiles)" DestinationFolder="$(PublishDir)" />
 	</Target>-->
-
+	
 	<ItemGroup>
-		<!-- For Blazor WebAssembly -->
+		<PackageReference Include="FluentAssertions" Version="6.8.0" />
 		<PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.Server" Version="7.0.1" />
 		<PackageReference Include="Microsoft.AspNetCore.Mvc.Testing" Version="7.0.1" />
 		<PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.4.1" />

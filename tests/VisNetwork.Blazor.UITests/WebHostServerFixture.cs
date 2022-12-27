@@ -108,8 +108,8 @@ public class BlazorWebAssemblyWebHostFixture : WebHostServerFixture
     {
         var serilogLogger = new LoggerConfiguration()
             .MinimumLevel.Verbose()
-             .WriteTo.TestOutput(messageSink, LogEventLevel.Verbose)
-             .CreateLogger();
+            .WriteTo.TestOutput(messageSink, LogEventLevel.Verbose)
+            .CreateLogger();
 
         return new HostBuilder()
             .ConfigureHostConfiguration(config =>
@@ -128,7 +128,7 @@ public class BlazorWebAssemblyWebHostFixture : WebHostServerFixture
             })
             .ConfigureWebHost(webHostBuilder => webHostBuilder
                 .UseKestrel()
-                .UseSolutionRelativeContentRoot(typeof(Sample.App).Assembly.GetName().Name!)
+                .UseSolutionRelativeContentRoot(Path.Combine("sample", typeof(Sample.App).Assembly.GetName().Name!))
                 .UseStaticWebAssets()
                 .UseUrls($"http://127.0.0.1:0") // :0 allows to choose a port automatically
                 .ConfigureServices(services =>

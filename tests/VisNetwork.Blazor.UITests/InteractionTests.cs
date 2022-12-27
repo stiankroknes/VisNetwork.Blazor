@@ -21,8 +21,6 @@ namespace VisNetwork.Blazor.UITests
             await page.GetSelectionClick();
 
             await Expect(page.GetSelectionText()).ToContainTextAsync("Nodes:1 Edges:1-2");
-
-            await page.CaptureNetworkImage();
         }
 
         [Fact]
@@ -35,8 +33,6 @@ namespace VisNetwork.Blazor.UITests
             await page.GetSelectionClick();
 
             await Expect(page.GetSelectionText()).ToContainTextAsync("Edges:1-2");
-
-            await page.CaptureNetworkImage();
         }
     }
 }

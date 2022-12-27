@@ -1,4 +1,5 @@
 ﻿using Microsoft.Playwright;
+using System.Runtime.CompilerServices;
 
 namespace VisNetwork.Blazor.UITests.Pages
 {
@@ -21,5 +22,18 @@ namespace VisNetwork.Blazor.UITests.Pages
 
         protected ILocator GetByRoleParagraph(string name) =>
             Page.GetByRole(AriaRole.Paragraph, new() { NameString = name });
+
+
+        protected async Task<byte[]> TakeScreenshot(ILocator locator, string context, [CallerMemberName] string? caller = null) =>
+            await locator.ScreenshotAsync(new()
+            {
+                Path = PageTestContext.GetScreenshotPath(context, caller),
+            });
+
+        protected async Task<byte[]> TakePageScreenshot(string context, [CallerMemberName] string? caller = null) =>
+            await Page.ScreenshotAsync(new()
+            {
+                Path = PageTestContext.GetScreenshotPath(context, caller),
+            });
     }
 }

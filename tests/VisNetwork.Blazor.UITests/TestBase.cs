@@ -1,5 +1,6 @@
 ﻿using Microsoft.Playwright;
 using Microsoft.Playwright.TestAdapter;
+using System.Runtime.CompilerServices;
 using Xunit.Abstractions;
 
 namespace VisNetwork.Blazor.UITests
@@ -9,6 +10,13 @@ namespace VisNetwork.Blazor.UITests
         public required IPage Page { get; init; }
         public required string RootUrl { get; init; }
         public required ITestOutputHelper OutputHelper { get; init; }
+
+        public string ScreenshotPrefix { get; init; } = "screenshot_";
+
+        public string GetScreenshotPath(string context, [CallerMemberName] string? caller = null)
+        {
+            return $"{ScreenshotPrefix}{context}_{caller}.png";
+        }
     }
 
     public abstract class TestBase : IAsyncLifetime
@@ -67,7 +75,7 @@ namespace VisNetwork.Blazor.UITests
             Browser = await Playwright.Firefox.LaunchAsync(new BrowserTypeLaunchOptions
             {
                 //Headless = false,
-                //SlowMo = 5000,
+                //SlowMo = 1000,
                 TracesDir = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile)
             });
 

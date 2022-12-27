@@ -11,7 +11,7 @@ namespace VisNetwork.Blazor;
 
 public partial class Network : IAsyncDisposable
 {
-    private DotNetObjectReference<Network> thisReference;
+    private readonly DotNetObjectReference<Network> thisReference;
     private ElementReference element;
     private bool firstRenderComplete;
     private NetworkData currentData;
@@ -165,10 +165,10 @@ public partial class Network : IAsyncDisposable
 
         if (firstRenderComplete && currentData != Data)
         {
-            currentData = Data;
             await JS.SetData(element, thisReference, Data);
         }
 
+        currentData = Data;
         await base.OnParametersSetAsync();
     }
 
