@@ -340,8 +340,11 @@ public class NetworkTests : TestContext
 
     private static BunitJSModuleInterop CreateJSModuleInterop(BunitJSInterop jSInterop)
     {
-        var module = jSInterop.SetupModule(new JSModule(jSInterop.JSRuntime, new VersionProvider()).ModuleFileName);
+        var module = jSInterop.SetupModule(
+            new JSModule(jSInterop.JSRuntime, new DummyVersionProvider()).ModuleFileName);
+
         module.SetupVoid("create", _ => true).SetVoidResult();
+
         return module;
     }
 
