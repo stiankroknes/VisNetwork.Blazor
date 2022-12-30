@@ -17,44 +17,43 @@
 </EditForm>
 
 @code {
-private Network network;
-private NetworkData data;
-private HashSet<Node> nodes = new HashSet<Node>();
-private HashSet<Edge> edges = new HashSet<Edge>();
-private int nodeCounter = 3;
+    private Network network;
+    private NetworkData data;
+    private HashSet<Node> nodes = new HashSet<Node>();
+    private HashSet<Edge> edges = new HashSet<Edge>();
+    private int nodeCounter = 3;
 
-private Model model = new Model();
-class Model
-{
-    public string Test { get; set; }
-}
-
-public Issue()
-{
-    nodes.Add(new Node("1", "Node 100", 1, "circle"));
-    nodes.Add(new Node("2", "Node 200", 2, "circle"));
-    edges.Add(new Edge("1", "2"));
-    nodes.Add(new Node("3", "Node 300", 4, "circle"));
-    edges.Add(new Edge("2", "3"));
-    data = new NetworkData
+    private Model model = new Model();
+    class Model
     {
-        Nodes = nodes,
-        Edges = edges
-    };
-}
+        public string Test { get; set; }
+    }
 
-protected void ValidFormSubmitted()
-{
-
-    nodeCounter += 1;
-    nodes.Add(new Node(nodeCounter.ToString(), "Node " + nodeCounter.ToString(), 4, "circle"));
-    edges.Add(new Edge((nodeCounter - 1).ToString(), nodeCounter.ToString()));
-    data = new NetworkData
+    public Issue()
     {
-        Nodes = nodes,
-        Edges = edges
-    };
+        nodes.Add(new Node("1", "Node 100", 1, "circle"));
+        nodes.Add(new Node("2", "Node 200", 2, "circle"));
+        edges.Add(new Edge("1", "2"));
+        nodes.Add(new Node("3", "Node 300", 4, "circle"));
+        edges.Add(new Edge("2", "3"));
+        data = new NetworkData
+            {
+                Nodes = nodes,
+                Edges = edges
+            };
+    }
 
-    StateHasChanged();
-}
+    protected void ValidFormSubmitted()
+    {
+        nodeCounter += 1;
+        nodes.Add(new Node(nodeCounter.ToString(), "Node " + nodeCounter.ToString(), 4, "circle"));
+        edges.Add(new Edge((nodeCounter - 1).ToString(), nodeCounter.ToString()));
+        data = new NetworkData
+            {
+                Nodes = nodes,
+                Edges = edges
+            };
+
+        StateHasChanged();
+    }
 }
