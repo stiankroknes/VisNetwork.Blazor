@@ -9,7 +9,6 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Serilog;
 using Serilog.Events;
-using System.Runtime.ExceptionServices;
 using Xunit.Abstractions;
 
 namespace VisNetwork.Blazor.UITests;
@@ -22,89 +21,33 @@ public class WebHostServerCollectionDefinition : ICollectionFixture<BlazorWebAss
     // ICollectionFixture<> interfaces.
 }
 
-public abstract class WebHostServerFixture : IDisposable
+public sealed class BlazorWebAssemblyWebHostFixture : IDisposable
 {
     private readonly Lazy<Uri> rootUriInitializer;
+    private readonly IMessageSink messageSink;
 
     public Uri RootUri => rootUriInitializer.Value;
 
     public IHost Host { get; set; } = default!;
 
-    protected WebHostServerFixture()
+    public BlazorWebAssemblyWebHostFixture(IMessageSink messageSink)
     {
+        this.messageSink = messageSink;
         rootUriInitializer = new Lazy<Uri>(() => new Uri(StartAndGetRootUri()));
     }
 
-    protected static void RunInBackgroundThread(Action action)
-    {
-        using var isDone = new ManualResetEvent(false);
-
-        ExceptionDispatchInfo edi = null!;
-
-        new Thread(() =>
-        {
-            try
-            {
-                action();
-            }
-            catch (Exception ex)
-            {
-                edi = ExceptionDispatchInfo.Capture(ex);
-            }
-
-            isDone.Set();
-        }).Start();
-
-        if (!isDone.WaitOne(TimeSpan.FromSeconds(10)))
-        {
-            throw new TimeoutException("Timed out waiting for: " + action);
-        }
-
-        if (edi != null)
-        {
-            throw edi.SourceException;
-        }
-    }
-
-    protected virtual string StartAndGetRootUri()
+    private string StartAndGetRootUri()
     {
         Host = CreateWebHost();
 
-        RunInBackgroundThread(Host.Start);
+        Host.Start();
 
         return Host.Services.GetRequiredService<IServer>().Features
             .Get<IServerAddressesFeature>()!
             .Addresses.Single();
     }
 
-    public void Dispose()
-    {
-        Dispose(true);
-        GC.SuppressFinalize(this);
-    }
-
-    protected virtual void Dispose(bool disposing)
-    {
-        if (disposing)
-        {
-            Host?.Dispose();
-            Host?.StopAsync();
-        }
-    }
-
-    protected abstract IHost CreateWebHost();
-}
-
-public class BlazorWebAssemblyWebHostFixture : WebHostServerFixture
-{
-    private readonly IMessageSink messageSink;
-
-    public BlazorWebAssemblyWebHostFixture(IMessageSink messageSink) : base()
-    {
-        this.messageSink = messageSink;
-    }
-
-    protected override IHost CreateWebHost()
+    private IHost CreateWebHost()
     {
         var serilogLogger = new LoggerConfiguration()
             .MinimumLevel.Verbose()
@@ -149,10 +92,15 @@ public class BlazorWebAssemblyWebHostFixture : WebHostServerFixture
                     app.UseRouting();
 
                     app.UseEndpoints(endpoints =>
-                    {
-                        endpoints.MapFallbackToFile("index.html");
-                    });
+                        endpoints.MapFallbackToFile("index.html")
+                        );
                 }))
             .Build();
+    }
+
+    void IDisposable.Dispose()
+    {
+        Host?.Dispose();
+        Host?.StopAsync();
     }
 }

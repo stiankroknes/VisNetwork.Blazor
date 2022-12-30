@@ -8,33 +8,32 @@ namespace VisNetwork.Blazor.UITests
     public class PageTestContext
     {
         public required IPage Page { get; init; }
+
         public required string RootUrl { get; init; }
+
         public required ITestOutputHelper OutputHelper { get; init; }
 
         public string ScreenshotPrefix { get; init; } = "screenshot_";
 
-        public string GetScreenshotPath(string context, [CallerMemberName] string? caller = null)
-        {
-            return $"{ScreenshotPrefix}{context}_{caller}.png";
-        }
+        public string GetScreenshotPath(string context, [CallerMemberName] string? caller = null) =>
+            $"{ScreenshotPrefix}{context}_{caller}.png";
     }
 
     public abstract class TestBase : IAsyncLifetime
     {
         private readonly Task<IPlaywright> playwrightTask = Microsoft.Playwright.Playwright.CreateAsync();
         private readonly Lazy<bool> BrowsersInstalled = new(InstallBrowsers);
-
         private readonly List<IBrowserContext> browserContexts = new();
+
         protected ITestOutputHelper TestOutputHelper { get; }
+        protected BlazorWebAssemblyWebHostFixture Fixture { get; }
+
         public string BrowserName { get; internal set; } = null!;
         public IPlaywright Playwright { get; private set; } = null!;
         public IBrowserType BrowserType { get; private set; } = null!;
         public IBrowser Browser { get; internal set; } = null!;
         public IBrowserContext Context { get; private set; } = null!;
-
         public IPage Page { get; private set; } = null!;
-
-        protected BlazorWebAssemblyWebHostFixture Fixture { get; }
 
         protected TestBase(BlazorWebAssemblyWebHostFixture fixture, ITestOutputHelper testOutputHelper)
         {
