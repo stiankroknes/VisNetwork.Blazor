@@ -1487,6 +1487,45 @@ references:
   isSpec: "True"
   fullName: VisNetwork.Blazor.Models.EdgeOption.Title
   nameWithType: EdgeOption.Title
+- uid: VisNetwork.Blazor.Models.EdgeOption.Value
+  name: Value
+  href: api/VisNetwork.Blazor.Models.EdgeOption.html#VisNetwork_Blazor_Models_EdgeOption_Value
+  commentId: P:VisNetwork.Blazor.Models.EdgeOption.Value
+  fullName: VisNetwork.Blazor.Models.EdgeOption.Value
+  nameWithType: EdgeOption.Value
+- uid: VisNetwork.Blazor.Models.EdgeOption.Value*
+  name: Value
+  href: api/VisNetwork.Blazor.Models.EdgeOption.html#VisNetwork_Blazor_Models_EdgeOption_Value_
+  commentId: Overload:VisNetwork.Blazor.Models.EdgeOption.Value
+  isSpec: "True"
+  fullName: VisNetwork.Blazor.Models.EdgeOption.Value
+  nameWithType: EdgeOption.Value
+- uid: VisNetwork.Blazor.Models.EdgeOption.Width
+  name: Width
+  href: api/VisNetwork.Blazor.Models.EdgeOption.html#VisNetwork_Blazor_Models_EdgeOption_Width
+  commentId: P:VisNetwork.Blazor.Models.EdgeOption.Width
+  fullName: VisNetwork.Blazor.Models.EdgeOption.Width
+  nameWithType: EdgeOption.Width
+- uid: VisNetwork.Blazor.Models.EdgeOption.Width*
+  name: Width
+  href: api/VisNetwork.Blazor.Models.EdgeOption.html#VisNetwork_Blazor_Models_EdgeOption_Width_
+  commentId: Overload:VisNetwork.Blazor.Models.EdgeOption.Width
+  isSpec: "True"
+  fullName: VisNetwork.Blazor.Models.EdgeOption.Width
+  nameWithType: EdgeOption.Width
+- uid: VisNetwork.Blazor.Models.EdgeOption.WidthConstraint
+  name: WidthConstraint
+  href: api/VisNetwork.Blazor.Models.EdgeOption.html#VisNetwork_Blazor_Models_EdgeOption_WidthConstraint
+  commentId: P:VisNetwork.Blazor.Models.EdgeOption.WidthConstraint
+  fullName: VisNetwork.Blazor.Models.EdgeOption.WidthConstraint
+  nameWithType: EdgeOption.WidthConstraint
+- uid: VisNetwork.Blazor.Models.EdgeOption.WidthConstraint*
+  name: WidthConstraint
+  href: api/VisNetwork.Blazor.Models.EdgeOption.html#VisNetwork_Blazor_Models_EdgeOption_WidthConstraint_
+  commentId: Overload:VisNetwork.Blazor.Models.EdgeOption.WidthConstraint
+  isSpec: "True"
+  fullName: VisNetwork.Blazor.Models.EdgeOption.WidthConstraint
+  nameWithType: EdgeOption.WidthConstraint
 - uid: VisNetwork.Blazor.Models.EdgeScalingOptions
   name: EdgeScalingOptions
   href: api/VisNetwork.Blazor.Models.EdgeScalingOptions.html
