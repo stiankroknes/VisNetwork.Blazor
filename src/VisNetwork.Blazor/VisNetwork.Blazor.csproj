@@ -35,6 +35,19 @@
 		<Content Update="StaticAssets\*" Pack="false" />
 	</ItemGroup>
 
+	<ItemGroup>
+		<PackageReference Include="SonarAnalyzer.CSharp" Version="8.51.0.59060">
+			<PrivateAssets>all</PrivateAssets>
+			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+		</PackageReference>
+		<PackageReference Include="AsyncFixer" Version="1.6.0">
+			<PrivateAssets>all</PrivateAssets>
+			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+		</PackageReference>
+		<PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.1.1" PrivateAssets="All" />
+		<PackageReference Include="MinVer" Version="4.2.0" PrivateAssets="All" />
+	</ItemGroup>
+
 	<!--<Target Name="PreBuild" BeforeTargets="PreBuildEvent" Condition="'$(Configuration)'=='Debug'">
 		<Exec Command="npm install" WorkingDirectory="StaticAssets" />
 		<Exec Command="npm run build:Debug" WorkingDirectory="StaticAssets" />
@@ -45,19 +58,6 @@
 		<Exec Command="npm install" WorkingDirectory="StaticAssets" />
 		<Exec Command="npm run build:Release" WorkingDirectory="StaticAssets" />
 	</Target>-->
-
-	<ItemGroup>
-		<PackageReference Include="AsyncFixer" Version="1.6.0">
-			<PrivateAssets>all</PrivateAssets>
-			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-		</PackageReference>
-		<PackageReference Include="SonarAnalyzer.CSharp" Version="8.50.0.58025">
-			<PrivateAssets>all</PrivateAssets>
-			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-		</PackageReference>
-		<PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.1.1" PrivateAssets="All" />
-		<PackageReference Include="MinVer" Version="4.2.0" PrivateAssets="All" />
-	</ItemGroup>
 
 	<ItemGroup Condition="'$(TargetFramework)' == 'net7.0'">
 		<PackageReference Include="Microsoft.AspNetCore.Components" Version="7.0.0" />

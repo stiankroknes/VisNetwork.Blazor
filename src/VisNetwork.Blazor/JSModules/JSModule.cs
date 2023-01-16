@@ -7,7 +7,7 @@ using VisNetwork.Blazor.Models;
 
 namespace VisNetwork.Blazor;
 
-public interface IJSModule
+internal interface IJSModule
 {
     // Gloabl
     ValueTask CreateNetwork(ElementReference element, DotNetObjectReference<Network> component, NetworkOptions options, NetworkData data);
@@ -34,7 +34,7 @@ public interface IJSModule
     ValueTask<NodeEdgeComposite> UnselectAll(ElementReference element, DotNetObjectReference<Network> component);
 }
 
-public partial class JSModule : IJSModule
+internal partial class JSModule : IJSModule
 {
     // Gloabl
     public ValueTask CreateNetwork(ElementReference element, DotNetObjectReference<Network> component, NetworkOptions options, NetworkData data) =>

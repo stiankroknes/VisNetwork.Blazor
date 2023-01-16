@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 
 namespace VisNetwork.Blazor;
 
-public partial class JSModule : IAsyncDisposable
+internal partial class JSModule : IAsyncDisposable
 {
     private readonly IJSRuntime jsRuntime;
     private readonly IVersionProvider versionProvider;
