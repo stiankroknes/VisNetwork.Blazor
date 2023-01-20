@@ -5,7 +5,7 @@
 <h1>Smmoth arrow settings</h1>
 
 <div>
-    <Network Id="my-id" Data="@data" class="vis-network-container" />
+    <Network Id="my-id" Data="@data" class="vis-network-container" Options="NetworkOptions" />
 </div>
 
 @code {
@@ -17,15 +17,34 @@ protected override void OnInitialized()
 
     nodes.Add(new Node("1", "Node 1", 1, "circle"));
     nodes.Add(new Node("2", "Node 2", 2, "ellipse"));
-    edges.Add(new Edge("1", "2") { Arrows = new Arrows { To = new ArrowsOptions { Enabled = true } } });
+    edges.Add(new Edge("1", "2"));
 
     nodes.Add(new Node("3", "Node 3", 4, "database"));
-    edges.Add(new Edge("2", "3") { Arrows = new Arrows { To = new ArrowsOptions { Enabled = true } } });
+    edges.Add(new Edge("2", "3"));
+
 
     data = new NetworkData
     {
         Edges = edges,
         Nodes = nodes
+    };
+}
+
+private NetworkOptions NetworkOptions(Network network)
+{
+    return new NetworkOptions
+    {
+        AutoResize = true,
+        Nodes = new NodeOption
+        {
+            BorderWidth = 1
+        },
+        Edges = new EdgeOption
+        {
+            Arrows = new Arrows {
+                To = new ArrowsOptions { Enabled = true }
+            }
+        }
     };
 }
 
