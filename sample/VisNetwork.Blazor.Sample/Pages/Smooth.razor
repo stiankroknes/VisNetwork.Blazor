@@ -32,15 +32,18 @@
                     }
                 </select>
             </div>
-            <div class="vis-configuration vis-config-item vis-config-s3">
-                <div class="vis-configuration vis-config-label vis-config-s3">forceDirection:</div>
-                <select class="vis-configuration vis-config-select" @onchange="ForceDirectionChanged">
-                    @foreach (var fd in forceDirections)
-                    {
-                        <option value="@fd" selected="@(fd == forceDirection)">@fd</option>
-                    }
-                </select>
-            </div>
+            @if(smoothnessType == "cubicBezier")
+            {
+                <div class="vis-configuration vis-config-item vis-config-s3">
+                    <div class="vis-configuration vis-config-label vis-config-s3">forceDirection:</div>
+                    <select class="vis-configuration vis-config-select" @onchange="ForceDirectionChanged">
+                        @foreach (var fd in forceDirections)
+                        {
+                            <option value="@fd" selected="@(fd == forceDirection)">@fd</option>
+                        }
+                    </select>
+                </div>
+            }
             <div class="vis-configuration vis-config-item vis-config-s3">
                 <div class="vis-configuration vis-config-label vis-config-s3">roundness:</div>
                 <input class="vis-configuration vis-config-range" type="range" min="0" max="1" step="0.05" @oninput="RoundnessChanged">
@@ -52,6 +55,30 @@
 </div>
 
 @code {
+
+    private bool isSmoothingEnabled = true;
+    
+    private readonly string[] smoothnessTypes = {
+        "dynamic",
+        "continuous",
+        "discrete",
+        "diagonalCross",
+        "straightCross",
+        "horizontal",
+        "vertical",
+        "curvedCW",
+        "curvedCCW",
+        "cubicBezier",
+    };
+    private string smoothnessType = "dynamic";
+
+    private readonly string[] forceDirections = {
+        "horizontal",
+        "vertical",
+        "none"
+    };
+    private string forceDirection = "horizontal";
+    private float roundness = 0.0f;
 
     private Network network;
 
@@ -77,30 +104,6 @@
             Enabled = false
         }
     };
-
-    private bool isSmoothingEnabled = true;
-    
-    private readonly string[] smoothnessTypes = {
-        "dynamic",
-        "continuous",
-        "discrete",
-        "diagonalCross",
-        "straightCross",
-        "horizontal",
-        "vertical",
-        "curvedCW",
-        "curvedCCW",
-        "cubicBezier",
-    };
-    private string smoothnessType = "";
-
-    private readonly string[] forceDirections = {
-        "horizontal",
-        "vertical",
-        "none"
-    };
-    private string forceDirection = "";
-    private float roundness = 0.0f;
 
     protected override void OnInitialized()
     {
@@ -183,8 +186,6 @@
     }
 
     private bool IsPhysicsEnabled() => networkOptions.Physics.Enabled ?? false;
-
-    private bool IsSmoothingEnabled() => networkOptions.Edges.Smooth.Enabled ?? false;
 
     private NetworkOptions NetworkOptions(Network network)
     {
