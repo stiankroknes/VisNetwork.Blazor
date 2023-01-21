@@ -9,23 +9,23 @@
 
     <Network Id="my-id" @ref="network" Data="@data" class="vis-network-container" Options="NetworkOptions" />
 
-    <div class="vis-configuration-wrapper">
-        <div class="vis-configuration vis-config-item vis-config-s0"></div>
-        <div class="vis-configuration vis-config-item vis-config-s0">
-            <div class="vis-configuration vis-config-header">edges</div>
+    <div class="wrapper">
+        <div class="configuration item s0"></div>
+        <div class="configuration item s0">
+            <div class="configuration header">edges</div>
         </div>
-        <div class="vis-configuration vis-config-item vis-config-s2">
-            <div class="vis-configuration vis-config-label vis-config-s2"><i><b>smooth</b></i></div>
+        <div class="configuration item s2">
+            <div class="configuration label s2"><i><b>smooth</b></i></div>
         </div>
-        <div class="vis-configuration vis-config-item vis-config-s3">
-            <div class="vis-configuration vis-config-label vis-config-s3">enabled:</div>
-            <input type="checkbox" class="vis-configuration vis-config-checkbox" checked="@isSmoothingEnabled" @oninput="SmoothingChanged">
+        <div class="configuration item s3">
+            <div class="configuration label s3">enabled:</div>
+            <input type="checkbox" class="configuration checkbox" checked="@isSmoothingEnabled" @oninput="SmoothingChanged">
         </div>
         @if(isSmoothingEnabled)
         {
-            <div class="vis-configuration vis-config-item vis-config-s3">
-                <div class="vis-configuration vis-config-label vis-config-s3">type:</div>
-                <select class="vis-configuration vis-config-select" @onchange="SmoothnessTypeChanged">
+            <div class="configuration item s3">
+                <div class="configuration label s3">type:</div>
+                <select class="configuration select" @onchange="SmoothnessTypeChanged">
                     @foreach (var st in smoothnessTypes)
                     {
                         <option value="@st" selected="@(st == smoothnessType)">@st</option>
@@ -34,9 +34,9 @@
             </div>
             @if(smoothnessType == "cubicBezier")
             {
-                <div class="vis-configuration vis-config-item vis-config-s3">
-                    <div class="vis-configuration vis-config-label vis-config-s3">forceDirection:</div>
-                    <select class="vis-configuration vis-config-select" @onchange="ForceDirectionChanged">
+                <div class="configuration item s3">
+                    <div class="configuration label s3">forceDirection:</div>
+                    <select class="configuration select" @onchange="ForceDirectionChanged">
                         @foreach (var fd in forceDirections)
                         {
                             <option value="@fd" selected="@(fd == forceDirection)">@fd</option>
@@ -46,10 +46,10 @@
             }
             @if(smoothnessType != "dynamic")
             {
-                <div class="vis-configuration vis-config-item vis-config-s3">
-                    <div class="vis-configuration vis-config-label vis-config-s3">roundness:</div>
-                    <input class="vis-configuration vis-config-range" type="range" min="0" max="1" step="0.05" value="@roundness" @oninput="RoundnessChanged">
-                    <input class="vis-configuration vis-config-rangeinput" value="@roundness">
+                <div class="configuration item s3">
+                    <div class="configuration label s3">roundness:</div>
+                    <input class="configuration range" type="range" min="0" max="1" step="0.05" value="@roundness" @oninput="RoundnessChanged">
+                    <input class="configuration rangeinput" value="@roundness">
                 </div>
             }
         }
