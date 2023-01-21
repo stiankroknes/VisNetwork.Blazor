@@ -2,12 +2,53 @@
 
 @using VisNetwork.Blazor.Models
 
-<h1>Smmoth arrow settings</h1>
+<h1>Edge smoothing</h1>
 
 <div>
     <button @onclick="TogglePhysics" aria-label="TogglePhysics">Toggle Physics @( IsPhysicsEnabled() ? "off" : "on" )</button>
 
     <Network Id="my-id" @ref="network" Data="@data" class="vis-network-container" Options="NetworkOptions" />
+
+    <div class="vis-configuration-wrapper">
+        <div class="vis-configuration vis-config-item vis-config-s0"></div>
+        <div class="vis-configuration vis-config-item vis-config-s0">
+            <div class="vis-configuration vis-config-header">edges</div>
+        </div>
+        <div class="vis-configuration vis-config-item vis-config-s2">
+            <div class="vis-configuration vis-config-label vis-config-s2"><i><b>smooth</b></i></div>
+        </div>
+        <div class="vis-configuration vis-config-item vis-config-s3">
+            <div class="vis-configuration vis-config-label vis-config-s3">enabled:</div>
+            <input type="checkbox" class="vis-configuration vis-config-checkbox" checked="@isSmoothingEnabled" @oninput="SmoothingChanged">
+        </div>
+        @if(isSmoothingEnabled)
+        {
+            <div class="vis-configuration vis-config-item vis-config-s3">
+                <div class="vis-configuration vis-config-label vis-config-s3">type:</div>
+                <select class="vis-configuration vis-config-select" @onchange="SmoothnessTypeChanged">
+                    @foreach (var st in smoothnessTypes)
+                    {
+                        <option value="@st" selected="@(st == smoothnessType)">@st</option>
+                    }
+                </select>
+            </div>
+            <div class="vis-configuration vis-config-item vis-config-s3">
+                <div class="vis-configuration vis-config-label vis-config-s3">forceDirection:</div>
+                <select class="vis-configuration vis-config-select" @onchange="ForceDirectionChanged">
+                    @foreach (var fd in forceDirections)
+                    {
+                        <option value="@fd" selected="@(fd == forceDirection)">@fd</option>
+                    }
+                </select>
+            </div>
+            <div class="vis-configuration vis-config-item vis-config-s3">
+                <div class="vis-configuration vis-config-label vis-config-s3">roundness:</div>
+                <input class="vis-configuration vis-config-range" type="range" min="0" max="1" step="0.05" @oninput="RoundnessChanged">
+                <input class="vis-configuration vis-config-rangeinput" value="@roundness">
+            </div>
+        }
+    </div>
+
 </div>
 
 @code {
@@ -27,6 +68,9 @@
         {
             Arrows = new Arrows {
                 To = new ArrowsOptions { Enabled = true }
+            },
+            Smooth = new EdgeSmoothOptions {
+                Enabled = true
             }
         },
         Physics = new PhysicsOptions {
@@ -34,9 +78,35 @@
         }
     };
 
+    private bool isSmoothingEnabled = true;
+    
+    private readonly string[] smoothnessTypes = {
+        "dynamic",
+        "continuous",
+        "discrete",
+        "diagonalCross",
+        "straightCross",
+        "horizontal",
+        "vertical",
+        "curvedCW",
+        "curvedCCW",
+        "cubicBezier",
+    };
+    private string smoothnessType = "";
+
+    private readonly string[] forceDirections = {
+        "horizontal",
+        "vertical",
+        "none"
+    };
+    private string forceDirection = "";
+    private float roundness = 0.0f;
 
     protected override void OnInitialized()
     {
+        smoothnessType = smoothnessTypes[0];
+        forceDirection = forceDirections[0];
+
         var nodes = new List<Node>();
         var edges = new List<Edge>();
 
@@ -74,7 +144,47 @@
         await network.SetOptions(networkOptions);
     } 
 
+    private async Task ToogleSmoothing()
+    {
+        networkOptions.Edges.Smooth.Enabled = !networkOptions.Edges.Smooth.Enabled;
+        await network.SetOptions(networkOptions);
+    }
+
+    private async Task SmoothingChanged(ChangeEventArgs e)
+    {
+        var newState = e.Value as bool?;
+        isSmoothingEnabled = newState ?? false;
+        networkOptions.Edges.Smooth.Enabled = isSmoothingEnabled;
+        await network.SetOptions(networkOptions);   
+    }
+
+    private async Task SmoothnessTypeChanged(ChangeEventArgs e)
+    {
+        var newType = e.Value as string;
+        smoothnessType = newType ?? smoothnessTypes[0];
+        networkOptions.Edges.Smooth.Type = smoothnessType;
+        await network.SetOptions(networkOptions);   
+    }
+
+    private async Task ForceDirectionChanged(ChangeEventArgs e)
+    {
+        var newForceDirection = e.Value as string;
+        forceDirection = newForceDirection ?? forceDirections[0];
+        networkOptions.Edges.Smooth.ForceDirection = forceDirection;
+        await network.SetOptions(networkOptions);   
+    }
+
+    private async Task RoundnessChanged(ChangeEventArgs e)
+    {
+        var newRoundness = e.Value as float?;
+        roundness = newRoundness ?? 0f;
+        networkOptions.Edges.Smooth.Roundness = new decimal(roundness);
+        await network.SetOptions(networkOptions);
+    }
+
     private bool IsPhysicsEnabled() => networkOptions.Physics.Enabled ?? false;
+
+    private bool IsSmoothingEnabled() => networkOptions.Edges.Smooth.Enabled ?? false;
 
     private NetworkOptions NetworkOptions(Network network)
     {
