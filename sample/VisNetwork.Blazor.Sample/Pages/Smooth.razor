@@ -5,7 +5,7 @@
 <h1>Edge smoothing</h1>
 
 <div>
-    <button @onclick="TogglePhysics" aria-label="TogglePhysics">Toggle Physics @( IsPhysicsEnabled() ? "off" : "on" )</button>
+    <button @onclick="TogglePhysics" aria-label="TogglePhysics">Switch Physics @( IsPhysicsEnabled() ? "off" : "on" )</button>
 
     <Network Id="my-id" @ref="network" Data="@data" class="vis-network-container" Options="NetworkOptions" />
 
