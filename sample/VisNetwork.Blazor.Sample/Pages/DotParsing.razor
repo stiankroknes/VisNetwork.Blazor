@@ -36,7 +36,21 @@
 
     private async Task NetworkReady()
     {
-        var dotString = "dinetwork {1 -> 1 -> 2; 2 -> 3; 2 -- 4; 2 -> 1 }";
+        var dotString = @"digraph {
+                            node [shape=circle fontsize=16]
+                            edge [length=100, color=gray, fontcolor=black]
+
+                            A -> A[label=0.5];
+                            B -> B[label=1.2] -> C[label=0.7] -- A;
+                            B -> D;
+                            D -> {B; C}
+                            D -> E[label=0.2];
+                            F -> F;
+                            A [
+                                fontcolor=white,
+                                color=red,
+                            ]
+                        }";
         Console.WriteLine($"Parsed network: Before: {dotString}");
         var parsedNetwork = await network.ParseDOTNetwork(dotString);
         Console.WriteLine($"Parsed network: After: {parsedNetwork}");
