@@ -3,6 +3,7 @@
 
 import * as network from 'vis-network';
 
+
 type DotNetObjectReference = any;
 
 interface NetworkHolder {
@@ -199,8 +200,8 @@ export function unselectAll(element: HTMLElement) {
 
 // DOT parsing
 export function parseDOTNetwork(dot: string): string {
-    console.log('VisNetwork.Blazor: [parseDOTNetwork]', dot);
-    const parsedData: network.Network = network.parseDOTNetwork(dot);
-    console.log('VisNetwork.Blazor: [parseDOTNetwork]', parsedData.nodes, parsedData.edges);
+    console.log('VisNetwork.Blazor: [parseDOTNetwork before]', dot);
+    const parsedData: any = network.network.convertDot(dot);
+    console.log('VisNetwork.Blazor: [parseDOTNetwork after]', parsedData);
     return JSON.stringify(parsedData);
 }
