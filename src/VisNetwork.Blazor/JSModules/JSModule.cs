@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
+using System;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using System.Threading.Tasks;
@@ -32,6 +33,7 @@ internal interface IJSModule
     ValueTask<string[]> SelectNodes(ElementReference element, DotNetObjectReference<Network> component, string[] nodeIds);
     ValueTask<NodeEdgeComposite> SetSelection(ElementReference element, DotNetObjectReference<Network> component, NodeEdgeComposite composite);
     ValueTask<NodeEdgeComposite> UnselectAll(ElementReference element, DotNetObjectReference<Network> component);
+    ValueTask<string> ParseDOTNetwork(string dotString);
 }
 
 internal partial class JSModule : IJSModule
@@ -94,6 +96,10 @@ internal partial class JSModule : IJSModule
 
     public ValueTask<NodeEdgeComposite> UnselectAll(ElementReference element, DotNetObjectReference<Network> component) =>
         InvokeAsync<NodeEdgeComposite>("unselectAll", element);
+
+    public ValueTask<string> ParseDOTNetwork(string dotString) =>
+        InvokeAsync<string>("parseDOTNetwork", dotString);
+
 
     private static readonly JsonSerializerOptions JsonSerializerOptions = new JsonSerializerOptions
     {

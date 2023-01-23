@@ -196,3 +196,11 @@ export function unselectAll(element: HTMLElement) {
     const network: network.Network = getNetworkById(element.id);
     network.unselectAll();
 }
+
+// DOT parsing
+export function parseDOTNetwork(dot: string): string {
+    console.log('VisNetwork.Blazor: [parseDOTNetwork]', dot);
+    const parsedData: network.Network = network.parseDOTNetwork(dot);
+    console.log('VisNetwork.Blazor: [parseDOTNetwork]', parsedData.nodes, parsedData.edges);
+    return JSON.stringify(parsedData);
+}

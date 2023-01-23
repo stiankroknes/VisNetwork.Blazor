@@ -319,5 +319,8 @@ public partial class Network : IAsyncDisposable
 
     public async Task<NodeEdgeComposite> UnselectAll() =>
         await JS.UnselectAll(element, thisReference);
+
+    public async Task<string> ParseDOTNetwork(string dotString) => 
+        await JS.ParseDOTNetwork(dotString);
 }
 #nullable enable
