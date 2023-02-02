@@ -45,7 +45,7 @@ public class NodeOption
     /// Defines the font of the label.
     /// Note: JS lib supports both string and object.
     /// </summary>
-    public string? Font { get; set; }
+    public Font? Font { get; set; }
 
     /// <summary>
     /// When not null, the node will belong to the defined group. 

@@ -98,7 +98,7 @@ internal partial class JSModule : IJSModule
         InvokeAsync<NodeEdgeComposite>("unselectAll", element);
 
     public ValueTask<string> ParseDOTNetwork(string dotString) =>
-        InvokeAsync<string>("parseDOTNetwork", dotString);
+        InvokeAsync<string>("parseDotNetwork", dotString);
 
 
     private static readonly JsonSerializerOptions JsonSerializerOptions = new JsonSerializerOptions

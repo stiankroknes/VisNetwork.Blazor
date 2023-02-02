@@ -11,6 +11,8 @@ namespace VisNetwork.Blazor;
 
 public partial class Network : IAsyncDisposable
 {
+    private static readonly JsonSerializerOptions JsonDeserializeOptions = new() { PropertyNamingPolicy = JsonNamingPolicy.CamelCase };
+
     private readonly DotNetObjectReference<Network> thisReference;
     private ElementReference element;
     private bool firstRenderComplete;
@@ -256,24 +258,22 @@ public partial class Network : IAsyncDisposable
     [System.Diagnostics.CodeAnalysis.SuppressMessage("AsyncUsage", "AsyncFixer01:Unnecessary async/await usage", Justification = "<Pending>")]
     public async Task EventCallback(string eventName, string eventJson)
     {
-        var jsonOptions = new JsonSerializerOptions { PropertyNamingPolicy = JsonNamingPolicy.CamelCase };
-
         var eventTask = eventName switch
         {
-            "click" => OnClick.InvokeAsync(JsonSerializer.Deserialize<ClickEvent>(eventJson, jsonOptions)),
-            "doubleClick" => OnDoubleClick.InvokeAsync(JsonSerializer.Deserialize<ClickEvent>(eventJson, jsonOptions)),
-            "oncontext" => OnContext.InvokeAsync(JsonSerializer.Deserialize<ClickEvent>(eventJson, jsonOptions)),
-            "hold" => OnHold.InvokeAsync(JsonSerializer.Deserialize<ClickEvent>(eventJson, jsonOptions)),
-            "release" => OnRelease.InvokeAsync(JsonSerializer.Deserialize<ClickEvent>(eventJson, jsonOptions)),
-            "select" => OnSelect.InvokeAsync(JsonSerializer.Deserialize<ClickEvent>(eventJson, jsonOptions)),
-            "selectNode" => OnSelectNode.InvokeAsync(JsonSerializer.Deserialize<ClickEvent>(eventJson, jsonOptions)),
-            "deselectNode" => OnDeselectNode.InvokeAsync(JsonSerializer.Deserialize<DeselectClickEvent>(eventJson, jsonOptions)),
-            "selectEdge" => OnSelectEdge.InvokeAsync(JsonSerializer.Deserialize<ClickEvent>(eventJson, jsonOptions)),
-            "deselectEdge" => OnDeselectEdge.InvokeAsync(JsonSerializer.Deserialize<DeselectClickEvent>(eventJson, jsonOptions)),
+            "click" => OnClick.InvokeAsync(JsonSerializer.Deserialize<ClickEvent>(eventJson, JsonDeserializeOptions)),
+            "doubleClick" => OnDoubleClick.InvokeAsync(JsonSerializer.Deserialize<ClickEvent>(eventJson, JsonDeserializeOptions)),
+            "oncontext" => OnContext.InvokeAsync(JsonSerializer.Deserialize<ClickEvent>(eventJson, JsonDeserializeOptions)),
+            "hold" => OnHold.InvokeAsync(JsonSerializer.Deserialize<ClickEvent>(eventJson, JsonDeserializeOptions)),
+            "release" => OnRelease.InvokeAsync(JsonSerializer.Deserialize<ClickEvent>(eventJson, JsonDeserializeOptions)),
+            "select" => OnSelect.InvokeAsync(JsonSerializer.Deserialize<ClickEvent>(eventJson, JsonDeserializeOptions)),
+            "selectNode" => OnSelectNode.InvokeAsync(JsonSerializer.Deserialize<ClickEvent>(eventJson, JsonDeserializeOptions)),
+            "deselectNode" => OnDeselectNode.InvokeAsync(JsonSerializer.Deserialize<DeselectClickEvent>(eventJson, JsonDeserializeOptions)),
+            "selectEdge" => OnSelectEdge.InvokeAsync(JsonSerializer.Deserialize<ClickEvent>(eventJson, JsonDeserializeOptions)),
+            "deselectEdge" => OnDeselectEdge.InvokeAsync(JsonSerializer.Deserialize<DeselectClickEvent>(eventJson, JsonDeserializeOptions)),
             "showPopup" => OnShowPopup.InvokeAsync(eventJson),
             "hidePopup" => OnHidePopup.InvokeAsync(eventJson),
-            "beforeDrawing" => OnBeforeDrawing.InvokeAsync(JsonSerializer.Deserialize<DrawingEvent>(eventJson, jsonOptions)),
-            "afterDrawing" => OnAfterDrawing.InvokeAsync(JsonSerializer.Deserialize<DrawingEvent>(eventJson, jsonOptions)),
+            "beforeDrawing" => OnBeforeDrawing.InvokeAsync(JsonSerializer.Deserialize<DrawingEvent>(eventJson, JsonDeserializeOptions)),
+            "afterDrawing" => OnAfterDrawing.InvokeAsync(JsonSerializer.Deserialize<DrawingEvent>(eventJson, JsonDeserializeOptions)),
             _ => Task.CompletedTask
         };
 
@@ -320,7 +320,20 @@ public partial class Network : IAsyncDisposable
     public async Task<NodeEdgeComposite> UnselectAll() =>
         await JS.UnselectAll(element, thisReference);
 
-    public async Task<string> ParseDOTNetwork(string dotString) => 
-        await JS.ParseDOTNetwork(dotString);
+    public async Task<NetworkData> ParseDOTNetwork(string dotString)
+    {
+        var raw = await JS.ParseDOTNetwork(dotString);
+        
+        var jsonDeserializeOptions = new JsonSerializerOptions { PropertyNameCaseInsensitive = true };
+
+        
+#pragma warning disable S1135 // Track uses of "TODO" tags
+        // TODO: Deserialize fails... some options: 
+        // - create specific parser handling structure from parseDotNetwork
+        // - create generic custom parser for NetworkData and check properties that can be of multiple types.
+        //   use some type to facilitate support for discriminated unions , Union<T1, T2...> ?
+        return JsonSerializer.Deserialize<NetworkData>(raw, jsonDeserializeOptions);
+#pragma warning restore S1135 // Track uses of "TODO" tags
+    }
 }
 #nullable enable

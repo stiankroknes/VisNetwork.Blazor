@@ -6,11 +6,11 @@
     "node_modules"
   ],
   "compilerOptions": {
-    "module": "es6",
+    "module": "nodenext",
     "noImplicitAny": true,
     "removeComments": true,
     "preserveConstEnums": true,
     "sourceMap": true,
-    "moduleResolution": "Node"
+    "moduleResolution": "nodenext"
   }
 }

@@ -41,9 +41,9 @@ public class EdgeOption
     public bool? Dashes { get; set; }
 
     /// <summary>
-    /// 
+    /// This object defines the details of the label.
     /// </summary>
-    public string? Font { get; set; }
+    public Font? Font { get; set; }
 
     /// <summary>
     /// When true, the edge is not drawn.

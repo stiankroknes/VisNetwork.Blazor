@@ -5,7 +5,7 @@
 <h1>VisNetwork Samples</h1>
 
 <div>
-    <Network @ref="network" Id="my-id" Data="@data" class="vis-network-container" SetupCompletedCallback="NetworkReady"/>
+    <Network @ref="network" Id="my-id" Data="@data" class="vis-network-container" SetupCompletedCallback="NetworkReady" />
 </div>
 
 @code {
@@ -28,10 +28,10 @@
         edges.Add(new Edge("2", "3") { Arrows = new Arrows { To = new ArrowsOptions { Enabled = true } } });
 
         data = new NetworkData
-        {
-            Edges = edges,
-            Nodes = nodes
-        };
+            {
+                Edges = edges,
+                Nodes = nodes
+            };
     }
 
     private async Task NetworkReady()
@@ -40,11 +40,11 @@
                             node [shape=circle fontsize=16]
                             edge [length=100, color=gray, fontcolor=black]
 
-                            A -> A[label=0.5];
-                            B -> B[label=1.2] -> C[label=0.7] -- A;
+                            A -> A[label=""0.5""];
+                            B -> B[label=1.2] -> C[label=""0.7""] -- A;
                             B -> D;
                             D -> {B; C}
-                            D -> E[label=0.2];
+                            D -> E[label=""0.2""];
                             F -> F;
                             A [
                                 fontcolor=white,
@@ -53,6 +53,8 @@
                         }";
         Console.WriteLine($"Parsed network: Before: {dotString}");
         var parsedNetwork = await network.ParseDOTNetwork(dotString);
+
+        await network.SetData(parsedNetwork);
         Console.WriteLine($"Parsed network: After: {parsedNetwork}");
     }
 
