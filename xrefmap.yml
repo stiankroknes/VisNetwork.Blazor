@@ -917,6 +917,19 @@ references:
   isSpec: "True"
   fullName: VisNetwork.Blazor.Models.EdgeOption.Shadow
   nameWithType: EdgeOption.Shadow
+- uid: VisNetwork.Blazor.Models.EdgeOption.Smooth
+  name: Smooth
+  href: api/VisNetwork.Blazor.Models.EdgeOption.html#VisNetwork_Blazor_Models_EdgeOption_Smooth
+  commentId: P:VisNetwork.Blazor.Models.EdgeOption.Smooth
+  fullName: VisNetwork.Blazor.Models.EdgeOption.Smooth
+  nameWithType: EdgeOption.Smooth
+- uid: VisNetwork.Blazor.Models.EdgeOption.Smooth*
+  name: Smooth
+  href: api/VisNetwork.Blazor.Models.EdgeOption.html#VisNetwork_Blazor_Models_EdgeOption_Smooth_
+  commentId: Overload:VisNetwork.Blazor.Models.EdgeOption.Smooth
+  isSpec: "True"
+  fullName: VisNetwork.Blazor.Models.EdgeOption.Smooth
+  nameWithType: EdgeOption.Smooth
 - uid: VisNetwork.Blazor.Models.EdgeOption.Title
   name: Title
   href: api/VisNetwork.Blazor.Models.EdgeOption.html#VisNetwork_Blazor_Models_EdgeOption_Title
@@ -1175,6 +1188,64 @@ references:
   isSpec: "True"
   fullName: VisNetwork.Blazor.Models.EdgeShadowOption.Y
   nameWithType: EdgeShadowOption.Y
+- uid: VisNetwork.Blazor.Models.EdgeSmoothOptions
+  name: EdgeSmoothOptions
+  href: api/VisNetwork.Blazor.Models.EdgeSmoothOptions.html
+  commentId: T:VisNetwork.Blazor.Models.EdgeSmoothOptions
+  fullName: VisNetwork.Blazor.Models.EdgeSmoothOptions
+  nameWithType: EdgeSmoothOptions
+- uid: VisNetwork.Blazor.Models.EdgeSmoothOptions.Enabled
+  name: Enabled
+  href: api/VisNetwork.Blazor.Models.EdgeSmoothOptions.html#VisNetwork_Blazor_Models_EdgeSmoothOptions_Enabled
+  commentId: P:VisNetwork.Blazor.Models.EdgeSmoothOptions.Enabled
+  fullName: VisNetwork.Blazor.Models.EdgeSmoothOptions.Enabled
+  nameWithType: EdgeSmoothOptions.Enabled
+- uid: VisNetwork.Blazor.Models.EdgeSmoothOptions.Enabled*
+  name: Enabled
+  href: api/VisNetwork.Blazor.Models.EdgeSmoothOptions.html#VisNetwork_Blazor_Models_EdgeSmoothOptions_Enabled_
+  commentId: Overload:VisNetwork.Blazor.Models.EdgeSmoothOptions.Enabled
+  isSpec: "True"
+  fullName: VisNetwork.Blazor.Models.EdgeSmoothOptions.Enabled
+  nameWithType: EdgeSmoothOptions.Enabled
+- uid: VisNetwork.Blazor.Models.EdgeSmoothOptions.ForceDirection
+  name: ForceDirection
+  href: api/VisNetwork.Blazor.Models.EdgeSmoothOptions.html#VisNetwork_Blazor_Models_EdgeSmoothOptions_ForceDirection
+  commentId: P:VisNetwork.Blazor.Models.EdgeSmoothOptions.ForceDirection
+  fullName: VisNetwork.Blazor.Models.EdgeSmoothOptions.ForceDirection
+  nameWithType: EdgeSmoothOptions.ForceDirection
+- uid: VisNetwork.Blazor.Models.EdgeSmoothOptions.ForceDirection*
+  name: ForceDirection
+  href: api/VisNetwork.Blazor.Models.EdgeSmoothOptions.html#VisNetwork_Blazor_Models_EdgeSmoothOptions_ForceDirection_
+  commentId: Overload:VisNetwork.Blazor.Models.EdgeSmoothOptions.ForceDirection
+  isSpec: "True"
+  fullName: VisNetwork.Blazor.Models.EdgeSmoothOptions.ForceDirection
+  nameWithType: EdgeSmoothOptions.ForceDirection
+- uid: VisNetwork.Blazor.Models.EdgeSmoothOptions.Roundness
+  name: Roundness
+  href: api/VisNetwork.Blazor.Models.EdgeSmoothOptions.html#VisNetwork_Blazor_Models_EdgeSmoothOptions_Roundness
+  commentId: P:VisNetwork.Blazor.Models.EdgeSmoothOptions.Roundness
+  fullName: VisNetwork.Blazor.Models.EdgeSmoothOptions.Roundness
+  nameWithType: EdgeSmoothOptions.Roundness
+- uid: VisNetwork.Blazor.Models.EdgeSmoothOptions.Roundness*
+  name: Roundness
+  href: api/VisNetwork.Blazor.Models.EdgeSmoothOptions.html#VisNetwork_Blazor_Models_EdgeSmoothOptions_Roundness_
+  commentId: Overload:VisNetwork.Blazor.Models.EdgeSmoothOptions.Roundness
+  isSpec: "True"
+  fullName: VisNetwork.Blazor.Models.EdgeSmoothOptions.Roundness
+  nameWithType: EdgeSmoothOptions.Roundness
+- uid: VisNetwork.Blazor.Models.EdgeSmoothOptions.Type
+  name: Type
+  href: api/VisNetwork.Blazor.Models.EdgeSmoothOptions.html#VisNetwork_Blazor_Models_EdgeSmoothOptions_Type
+  commentId: P:VisNetwork.Blazor.Models.EdgeSmoothOptions.Type
+  fullName: VisNetwork.Blazor.Models.EdgeSmoothOptions.Type
+  nameWithType: EdgeSmoothOptions.Type
+- uid: VisNetwork.Blazor.Models.EdgeSmoothOptions.Type*
+  name: Type
+  href: api/VisNetwork.Blazor.Models.EdgeSmoothOptions.html#VisNetwork_Blazor_Models_EdgeSmoothOptions_Type_
+  commentId: Overload:VisNetwork.Blazor.Models.EdgeSmoothOptions.Type
+  isSpec: "True"
+  fullName: VisNetwork.Blazor.Models.EdgeSmoothOptions.Type
+  nameWithType: EdgeSmoothOptions.Type
 - uid: VisNetwork.Blazor.Models.EndPointOffsetOption
   name: EndPointOffsetOption
   href: api/VisNetwork.Blazor.Models.EndPointOffsetOption.html
