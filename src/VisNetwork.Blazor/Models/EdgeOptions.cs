@@ -115,6 +115,12 @@ public class EdgeOption
     public EdgeShadowOption? Shadow { get; set; }
 
     /// <summary>
+    /// Options for edge smoothing.
+    /// </summary>
+    /// <value></value>
+    public EdgeSmoothOptions? Smooth { get; set; }
+
+    /// <summary>
     /// Title to be displayed in a pop-up when the user hovers over the edge.
     /// Note: JS lib support an HTML element or a string containing plain text.
     /// </summary>
@@ -153,6 +159,41 @@ public class EdgeShadowOption
     /// The default is 5.
     /// </summary>
     public int? Y { get; set; }
+}
+
+public class EdgeSmoothOptions
+{
+    /// <summary>
+    /// Toggle smooth curves on and off. This is an optional option. 
+    /// If any of the other properties in this object are set, this option will be set to true.
+    /// Default is true
+    /// </summary>
+    /// <value></value>
+    public bool? Enabled { get; set;}
+
+    /// <summary>
+    /// Possible options: 'dynamic', 'continuous', 'discrete', 'diagonalCross', 'straightCross', 'horizontal', 'vertical', 'curvedCW', 'curvedCCW', 'cubicBezier'
+    /// Default is 'dynamic'
+    /// </summary>
+    /// <value></value>
+    public string? Type { get; set; }    
+
+    /// <summary>
+    /// Accepted options: ['horizontal', 'vertical', 'none']. This options is only used with the cubicBezier curves. 
+    /// When true, horizontal is chosen, when false, the direction that is larger (x distance between nodes vs y distance between nodes) is used. 
+    /// If the x distance is larger, horizontal. This is ment to be used with hierarchical layouts.
+    /// JS lib supports bool or string
+    /// Default is false/none
+    /// </summary>
+    /// <value></value>
+    public string? ForceDirection { get; set; }
+
+    /// <summary>
+    /// Accepted range: 0 .. 1.0. This parameter tweaks the roundness of the smooth curves for all types EXCEPT dynamic.
+    /// Default is 0.5
+    /// </summary>
+    /// <value></value>
+    public decimal? Roundness { get; set; }
 }
 
 /// <summary>

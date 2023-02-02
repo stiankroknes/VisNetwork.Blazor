@@ -1,0 +1,198 @@
+@page "/smooth"
+
+@using VisNetwork.Blazor.Models
+
+<h1>Edge smoothing</h1>
+
+<div>
+    <button @onclick="TogglePhysics" aria-label="TogglePhysics">Switch Physics @( IsPhysicsEnabled() ? "off" : "on" )</button>
+
+    <Network Id="my-id" @ref="network" Data="@data" class="vis-network-container" Options="NetworkOptions" />
+
+    <div class="wrapper">
+        <div class="configuration item s0"></div>
+        <div class="configuration item s0">
+            <div class="configuration header">edges</div>
+        </div>
+        <div class="configuration item s2">
+            <div class="configuration label s2"><i><b>smooth</b></i></div>
+        </div>
+        <div class="configuration item s3">
+            <div class="configuration label s3">enabled:</div>
+            <input type="checkbox" class="configuration checkbox" checked="@isSmoothingEnabled" @oninput="SmoothingChanged">
+        </div>
+        @if(isSmoothingEnabled)
+        {
+            <div class="configuration item s3">
+                <div class="configuration label s3">type:</div>
+                <select class="configuration select" @onchange="SmoothnessTypeChanged">
+                    @foreach (var st in smoothnessTypes)
+                    {
+                        <option value="@st" selected="@(st == smoothnessType)">@st</option>
+                    }
+                </select>
+            </div>
+            @if(smoothnessType == "cubicBezier")
+            {
+                <div class="configuration item s3">
+                    <div class="configuration label s3">forceDirection:</div>
+                    <select class="configuration select" @onchange="ForceDirectionChanged">
+                        @foreach (var fd in forceDirections)
+                        {
+                            <option value="@fd" selected="@(fd == forceDirection)">@fd</option>
+                        }
+                    </select>
+                </div>
+            }
+            @if(smoothnessType != "dynamic")
+            {
+                <div class="configuration item s3">
+                    <div class="configuration label s3">roundness:</div>
+                    <input class="configuration range" type="range" min="0" max="1" step="0.05" value="@roundness" @oninput="RoundnessChanged">
+                    <input class="configuration rangeinput" value="@roundness">
+                </div>
+            }
+        }
+    </div>
+
+</div>
+
+@code {
+
+    private bool isSmoothingEnabled = true;
+    
+    private readonly string[] smoothnessTypes = {
+        "dynamic",
+        "continuous",
+        "discrete",
+        "diagonalCross",
+        "straightCross",
+        "horizontal",
+        "vertical",
+        "curvedCW",
+        "curvedCCW",
+        "cubicBezier",
+    };
+    private string smoothnessType = "dynamic";
+
+    private readonly string[] forceDirections = {
+        "horizontal",
+        "vertical",
+        "none"
+    };
+    private string forceDirection = "horizontal";
+    private double roundness = 0.5f;
+
+    private Network network;
+
+    private NetworkData data;
+
+    private NetworkOptions networkOptions = new NetworkOptions
+    {
+        AutoResize = true,
+        Nodes = new NodeOption
+        {
+            BorderWidth = 1
+        },
+        Edges = new EdgeOption
+        {
+            Arrows = new Arrows {
+                To = new ArrowsOptions { Enabled = true }
+            },
+            Smooth = new EdgeSmoothOptions {
+                Enabled = true
+            }
+        },
+        Physics = new PhysicsOptions {
+            Enabled = false
+        }
+    };
+
+    protected override void OnInitialized()
+    {
+        smoothnessType = smoothnessTypes[0];
+        forceDirection = forceDirections[0];
+
+        var nodes = new List<Node>();
+        var edges = new List<Edge>();
+
+        var fixedNode = new Node("1", "Fixed Node", 1, "ellipse");
+        fixedNode.X = 0;
+        fixedNode.Y = 0;
+        fixedNode.Fixed = new NodeFixedOption{ X = true, Y = true };
+
+        var dragMe = new Node("2", "Drag me", 1, "ellipse");
+        dragMe.X = 150;
+        dragMe.Y = 130;
+        dragMe.Physics = false;
+
+        var obstacle = new Node("3", "Obstacle", 1, "ellipse");
+        obstacle.X = 80;
+        obstacle.Y = -80;
+        obstacle.Fixed = new NodeFixedOption{ X = true, Y = true };
+
+        nodes.Add(fixedNode);
+        nodes.Add(dragMe);
+        edges.Add(new Edge("1", "2"));
+
+        nodes.Add(obstacle);
+
+        data = new NetworkData
+        {
+            Edges = edges,
+            Nodes = nodes
+        };
+    }
+
+    private async Task TogglePhysics()
+    {
+        networkOptions.Physics.Enabled = !networkOptions.Physics.Enabled;
+        await network.SetOptions(networkOptions);
+    } 
+
+    private async Task ToogleSmoothing()
+    {
+        networkOptions.Edges.Smooth.Enabled = !networkOptions.Edges.Smooth.Enabled;
+        await network.SetOptions(networkOptions);
+    }
+
+    private async Task SmoothingChanged(ChangeEventArgs e)
+    {
+        var newState = e.Value as bool?;
+        isSmoothingEnabled = newState ?? false;
+        networkOptions.Edges.Smooth.Enabled = isSmoothingEnabled;
+        await network.SetOptions(networkOptions);   
+    }
+
+    private async Task SmoothnessTypeChanged(ChangeEventArgs e)
+    {
+        var newType = e.Value as string;
+        smoothnessType = newType ?? smoothnessTypes[0];
+        networkOptions.Edges.Smooth.Type = smoothnessType;
+        await network.SetOptions(networkOptions);   
+    }
+
+    private async Task ForceDirectionChanged(ChangeEventArgs e)
+    {
+        var newForceDirection = e.Value as string;
+        forceDirection = newForceDirection ?? forceDirections[0];
+        networkOptions.Edges.Smooth.ForceDirection = forceDirection;
+        await network.SetOptions(networkOptions);   
+    }
+
+    private async Task RoundnessChanged(ChangeEventArgs e)
+    {
+        roundness = double.Parse((e.Value as string) ?? "0.0");
+        networkOptions.Edges.Smooth.Roundness = new decimal(roundness);
+        await network.SetOptions(networkOptions);
+    }
+
+    private bool IsPhysicsEnabled() => networkOptions.Physics.Enabled ?? false;
+
+    private NetworkOptions NetworkOptions(Network network)
+    {
+        return networkOptions;
+    }
+
+}
+
