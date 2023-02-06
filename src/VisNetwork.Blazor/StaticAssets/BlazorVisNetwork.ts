@@ -204,7 +204,7 @@ export function parseDotNetwork(dot: string): any {
     console.log('VisNetwork.Blazor: [parseDotNetwork before]', dot);
     const parsedData: any = parseDOTNetwork(dot);
     console.log('VisNetwork.Blazor: [parseDotNetwork parsed]', parsedData);
-    const json: string = JSON.stringify(parsedData);
+    const json: string = JSON.stringify(parsedData, null, '\t');
     console.log('VisNetwork.Blazor: [parseDotNetwork json]', json);
     return json;
     //return parsedData;
