@@ -1,0 +1,289 @@
+::deep .vis-network-container {
+    width: 100%;
+    height: 600px;
+    border: none;
+}
+
+div.configuration {
+    display: block;
+    float: left;
+    font-size: 12px;
+    position: relative
+}
+
+div.wrapper {
+    display: block;
+    width: 700px
+}
+
+div.wrapper:after {
+    clear: both;
+    content: "";
+    display: block
+}
+
+div.configuration.option-container {
+    background-color: #fff;
+    border: 2px solid #f7f8fa;
+    border-radius: 4px;
+    display: block;
+    left: 10px;
+    margin-top: 20px;
+    padding-left: 5px;
+    width: 495px
+}
+
+div.configuration.button {
+    background-color: #f7f8fa;
+    border: 2px solid #ceced0;
+    border-radius: 4px;
+    cursor: pointer;
+    display: block;
+    height: 25px;
+    left: 10px;
+    line-height: 25px;
+    margin-bottom: 30px;
+    margin-top: 20px;
+    padding-left: 5px;
+    width: 495px
+}
+
+div.configuration.button.hover {
+    background-color: #4588e6;
+    border: 2px solid #214373;
+    color: #fff
+}
+
+div.configuration.item {
+    display: block;
+    float: left;
+    height: 25px;
+    line-height: 25px;
+    width: 495px
+}
+
+div.configuration.item.s2 {
+    background-color: #f7f8fa;
+    border-radius: 3px;
+    left: 10px;
+    padding-left: 5px
+}
+
+div.configuration.item.s3 {
+    background-color: #e4e9f0;
+    border-radius: 3px;
+    left: 20px;
+    padding-left: 5px
+}
+
+div.configuration.item.s4 {
+    background-color: #cfd8e6;
+    border-radius: 3px;
+    left: 30px;
+    padding-left: 5px
+}
+
+div.configuration.header {
+    font-size: 18px;
+    font-weight: 700
+}
+
+div.configuration.label {
+    height: 25px;
+    line-height: 25px;
+    width: 120px
+}
+
+div.configuration.label.s3 {
+    width: 110px
+}
+
+div.configuration.label.s4 {
+    width: 100px
+}
+
+div.configuration.colorBlock {
+    border: 1px solid #444;
+    border-radius: 2px;
+    cursor: pointer;
+    height: 19px;
+    margin: 0;
+    padding: 0;
+    top: 1px;
+    width: 30px
+}
+
+input.configuration.checkbox {
+    left: -5px
+}
+
+input.configuration.rangeinput {
+    margin: 0;
+    padding: 1px;
+    pointer-events: none;
+    position: relative;
+    top: -5px;
+    width: 60px
+}
+
+input.configuration.range {
+    appearance: none;
+    -webkit-appearance: none;
+    background-color: transparent;
+    border: 0 solid #fff;
+    height: 20px;
+    width: 300px
+}
+
+input.configuration.range::-webkit-slider-runnable-track {
+    background: #dedede;
+    background: -moz-linear-gradient(top, #dedede 0, #c8c8c8 99%);
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0, #dedede), color-stop(99%, #c8c8c8));
+    background: -webkit-linear-gradient(top, #dedede, #c8c8c8 99%);
+    background: -o-linear-gradient(top, #dedede 0, #c8c8c8 99%);
+    background: -ms-linear-gradient(top, #dedede 0, #c8c8c8 99%);
+    background: linear-gradient(180deg, #dedede 0, #c8c8c8 99%);
+    border: 1px solid #999;
+    border-radius: 3px;
+    box-shadow: 0 0 3px 0 #aaa;
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#dedede", endColorstr="#c8c8c8", GradientType=0);
+    height: 5px;
+    width: 300px
+}
+
+input.configuration.range::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    background: #3876c2;
+    background: -moz-linear-gradient(top, #3876c2 0, #385380 100%);
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0, #3876c2), color-stop(100%, #385380));
+    background: -webkit-linear-gradient(top, #3876c2, #385380);
+    background: -o-linear-gradient(top, #3876c2 0, #385380 100%);
+    background: -ms-linear-gradient(top, #3876c2 0, #385380 100%);
+    background: linear-gradient(180deg, #3876c2 0, #385380);
+    border: 1px solid #14334b;
+    border-radius: 50%;
+    box-shadow: 0 0 1px 0 #111927;
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#3876c2", endColorstr="#385380", GradientType=0);
+    height: 17px;
+    margin-top: -7px;
+    width: 17px
+}
+
+input.configuration.range:focus {
+    outline: none
+}
+
+input.configuration.range:focus::-webkit-slider-runnable-track {
+    background: #9d9d9d;
+    background: -moz-linear-gradient(top, #9d9d9d 0, #c8c8c8 99%);
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0, #9d9d9d), color-stop(99%, #c8c8c8));
+    background: -webkit-linear-gradient(top, #9d9d9d, #c8c8c8 99%);
+    background: -o-linear-gradient(top, #9d9d9d 0, #c8c8c8 99%);
+    background: -ms-linear-gradient(top, #9d9d9d 0, #c8c8c8 99%);
+    background: linear-gradient(180deg, #9d9d9d 0, #c8c8c8 99%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#9d9d9d", endColorstr="#c8c8c8", GradientType=0)
+}
+
+input.configuration.range::-moz-range-track {
+    background: #dedede;
+    background: -moz-linear-gradient(top, #dedede 0, #c8c8c8 99%);
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0, #dedede), color-stop(99%, #c8c8c8));
+    background: -webkit-linear-gradient(top, #dedede, #c8c8c8 99%);
+    background: -o-linear-gradient(top, #dedede 0, #c8c8c8 99%);
+    background: -ms-linear-gradient(top, #dedede 0, #c8c8c8 99%);
+    background: linear-gradient(180deg, #dedede 0, #c8c8c8 99%);
+    border: 1px solid #999;
+    border-radius: 3px;
+    box-shadow: 0 0 3px 0 #aaa;
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#dedede", endColorstr="#c8c8c8", GradientType=0);
+    height: 10px;
+    width: 300px
+}
+
+input.configuration.range::-moz-range-thumb {
+    background: #385380;
+    border: none;
+    border-radius: 50%;
+    height: 16px;
+    width: 16px
+}
+
+input.configuration.range:-moz-focusring {
+    outline: 1px solid #fff;
+    outline-offset: -1px
+}
+
+input.configuration.range::-ms-track {
+    background: transparent;
+    border-color: transparent;
+    border-width: 6px 0;
+    color: transparent;
+    height: 5px;
+    width: 300px
+}
+
+input.configuration.range::-ms-fill-lower {
+    background: #777;
+    border-radius: 10px
+}
+
+input.configuration.range::-ms-fill-upper {
+    background: #ddd;
+    border-radius: 10px
+}
+
+input.configuration.range::-ms-thumb {
+    background: #385380;
+    border: none;
+    border-radius: 50%;
+    height: 16px;
+    width: 16px
+}
+
+input.configuration.range:focus::-ms-fill-lower {
+    background: #888
+}
+
+input.configuration.range:focus::-ms-fill-upper {
+    background: #ccc
+}
+
+.popup {
+    background: rgba(57, 76, 89, .85);
+    border: 2px solid #f2faff;
+    border-radius: 4px;
+    color: #fff;
+    font-size: 14px;
+    height: 30px;
+    line-height: 30px;
+    position: absolute;
+    text-align: center;
+    -webkit-transition: opacity .3s ease-in-out;
+    -moz-transition: opacity .3s ease-in-out;
+    transition: opacity .3s ease-in-out;
+    width: 150px
+}
+
+.popup:after,
+.popup:before {
+    border: solid transparent;
+    content: " ";
+    height: 0;
+    left: 100%;
+    pointer-events: none;
+    position: absolute;
+    top: 50%;
+    width: 0
+}
+
+.popup:after {
+    border-color: rgba(136, 183, 213, 0) rgba(136, 183, 213, 0) rgba(136, 183, 213, 0) rgba(57, 76, 89, .85);
+    border-width: 8px;
+    margin-top: -8px
+}
+
+.popup:before {
+    border-color: rgba(194, 225, 245, 0) rgba(194, 225, 245, 0) rgba(194, 225, 245, 0) #f2faff;
+    border-width: 12px;
+    margin-top: -12px
+}
