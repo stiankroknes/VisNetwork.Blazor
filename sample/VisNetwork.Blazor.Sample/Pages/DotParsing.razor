@@ -10,6 +10,7 @@
 <div >
     <textarea rows="10" cols="40" class="form-control textbox-parameters" @bind="dotString"/>
     <button @onclick="OnClick">Update</button>
+    @errorMsg
 </div>
 
 @code {
@@ -17,6 +18,8 @@
     private Network network;
 
     private NetworkData data;
+
+    private string errorMsg = "";
 
     private string dotString = @"digraph {
                             node [shape=circle fontsize=16]
@@ -60,10 +63,12 @@
         try
         {
             await NetworkReady();
+            errorMsg = "";
         }
         catch(Exception e)
         {
-            Console.WriteLine(e);
+            errorMsg = e.Message.Split(Environment.NewLine).FirstOrDefault() ?? "Unknown error";
+            Console.WriteLine(e.Message);
         }
     }
 
