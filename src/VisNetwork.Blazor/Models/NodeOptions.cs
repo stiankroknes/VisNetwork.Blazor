@@ -403,5 +403,41 @@ public class NodeScalingOptions
     /// This can be false if the label is not allowed to scale with the node. If true it will scale using default settings.
     /// Note: JS lib supports Object or Boolean.
     /// </summary>
-    public bool? Label { get; set; }
+    public NodeScalingLabelOptions? Label { get; set; }
+}
+
+public class NodeScalingLabelOptions
+{
+    /// <summary>
+    /// Toggle the scaling of the label on or off. If this option is not defined, it is set to true if any of the properties in this object are defined.
+    /// </summary>
+    /// <value></value>
+    public bool Enabled { get; set; }
+
+    /// <summary>
+    /// The minimum font-size used for labels when scaling. 
+    ///  The default is 14.
+    /// </summary>
+    public int? Min { get; set; }
+
+    /// <summary>
+    /// The maximum font-size used for labels when scaling.
+    /// The default is 30.
+    /// </summary>
+    public int? Max { get; set; }   
+
+    /// <summary>
+    /// When zooming in, the font is drawn larger as well. You can limit the perceived font size using this option. If set to 30, the font will never look larger than size 30 zoomed at 100%.
+    /// The default is 30
+    /// </summary>
+    /// <value></value>
+    public int? MaxVisible { get; set; } 
+
+    /// <summary>
+    /// When zooming out, the font will be drawn smaller. This defines a lower limit for when the font is drawn. 
+    /// When using font scaling, you can use this together with the maxVisible to first show labels of important nodes when zoomed out and only show the rest when zooming in.
+    /// The default is 5
+    /// </summary>
+    /// <value></value>
+    public int? DrawThreshold { get; set; }
 }
