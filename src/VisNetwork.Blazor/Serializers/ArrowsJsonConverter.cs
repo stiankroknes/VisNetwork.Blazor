@@ -13,48 +13,21 @@ public class ArrowsJsonConverter : JsonConverter<Arrows>
         Enabled = true
     };
 
-    private readonly char[] Separators = new char[] { ',', ';', '|', ' ' };
+    private readonly Dictionary<string, ArrowsOptions?> optionsMap = new() {
+        {"to", null},
+        {"middle", null},
+        {"from", null}
+    };
 
     public override Arrows? Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
     {
-        Dictionary<string, ArrowsOptions?> optionsMap = new() {
-            {"to", null},
-            {"middle", null},
-            {"from", null}
-        };
-
         if(reader.TokenType == JsonTokenType.StartObject)
         {
-            //Object, look for to, middle and/or from sub objects
-            var optionsConverter = (JsonConverter<ArrowsOptions>)options.GetConverter(typeof(ArrowsOptions));
-
-            reader.Read(); //Read past the start object
-
-            //Property name
-            var arrowName = reader.GetString() ?? throw new JsonException();
-            arrowName = arrowName.Trim().ToLowerInvariant();
-
-            //Object
-            reader.Read();
-            var arrowOptions = optionsConverter.Read(ref reader, typeof(ArrowsOptions), options);
-
-            optionsMap[arrowName] = arrowOptions;
-
-            //Check at end of object
-            reader.Read();
-            if(reader.TokenType != JsonTokenType.EndObject)
-                throw new JsonException();
-
+            reader = ArrowOptionsFromObject(reader, options);
         }
         else if(reader.TokenType == JsonTokenType.String)
         {
-            //String
-            string arrowsValue = reader.GetString() ?? throw new JsonException();
-
-            foreach(var property in optionsMap.Keys.Where( k => arrowsValue.Contains(k, StringComparison.OrdinalIgnoreCase) ))
-            {
-                optionsMap[property] = DefaultArrowOptions;
-            }
+            reader = ArrowOptionsFromString(reader);
         }
         else
         {
@@ -67,6 +40,47 @@ public class ArrowsJsonConverter : JsonConverter<Arrows>
             Middle = optionsMap["middle"],
             From = optionsMap["from"]
         };
+    }
+
+    private Utf8JsonReader ArrowOptionsFromString(Utf8JsonReader reader)
+    {
+        //String
+        string arrowsValue = reader.GetString() ?? throw new JsonException();
+
+        foreach (var property in optionsMap.Keys.Where(k => arrowsValue.Contains(k, StringComparison.OrdinalIgnoreCase)))
+        {
+            optionsMap[property] = DefaultArrowOptions;
+        }
+
+        return reader;
+    }
+
+    private Utf8JsonReader ArrowOptionsFromObject(Utf8JsonReader reader, JsonSerializerOptions options)
+    {
+        //Object: look for to, middle and/or from as sub objects
+        var optionsConverter = (JsonConverter<ArrowsOptions>)options.GetConverter(typeof(ArrowsOptions));
+
+        reader.Read(); // past object start
+        while (reader.TokenType == JsonTokenType.PropertyName)
+        {
+            //Property name
+            var arrowName = reader.GetString() ?? throw new JsonException();
+            arrowName = arrowName.Trim().ToLowerInvariant();
+
+            reader.Read(); //past object start
+
+            //Object
+            var arrowOptions = optionsConverter.Read(ref reader, typeof(ArrowsOptions), options);
+            optionsMap[arrowName] = arrowOptions;
+
+            reader.Read(); //past object end
+        }
+
+        //Check at end of object
+        if (reader.TokenType != JsonTokenType.EndObject)
+            throw new JsonException();
+
+        return reader;
     }
 
     public override void Write(Utf8JsonWriter writer, Arrows value, JsonSerializerOptions options)
