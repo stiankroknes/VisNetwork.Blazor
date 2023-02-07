@@ -1,4 +1,7 @@
-﻿namespace VisNetwork.Blazor.Models;
+﻿using System.Text.Json.Serialization;
+using VisNetwork.Blazor.Serializers;
+
+namespace VisNetwork.Blazor.Models;
 
 public class EdgeOption
 {
@@ -310,9 +313,11 @@ public class ColorType
     public double? Opacity { get; set; }
 }
 
+
 /// <summary>
 /// Options for arrows for edge.
 /// </summary>
+[JsonConverter(typeof(ArrowsJsonConverter))]
 public class Arrows
 {
     /// <summary>
