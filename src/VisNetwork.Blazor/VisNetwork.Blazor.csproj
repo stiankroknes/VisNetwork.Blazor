@@ -48,16 +48,15 @@
 		<PackageReference Include="MinVer" Version="4.2.0" PrivateAssets="All" />
 	</ItemGroup>
 
-	<!--<Target Name="PreBuild" BeforeTargets="PreBuildEvent" Condition="'$(Configuration)'=='Debug'">
+	<Target Name="PreBuild" BeforeTargets="PreBuildEvent" Condition="'$(Configuration)'=='Debug'">
 		<Exec Command="npm install" WorkingDirectory="StaticAssets" />
 		<Exec Command="npm run build:Debug" WorkingDirectory="StaticAssets" />
 	</Target>
 
-	<ItemGroup Condition="'$(TargetFramework)' == 'net6.0'">
 	<Target Name="PreBuild" BeforeTargets="PreBuildEvent" Condition="'$(Configuration)'=='Release'">
 		<Exec Command="npm install" WorkingDirectory="StaticAssets" />
 		<Exec Command="npm run build:Release" WorkingDirectory="StaticAssets" />
-	</Target>-->
+	</Target>
 
 	<ItemGroup Condition="'$(TargetFramework)' == 'net7.0'">
 		<PackageReference Include="Microsoft.AspNetCore.Components" Version="7.0.0" />

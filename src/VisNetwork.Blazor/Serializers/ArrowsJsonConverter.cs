@@ -1,4 +1,6 @@
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using VisNetwork.Blazor.Models;
@@ -15,13 +17,33 @@ public class ArrowsJsonConverter : JsonConverter<Arrows>
 
     public override Arrows? Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
     {
-        ArrowsOptions? to = null;
-        ArrowsOptions? middle = null;
-        ArrowsOptions? from = null;
+        Dictionary<string, ArrowsOptions?> optionsMap = new() {
+            {"to", null},
+            {"middle", null},
+            {"from", null}
+        };
 
         if(reader.TokenType == JsonTokenType.StartObject)
         {
             //Object, look for to, middle and/or from sub objects
+            var optionsConverter = (JsonConverter<ArrowsOptions>)options.GetConverter(typeof(ArrowsOptions));
+
+            reader.Read(); //Read past the start object
+
+            //Property name
+            var arrowName = reader.GetString() ?? throw new JsonException();
+            arrowName = arrowName.Trim().ToLowerInvariant();
+
+            //Object
+            reader.Read();
+            var arrowOptions = optionsConverter.Read(ref reader, typeof(ArrowsOptions), options);
+
+            optionsMap[arrowName] = arrowOptions;
+
+            //Check at end of object
+            reader.Read();
+            if(reader.TokenType != JsonTokenType.EndObject)
+                throw new JsonException();
 
         }
         else if(reader.TokenType == JsonTokenType.String)
@@ -29,19 +51,9 @@ public class ArrowsJsonConverter : JsonConverter<Arrows>
             //String
             string arrowsValue = reader.GetString() ?? throw new JsonException();
 
-            if(arrowsValue.Contains("to", StringComparison.OrdinalIgnoreCase))
+            foreach(var property in optionsMap.Keys.Where( k => arrowsValue.Contains(k, StringComparison.OrdinalIgnoreCase) ))
             {
-                to = DefaultArrowOptions;
-            }
-
-            if(arrowsValue.Contains("middle", StringComparison.OrdinalIgnoreCase))
-            {
-                middle = DefaultArrowOptions;
-            }
-
-            if(arrowsValue.Contains("from", StringComparison.OrdinalIgnoreCase))
-            {
-                from = DefaultArrowOptions;
+                optionsMap[property] = DefaultArrowOptions;
             }
         }
         else
@@ -51,9 +63,9 @@ public class ArrowsJsonConverter : JsonConverter<Arrows>
 
         //Return object
         return new Arrows() {
-            To = to,
-            Middle = middle,
-            From = from
+            To = optionsMap["to"],
+            Middle = optionsMap["middle"],
+            From = optionsMap["from"]
         };
     }
 

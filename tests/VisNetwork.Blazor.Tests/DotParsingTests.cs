@@ -1,5 +1,6 @@
 using Bunit;
 using FluentAssertions;
+using System.Linq;
 using System.Text.Json;
 using System.Threading.Tasks;
 using VisNetwork.Blazor.Models;
@@ -19,7 +20,7 @@ public partial class NetworkTests
         }
 
         [Fact]
-        public void ArrowsDeserializer_Should_HandleToAsString()
+        public void ArrowsDeserializer_Should_HandleTo_AsString()
         {
             // Arrange
             var dotParserOutput = """
@@ -76,6 +77,74 @@ public partial class NetworkTests
             //Assert
             Assert.NotEmpty(networkData.Nodes);
             Assert.NotEmpty(networkData.Edges);
+            Assert.True( networkData.Edges.First().Arrows.To.Enabled);
         }
+
+        [Fact]
+        public void ArrowsDeserializer_Should_HandleTo_AsObject()
+        {
+            // Arrange
+            var dotParserOutput = """
+            {
+                "nodes": [
+                    {
+                        "id": "A",
+                        "label": "A",
+                        "shape": "circle",
+                        "font": {
+                            "size": 16,
+                            "color": "white"
+                        },
+                        "color": {
+                            "border": "red",
+                            "background": "red"
+                        }
+                    },
+                    {
+                        "id": "B",
+                        "label": "B",
+                        "shape": "circle",
+                        "font": {
+                            "size": 16
+                        }
+                    }
+                ],
+                "edges": [
+                    {
+                        "from": "A",
+                        "to": "B",
+                        "length": 100,
+                        "color": {
+                            "color": "gray"
+                        },
+                        "font": {
+                            "color": "black"
+                        },
+                        "label": "0.5",
+                        "arrows": {
+                            "to" : {
+                                "enabled": true
+                            }
+                        }
+                    }
+                ],
+                "options": {}
+            }
+            """;
+
+            var jsonOptions = new JsonSerializerOptions() {
+                PropertyNameCaseInsensitive = true
+            };
+
+            //Act
+            var networkData = JsonSerializer.Deserialize<NetworkData>(dotParserOutput, jsonOptions);
+
+            //Assert
+            Assert.NotEmpty(networkData.Nodes);
+            Assert.NotEmpty(networkData.Edges);
+            Assert.True( networkData.Edges.First().Arrows.To.Enabled);
+
+        }
+
     }
 }
