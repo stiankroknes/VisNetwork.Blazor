@@ -2,10 +2,14 @@
 
 @using VisNetwork.Blazor.Models
 
-<h1>VisNetwork Samples</h1>
+<h1>DOT parsing</h1>
 
 <div>
     <Network @ref="network" Id="my-id" Data="@data" class="vis-network-container" SetupCompletedCallback="NetworkReady" />
+</div>
+<div >
+    <textarea rows="10" cols="40" class="form-control textbox-parameters" @bind="dotString"/>
+    <button @onclick="OnClick">Update</button>
 </div>
 
 @code {
@@ -14,29 +18,7 @@
 
     private NetworkData data;
 
-
-    protected override void OnInitialized()
-    {
-        var nodes = new List<Node>();
-        var edges = new List<Edge>();
-
-        nodes.Add(new Node("1", "Node 1", 1, "circle"));
-        nodes.Add(new Node("2", "Node 2", 2, "ellipse"));
-        edges.Add(new Edge("1", "2") { Arrows = new Arrows { To = new ArrowsOptions { Enabled = true } } });
-
-        nodes.Add(new Node("3", "Node 3", 4, "database"));
-        edges.Add(new Edge("2", "3") { Arrows = new Arrows { To = new ArrowsOptions { Enabled = true } } });
-
-        data = new NetworkData
-            {
-                Edges = edges,
-                Nodes = nodes
-            };
-    }
-
-    private async Task NetworkReady()
-    {
-        var dotString = @"digraph {
+    private string dotString = @"digraph {
                             node [shape=circle fontsize=16]
                             edge [length=100, color=gray, fontcolor=black]
 
@@ -50,12 +32,39 @@
                                 fontcolor=white,
                                 color=red,
                             ]
-                        }";
+                        }"; 
+
+    protected override void OnInitialized()
+    {
+        var nodes = new List<Node>();
+        var edges = new List<Edge>();
+
+        data = new NetworkData
+            {
+                Edges = edges,
+                Nodes = nodes
+            };
+    }
+
+    private async Task NetworkReady()
+    {
         Console.WriteLine($"Parsed network: Before: {dotString}");
         var parsedNetwork = await network.ParseDOTNetwork(dotString);
 
         await network.SetData(parsedNetwork);
         Console.WriteLine($"Parsed network: After: {parsedNetwork}");
+    }
+
+    private async Task OnClick()
+    {
+        try
+        {
+            await NetworkReady();
+        }
+        catch(Exception e)
+        {
+            Console.WriteLine(e);
+        }
     }
 
 }
