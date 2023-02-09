@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Text.Json;
 using System.Threading.Tasks;
 using VisNetwork.Blazor.Models;
+using VisNetwork.Blazor.Serializers; 
 
 #nullable disable
 namespace VisNetwork.Blazor;
@@ -324,7 +325,17 @@ public partial class Network : IAsyncDisposable
     {
         var raw = await JS.ParseDOTNetwork(dotString);
         
-        var jsonDeserializeOptions = new JsonSerializerOptions { PropertyNameCaseInsensitive = true };
+        var jsonDeserializeOptions = new JsonSerializerOptions 
+        { 
+            PropertyNameCaseInsensitive = true,
+            // Converters = 
+            // {
+            //     new ValueOrObjectConverter<Arrows, ArrowsInner>(
+            //         JsonTokenType.String, 
+            //         (string value, JsonTokenType tokenType) => new Arrows(value),
+            //         (ArrowsInner inner) => new Arrows(inner) )
+            // }
+        };
 
         
 #pragma warning disable S1135 // Track uses of "TODO" tags

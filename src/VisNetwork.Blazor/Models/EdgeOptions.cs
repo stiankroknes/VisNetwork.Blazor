@@ -1,5 +1,6 @@
-﻿using System.Text.Json.Serialization;
-using VisNetwork.Blazor.Serializers;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace VisNetwork.Blazor.Models;
 
@@ -46,7 +47,7 @@ public class EdgeOption
     /// <summary>
     /// This object defines the details of the label.
     /// </summary>
-    public Font? Font { get; set; }
+    public FontInner? Font { get; set; }
 
     /// <summary>
     /// When true, the edge is not drawn.
@@ -311,68 +312,4 @@ public class ColorType
     /// The default is 1.0. 
     /// </summary>
     public double? Opacity { get; set; }
-}
-
-
-/// <summary>
-/// Options for arrows for edge.
-/// </summary>
-[JsonConverter(typeof(ArrowsJsonConverter))]
-public class Arrows
-{
-    /// <summary>
-    /// Options for the 'to' side of the edge.
-    /// </summary>
-    public ArrowsOptions? To { get; set; }
-
-    /// <summary>
-    /// Similar to the 'to' object, but with an arrowhead in the center of the edge.
-    /// The direction of the arrow can be flipped by using a negative value for arrows.middle.scaleFactor. 
-    /// </summary>
-    public ArrowsOptions? Middle { get; set; }
-
-    /// <summary>
-    /// Exactly the same as the to object but with an arrowhead at the from node of the edge. 
-    /// </summary>
-    public ArrowsOptions? From { get; set; }
-}
-
-/// <summary>
-/// Options for arrow.
-/// </summary>
-public class ArrowsOptions
-{
-    /// <summary>
-    /// Toggle the arrow on or off. 
-    /// This option is optional, if undefined and the scaleFactor property is set, enabled will be set to true. 
-    /// The default is false.
-    /// </summary>
-    public bool? Enabled { get; set; }
-
-    /// <summary>
-    /// The height of the image arrow. The height of the image file is used if this isn't defined.
-    /// </summary>
-    public int? ImageHeight { get; set; }
-
-    /// <summary>
-    /// The width of the image arrow. The width of the image file is used if this isn't defined. 
-    /// </summary>
-    public int? ImageWidth { get; set; }
-
-    /// <summary>
-    /// The scale factor allows you to change the size of the arrowhead.
-    /// The default is 1.
-    /// </summary>
-    public int? ScaleFactor { get; set; } = 1;
-
-    /// <summary>
-    /// The URL for the image arrow type.
-    /// </summary>
-    public string? Src { get; set; }
-
-    /// <summary>
-    /// The type of endpoint.
-    /// Possible values are: arrow, bar, circle and image. The default is arrow
-    /// </summary>
-    public string? Type { get; set; }
 }

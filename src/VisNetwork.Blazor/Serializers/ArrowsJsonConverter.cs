@@ -7,7 +7,7 @@ using VisNetwork.Blazor.Models;
 
 namespace VisNetwork.Blazor.Serializers;
 
-public class ArrowsJsonConverter : JsonConverter<Arrows>
+public class ArrowsJsonConverter : JsonConverter<ArrowsInner>
 {
     private readonly ArrowsOptions DefaultArrowOptions = new() {
         Enabled = true
@@ -19,7 +19,7 @@ public class ArrowsJsonConverter : JsonConverter<Arrows>
         {"from", null}
     };
 
-    public override Arrows? Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
+    public override ArrowsInner? Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
     {
         if(reader.TokenType == JsonTokenType.StartObject)
         {
@@ -35,7 +35,7 @@ public class ArrowsJsonConverter : JsonConverter<Arrows>
         }
 
         //Return object
-        return new Arrows() {
+        return new ArrowsInner() {
             To = optionsMap["to"],
             Middle = optionsMap["middle"],
             From = optionsMap["from"]
@@ -86,7 +86,7 @@ public class ArrowsJsonConverter : JsonConverter<Arrows>
     private static JsonConverter<ArrowsOptions> GetArrowOptionsConverter(JsonSerializerOptions options) =>
         (JsonConverter<ArrowsOptions>)options.GetConverter(typeof(ArrowsOptions));
 
-    public override void Write(Utf8JsonWriter writer, Arrows value, JsonSerializerOptions options)
+    public override void Write(Utf8JsonWriter writer, ArrowsInner value, JsonSerializerOptions options)
     {
         var optionsConverter = GetArrowOptionsConverter(options);
 
