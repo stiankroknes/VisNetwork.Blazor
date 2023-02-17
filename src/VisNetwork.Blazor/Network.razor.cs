@@ -328,13 +328,11 @@ public partial class Network : IAsyncDisposable
         var jsonDeserializeOptions = new JsonSerializerOptions 
         { 
             PropertyNameCaseInsensitive = true,
-            // Converters = 
-            // {
-            //     new ValueOrObjectConverter<Arrows, ArrowsInner>(
-            //         JsonTokenType.String, 
-            //         (string value, JsonTokenType tokenType) => new Arrows(value),
-            //         (ArrowsInner inner) => new Arrows(inner) )
-            // }
+            Converters = 
+            {
+                ValueOrObjectConverterFactory.StringOrObjectConverter<Arrows, ArrowsInner>(),
+                ValueOrObjectConverterFactory.StringOrObjectConverter<Font, FontInner>()
+            }
         };
 
         
