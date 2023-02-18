@@ -3,6 +3,57 @@ using VisNetwork.Blazor.Serializers;
 
 namespace VisNetwork.Blazor.Models;
 
+public class Font : FontInner, IValueOrObject<Font, FontInner>
+{
+    private static int SizeFromString(string sizeStr, int defaultSize = 14)
+    {
+        int size;
+        if(!int.TryParse(sizeStr, out size) && sizeStr.Contains("px"))
+        {
+            var noPx = sizeStr.Replace("px", "");
+            if(!int.TryParse(noPx, out size))
+            {
+                size = defaultSize;
+            }
+        }
+        return size;
+    }
+
+    public Font FromValue(string? value)
+    {
+        if(value is null)
+            return new Font();
+
+        var pieces = value.Split(' ');
+        if(pieces.Length != 3)
+            throw new ArgumentException($"Must be in for form 'size face color'");
+
+        return new Font() {
+            Size = SizeFromString(pieces[0]),
+            Face = pieces[1],
+            Color = pieces[2]
+        };
+    } 
+
+    public Font FromInner(FontInner? inner)
+    {
+        if(inner is null)
+            return new Font();
+
+        return new Font() {
+            Color = inner.Color,
+            Size = inner.Size,
+            Face = inner.Face,
+            Background = inner.Background,
+            StrokeWidth = inner.StrokeWidth,
+            StrokeColor = inner.StrokeColor,
+            Align = inner.Align,
+            Vadjust = inner.Vadjust,
+            Multi = inner.Multi
+        };
+    }
+}
+
 /// <summary>
 /// This object defines the details of the label.
 /// </summary>
@@ -57,57 +108,5 @@ public class FontInner
     /// Note: Investigate use string or bool..
     /// </summary>
     public virtual bool? Multi { get; set; }
-
-}
-
-public class Font : FontInner, IValueOrObject<Font, FontInner>
-{
-    private static int SizeFromString(string sizeStr, int defaultSize = 14)
-    {
-        int size;
-        if(!int.TryParse(sizeStr, out size) && sizeStr.Contains("px"))
-        {
-            var noPx = sizeStr.Replace("px", "");
-            if(!int.TryParse(noPx, out size))
-            {
-                size = defaultSize;
-            }
-        }
-        return size;
-    }
-
-    public Font FromValue(string? value)
-    {
-        if(value is null)
-            return new Font();
-
-        var pieces = value.Split(' ');
-        if(pieces.Length != 3)
-            throw new ArgumentException($"Must be in for form 'size face color'");
-
-        return new Font() {
-            Size = SizeFromString(pieces[0]),
-            Face = pieces[1],
-            Color = pieces[2]
-        };
-    } 
-
-    public Font FromInner(FontInner? inner)
-    {
-        if(inner is null)
-            return new Font();
-
-        return new Font() {
-            Color = inner.Color,
-            Size = inner.Size,
-            Face = inner.Face,
-            Background = inner.Background,
-            StrokeWidth = inner.StrokeWidth,
-            StrokeColor = inner.StrokeColor,
-            Align = inner.Align,
-            Vadjust = inner.Vadjust,
-            Multi = inner.Multi
-        };
-    }
 
 }

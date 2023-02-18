@@ -331,7 +331,9 @@ public partial class Network : IAsyncDisposable
             Converters = 
             {
                 ValueOrObjectConverterFactory.StringOrObjectConverter<Arrows, ArrowsInner>(),
-                ValueOrObjectConverterFactory.StringOrObjectConverter<Font, FontInner>()
+                ValueOrObjectConverterFactory.StringOrObjectConverter<Font, FontInner>(),
+                ValueOrObjectConverterFactory.StringOrObjectConverter<NodeColorType, NodeColorTypeInner>(),
+                ValueOrObjectConverterFactory.NumberOrObjectConverter<NodeMarginOption, NodeMarginOptionInner>()
             }
         };
 

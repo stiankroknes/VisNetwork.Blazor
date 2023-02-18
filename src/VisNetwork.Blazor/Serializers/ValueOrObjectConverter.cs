@@ -59,7 +59,18 @@ public class ValueOrObjectConverter<TOuter, TInner> : JsonConverter<TOuter>
         }
         else if(reader.TokenType == _tokenType)
         {
-            string? rawValue = reader.GetString();
+            string? rawValue;
+            if(_tokenType == JsonTokenType.String)
+                rawValue = reader.GetString();
+            else if(_tokenType == JsonTokenType.Number)
+            {
+                rawValue = reader.GetDecimal().ToString();
+            }
+            else if(_tokenType == JsonTokenType.True || _tokenType == JsonTokenType.False)
+                rawValue = reader.GetBoolean().ToString();
+            else
+                throw new JsonException($"Only JsonTokenType.String, Number, True/False supported");
+
             return _valueFactory.Invoke(rawValue, _tokenType);
         }
         else

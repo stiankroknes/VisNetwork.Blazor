@@ -26,7 +26,7 @@ public class NodeOption
 
     /// <summary>
     /// Color options for node.
-    /// Note: JS lib support setting single color value directly in this preoperty.
+    /// Note: JS lib support setting single color value directly in this property.
     /// </summary>
     public NodeColorType? Color { get; set; }
 
@@ -279,42 +279,6 @@ public class NodeHeightConstraint
     public string? Valign { get; set; }
 }
 
-public class NodeMarginOption
-{
-    /// <summary>
-    /// The top margin of the label is set to this value.
-    /// The default is 5.
-    /// </summary>
-    public int? Top { get; set; }
-
-    /// <summary>
-    /// The right margin of the label is set to this value.
-    /// The default is 5.
-    /// </summary>
-    public int? Right { get; set; }
-
-    /// <summary>
-    /// The bottom margin of the label is set to this value.
-    /// The default is 5.
-    /// </summary>
-    public int? Bottom { get; set; }
-
-    /// <summary>
-    /// The left margin of the label is set to this value.
-    /// The default is 5.
-    /// </summary>
-    public int? Left { get; set; }
-
-    public static NodeMarginOption CreateWithEqualPadding(int padding) =>
-        new()
-        {
-            Top = padding,
-            Right = padding,
-            Bottom = padding,
-            Left = padding,
-        };
-}
-
 public class Icon
 {
     /// <summary>
@@ -343,45 +307,6 @@ public class Icon
     /// </summary>
 
     public string? Weight { get; set; }
-}
-
-/// <summary>
-/// The color object contains the color information of the node in every situation.
-/// </summary>
-public class NodeColorType
-{
-    /// <summary>
-    /// The color of the background of the node when it is not selected or hovered over (assuming hover is enabled in the interaction module). 
-    /// </summary>
-    public string? Background { get; set; }
-
-    /// <summary>
-    /// The color of the border of the node when it is not selected or hovered over (assuming hover is enabled in the interaction module).
-    /// </summary>
-    public string? Border { get; set; }
-
-    /// <summary>
-    /// The color of the border and background of the node when the mouse hovers over it (assuming hover is enabled in the interaction module). 
-    /// </summary>
-    public BorderBackgroundColor? Hover { get; set; }
-
-    /// <summary>
-    /// The color of the border and background of the node when it is selected.
-    /// </summary>
-    public BorderBackgroundColor? Highlight { get; set; }
-
-    public class BorderBackgroundColor
-    {
-        /// <summary>
-        /// The color of the border of the node.
-        /// </summary>
-        public string? Border { get; set; }
-
-        /// <summary>
-        /// The color of the background of the node.
-        /// </summary>
-        public string? Background { get; set; }
-    }
 }
 
 public class NodeScalingOptions

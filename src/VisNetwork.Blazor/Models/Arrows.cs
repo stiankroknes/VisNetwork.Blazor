@@ -6,28 +6,6 @@ using VisNetwork.Blazor.Serializers;
 namespace VisNetwork.Blazor.Models;
 
 /// <summary>
-/// Internal class for Options for arrows for edge.
-/// </summary>
-public class ArrowsInner
-{
-    /// <summary>
-    /// Options for the 'to' side of the edge.
-    /// </summary>
-    public virtual ArrowsOptions? To { get; set; }
-
-    /// <summary>
-    /// Similar to the 'to' object, but with an arrowhead in the center of the edge.
-    /// The direction of the arrow can be flipped by using a negative value for arrows.middle.scaleFactor. 
-    /// </summary>
-    public virtual ArrowsOptions? Middle { get; set; }
-
-    /// <summary>
-    /// Exactly the same as the to object but with an arrowhead at the from node of the edge. 
-    /// </summary>
-    public virtual ArrowsOptions? From { get; set; }
-}
-
-/// <summary>
 /// Options for arrows for edge.
 /// Provides a way to construct Arrows fully or from a simplified string version
 /// </summary>
@@ -75,6 +53,28 @@ public class Arrows : ArrowsInner, IValueOrObject<Arrows, ArrowsInner>
             From = inner.From
         };
     }
+}
+
+/// <summary>
+/// Internal class for Options for arrows for edge.
+/// </summary>
+public class ArrowsInner
+{
+    /// <summary>
+    /// Options for the 'to' side of the edge.
+    /// </summary>
+    public virtual ArrowsOptions? To { get; set; }
+
+    /// <summary>
+    /// Similar to the 'to' object, but with an arrowhead in the center of the edge.
+    /// The direction of the arrow can be flipped by using a negative value for arrows.middle.scaleFactor. 
+    /// </summary>
+    public virtual ArrowsOptions? Middle { get; set; }
+
+    /// <summary>
+    /// Exactly the same as the to object but with an arrowhead at the from node of the edge. 
+    /// </summary>
+    public virtual ArrowsOptions? From { get; set; }
 }
 
 /// <summary>
