@@ -359,4 +359,84 @@ public class DotOutputTests
         Assert.Equal( 10, networkData.Nodes.First().Margin.Left);
     }
 
+    [Fact]
+    public void Deserializer_Should_HandleAll()
+    {
+        //Arrange
+        var dotParserOutput = """
+        {
+            "nodes": [
+                {
+                    "color": "#DFDFDF",
+                    "nodeType": "Extra property test",
+                    "value": 2.0,
+                    "title": "Title 1",
+                    "level": 0,
+                    "scaling": {
+                        "min": 3,
+                        "max": 10,
+                        "label": {
+                            "enabled": true,
+                            "min": 3,
+                            "max": 10
+                        }
+                    },
+                    "margin": 10,
+                    "size": 10,
+                    "id": "id-1",
+                    "label": "Label 1\n(second line)",
+                    "shape": "box"
+                },
+                {
+                    "color": "#DFDFDF",
+                    "nodeType": "Extra property test",
+                    "value": 2.0,
+                    "title": "Title 2",
+                    "level": 1,
+                    "scaling": {
+                        "min": 3,
+                        "max": 10,
+                        "label": {
+                            "enabled": true,
+                            "min": 3,
+                            "max": 10
+                        }
+                    },
+                    "margin": 10,
+                    "size": 10,
+                    "id": "id-2",
+                    "label": "Label 2\n(another line)",
+                    "shape": "box"
+                }
+            ],
+            "edges" : [
+                {
+                    "dashes": false,
+                    "arrows": {
+                        "to": {
+                            "type": "circle"
+                        }
+                    },
+                    "width": 1,
+                    "from": "id-1",
+                    "to": "id-1"
+                },
+                {
+                    "width": 1,
+                    "from": "id-1",
+                    "to": "id-2",
+                    "arrows": "to"
+                }
+            ]
+        }
+        """;
+
+        //Act
+        var networkData = JsonSerializer.Deserialize<NetworkData>(dotParserOutput, jsonOptions);
+
+        //Assert
+        Assert.NotEmpty(networkData.Nodes);
+        Assert.NotEmpty(networkData.Edges);
+    }
+
 }
