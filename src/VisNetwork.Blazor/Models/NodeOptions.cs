@@ -161,7 +161,7 @@ public class NodeOption
     /// <summary>
     /// When a value is set, the nodes will be scaled using the options in the scaling object defined above.
     /// </summary>
-    public string? Value { get; set; }
+    public double? Value { get; set; }
 
     /// <summary>
     /// This gives a node its initial position on the x axis. When using hierarchical layout, this value has no effect. 
