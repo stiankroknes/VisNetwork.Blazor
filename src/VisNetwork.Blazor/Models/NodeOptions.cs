@@ -1,7 +1,6 @@
 ﻿namespace VisNetwork.Blazor.Models;
 
-public class NodeOption
-{
+public class NodeOption {
     /// <summary>
     /// The width of the border of the node.
     /// </summary>
@@ -161,7 +160,7 @@ public class NodeOption
     /// <summary>
     /// When a value is set, the nodes will be scaled using the options in the scaling object defined above.
     /// </summary>
-    public string? Value { get; set; }
+    public double? Value { get; set; }
 
     /// <summary>
     /// This gives a node its initial position on the x axis. When using hierarchical layout, this value has no effect. 
@@ -180,8 +179,7 @@ public class NodeOption
     public int? Y { get; set; }
 }
 
-public class NodeShadowOption
-{
+public class NodeShadowOption {
     /// <summary>
     ///  Toggle the casting of shadows.
     ///  If this option is not defined, it is set to true if any of the properties in this object are defined.
@@ -214,8 +212,7 @@ public class NodeShadowOption
     public int? Y { get; set; }
 }
 
-public class NodeImagePaddingOption
-{
+public class NodeImagePaddingOption {
     /// <summary>
     /// The top padding of the image inside the shape is set to this value. 
     /// The default is 0.
@@ -241,8 +238,7 @@ public class NodeImagePaddingOption
     public int? Left { get; set; }
 
     public static NodeImagePaddingOption CreateWithEqualPadding(int padding) =>
-        new()
-        {
+        new() {
             Top = padding,
             Right = padding,
             Bottom = padding,
@@ -250,8 +246,7 @@ public class NodeImagePaddingOption
         };
 }
 
-public class NodeFixedOption
-{
+public class NodeFixedOption {
     /// <summary>
     /// When true, the node will not move in the X direction.
     /// </summary>
@@ -264,8 +259,7 @@ public class NodeFixedOption
 }
 
 
-public class NodeHeightConstraint
-{
+public class NodeHeightConstraint {
     /// <summary>
     ///  If a number is specified, the value is used as the minimum height of the node. 
     ///  The node's height will be set to the minimum if less than the value. 
@@ -279,8 +273,7 @@ public class NodeHeightConstraint
     public string? Valign { get; set; }
 }
 
-public class NodeMarginOption
-{
+public class NodeMarginOption {
     /// <summary>
     /// The top margin of the label is set to this value.
     /// The default is 5.
@@ -306,8 +299,7 @@ public class NodeMarginOption
     public int? Left { get; set; }
 
     public static NodeMarginOption CreateWithEqualPadding(int padding) =>
-        new()
-        {
+        new() {
             Top = padding,
             Right = padding,
             Bottom = padding,
@@ -315,8 +307,7 @@ public class NodeMarginOption
         };
 }
 
-public class Icon
-{
+public class Icon {
     /// <summary>
     /// The possible values for the face option are any font faces that are loaded on given page such as 'FontAwesome' or 'Ionicons'.
     /// </summary>
@@ -348,8 +339,7 @@ public class Icon
 /// <summary>
 /// The color object contains the color information of the node in every situation.
 /// </summary>
-public class NodeColorType
-{
+public class NodeColorType {
     /// <summary>
     /// The color of the background of the node when it is not selected or hovered over (assuming hover is enabled in the interaction module). 
     /// </summary>
@@ -370,8 +360,7 @@ public class NodeColorType
     /// </summary>
     public BorderBackgroundColor? Highlight { get; set; }
 
-    public class BorderBackgroundColor
-    {
+    public class BorderBackgroundColor {
         /// <summary>
         /// The color of the border of the node.
         /// </summary>
@@ -384,8 +373,7 @@ public class NodeColorType
     }
 }
 
-public class NodeScalingOptions
-{
+public class NodeScalingOptions {
     /// <summary>
     /// If nodes have a value, their sizes are determined by the value, the scaling function and the min max values.
     /// The min value is the minimum allowed value. 
@@ -403,5 +391,40 @@ public class NodeScalingOptions
     /// This can be false if the label is not allowed to scale with the node. If true it will scale using default settings.
     /// Note: JS lib supports Object or Boolean.
     /// </summary>
-    public bool? Label { get; set; }
+    public NodeScalingLabelOptions? Label { get; set; }
+}
+
+public class NodeScalingLabelOptions {
+    /// <summary>
+    /// Toggle the scaling of the label on or off. If this option is not defined, it is set to true if any of the properties in this object are defined.
+    /// </summary>
+    /// <value></value>
+    public bool Enabled { get; set; }
+
+    /// <summary>
+    /// The minimum font-size used for labels when scaling. 
+    ///  The default is 14.
+    /// </summary>
+    public int? Min { get; set; }
+
+    /// <summary>
+    /// The maximum font-size used for labels when scaling.
+    /// The default is 30.
+    /// </summary>
+    public int? Max { get; set; }
+
+    /// <summary>
+    /// When zooming in, the font is drawn larger as well. You can limit the perceived font size using this option. If set to 30, the font will never look larger than size 30 zoomed at 100%.
+    /// The default is 30
+    /// </summary>
+    /// <value></value>
+    public int? MaxVisible { get; set; }
+
+    /// <summary>
+    /// When zooming out, the font will be drawn smaller. This defines a lower limit for when the font is drawn. 
+    /// When using font scaling, you can use this together with the maxVisible to first show labels of important nodes when zoomed out and only show the rest when zooming in.
+    /// The default is 5
+    /// </summary>
+    /// <value></value>
+    public int? DrawThreshold { get; set; }
 }

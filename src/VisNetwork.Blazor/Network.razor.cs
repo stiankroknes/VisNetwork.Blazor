@@ -9,8 +9,7 @@ using VisNetwork.Blazor.Models;
 #nullable disable
 namespace VisNetwork.Blazor;
 
-public partial class Network : IAsyncDisposable
-{
+public partial class Network : IAsyncDisposable {
     private readonly DotNetObjectReference<Network> thisReference;
     private ElementReference element;
     private bool firstRenderComplete;
@@ -128,43 +127,34 @@ public partial class Network : IAsyncDisposable
     [Parameter]
     public EventCallback SetupCompletedCallback { get; set; }
 
-    public Network()
-    {
+    public Network() {
         thisReference = DotNetObjectReference.Create(this);
     }
 
-    async ValueTask IAsyncDisposable.DisposeAsync()
-    {
-        if (firstRenderComplete)
-        {
+    async ValueTask IAsyncDisposable.DisposeAsync() {
+        if (firstRenderComplete) {
             var task = JS.Destroy(element);
 
             thisReference?.Dispose();
 
-            try
-            {
+            try {
                 await task;
             }
-            catch when (task.IsCanceled)
-            {
+            catch when (task.IsCanceled) {
                 // ignored
             }
-            catch (JSDisconnectedException)
-            {
+            catch (JSDisconnectedException) {
                 // ignored
             }
         }
     }
 
-    protected override async Task OnParametersSetAsync()
-    {
-        if (string.IsNullOrWhiteSpace(Id))
-        {
+    protected override async Task OnParametersSetAsync() {
+        if (string.IsNullOrWhiteSpace(Id)) {
             Id = $"blazor-network-{Guid.NewGuid()}";
         }
 
-        if (firstRenderComplete && currentData != Data)
-        {
+        if (firstRenderComplete && currentData != Data) {
             await JS.SetData(element, thisReference, Data);
         }
 
@@ -172,15 +162,10 @@ public partial class Network : IAsyncDisposable
         await base.OnParametersSetAsync();
     }
 
-    protected override async Task OnAfterRenderAsync(bool firstRender)
-    {
-        if (firstRender)
-        {
+    protected override async Task OnAfterRenderAsync(bool firstRender) {
+        if (firstRender) {
             var options = Options?.Invoke(this);
-            if (options == null)
-            {
-                options = new NetworkOptions();
-            }
+            options ??= new NetworkOptions();
 
             await JS.CreateNetwork(element, thisReference, options, Data).AsTask();
             firstRenderComplete = true;
@@ -189,77 +174,59 @@ public partial class Network : IAsyncDisposable
         }
     }
 
-    internal async Task SetEventListeners()
-    {
-        if (OnClick.HasDelegate)
-        {
+    internal async Task SetEventListeners() {
+        if (OnClick.HasDelegate) {
             await JS.SetEventListener(element, thisReference, "click");
         }
-        if (OnDoubleClick.HasDelegate)
-        {
+        if (OnDoubleClick.HasDelegate) {
             await JS.SetEventListener(element, thisReference, "doubleClick");
         }
-        if (OnContext.HasDelegate)
-        {
+        if (OnContext.HasDelegate) {
             await JS.SetEventListener(element, thisReference, "oncontext");
         }
-        if (OnHold.HasDelegate)
-        {
+        if (OnHold.HasDelegate) {
             await JS.SetEventListener(element, thisReference, "hold");
         }
-        if (OnRelease.HasDelegate)
-        {
+        if (OnRelease.HasDelegate) {
             await JS.SetEventListener(element, thisReference, "release");
         }
-        if (OnSelect.HasDelegate)
-        {
+        if (OnSelect.HasDelegate) {
             await JS.SetEventListener(element, thisReference, "select");
         }
-        if (OnSelectNode.HasDelegate)
-        {
+        if (OnSelectNode.HasDelegate) {
             await JS.SetEventListener(element, thisReference, "selectNode");
         }
-        if (OnDeselectNode.HasDelegate)
-        {
+        if (OnDeselectNode.HasDelegate) {
             await JS.SetEventListener(element, thisReference, "deselectNode");
         }
-        if (OnSelectEdge.HasDelegate)
-        {
+        if (OnSelectEdge.HasDelegate) {
             await JS.SetEventListener(element, thisReference, "selectEdge");
         }
-        if (OnDeselectEdge.HasDelegate)
-        {
+        if (OnDeselectEdge.HasDelegate) {
             await JS.SetEventListener(element, thisReference, "deselectEdge");
         }
-        if (OnShowPopup.HasDelegate)
-        {
+        if (OnShowPopup.HasDelegate) {
             await JS.SetEventListener(element, thisReference, "showPopup");
         }
-        if (OnHidePopup.HasDelegate)
-        {
+        if (OnHidePopup.HasDelegate) {
             await JS.SetEventListener(element, thisReference, "hidePopup");
         }
 
         // Rendering
-        if (OnBeforeDrawing.HasDelegate)
-        {
+        if (OnBeforeDrawing.HasDelegate) {
             await JS.SetEventListener(element, thisReference, "beforeDrawing");
         }
 
-        if (OnAfterDrawing.HasDelegate)
-        {
+        if (OnAfterDrawing.HasDelegate) {
             await JS.SetEventListener(element, thisReference, "afterDrawing");
         }
     }
 
     [JSInvokable]
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("AsyncUsage", "AsyncFixer01:Unnecessary async/await usage", Justification = "<Pending>")]
-    public async Task EventCallback(string eventName, string eventJson)
-    {
+    public async Task EventCallback(string eventName, string eventJson) {
         var jsonOptions = new JsonSerializerOptions { PropertyNamingPolicy = JsonNamingPolicy.CamelCase };
 
-        var eventTask = eventName switch
-        {
+        var eventTask = eventName switch {
             "click" => OnClick.InvokeAsync(JsonSerializer.Deserialize<ClickEvent>(eventJson, jsonOptions)),
             "doubleClick" => OnDoubleClick.InvokeAsync(JsonSerializer.Deserialize<ClickEvent>(eventJson, jsonOptions)),
             "oncontext" => OnContext.InvokeAsync(JsonSerializer.Deserialize<ClickEvent>(eventJson, jsonOptions)),
@@ -319,5 +286,8 @@ public partial class Network : IAsyncDisposable
 
     public async Task<NodeEdgeComposite> UnselectAll() =>
         await JS.UnselectAll(element, thisReference);
+
+    public async Task ParseDOTNetwork(string dotString) =>
+        await JS.ParseDOTNetwork(element, dotString);
 }
 #nullable enable

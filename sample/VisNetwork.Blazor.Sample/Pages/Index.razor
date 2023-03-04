@@ -13,19 +13,19 @@ private NetworkData data;
 
 public Index()
 {
-    var nodes = new List<Node>();
-    var edges = new List<Edge>();
+var nodes = new List<Node>();
+var edges = new List<Edge>();
 
-    nodes.Add(new Node("1", "Node 1", 1, "circle"));
-    nodes.Add(new Node("2", "Node 2", 2, "ellipse"));
-    edges.Add(new Edge("1", "2"));
-    nodes.Add(new Node("3", "Node 3", 4, "database"));
-    edges.Add(new Edge("2", "3"));
+nodes.Add(new Node("1", "Node 1", 1, "circle"));
+nodes.Add(new Node("2", "Node 2", 2, "ellipse"));
+edges.Add(new Edge("1", "2"));
+nodes.Add(new Node("3", "Node 3", 4, "database"));
+edges.Add(new Edge("2", "3"));
 
-    data = new NetworkData
-    {
-        Edges = edges,
-        Nodes = nodes
-    };
+data = new NetworkData
+{
+    Edges = edges,
+    Nodes = nodes
+};
 }
 }

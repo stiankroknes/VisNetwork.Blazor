@@ -1,0 +1,60 @@
+﻿@page "/dot-parsing"
+
+@using VisNetwork.Blazor.Models
+
+<h1>DOT parsing</h1>
+
+<div>
+    <Network @ref="network" Id="my-id" class="vis-network-container" SetupCompletedCallback="NetworkReady" />
+</div>
+<div>
+    <textarea rows="10" cols="40" class="form-control textbox-parameters" @bind="dotString" />
+    <button @onclick="OnClick">Update</button>
+
+    <div id="error">
+        <pre>
+        <code>
+                @errorMsg
+            </code>
+        </pre>
+    </div>
+</div>
+
+@code {
+
+    private Network network;
+
+    private string errorMsg = string.Empty;
+
+    private string dotString = @"digraph {
+                            node [shape=circle fontsize=16]
+                            edge [length=100, color=gray, fontcolor=black]
+
+                            A -> A[label=""0.5""];
+                            B -> B[label=""1.2""] -> C[label=""0.7""] -- A;
+                            B -> D;
+                            D -> {B; C}
+                            D -> E[label=""0.2""];
+                            F -> F;
+                            A [
+                                fontcolor=white,
+                                color=red,
+                            ]
+                        }";
+
+    private async Task NetworkReady() => await ParseDOT();
+
+    private async Task OnClick() => await ParseDOT();
+
+    private async Task ParseDOT() {
+        errorMsg = string.Empty;
+        try {
+            await network.ParseDOTNetwork(dotString);
+            errorMsg = string.Empty;
+        }
+        catch (Exception e) {
+            errorMsg = e.ToString();
+            Console.WriteLine(e.Message);
+        }
+    }
+}

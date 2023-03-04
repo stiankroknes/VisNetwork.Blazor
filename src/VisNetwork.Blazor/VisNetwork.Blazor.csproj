@@ -14,7 +14,7 @@
 		<Description>Blazor component for vis.js/vis-network.</Description>
 		<MinVerTagPrefix>v</MinVerTagPrefix>
 		<MinVerMinimumMajorMinor>1.0</MinVerMinimumMajorMinor>
-		<MinVerDefaultPreReleasePhase>preview</MinVerDefaultPreReleasePhase>
+		<MinVerDefaultPreReleaseIdentifiers>preview.0</MinVerDefaultPreReleaseIdentifiers>
 		<RepositoryUrl>https://github.com/stiankroknes/VisNetwork.Blazor</RepositoryUrl>
 		<PublishRepositoryUrl>true</PublishRepositoryUrl>
 		<EmbedUntrackedSources>true</EmbedUntrackedSources>
@@ -36,7 +36,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="SonarAnalyzer.CSharp" Version="8.51.0.59060">
+		<PackageReference Include="SonarAnalyzer.CSharp" Version="8.53.0.62665">
 			<PrivateAssets>all</PrivateAssets>
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 		</PackageReference>
@@ -45,7 +45,7 @@
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 		</PackageReference>
 		<PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.1.1" PrivateAssets="All" />
-		<PackageReference Include="MinVer" Version="4.2.0" PrivateAssets="All" />
+		<PackageReference Include="MinVer" Version="4.3.0" PrivateAssets="All" />
 	</ItemGroup>
 
 	<!--<Target Name="PreBuild" BeforeTargets="PreBuildEvent" Condition="'$(Configuration)'=='Debug'">
