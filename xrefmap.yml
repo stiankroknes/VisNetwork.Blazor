@@ -3112,6 +3112,77 @@ references:
   isSpec: "True"
   fullName: VisNetwork.Blazor.Models.NodeOption.Y
   nameWithType: NodeOption.Y
+- uid: VisNetwork.Blazor.Models.NodeScalingLabelOptions
+  name: NodeScalingLabelOptions
+  href: api/VisNetwork.Blazor.Models.NodeScalingLabelOptions.html
+  commentId: T:VisNetwork.Blazor.Models.NodeScalingLabelOptions
+  fullName: VisNetwork.Blazor.Models.NodeScalingLabelOptions
+  nameWithType: NodeScalingLabelOptions
+- uid: VisNetwork.Blazor.Models.NodeScalingLabelOptions.DrawThreshold
+  name: DrawThreshold
+  href: api/VisNetwork.Blazor.Models.NodeScalingLabelOptions.html#VisNetwork_Blazor_Models_NodeScalingLabelOptions_DrawThreshold
+  commentId: P:VisNetwork.Blazor.Models.NodeScalingLabelOptions.DrawThreshold
+  fullName: VisNetwork.Blazor.Models.NodeScalingLabelOptions.DrawThreshold
+  nameWithType: NodeScalingLabelOptions.DrawThreshold
+- uid: VisNetwork.Blazor.Models.NodeScalingLabelOptions.DrawThreshold*
+  name: DrawThreshold
+  href: api/VisNetwork.Blazor.Models.NodeScalingLabelOptions.html#VisNetwork_Blazor_Models_NodeScalingLabelOptions_DrawThreshold_
+  commentId: Overload:VisNetwork.Blazor.Models.NodeScalingLabelOptions.DrawThreshold
+  isSpec: "True"
+  fullName: VisNetwork.Blazor.Models.NodeScalingLabelOptions.DrawThreshold
+  nameWithType: NodeScalingLabelOptions.DrawThreshold
+- uid: VisNetwork.Blazor.Models.NodeScalingLabelOptions.Enabled
+  name: Enabled
+  href: api/VisNetwork.Blazor.Models.NodeScalingLabelOptions.html#VisNetwork_Blazor_Models_NodeScalingLabelOptions_Enabled
+  commentId: P:VisNetwork.Blazor.Models.NodeScalingLabelOptions.Enabled
+  fullName: VisNetwork.Blazor.Models.NodeScalingLabelOptions.Enabled
+  nameWithType: NodeScalingLabelOptions.Enabled
+- uid: VisNetwork.Blazor.Models.NodeScalingLabelOptions.Enabled*
+  name: Enabled
+  href: api/VisNetwork.Blazor.Models.NodeScalingLabelOptions.html#VisNetwork_Blazor_Models_NodeScalingLabelOptions_Enabled_
+  commentId: Overload:VisNetwork.Blazor.Models.NodeScalingLabelOptions.Enabled
+  isSpec: "True"
+  fullName: VisNetwork.Blazor.Models.NodeScalingLabelOptions.Enabled
+  nameWithType: NodeScalingLabelOptions.Enabled
+- uid: VisNetwork.Blazor.Models.NodeScalingLabelOptions.Max
+  name: Max
+  href: api/VisNetwork.Blazor.Models.NodeScalingLabelOptions.html#VisNetwork_Blazor_Models_NodeScalingLabelOptions_Max
+  commentId: P:VisNetwork.Blazor.Models.NodeScalingLabelOptions.Max
+  fullName: VisNetwork.Blazor.Models.NodeScalingLabelOptions.Max
+  nameWithType: NodeScalingLabelOptions.Max
+- uid: VisNetwork.Blazor.Models.NodeScalingLabelOptions.Max*
+  name: Max
+  href: api/VisNetwork.Blazor.Models.NodeScalingLabelOptions.html#VisNetwork_Blazor_Models_NodeScalingLabelOptions_Max_
+  commentId: Overload:VisNetwork.Blazor.Models.NodeScalingLabelOptions.Max
+  isSpec: "True"
+  fullName: VisNetwork.Blazor.Models.NodeScalingLabelOptions.Max
+  nameWithType: NodeScalingLabelOptions.Max
+- uid: VisNetwork.Blazor.Models.NodeScalingLabelOptions.MaxVisible
+  name: MaxVisible
+  href: api/VisNetwork.Blazor.Models.NodeScalingLabelOptions.html#VisNetwork_Blazor_Models_NodeScalingLabelOptions_MaxVisible
+  commentId: P:VisNetwork.Blazor.Models.NodeScalingLabelOptions.MaxVisible
+  fullName: VisNetwork.Blazor.Models.NodeScalingLabelOptions.MaxVisible
+  nameWithType: NodeScalingLabelOptions.MaxVisible
+- uid: VisNetwork.Blazor.Models.NodeScalingLabelOptions.MaxVisible*
+  name: MaxVisible
+  href: api/VisNetwork.Blazor.Models.NodeScalingLabelOptions.html#VisNetwork_Blazor_Models_NodeScalingLabelOptions_MaxVisible_
+  commentId: Overload:VisNetwork.Blazor.Models.NodeScalingLabelOptions.MaxVisible
+  isSpec: "True"
+  fullName: VisNetwork.Blazor.Models.NodeScalingLabelOptions.MaxVisible
+  nameWithType: NodeScalingLabelOptions.MaxVisible
+- uid: VisNetwork.Blazor.Models.NodeScalingLabelOptions.Min
+  name: Min
+  href: api/VisNetwork.Blazor.Models.NodeScalingLabelOptions.html#VisNetwork_Blazor_Models_NodeScalingLabelOptions_Min
+  commentId: P:VisNetwork.Blazor.Models.NodeScalingLabelOptions.Min
+  fullName: VisNetwork.Blazor.Models.NodeScalingLabelOptions.Min
+  nameWithType: NodeScalingLabelOptions.Min
+- uid: VisNetwork.Blazor.Models.NodeScalingLabelOptions.Min*
+  name: Min
+  href: api/VisNetwork.Blazor.Models.NodeScalingLabelOptions.html#VisNetwork_Blazor_Models_NodeScalingLabelOptions_Min_
+  commentId: Overload:VisNetwork.Blazor.Models.NodeScalingLabelOptions.Min
+  isSpec: "True"
+  fullName: VisNetwork.Blazor.Models.NodeScalingLabelOptions.Min
+  nameWithType: NodeScalingLabelOptions.Min
 - uid: VisNetwork.Blazor.Models.NodeScalingOptions
   name: NodeScalingOptions
   href: api/VisNetwork.Blazor.Models.NodeScalingOptions.html
@@ -3953,6 +4024,19 @@ references:
   isSpec: "True"
   fullName: VisNetwork.Blazor.Network.Options
   nameWithType: Network.Options
+- uid: VisNetwork.Blazor.Network.ParseDOTNetwork(System.String)
+  name: ParseDOTNetwork(String)
+  href: api/VisNetwork.Blazor.Network.html#VisNetwork_Blazor_Network_ParseDOTNetwork_System_String_
+  commentId: M:VisNetwork.Blazor.Network.ParseDOTNetwork(System.String)
+  fullName: VisNetwork.Blazor.Network.ParseDOTNetwork(System.String)
+  nameWithType: Network.ParseDOTNetwork(String)
+- uid: VisNetwork.Blazor.Network.ParseDOTNetwork*
+  name: ParseDOTNetwork
+  href: api/VisNetwork.Blazor.Network.html#VisNetwork_Blazor_Network_ParseDOTNetwork_
+  commentId: Overload:VisNetwork.Blazor.Network.ParseDOTNetwork
+  isSpec: "True"
+  fullName: VisNetwork.Blazor.Network.ParseDOTNetwork
+  nameWithType: Network.ParseDOTNetwork
 - uid: VisNetwork.Blazor.Network.Redraw
   name: Redraw()
   href: api/VisNetwork.Blazor.Network.html#VisNetwork_Blazor_Network_Redraw
