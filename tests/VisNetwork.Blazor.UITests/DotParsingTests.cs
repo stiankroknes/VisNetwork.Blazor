@@ -14,6 +14,7 @@ public class DotParsingTests : TestBase {
 
         await page.GotoAsync();
 
-        await Expect(page.ErrorMessage).ToBeEmptyAsync();
+        await Expect(page.Heading).ToBeVisibleAsync();
+        await Expect(page.ErrorMessage).ToContainTextAsync("OK");
     }
 }

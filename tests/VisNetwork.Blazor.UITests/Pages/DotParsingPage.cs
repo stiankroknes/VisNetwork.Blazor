@@ -19,7 +19,7 @@ internal class DotParsingPage : BasePage
 
     public ILocator Network => page.Locator("#my-id");
 
-    public ILocator Heading => GetByRoleHeading("VisNetwork Samples");
+    public ILocator Heading => GetByRoleHeading("DOT parsing");
 
     public ILocator ErrorMessage => page.Locator("#error");
 
