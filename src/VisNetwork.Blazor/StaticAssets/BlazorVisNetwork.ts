@@ -1,17 +1,19 @@
 ﻿//// <reference types="vis-data/declarations" />
 //// <reference types="vis-network/declarations/entry-esnext" />
 
-import * as network from 'vis-network';
+import {
+    Network, NetworkEvents,
+    SelectionOptions, IdType, Options, Data, parseDOTNetwork
+} from "vis-network/standalone";
 
 type DotNetObjectReference = any;
 
 interface NetworkHolder {
     id: string;
-    network: network.Network;
+    network: Network;
 }
 
 const _networks: NetworkHolder[] = [];
-
 
 function getNetworkById(id: string, unobstrusive: boolean = false) {
 
@@ -39,10 +41,10 @@ function getNetworkById(id: string, unobstrusive: boolean = false) {
 
 
 // Global
-export function create(element: HTMLElement, component: DotNetObjectReference, options: network.Options, data: any) {
+export function create(element: HTMLElement, component: DotNetObjectReference, options: Options, data: any) {
     console.log('VisNetwork.Blazor: [create]', element, options, data);
 
-    const oldNetwork: network.Network = getNetworkById(element.id, true);
+    const oldNetwork: Network = getNetworkById(element.id, true);
     if (oldNetwork !== null) {
 
         _networks.splice(_networks.findIndex(item => item.id === element.id), 1);
@@ -50,34 +52,34 @@ export function create(element: HTMLElement, component: DotNetObjectReference, o
         console.log('VisNetwork.Blazor: [destroy] old network destroyed.');
     }
 
-    const control: network.Network = new network.Network(element, data, options);
+    const control: Network = new Network(element, data, options);
     console.log('VisNetwork.Blazor: [create] network created.', control);
 
     _networks.push({ id: element.id, network: control });
 }
 
-export function setData(element: HTMLElement, data: network.Data) {
+export function setData(element: HTMLElement, data: Data) {
     console.log('VisNetwork.Blazor: [setData].', data);
-    const network: network.Network = getNetworkById(element.id);
+    const network: Network = getNetworkById(element.id);
     network.setData(data);
 }
 
-export function setOptions(element: HTMLElement, options: network.Options) {
+export function setOptions(element: HTMLElement, options: Options) {
     console.log('VisNetwork.Blazor: [setOptions].', options);
-    const network: network.Network = getNetworkById(element.id);
+    const network: Network = getNetworkById(element.id);
     network.setOptions(options);
 }
 
 export function setSize(element: HTMLElement, width: string, height: string) {
     console.log('VisNetwork.Blazor: [setSize].', element, width, height);
-    const network: network.Network = getNetworkById(element.id);
+    const network: Network = getNetworkById(element.id);
     network.setSize(width, height);
 }
 
 export function destroy(element: HTMLElement) {
     console.log('VisNetwork.Blazor: [destroy] ', element);
 
-    const network: network.Network = getNetworkById(element.id);
+    const network: Network = getNetworkById(element.id);
     if (network !== null && network !== undefined) {
         network.destroy();
         _networks.splice(_networks.findIndex(item => item.id === element.id), 1);
@@ -85,11 +87,11 @@ export function destroy(element: HTMLElement) {
     }
 }
 
-export function on(element: HTMLElement, component: DotNetObjectReference, eventName: network.NetworkEvents) {
+export function on(element: HTMLElement, component: DotNetObjectReference, eventName: NetworkEvents) {
     console.log('VisNetwork.Blazor: [on] ', element, eventName);
 
-    const network: network.Network = getNetworkById(element.id);
-    // const network: network.Network = element['_network'];
+    const network: Network = getNetworkById(element.id);
+    // const network: Network = element['_network'];
 
     const listener = function (e: any) {
         console.log('VisNetwork.Blazor: [on] ' + eventName + ' fired.', e);
@@ -127,9 +129,9 @@ export function on(element: HTMLElement, component: DotNetObjectReference, event
     network.on(eventName, listener);
 }
 
-export function off(element: HTMLElement, component: DotNetObjectReference, eventName: network.NetworkEvents) {
+export function off(element: HTMLElement, component: DotNetObjectReference, eventName: NetworkEvents) {
     console.log('VisNetwork.Blazor: [off] ', element, eventName);
-    const network: network.Network = getNetworkById(element.id);
+    const network: Network = getNetworkById(element.id);
     // Remove an event listener. The function you supply has to be the exact same as the one you used in the on function.
     // If no function is supplied, all listeners will be removed. Look at the event section of the documentation for more information. 
     network.off(eventName);
@@ -139,7 +141,7 @@ export function off(element: HTMLElement, component: DotNetObjectReference, even
 
 export function redraw(element: HTMLElement) {
     console.log('VisNetwork.Blazor: [redraw] ', element);
-    const network: network.Network = getNetworkById(element.id);
+    const network: Network = getNetworkById(element.id);
     network.redraw();
 }
 
@@ -147,7 +149,7 @@ export function redraw(element: HTMLElement) {
 
 export function clusterOutliers(element: HTMLElement) {
     console.log('VisNetwork.Blazor: [clusterOutliers] ', element);
-    const network: network.Network = getNetworkById(element.id);
+    const network: Network = getNetworkById(element.id);
     // options?: network.ClusterOptions
     // TODO create obj with string for functions and make js function
     network.clusterOutliers();
@@ -155,44 +157,70 @@ export function clusterOutliers(element: HTMLElement) {
 
 // Selection
 
-export function getSelectedNodes(element: HTMLElement): network.IdType[] {
+export function getSelectedNodes(element: HTMLElement): IdType[] {
     console.log('VisNetwork.Blazor: [getSelectedNodes] ', element);
-    const network: network.Network = getNetworkById(element.id);
+    const network: Network = getNetworkById(element.id);
     return network.getSelectedNodes();
 }
 
 export function selectNodes(element: HTMLElement, nodeIds: string[], higlightEdges?: boolean) {
     console.log('VisNetwork.Blazor: [selectNodes] ', element, nodeIds, higlightEdges);
-    const network: network.Network = getNetworkById(element.id);
+    const network: Network = getNetworkById(element.id);
     network.selectNodes(nodeIds, higlightEdges);
 }
 
-export function getSelectedEdges(element: HTMLElement): network.IdType[] {
+export function getSelectedEdges(element: HTMLElement): IdType[] {
     console.log('VisNetwork.Blazor: [getSelectedEdges] ', element);
-    const network: network.Network = getNetworkById(element.id);
+    const network: Network = getNetworkById(element.id);
     return network.getSelectedEdges();
 }
 
 export function selectEdges(element: HTMLElement, edgeIds: string[]) {
     console.log('VisNetwork.Blazor: [selectEdges] ', element, edgeIds);
-    const network: network.Network = getNetworkById(element.id);
+    const network: Network = getNetworkById(element.id);
     network.selectEdges(edgeIds);
 }
 
-export function getSelection(element: HTMLElement): { nodes: network.IdType[], edges: network.IdType[] } {
+export function getSelection(element: HTMLElement): { nodes: IdType[], edges: IdType[] } {
     console.log('VisNetwork.Blazor: [getSelection] ', element);
-    const network: network.Network = getNetworkById(element.id);
+    const network: Network = getNetworkById(element.id);
     return network.getSelection();
 }
 
-export function setSelection(element: HTMLElement, selection: { nodes: string[], edges: string[] }, options?: network.SelectionOptions) {
+export function setSelection(element: HTMLElement, selection: { nodes: string[], edges: string[] }, options?: SelectionOptions) {
     console.log('VisNetwork.Blazor: [setSelection] ', element, selection, options);
-    const network: network.Network = getNetworkById(element.id);
+    const network: Network = getNetworkById(element.id);
     network.setSelection(selection, options);
 }
 
 export function unselectAll(element: HTMLElement) {
     console.log('VisNetwork.Blazor: [unselectAll] ', element);
-    const network: network.Network = getNetworkById(element.id);
-    network.unselectAll();
+    const currentNetwork: Network = getNetworkById(element.id);
+    currentNetwork.unselectAll();
+}
+
+export function populateDotNetwork(element: HTMLElement, dot: string): any {
+    console.log('VisNetwork.Blazor: [populateDotNetwork]', dot);
+
+    const network: Network = getNetworkById(element.id);
+    const parsedData: any = parseDOTNetwork(dot);
+
+    if (!parsedData) {
+        console.warn('VisNetwork.Blazor: [populateDotNetwork] no parse result.');
+        return;
+    }
+
+    var data = {
+        nodes: parsedData.nodes,
+        edges: parsedData.edges
+    };
+    network.setData(data);
+
+    if (parsedData.options) {
+        network.setOptions(parsedData.options);
+    }
+    //const json: string = JSON.stringify(parsedData, null, '\t');
+    //console.log('VisNetwork.Blazor: [parseDotNetwork json]', json);
+    //return json;
+    //return parsedData;
 }
