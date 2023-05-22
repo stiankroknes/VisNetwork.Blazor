@@ -5,16 +5,14 @@
  * Copyright (c) hammerjs
  * Licensed under the MIT license */
 
-/*! regenerator-runtime -- Copyright (c) 2014-present, Facebook, Inc. -- license (MIT): https://github.com/facebook/regenerator/blob/main/LICENSE */
-
 /**
  * vis-network
  * https://visjs.github.io/vis-network/
  *
  * A dynamic, browser-based visualization library.
  *
- * @version 9.1.4
- * @date    2023-02-24T18:18:24.755Z
+ * @version 9.1.6
+ * @date    2023-03-23T21:31:19.223Z
  *
  * @copyright (c) 2011-2017 Almende B.V, http://almende.com
  * @copyright (c) 2017-2019 visjs contributors, https://github.com/visjs
