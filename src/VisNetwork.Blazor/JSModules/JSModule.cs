@@ -100,7 +100,7 @@ internal partial class JSModule : IJSModule
     public ValueTask ParseDOTNetwork(ElementReference element, string dotString) =>
       InvokeVoidAsync("populateDotNetwork", element, dotString);
 
-    private static readonly JsonSerializerOptions JsonSerializerOptions = new JsonSerializerOptions
+    private static readonly JsonSerializerOptions JsonSerializerOptions = new()
     {
         DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull,
         PropertyNamingPolicy = JsonNamingPolicy.CamelCase

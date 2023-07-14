@@ -78,12 +78,15 @@ export function setSize(element: HTMLElement, width: string, height: string) {
 
 export function destroy(element: HTMLElement) {
     console.log('VisNetwork.Blazor: [destroy] ', element);
-
-    const network: Network = getNetworkById(element.id);
-    if (network !== null && network !== undefined) {
-        network.destroy();
-        _networks.splice(_networks.findIndex(item => item.id === element.id), 1);
-        console.log('VisNetwork.Blazor: [destroy] done.');
+    if (element) {
+        const network: Network = getNetworkById(element.id);
+        if (network !== null && network !== undefined) {
+            network.destroy();
+            _networks.splice(_networks.findIndex(item => item.id === element.id), 1);
+            console.log('VisNetwork.Blazor: [destroy] done.');
+        }
+    } else {
+        console.log('VisNetwork.Blazor: [destroy] element not present.');
     }
 }
 
