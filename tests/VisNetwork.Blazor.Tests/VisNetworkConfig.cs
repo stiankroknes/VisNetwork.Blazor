@@ -11,7 +11,7 @@ public class VisNetworkConfig
         services.AddScoped<IJSModule, JSModule>();
     }
 
-    internal class DummyVersionProvider : IVersionProvider
+    internal sealed class DummyVersionProvider : IVersionProvider
     {
         public string Version => string.Empty;
     }

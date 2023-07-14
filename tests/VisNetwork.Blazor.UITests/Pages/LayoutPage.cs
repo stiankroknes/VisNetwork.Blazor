@@ -3,7 +3,7 @@ using System.Runtime.CompilerServices;
 
 namespace VisNetwork.Blazor.UITests.Pages;
 
-internal class LayoutPage : BasePage
+internal sealed class LayoutPage : BasePage
 {
     private readonly IPage page;
     private readonly ILocator interactionMenuLink;
