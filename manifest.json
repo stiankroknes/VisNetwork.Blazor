@@ -18,7 +18,7 @@
       "output": {
         ".html": {
           "relative_path": "api/VisNetwork.Blazor.IVersionProvider.html",
-          "hash": "GTpOQjlpAHsaR+/tZFAycQ=="
+          "hash": "yspZswCwfHx2HTWAuS9Y/A=="
         }
       },
       "is_incremental": false,
@@ -30,7 +30,7 @@
       "output": {
         ".html": {
           "relative_path": "api/VisNetwork.Blazor.Models.Arrows.html",
-          "hash": "gqO/VvvnR6hMYnj5JyBy9A=="
+          "hash": "rtTaBWd3IaGs2MDG6GtRbA=="
         }
       },
       "is_incremental": false,
@@ -42,7 +42,7 @@
       "output": {
         ".html": {
           "relative_path": "api/VisNetwork.Blazor.Models.ArrowsOptions.html",
-          "hash": "25Hav+Z6g3tV0stTRbbjZQ=="
+          "hash": "y2Eq5+AXjhsD4yF0aHZ6xQ=="
         }
       },
       "is_incremental": false,
@@ -54,7 +54,7 @@
       "output": {
         ".html": {
           "relative_path": "api/VisNetwork.Blazor.Models.BarnesHutOption.html",
-          "hash": "VJ9EdvxrO4J2jbwPiaXp9w=="
+          "hash": "MamEk9fyFwFvOfAkFO5KAg=="
         }
       },
       "is_incremental": false,
@@ -66,7 +66,7 @@
       "output": {
         ".html": {
           "relative_path": "api/VisNetwork.Blazor.Models.BaseClickEvent.html",
-          "hash": "3/E9M+CNKVVjuOGkVBkQEg=="
+          "hash": "+GftCMZBy2URQTDJmbJ7dQ=="
         }
       },
       "is_incremental": false,
@@ -78,7 +78,7 @@
       "output": {
         ".html": {
           "relative_path": "api/VisNetwork.Blazor.Models.ClickEvent.html",
-          "hash": "NM2DVIM7tgkkZqHNDHNa6w=="
+          "hash": "OHwF2lUXS3c9c+ncGrjgEg=="
         }
       },
       "is_incremental": false,
@@ -90,7 +90,7 @@
       "output": {
         ".html": {
           "relative_path": "api/VisNetwork.Blazor.Models.ClickedItem.html",
-          "hash": "AeHeyVWpp1h6K80O3uyVKw=="
+          "hash": "P3ZnIthZhxBjVnf/5S335Q=="
         }
       },
       "is_incremental": false,
@@ -102,7 +102,7 @@
       "output": {
         ".html": {
           "relative_path": "api/VisNetwork.Blazor.Models.ColorType.html",
-          "hash": "A8VPemeHLla04khEjbfPyQ=="
+          "hash": "hfNoiKvFBxTFHiqcjW/jdQ=="
         }
       },
       "is_incremental": false,
@@ -114,7 +114,7 @@
       "output": {
         ".html": {
           "relative_path": "api/VisNetwork.Blazor.Models.ConfigureOptions.html",
-          "hash": "Pj0DegJkvMzVIc+y1713uA=="
+          "hash": "Z8iI+22M04tj2LVrBcERkg=="
         }
       },
       "is_incremental": false,
@@ -126,7 +126,7 @@
       "output": {
         ".html": {
           "relative_path": "api/VisNetwork.Blazor.Models.DeselectClickEvent.html",
-          "hash": "pCuTHm0rn6ZdctPFeu9WxQ=="
+          "hash": "3mFJdH/YwjvucYh3tKBgpQ=="
         }
       },
       "is_incremental": false,
@@ -138,7 +138,7 @@
       "output": {
         ".html": {
           "relative_path": "api/VisNetwork.Blazor.Models.DoubleClickEvent.html",
-          "hash": "UGw4q92/XhgPfhbwu+dDfg=="
+          "hash": "2leqDMUvdx/B90ztfIPd/Q=="
         }
       },
       "is_incremental": false,
@@ -150,7 +150,7 @@
       "output": {
         ".html": {
           "relative_path": "api/VisNetwork.Blazor.Models.DrawingEvent.html",
-          "hash": "LdKoiZOStrHTYx0phyjbfQ=="
+          "hash": "1jUeAAHGxugyk3A/hJxjJA=="
         }
       },
       "is_incremental": false,
@@ -162,7 +162,7 @@
       "output": {
         ".html": {
           "relative_path": "api/VisNetwork.Blazor.Models.Edge.html",
-          "hash": "17K6K6Idbp+7dgtESxymeA=="
+          "hash": "2C6v1R5EJo6Z8TIpk1mukA=="
         }
       },
       "is_incremental": false,
@@ -174,7 +174,7 @@
       "output": {
         ".html": {
           "relative_path": "api/VisNetwork.Blazor.Models.EdgeOption.html",
-          "hash": "73LfthzgBuwwFADqG5QdkQ=="
+          "hash": "CcQvTN+zKgga1aDT17D0jQ=="
         }
       },
       "is_incremental": false,
@@ -186,7 +186,7 @@
       "output": {
         ".html": {
           "relative_path": "api/VisNetwork.Blazor.Models.EdgeScalingOptions.html",
-          "hash": "MeekhzE6ZwTt4dY9oIlUZA=="
+          "hash": "D0IcbhQXCVfioaZUjFk0bA=="
         }
       },
       "is_incremental": false,
@@ -198,7 +198,7 @@
       "output": {
         ".html": {
           "relative_path": "api/VisNetwork.Blazor.Models.EdgeSelection.html",
-          "hash": "sPVwsetv/ajpNawX/Ic+Yg=="
+          "hash": "N35hCbKH/VkL1HbUQcVCtQ=="
         }
       },
       "is_incremental": false,
@@ -210,7 +210,7 @@
       "output": {
         ".html": {
           "relative_path": "api/VisNetwork.Blazor.Models.EdgeSelfReferenceOption.html",
-          "hash": "DodZz75GSKpL0t6RXKdwrQ=="
+          "hash": "h7n/taCaKXN+jskg/sTeng=="
         }
       },
       "is_incremental": false,
@@ -222,7 +222,7 @@
       "output": {
         ".html": {
           "relative_path": "api/VisNetwork.Blazor.Models.EdgeShadowOption.html",
-          "hash": "b/3tbR8eDWRMeTsoOKHNRQ=="
+          "hash": "V7BjfuqQbPXRg/La1KcndQ=="
         }
       },
       "is_incremental": false,
@@ -234,7 +234,7 @@
       "output": {
         ".html": {
           "relative_path": "api/VisNetwork.Blazor.Models.EdgeSmoothOptions.html",
-          "hash": "pe170TKsJnpifGLAfaSuTQ=="
+          "hash": "gOihAawjWILQDeUiCAqbyA=="
         }
       },
       "is_incremental": false,
@@ -246,7 +246,7 @@
       "output": {
         ".html": {
           "relative_path": "api/VisNetwork.Blazor.Models.EndPointOffsetOption.html",
-          "hash": "iu4SrrGNwwpW6mnKGir9YQ=="
+          "hash": "TcRNkW30BMMwSmhUwfTjBg=="
         }
       },
       "is_incremental": false,
@@ -258,7 +258,7 @@
       "output": {
         ".html": {
           "relative_path": "api/VisNetwork.Blazor.Models.ForceAtlas2BasedOption.html",
-          "hash": "HKh9yDe6EcQ53Pcz6MjKWg=="
+          "hash": "oX78WJRTX9iSihiFATkp6g=="
         }
       },
       "is_incremental": false,
@@ -270,7 +270,7 @@
       "output": {
         ".html": {
           "relative_path": "api/VisNetwork.Blazor.Models.HierarchicalOptions.html",
-          "hash": "Z7Bn2FneyAJ8PmaS2Dcqxg=="
+          "hash": "wpl0V/gMKiMXP9XGKcWV8g=="
         }
       },
       "is_incremental": false,
@@ -282,7 +282,7 @@
       "output": {
         ".html": {
           "relative_path": "api/VisNetwork.Blazor.Models.HierarchicalRepulsionOption.html",
-          "hash": "ioMDgMPSv4hkdZjEfn1EcA=="
+          "hash": "btVn/Gh3ajd7Rdsa/GJpZQ=="
         }
       },
       "is_incremental": false,
@@ -294,7 +294,7 @@
       "output": {
         ".html": {
           "relative_path": "api/VisNetwork.Blazor.Models.Icon.html",
-          "hash": "luNcTaEifqkDDhgLsn0G5w=="
+          "hash": "QzTp874JryXsFb2gqMU35w=="
         }
       },
       "is_incremental": false,
@@ -306,7 +306,7 @@
       "output": {
         ".html": {
           "relative_path": "api/VisNetwork.Blazor.Models.InteractionOptions.html",
-          "hash": "iXnpf7vVk0yycCv3j8ujGg=="
+          "hash": "8YD5pgWpK9BlRP935l67bg=="
         }
       },
       "is_incremental": false,
@@ -318,7 +318,7 @@
       "output": {
         ".html": {
           "relative_path": "api/VisNetwork.Blazor.Models.KeyboardOption.html",
-          "hash": "MNE/q5SlQh0vAuOujAV1aw=="
+          "hash": "ALZs41HQUG9Q0b+3ZvCBhw=="
         }
       },
       "is_incremental": false,
@@ -330,7 +330,7 @@
       "output": {
         ".html": {
           "relative_path": "api/VisNetwork.Blazor.Models.KeyboardSpeedOption.html",
-          "hash": "JnSYwCfzuHzuIEVvB5+Wog=="
+          "hash": "aL8bIG43uxI2m5ZTDZxavQ=="
         }
       },
       "is_incremental": false,
@@ -342,7 +342,7 @@
       "output": {
         ".html": {
           "relative_path": "api/VisNetwork.Blazor.Models.LayoutOptions.html",
-          "hash": "5pd3sGohyrocm0zWUx4Mmw=="
+          "hash": "4VUioRE23QQqaokVmyNBCw=="
         }
       },
       "is_incremental": false,
@@ -354,7 +354,7 @@
       "output": {
         ".html": {
           "relative_path": "api/VisNetwork.Blazor.Models.ManipulationOptions.html",
-          "hash": "uZJBKNq54ufYYW7cYGZDEg=="
+          "hash": "22RG49WWLwesv38Haj7cgQ=="
         }
       },
       "is_incremental": false,
@@ -366,7 +366,7 @@
       "output": {
         ".html": {
           "relative_path": "api/VisNetwork.Blazor.Models.NetworkData.html",
-          "hash": "gBz5s4bU16DOaXvlIIuOyA=="
+          "hash": "Kq/7QpWDJrmPgd0dIFP5WA=="
         }
       },
       "is_incremental": false,
@@ -378,7 +378,7 @@
       "output": {
         ".html": {
           "relative_path": "api/VisNetwork.Blazor.Models.NetworkOptions.html",
-          "hash": "VxybbgjQoy3/wGpb6THRNg=="
+          "hash": "CFO6JLf/doFgOsY3HztgLw=="
         }
       },
       "is_incremental": false,
@@ -390,7 +390,7 @@
       "output": {
         ".html": {
           "relative_path": "api/VisNetwork.Blazor.Models.Node.html",
-          "hash": "TCtiXLot19PRYcdjBcgCPg=="
+          "hash": "+tRmH8X7miekGsDfvmZAWg=="
         }
       },
       "is_incremental": false,
@@ -402,7 +402,7 @@
       "output": {
         ".html": {
           "relative_path": "api/VisNetwork.Blazor.Models.NodeColorType.BorderBackgroundColor.html",
-          "hash": "U2yrxKfNFMM/59dsUOd10A=="
+          "hash": "XxRCWijvD6VuEx8x2Ob0Kw=="
         }
       },
       "is_incremental": false,
@@ -414,7 +414,7 @@
       "output": {
         ".html": {
           "relative_path": "api/VisNetwork.Blazor.Models.NodeColorType.html",
-          "hash": "PlKl9BCBLoirvDEVoKUnOA=="
+          "hash": "/l2CyqiPP1OywocV85IxvQ=="
         }
       },
       "is_incremental": false,
@@ -426,7 +426,7 @@
       "output": {
         ".html": {
           "relative_path": "api/VisNetwork.Blazor.Models.NodeEdgeComposite.html",
-          "hash": "HWMZhy310+joOrx+a1ZGpQ=="
+          "hash": "S7gC5q5rBvvba0WayH3MjA=="
         }
       },
       "is_incremental": false,
@@ -438,7 +438,7 @@
       "output": {
         ".html": {
           "relative_path": "api/VisNetwork.Blazor.Models.NodeEdgeSelection.html",
-          "hash": "2Z6RdrrhnXsLZTpWiVsnPg=="
+          "hash": "7x6RkqrHxbngoKYngOyW+A=="
         }
       },
       "is_incremental": false,
@@ -450,7 +450,7 @@
       "output": {
         ".html": {
           "relative_path": "api/VisNetwork.Blazor.Models.NodeFixedOption.html",
-          "hash": "IXpIhAQNLPUYI5q5FHx0Zw=="
+          "hash": "h69joRamWq7ykzHBKNuGlA=="
         }
       },
       "is_incremental": false,
@@ -462,7 +462,7 @@
       "output": {
         ".html": {
           "relative_path": "api/VisNetwork.Blazor.Models.NodeHeightConstraint.html",
-          "hash": "uGvEz7L+OBGVB//VEIzfXA=="
+          "hash": "LnNQKL4pezS7dy/156rfpw=="
         }
       },
       "is_incremental": false,
@@ -474,7 +474,7 @@
       "output": {
         ".html": {
           "relative_path": "api/VisNetwork.Blazor.Models.NodeImagePaddingOption.html",
-          "hash": "ANrkcHtvdsOtHAOiPQUK1w=="
+          "hash": "L8mtkhZyrEfEQte8mjq9SQ=="
         }
       },
       "is_incremental": false,
@@ -486,7 +486,7 @@
       "output": {
         ".html": {
           "relative_path": "api/VisNetwork.Blazor.Models.NodeMarginOption.html",
-          "hash": "QR6b91kWLrDpOa6xB+jgBA=="
+          "hash": "57LQ3q5jxWX2h0EOkkiVDQ=="
         }
       },
       "is_incremental": false,
@@ -498,7 +498,7 @@
       "output": {
         ".html": {
           "relative_path": "api/VisNetwork.Blazor.Models.NodeOption.html",
-          "hash": "4i1sQjEsmEe5FgkvzuykXg=="
+          "hash": "ztINUUufxvqtzQoZNEVyZg=="
         }
       },
       "is_incremental": false,
@@ -510,7 +510,7 @@
       "output": {
         ".html": {
           "relative_path": "api/VisNetwork.Blazor.Models.NodeScalingLabelOptions.html",
-          "hash": "wn+jIo+JZt9GGMTnrWRZYg=="
+          "hash": "/cBorarRrTDdsngq5MaaoA=="
         }
       },
       "is_incremental": false,
@@ -522,7 +522,7 @@
       "output": {
         ".html": {
           "relative_path": "api/VisNetwork.Blazor.Models.NodeScalingOptions.html",
-          "hash": "e1n8s/Ucb0Xz6BYsmM1mAQ=="
+          "hash": "JuJ7dW9O2l/dRq4xgJ7oMg=="
         }
       },
       "is_incremental": false,
@@ -534,7 +534,7 @@
       "output": {
         ".html": {
           "relative_path": "api/VisNetwork.Blazor.Models.NodeSelection.html",
-          "hash": "WLs3PGz+g1hHG9nf6AwDVw=="
+          "hash": "2m/5Xo6aXt8aK9wHwPabqg=="
         }
       },
       "is_incremental": false,
@@ -546,7 +546,7 @@
       "output": {
         ".html": {
           "relative_path": "api/VisNetwork.Blazor.Models.NodeShadowOption.html",
-          "hash": "RY4CoG0EH+0wyPsMUStGVg=="
+          "hash": "EyMRikWbgvsLx1/5StyWSw=="
         }
       },
       "is_incremental": false,
@@ -558,7 +558,7 @@
       "output": {
         ".html": {
           "relative_path": "api/VisNetwork.Blazor.Models.PhysicsOptions.html",
-          "hash": "3e8prvLI6+6sVplNzR0xaQ=="
+          "hash": "3ccj+/V1ztKC8o+KCEOVJA=="
         }
       },
       "is_incremental": false,
@@ -570,7 +570,7 @@
       "output": {
         ".html": {
           "relative_path": "api/VisNetwork.Blazor.Models.RepulsionOption.html",
-          "hash": "f1OZhpaIBr1Lr13925m1vQ=="
+          "hash": "cFCmrJK6P32ZkIbzCU+VQQ=="
         }
       },
       "is_incremental": false,
@@ -582,7 +582,7 @@
       "output": {
         ".html": {
           "relative_path": "api/VisNetwork.Blazor.Models.StabilizationOption.html",
-          "hash": "ffMLvS+XeVpDGPICmnQYyQ=="
+          "hash": "OlgaxGO2zDTZGmV6SenoFA=="
         }
       },
       "is_incremental": false,
@@ -594,7 +594,7 @@
       "output": {
         ".html": {
           "relative_path": "api/VisNetwork.Blazor.Models.WindOption.html",
-          "hash": "VvzKm6QwP4txD9/tIJayrg=="
+          "hash": "xP1S9x0zdYrYFBlDgEaFFQ=="
         }
       },
       "is_incremental": false,
@@ -618,7 +618,7 @@
       "output": {
         ".html": {
           "relative_path": "api/VisNetwork.Blazor.Network.html",
-          "hash": "Ghet26IWUOrPKHSzIiBIyg=="
+          "hash": "1CvD3KHIYzclsp5lx/jtBw=="
         }
       },
       "is_incremental": false,
@@ -630,7 +630,7 @@
       "output": {
         ".html": {
           "relative_path": "api/VisNetwork.Blazor.VisNetworkConfiguration.html",
-          "hash": "LDHGwr2knGls9jC+PvQNzg=="
+          "hash": "AqRb8ep9V77s6VQjVFld3g=="
         }
       },
       "is_incremental": false,
@@ -654,7 +654,7 @@
       "output": {
         ".html": {
           "relative_path": "api/index.html",
-          "hash": "YutiIIsiYbFp4UtVnbvbSw=="
+          "hash": "mDmPuwgyNbf5NTkAQf8FYg=="
         }
       },
       "is_incremental": false,
@@ -678,7 +678,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/gettingstarted.html",
-          "hash": "NLjvXjIzOVlUK4iyE+rVGg=="
+          "hash": "hQa72X7a3FwMR/JCkgjbFg=="
         }
       },
       "is_incremental": false,
@@ -702,7 +702,7 @@
       "output": {
         ".html": {
           "relative_path": "index.html",
-          "hash": "rkK127J1pnfKqLHd0dNX7A=="
+          "hash": "ROgNeu74AENZyNTSXBzzCw=="
         }
       },
       "is_incremental": false,
