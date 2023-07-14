@@ -45,6 +45,7 @@ public class ClickedItem
 /// Since a double click is in fact 2 clicks, 2 click events are fired, followed by a double click event.
 /// If you do not want to use the click events if a double click event is fired, just check the time between click events before processing them. 
 /// </summary>
+[System.Diagnostics.CodeAnalysis.SuppressMessage("Minor Code Smell", "S2094:Classes should not be empty", Justification = "<Pending>")]
 public class DoubleClickEvent : ClickEvent
 {
 }

@@ -3,7 +3,7 @@ using System.Runtime.CompilerServices;
 
 namespace VisNetwork.Blazor.UITests.Pages;
 
-internal class IssuePage : BasePage
+internal sealed class IssuePage : BasePage
 {
     private readonly IPage page;
     private readonly ILocator networkDiv;

@@ -23,7 +23,7 @@ public class Node : NodeOption, IEquatable<Node>
     }
     public override bool Equals(object? obj) => obj is Node other && Equals(other);
 
-    public bool Equals(Node? other) => other is not null && other.Id == Id;
+    public bool Equals(Node? other) => other is not null && string.Equals(other.Id, Id, StringComparison.Ordinal);
 
-    public override int GetHashCode() => Id?.GetHashCode() ?? 0;
+    public override int GetHashCode() => Id?.GetHashCode(StringComparison.Ordinal) ?? 0;
 }

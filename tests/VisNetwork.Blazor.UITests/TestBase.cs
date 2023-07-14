@@ -35,6 +35,8 @@ public abstract class TestBase : IAsyncLifetime
     public IBrowserContext Context { get; private set; } = null!;
     public IPage Page { get; private set; } = null!;
 
+    private static readonly string[] args = new[] { "install" };
+
     protected TestBase(BlazorWebAssemblyWebHostFixture fixture, ITestOutputHelper testOutputHelper)
     {
         Fixture = fixture;
@@ -45,7 +47,7 @@ public abstract class TestBase : IAsyncLifetime
 
     private static bool InstallBrowsers()
     {
-        var exitCode = Program.Main(new[] { "install" });
+        var exitCode = Program.Main(args);
         if (exitCode != 0)
         {
             Environment.Exit(exitCode);

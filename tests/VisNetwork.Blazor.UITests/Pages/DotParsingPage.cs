@@ -3,7 +3,7 @@ using System.Runtime.CompilerServices;
 
 namespace VisNetwork.Blazor.UITests.Pages;
 
-internal class DotParsingPage : BasePage
+internal sealed class DotParsingPage : BasePage
 {
     private readonly IPage page;
 
