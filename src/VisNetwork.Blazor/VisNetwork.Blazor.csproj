@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk.Razor">
+<Project Sdk="Microsoft.NET.Sdk.Razor">
 
 	<!--<Import Project="StaticAssets\StaticAssets.targets" />-->
 	<PropertyGroup>
@@ -60,12 +60,12 @@
 	</Target>-->
 
 	<ItemGroup Condition="'$(TargetFramework)' == 'net7.0'">
-		<PackageReference Include="Microsoft.AspNetCore.Components" Version="7.0.0" />
+		<PackageReference Include="Microsoft.AspNetCore.Components" Version="6.0.25" />
 		<PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="7.0.0" />
 	</ItemGroup>
 
 	<ItemGroup Condition="'$(TargetFramework)' == 'net6.0'">
-		<PackageReference Include="Microsoft.AspNetCore.Components" Version="6.0.0" />
+		<PackageReference Include="Microsoft.AspNetCore.Components" Version="6.0.25" />
 		<PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="6.0.0" />
 	</ItemGroup>
 
