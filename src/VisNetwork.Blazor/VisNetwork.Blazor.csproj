@@ -2,7 +2,7 @@
 
 	<!--<Import Project="StaticAssets\StaticAssets.targets" />-->
 	<PropertyGroup>
-		<TargetFrameworks>net6.0;net7.0</TargetFrameworks>
+		<TargetFrameworks>net6.0;net7.0;net8.0</TargetFrameworks>
 		<IsPackable>true</IsPackable>
 		<OutputType>Library</OutputType>
 		<Nullable>enable</Nullable>
@@ -30,13 +30,17 @@
 		<RazorLangVersion>7.0</RazorLangVersion>
 	</PropertyGroup>
 
+	<PropertyGroup Condition="'$(TargetFramework)' == 'net8.0'">
+		<RazorLangVersion>8.0</RazorLangVersion>
+	</PropertyGroup>
+	
 	<ItemGroup>
 		<SupportedPlatform Include="browser" />
 		<Content Update="StaticAssets\*" Pack="false" />
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="SonarAnalyzer.CSharp" Version="9.5.0.73987">
+		<PackageReference Include="SonarAnalyzer.CSharp" Version="9.12.0.78982">
 			<PrivateAssets>all</PrivateAssets>
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 		</PackageReference>
@@ -44,7 +48,7 @@
 			<PrivateAssets>all</PrivateAssets>
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 		</PackageReference>
-		<PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.1.1" PrivateAssets="All" />
+		<PackageReference Include="Microsoft.SourceLink.GitHub" Version="8.0.0" PrivateAssets="All" />
 		<PackageReference Include="MinVer" Version="4.3.0" PrivateAssets="All" />
 	</ItemGroup>
 
@@ -59,14 +63,19 @@
 		<Exec Command="npm run build:Release" WorkingDirectory="StaticAssets" />
 	</Target>-->
 
+	<ItemGroup Condition="'$(TargetFramework)' == 'net8.0'">
+		<PackageReference Include="Microsoft.AspNetCore.Components" Version="8.0.*" />
+		<PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="8.0.*" />
+	</ItemGroup>
+	
 	<ItemGroup Condition="'$(TargetFramework)' == 'net7.0'">
-		<PackageReference Include="Microsoft.AspNetCore.Components" Version="7.0.0" />
-		<PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="7.0.0" />
+		<PackageReference Include="Microsoft.AspNetCore.Components" Version="7.0.*" />
+		<PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="7.0.*" />
 	</ItemGroup>
 
 	<ItemGroup Condition="'$(TargetFramework)' == 'net6.0'">
-		<PackageReference Include="Microsoft.AspNetCore.Components" Version="6.0.0" />
-		<PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="6.0.0" />
+		<PackageReference Include="Microsoft.AspNetCore.Components" Version="6.0.*" />
+		<PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="6.0.*" />
 	</ItemGroup>
 
 </Project>
