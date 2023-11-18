@@ -9,7 +9,6 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Serilog;
 using Serilog.Events;
-using Xunit.Abstractions;
 
 namespace VisNetwork.Blazor.UITests;
 
@@ -21,7 +20,7 @@ public class WebHostServerCollectionDefinition : ICollectionFixture<BlazorWebAss
     // ICollectionFixture<> interfaces.
 }
 
-public sealed class BlazorWebAssemblyWebHostFixture : IDisposable
+public sealed class BlazorWebAssemblyWebHostFixture : IDisposable // IAsyncDisposable
 {
     private readonly Lazy<Uri> rootUriInitializer;
     private readonly IMessageSink messageSink;
@@ -58,7 +57,7 @@ public sealed class BlazorWebAssemblyWebHostFixture : IDisposable
             .ConfigureHostConfiguration(config =>
             {
                 // Make UseStaticWebAssets work
-                var applicationPath = typeof(Sample.App).Assembly.Location;
+                var applicationPath = typeof(Wasm.App).Assembly.Location;
                 var applicationDirectory = Path.GetDirectoryName(applicationPath);
 
                 var name = Path.ChangeExtension(applicationPath, ".staticwebassets.runtime.json");
@@ -71,7 +70,7 @@ public sealed class BlazorWebAssemblyWebHostFixture : IDisposable
             })
             .ConfigureWebHost(webHostBuilder => webHostBuilder
                 .UseKestrel()
-                .UseSolutionRelativeContentRoot(Path.Combine("sample", typeof(Sample.App).Assembly.GetName().Name!))
+                .UseSolutionRelativeContentRoot(Path.Combine("sample", typeof(Wasm.App).Assembly.GetName().Name!))
                 .UseStaticWebAssets()
                 .UseUrls($"http://127.0.0.1:0") // :0 allows to choose a port automatically
                 .ConfigureServices(services =>
@@ -100,7 +99,10 @@ public sealed class BlazorWebAssemblyWebHostFixture : IDisposable
 
     void IDisposable.Dispose()
     {
-        Host?.Dispose();
-        Host?.StopAsync();
+        if (Host is not null)
+        {
+            Host.StopAsync();
+            Host.Dispose();
+        }
     }
 }

@@ -1,0 +1,14 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+	<PropertyGroup>
+		<TargetFramework>net7.0</TargetFramework>
+		<Nullable>enable</Nullable>
+		<ImplicitUsings>enable</ImplicitUsings>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\VisNetwork.Blazor.SharedComponents\VisNetwork.Blazor.SharedComponents.csproj" />
+		<ProjectReference Include="..\..\src\VisNetwork.Blazor\VisNetwork.Blazor.csproj" />
+	</ItemGroup>
+
+</Project>

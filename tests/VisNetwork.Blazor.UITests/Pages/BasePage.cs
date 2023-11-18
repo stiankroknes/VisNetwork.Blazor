@@ -1,18 +1,11 @@
-﻿using Microsoft.Playwright;
-using System.Runtime.CompilerServices;
+﻿using System.Runtime.CompilerServices;
 
 namespace VisNetwork.Blazor.UITests.Pages;
 
-internal class BasePage
+internal class BasePage(PageTestContext pageTestContext)
 {
-    protected PageTestContext PageTestContext { get; }
-    protected IPage Page { get; }
-
-    public BasePage(PageTestContext pageTestContext)
-    {
-        Page = pageTestContext.Page;
-        PageTestContext = pageTestContext;
-    }
+    protected PageTestContext PageTestContext { get; } = pageTestContext;
+    protected IPage Page { get; } = pageTestContext.Page;
 
     protected ILocator GetByRoleHeading(string name) =>
         Page.GetByRole(AriaRole.Heading, new() { NameString = name });
@@ -24,15 +17,15 @@ internal class BasePage
         Page.GetByRole(AriaRole.Paragraph, new() { NameString = name });
 
 
-    protected async Task<byte[]> TakeScreenshot(ILocator locator, string context, [CallerMemberName] string? caller = null) =>
-        await locator.ScreenshotAsync(new()
+    protected Task<byte[]> TakeScreenshot(ILocator locator, string context, [CallerMemberName] string? caller = null) =>
+        locator.ScreenshotAsync(new()
         {
-            Path = PageTestContext.GetScreenshotPath(context, caller),
+            Path = PageTestContext.GetScreenshotPath($"{PageTestContext.BrowserName}_{context}", caller),
         });
 
-    protected async Task<byte[]> TakePageScreenshot(string context, [CallerMemberName] string? caller = null) =>
-        await Page.ScreenshotAsync(new()
+    protected Task<byte[]> TakePageScreenshot(string context, [CallerMemberName] string? caller = null) =>
+        Page.ScreenshotAsync(new()
         {
-            Path = PageTestContext.GetScreenshotPath(context, caller),
+            Path = PageTestContext.GetScreenshotPath($"{PageTestContext.BrowserName}_{context}", caller),
         });
 }

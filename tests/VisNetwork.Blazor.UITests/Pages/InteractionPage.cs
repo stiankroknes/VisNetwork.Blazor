@@ -1,5 +1,4 @@
-﻿using Microsoft.Playwright;
-using System.Runtime.CompilerServices;
+﻿using System.Runtime.CompilerServices;
 
 namespace VisNetwork.Blazor.UITests.Pages;
 
@@ -22,7 +21,7 @@ internal sealed class InteractionPage : BasePage
 
     private readonly ILocator selectionParagraph;
     private readonly ILocator selectedNodesParagraph;
-    private readonly ILocator selectedEdgesPagraph;
+    private readonly ILocator selectedEdgesParagraph;
 
     private readonly ILocator clearSelectionButton;
 
@@ -45,14 +44,14 @@ internal sealed class InteractionPage : BasePage
 
         selectionParagraph = Page.GetByTestId("selectionParagraph");
         selectedNodesParagraph = Page.GetByTestId("selectedNodesParagraph");
-        selectedEdgesPagraph = Page.GetByTestId("selectedEdgesParagraph");
+        selectedEdgesParagraph = Page.GetByTestId("selectedEdgesParagraph");
 
         clearSelectionButton = GetByRoleButton("ClearSelection");
     }
 
-    public async Task GotoAsync()
+    public Task GotoAsync()
     {
-        await Page.GotoAsync(new Uri(new Uri(PageTestContext.RootUrl), "interaction").ToString());
+        return Page.GotoAsync(new Uri(new Uri(PageTestContext.RootUrl), "interaction").ToString());
         //await layoutPage.GotoInteraction();
     }
 
@@ -66,18 +65,17 @@ internal sealed class InteractionPage : BasePage
 
     //public async Task<string?> GetSelectionText() => await selectionParagraph.TextContentAsync();
     //public async Task<string?> GetSelectedNodesText() => await selectedNodesParagraph.TextContentAsync();
-    //public async Task<string?> GetSelectedEdgesText() => await selectedEdgesPagraph.TextContentAsync();
+    //public async Task<string?> GetSelectedEdgesText() => await selectedEdgesParagraph.TextContentAsync();
     public ILocator GetSelectionText() => selectionParagraph;
     public ILocator GetSelectedNodesText() => selectedNodesParagraph;
-    public ILocator GetSelectedEdgesText() => selectedEdgesPagraph;
+    public ILocator GetSelectedEdgesText() => selectedEdgesParagraph;
 
     public async Task GetSelectionClick() => await getSelectionButton.ClickAsync();
     public async Task GetSelectedNodesClick() => await getSelectedNodesButton.ClickAsync();
     public async Task GetSelectedEdgesClick() => await getSelectedEdgesButton.ClickAsync();
 
-
     public async Task ClearSelection() => await clearSelectionButton.ClickAsync();
 
     public async Task<byte[]> CaptureNetworkImage([CallerMemberName] string? caller = null) =>
-        await TakeScreenshot(networkDiv, nameof(IndexPage), caller);
+        await TakeScreenshot(networkDiv, nameof(InteractionPage), caller);
 }

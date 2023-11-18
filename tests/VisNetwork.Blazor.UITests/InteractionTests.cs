@@ -1,16 +1,11 @@
-﻿using Microsoft.Playwright;
-using VisNetwork.Blazor.UITests.Pages;
-using Xunit.Abstractions;
+﻿using VisNetwork.Blazor.UITests.Pages;
 
 namespace VisNetwork.Blazor.UITests;
 
 [Collection("WebHostServerCollection")]
-public class InteractionTests : TestBase
+public class InteractionTests(BlazorWebAssemblyWebHostFixture fixture, ITestOutputHelper testOutputHelper)
+    : TestBase(fixture, testOutputHelper)
 {
-    public InteractionTests(BlazorWebAssemblyWebHostFixture fixture, ITestOutputHelper testOutputHelper) : base(fixture, testOutputHelper)
-    {
-    }
-
     [Fact]
     public async Task SelectNode1()
     {

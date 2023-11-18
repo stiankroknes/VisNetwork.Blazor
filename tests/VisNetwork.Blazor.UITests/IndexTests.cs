@@ -1,18 +1,13 @@
-using FluentAssertions;
 using VisNetwork.Blazor.UITests.Pages;
-using Xunit.Abstractions;
+using VisNetwork.Blazor.UITests.Support;
 
 namespace VisNetwork.Blazor.UITests;
 
 [Collection("WebHostServerCollection")]
-public class IndexTests : TestBase
+public class IndexTests(BlazorWebAssemblyWebHostFixture fixture, ITestOutputHelper testOutputHelper)
+    : TestBase(fixture, testOutputHelper)
 {
-    public IndexTests(BlazorWebAssemblyWebHostFixture fixture, ITestOutputHelper testOutputHelper) : base(fixture, testOutputHelper)
-    {
-    }
-
     [Fact]
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Info Code Smell", "S1135:Track uses of \"TODO\" tags", Justification = "<Pending>")]
     public async Task Basic()
     {
         //await Context.Tracing.StartAsync(new()
@@ -23,14 +18,11 @@ public class IndexTests : TestBase
         //});
 
         var page = new IndexPage(GetPageTestContext());
-
         await page.GotoAsync();
 
-
-        (await page.CaptureNetworkImage()).Should().NotBeEmpty();
+        var image = await page.CaptureNetworkImage();
+        ScreenshotHelper.PixelMatch("index-page.png", image, BrowserName).Should().BeTrue();
         await Expect(page.Heading).ToBeVisibleAsync();
-
-        // TODO: compare screenshot with baseline.
 
         //await Context.Tracing.StopAsync(new TracingStopOptions
         //{
