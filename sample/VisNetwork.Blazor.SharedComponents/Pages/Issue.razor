@@ -1,0 +1,59 @@
+@page "/issue"
+@using VisNetwork.Blazor.Models
+
+<h3>Component1</h3>
+
+<div>
+    <Network Id="mynetwork" @ref="network" Data="data" class="vis-network-container" />
+</div>
+
+<EditForm Model="@model" OnValidSubmit="@ValidFormSubmitted">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+
+    <InputText id="name" @bind-Value="model.Test" />
+
+    <button type="submit">Submit</button>
+</EditForm>
+
+@code {
+    private Network network;
+    private NetworkData data;
+    private HashSet<Node> nodes = new HashSet<Node>();
+    private HashSet<Edge> edges = new HashSet<Edge>();
+    private int nodeCounter = 3;
+
+    private Model model = new Model();
+    class Model
+    {
+        public string Test { get; set; }
+    }
+
+    public Issue()
+    {
+        nodes.Add(new Node("1", "Node 100", 1, "circle"));
+        nodes.Add(new Node("2", "Node 200", 2, "circle"));
+        edges.Add(new Edge("1", "2"));
+        nodes.Add(new Node("3", "Node 300", 4, "circle"));
+        edges.Add(new Edge("2", "3"));
+        data = new NetworkData
+            {
+                Nodes = nodes,
+                Edges = edges
+            };
+    }
+
+    protected void ValidFormSubmitted()
+    {
+        nodeCounter += 1;
+        nodes.Add(new Node(nodeCounter.ToString(), "Node " + nodeCounter.ToString(), 4, "circle"));
+        edges.Add(new Edge((nodeCounter - 1).ToString(), nodeCounter.ToString()));
+        data = new NetworkData
+            {
+                Nodes = nodes,
+                Edges = edges
+            };
+
+        StateHasChanged();
+    }
+}

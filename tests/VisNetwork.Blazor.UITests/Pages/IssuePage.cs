@@ -1,5 +1,4 @@
-﻿using Microsoft.Playwright;
-using System.Runtime.CompilerServices;
+﻿using System.Runtime.CompilerServices;
 
 namespace VisNetwork.Blazor.UITests.Pages;
 
@@ -21,14 +20,12 @@ internal sealed class IssuePage : BasePage
     public async Task GotoAsync() =>
         await Page.GotoAsync(new Uri(new Uri(PageTestContext.RootUrl), "issue").ToString());
 
-    public async Task Input(string text) =>
-        await input.FillAsync(text);
+    public async Task Input(string text) => await input.FillAsync(text);
 
-    public async Task Submit() =>
-        await submitButton.ClickAsync();
+    public async Task Submit() => await submitButton.ClickAsync();
 
     public ILocator Network => networkDiv;
 
     public async Task<byte[]> CaptureNetworkImage([CallerMemberName] string? caller = null) =>
-        await TakeScreenshot(networkDiv, nameof(IndexPage), caller);
+        await TakeScreenshot(networkDiv, nameof(IssuePage), caller);
 }

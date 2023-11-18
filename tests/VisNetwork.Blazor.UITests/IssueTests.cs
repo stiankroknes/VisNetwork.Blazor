@@ -1,16 +1,11 @@
-using FluentAssertions;
 using VisNetwork.Blazor.UITests.Pages;
-using Xunit.Abstractions;
 
 namespace VisNetwork.Blazor.UITests;
 
 [Collection("WebHostServerCollection")]
-public class IssueTests : TestBase
+public class IssueTests(BlazorWebAssemblyWebHostFixture fixture, ITestOutputHelper testOutputHelper)
+    : TestBase(fixture, testOutputHelper)
 {
-    public IssueTests(BlazorWebAssemblyWebHostFixture fixture, ITestOutputHelper testOutputHelper) : base(fixture, testOutputHelper)
-    {
-    }
-
     [Fact]
     public async Task Test1()
     {

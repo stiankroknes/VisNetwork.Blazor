@@ -1,7 +1,5 @@
-﻿using Microsoft.Playwright;
-using Microsoft.Playwright.TestAdapter;
+﻿using Microsoft.Playwright.TestAdapter;
 using System.Runtime.CompilerServices;
-using Xunit.Abstractions;
 
 namespace VisNetwork.Blazor.UITests;
 
@@ -10,6 +8,7 @@ public class PageTestContext
     public required IPage Page { get; init; }
 
     public required string RootUrl { get; init; }
+    public required string BrowserName { get; init; }
 
     public required ITestOutputHelper OutputHelper { get; init; }
 
@@ -23,7 +22,7 @@ public abstract class TestBase : IAsyncLifetime
 {
     private readonly Task<IPlaywright> playwrightTask = Microsoft.Playwright.Playwright.CreateAsync();
     private readonly Lazy<bool> BrowsersInstalled = new(InstallBrowsers);
-    private readonly List<IBrowserContext> browserContexts = new();
+    private readonly List<IBrowserContext> browserContexts = [];
 
     protected ITestOutputHelper TestOutputHelper { get; }
     protected BlazorWebAssemblyWebHostFixture Fixture { get; }
@@ -35,7 +34,7 @@ public abstract class TestBase : IAsyncLifetime
     public IBrowserContext Context { get; private set; } = null!;
     public IPage Page { get; private set; } = null!;
 
-    private static readonly string[] args = new[] { "install" };
+    private static readonly string[] args = ["install"];
 
     protected TestBase(BlazorWebAssemblyWebHostFixture fixture, ITestOutputHelper testOutputHelper)
     {
@@ -68,12 +67,14 @@ public abstract class TestBase : IAsyncLifetime
     public async Task InitializeAsync()
     {
         Playwright = await playwrightTask.ConfigureAwait(false);
+
         // can use playwright.Firefox, playwright.Chromium, or playwright.WebKit
         //BrowserName = "firefox";  
         BrowserName = PlaywrightSettingsProvider.BrowserName;
         BrowserType = Playwright[BrowserName];
         Playwright.Selectors.SetTestIdAttribute("data-testid");
-        Browser = await Playwright.Firefox.LaunchAsync(new BrowserTypeLaunchOptions
+
+        Browser = await Playwright[BrowserName].LaunchAsync(new BrowserTypeLaunchOptions
         {
             //Headless = false,
             //SlowMo = 1000,
@@ -85,10 +86,22 @@ public abstract class TestBase : IAsyncLifetime
     }
 
     protected PageTestContext GetPageTestContext() =>
-        new() { OutputHelper = TestOutputHelper, Page = Page, RootUrl = Fixture.RootUri.ToString() };
+        new()
+        {
+            OutputHelper = TestOutputHelper,
+            Page = Page,
+            RootUrl = Fixture.RootUri.ToString(),
+            BrowserName = BrowserName
+        };
 
     protected async Task<PageTestContext> GetNewPageTestContext() =>
-        new() { OutputHelper = TestOutputHelper, Page = await Context.NewPageAsync(), RootUrl = Fixture.RootUri.ToString() };
+        new()
+        {
+            OutputHelper = TestOutputHelper,
+            Page = await Context.NewPageAsync(),
+            RootUrl = Fixture.RootUri.ToString(),
+            BrowserName = BrowserName
+        };
 
     async Task IAsyncLifetime.DisposeAsync()
     {
@@ -97,7 +110,11 @@ public abstract class TestBase : IAsyncLifetime
             await context.CloseAsync().ConfigureAwait(false);
         }
 
-        Browser?.CloseAsync();
+        if (Browser is not null)
+        {
+            await Browser.CloseAsync().ConfigureAwait(false);
+        }
+
         Playwright?.Dispose();
     }
 
