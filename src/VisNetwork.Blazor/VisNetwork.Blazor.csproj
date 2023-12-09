@@ -8,6 +8,7 @@
 		<Nullable>enable</Nullable>
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>
 		<PackageTags>blazor;razor;vis-network</PackageTags>
+		<PackageReadmeFile>README.md</PackageReadmeFile>
 		<PackageProjectUrl>https://github.com/stiankroknes/VisNetwork.Blazor</PackageProjectUrl>
 		<SymbolPackageFormat>snupkg</SymbolPackageFormat>
 		<IncludeSymbols>true</IncludeSymbols>
@@ -33,6 +34,10 @@
 	<PropertyGroup Condition="'$(TargetFramework)' == 'net8.0'">
 		<RazorLangVersion>8.0</RazorLangVersion>
 	</PropertyGroup>
+
+	<ItemGroup>
+		<None Include="..\..\README.md" Pack="true" PackagePath="\" />
+	</ItemGroup>
 	
 	<ItemGroup>
 		<SupportedPlatform Include="browser" />
