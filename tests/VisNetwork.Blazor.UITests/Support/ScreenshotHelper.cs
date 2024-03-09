@@ -1,4 +1,7 @@
-﻿namespace VisNetwork.Blazor.UITests.Support;
+﻿using SixLabors.ImageSharp;
+using SixLabors.ImageSharp.PixelFormats;
+
+namespace VisNetwork.Blazor.UITests.Support;
 
 // https://github.com/microsoft/playwright-dotnet/blob/main/src/Playwright.Tests/Helpers/ScreenshotHelper.cs
 
