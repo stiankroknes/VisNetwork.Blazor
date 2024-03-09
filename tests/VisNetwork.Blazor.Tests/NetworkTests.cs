@@ -48,8 +48,8 @@ public class NetworkTests : TestContext {
     public void Network_Data() {
         BunitJSModuleInterop module = CreateJSModuleInterop(JSInterop);
         var networkData = new NetworkData {
-            Nodes = new[] { new Node("1", "Node1", 1, ""), new Node("2", "Node 2", 0, "") },
-            Edges = new[] { new Edge("1", "2", "1 to 2") },
+            Nodes = [new Node("1", "Node1", 1, ""), new Node("2", "Node 2", 0, "")],
+            Edges = [new Edge("1", "2", "1 to 2")],
         };
 
         // Act
@@ -68,8 +68,8 @@ public class NetworkTests : TestContext {
         // Act
         var cut = RenderComponent<Network>();
         await cut.Instance.SetData(new NetworkData {
-            Nodes = new[] { new Node("1", "Node1", 1, ""), new Node("2", "Node 2", 0, "") },
-            Edges = new[] { new Edge("1", "2", "1 to 2") },
+            Nodes = [new Node("1", "Node1", 1, ""), new Node("2", "Node 2", 0, "")],
+            Edges = [new Edge("1", "2", "1 to 2")],
         });
 
         // Assert 
@@ -213,7 +213,7 @@ public class NetworkTests : TestContext {
         }
 
         [Fact]
-        public async Task EventCallback_Should_Trigger_DelectNode() {
+        public async Task EventCallback_Should_Trigger_DeselectNode() {
             // Arrange
             BunitJSModuleInterop module = CreateJSModuleInterop(JSInterop);
             module.SetupVoid("on", _ => true);
