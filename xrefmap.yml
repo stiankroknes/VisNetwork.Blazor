@@ -3648,6 +3648,57 @@ references:
   isSpec: "True"
   fullName: VisNetwork.Blazor.Models.StabilizationOption.UpdateInterval
   nameWithType: StabilizationOption.UpdateInterval
+- uid: VisNetwork.Blazor.Models.StabilizationProgressEvent
+  name: StabilizationProgressEvent
+  href: api/VisNetwork.Blazor.Models.StabilizationProgressEvent.html
+  commentId: T:VisNetwork.Blazor.Models.StabilizationProgressEvent
+  fullName: VisNetwork.Blazor.Models.StabilizationProgressEvent
+  nameWithType: StabilizationProgressEvent
+- uid: VisNetwork.Blazor.Models.StabilizationProgressEvent.Iterations
+  name: Iterations
+  href: api/VisNetwork.Blazor.Models.StabilizationProgressEvent.html#VisNetwork_Blazor_Models_StabilizationProgressEvent_Iterations
+  commentId: P:VisNetwork.Blazor.Models.StabilizationProgressEvent.Iterations
+  fullName: VisNetwork.Blazor.Models.StabilizationProgressEvent.Iterations
+  nameWithType: StabilizationProgressEvent.Iterations
+- uid: VisNetwork.Blazor.Models.StabilizationProgressEvent.Iterations*
+  name: Iterations
+  href: api/VisNetwork.Blazor.Models.StabilizationProgressEvent.html#VisNetwork_Blazor_Models_StabilizationProgressEvent_Iterations_
+  commentId: Overload:VisNetwork.Blazor.Models.StabilizationProgressEvent.Iterations
+  isSpec: "True"
+  fullName: VisNetwork.Blazor.Models.StabilizationProgressEvent.Iterations
+  nameWithType: StabilizationProgressEvent.Iterations
+- uid: VisNetwork.Blazor.Models.StabilizationProgressEvent.Total
+  name: Total
+  href: api/VisNetwork.Blazor.Models.StabilizationProgressEvent.html#VisNetwork_Blazor_Models_StabilizationProgressEvent_Total
+  commentId: P:VisNetwork.Blazor.Models.StabilizationProgressEvent.Total
+  fullName: VisNetwork.Blazor.Models.StabilizationProgressEvent.Total
+  nameWithType: StabilizationProgressEvent.Total
+- uid: VisNetwork.Blazor.Models.StabilizationProgressEvent.Total*
+  name: Total
+  href: api/VisNetwork.Blazor.Models.StabilizationProgressEvent.html#VisNetwork_Blazor_Models_StabilizationProgressEvent_Total_
+  commentId: Overload:VisNetwork.Blazor.Models.StabilizationProgressEvent.Total
+  isSpec: "True"
+  fullName: VisNetwork.Blazor.Models.StabilizationProgressEvent.Total
+  nameWithType: StabilizationProgressEvent.Total
+- uid: VisNetwork.Blazor.Models.StabilizedEvent
+  name: StabilizedEvent
+  href: api/VisNetwork.Blazor.Models.StabilizedEvent.html
+  commentId: T:VisNetwork.Blazor.Models.StabilizedEvent
+  fullName: VisNetwork.Blazor.Models.StabilizedEvent
+  nameWithType: StabilizedEvent
+- uid: VisNetwork.Blazor.Models.StabilizedEvent.Iterations
+  name: Iterations
+  href: api/VisNetwork.Blazor.Models.StabilizedEvent.html#VisNetwork_Blazor_Models_StabilizedEvent_Iterations
+  commentId: P:VisNetwork.Blazor.Models.StabilizedEvent.Iterations
+  fullName: VisNetwork.Blazor.Models.StabilizedEvent.Iterations
+  nameWithType: StabilizedEvent.Iterations
+- uid: VisNetwork.Blazor.Models.StabilizedEvent.Iterations*
+  name: Iterations
+  href: api/VisNetwork.Blazor.Models.StabilizedEvent.html#VisNetwork_Blazor_Models_StabilizedEvent_Iterations_
+  commentId: Overload:VisNetwork.Blazor.Models.StabilizedEvent.Iterations
+  isSpec: "True"
+  fullName: VisNetwork.Blazor.Models.StabilizedEvent.Iterations
+  nameWithType: StabilizedEvent.Iterations
 - uid: VisNetwork.Blazor.Models.WindOption
   name: WindOption
   href: api/VisNetwork.Blazor.Models.WindOption.html
@@ -4011,6 +4062,58 @@ references:
   isSpec: "True"
   fullName: VisNetwork.Blazor.Network.OnShowPopup
   nameWithType: Network.OnShowPopup
+- uid: VisNetwork.Blazor.Network.OnStabilizationIterationsDone
+  name: OnStabilizationIterationsDone
+  href: api/VisNetwork.Blazor.Network.html#VisNetwork_Blazor_Network_OnStabilizationIterationsDone
+  commentId: P:VisNetwork.Blazor.Network.OnStabilizationIterationsDone
+  fullName: VisNetwork.Blazor.Network.OnStabilizationIterationsDone
+  nameWithType: Network.OnStabilizationIterationsDone
+- uid: VisNetwork.Blazor.Network.OnStabilizationIterationsDone*
+  name: OnStabilizationIterationsDone
+  href: api/VisNetwork.Blazor.Network.html#VisNetwork_Blazor_Network_OnStabilizationIterationsDone_
+  commentId: Overload:VisNetwork.Blazor.Network.OnStabilizationIterationsDone
+  isSpec: "True"
+  fullName: VisNetwork.Blazor.Network.OnStabilizationIterationsDone
+  nameWithType: Network.OnStabilizationIterationsDone
+- uid: VisNetwork.Blazor.Network.OnStabilizationProgress
+  name: OnStabilizationProgress
+  href: api/VisNetwork.Blazor.Network.html#VisNetwork_Blazor_Network_OnStabilizationProgress
+  commentId: P:VisNetwork.Blazor.Network.OnStabilizationProgress
+  fullName: VisNetwork.Blazor.Network.OnStabilizationProgress
+  nameWithType: Network.OnStabilizationProgress
+- uid: VisNetwork.Blazor.Network.OnStabilizationProgress*
+  name: OnStabilizationProgress
+  href: api/VisNetwork.Blazor.Network.html#VisNetwork_Blazor_Network_OnStabilizationProgress_
+  commentId: Overload:VisNetwork.Blazor.Network.OnStabilizationProgress
+  isSpec: "True"
+  fullName: VisNetwork.Blazor.Network.OnStabilizationProgress
+  nameWithType: Network.OnStabilizationProgress
+- uid: VisNetwork.Blazor.Network.OnStabilized
+  name: OnStabilized
+  href: api/VisNetwork.Blazor.Network.html#VisNetwork_Blazor_Network_OnStabilized
+  commentId: P:VisNetwork.Blazor.Network.OnStabilized
+  fullName: VisNetwork.Blazor.Network.OnStabilized
+  nameWithType: Network.OnStabilized
+- uid: VisNetwork.Blazor.Network.OnStabilized*
+  name: OnStabilized
+  href: api/VisNetwork.Blazor.Network.html#VisNetwork_Blazor_Network_OnStabilized_
+  commentId: Overload:VisNetwork.Blazor.Network.OnStabilized
+  isSpec: "True"
+  fullName: VisNetwork.Blazor.Network.OnStabilized
+  nameWithType: Network.OnStabilized
+- uid: VisNetwork.Blazor.Network.OnStartStabilizing
+  name: OnStartStabilizing
+  href: api/VisNetwork.Blazor.Network.html#VisNetwork_Blazor_Network_OnStartStabilizing
+  commentId: P:VisNetwork.Blazor.Network.OnStartStabilizing
+  fullName: VisNetwork.Blazor.Network.OnStartStabilizing
+  nameWithType: Network.OnStartStabilizing
+- uid: VisNetwork.Blazor.Network.OnStartStabilizing*
+  name: OnStartStabilizing
+  href: api/VisNetwork.Blazor.Network.html#VisNetwork_Blazor_Network_OnStartStabilizing_
+  commentId: Overload:VisNetwork.Blazor.Network.OnStartStabilizing
+  isSpec: "True"
+  fullName: VisNetwork.Blazor.Network.OnStartStabilizing
+  nameWithType: Network.OnStartStabilizing
 - uid: VisNetwork.Blazor.Network.Options
   name: Options
   href: api/VisNetwork.Blazor.Network.html#VisNetwork_Blazor_Network_Options
