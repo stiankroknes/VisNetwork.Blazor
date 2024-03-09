@@ -9,7 +9,8 @@ using VisNetwork.Blazor.Models;
 #nullable disable
 namespace VisNetwork.Blazor;
 
-public partial class Network : IAsyncDisposable {
+public partial class Network : IAsyncDisposable
+{
     private readonly DotNetObjectReference<Network> thisReference;
     private ElementReference element;
     private bool firstRenderComplete;
@@ -99,6 +100,32 @@ public partial class Network : IAsyncDisposable {
 
 #pragma warning disable S1135 // Track uses of "TODO" tags
     // Events triggered the physics simulation. Can be used to trigger GUI updates.
+
+    /// <summary>
+    /// Fired when stabilization starts. 
+    /// This is also the case when you drag a node and the physics simulation restarts to stabilize again.
+    /// Stabilization does not necessarily imply 'without showing'. 
+    /// </summary>
+    [Parameter] public EventCallback OnStartStabilizing { get; set; }
+
+    /// <summary>
+    /// Fired when a multiple of the updateInterval number of iterations is reached. This only occurs in the 'hidden' stabilization.
+    /// </summary>
+    [Parameter] public EventCallback<StabilizationProgressEvent> OnStabilizationProgress { get; set; }
+
+    /// <summary>
+    /// Fired when the 'hidden' stabilization finishes. 
+    /// This does not necessarily mean the network is stabilized;
+    /// it could also mean that the amount of iterations defined in the options has been reached. 
+    /// </summary>
+    [Parameter] public EventCallback OnStabilizationIterationsDone { get; set; }
+
+    /// <summary>
+    /// Fired when the network has stabilized or when the stopSimulation() has been called. 
+    /// The amount of iterations it took could be used to tweak the maximum amount of iterations needed to stabilize the network. 
+    /// </summary>
+    [Parameter] public EventCallback<StabilizedEvent> OnStabilized { get; set; }
+
     // TODO
 
     // Event triggered by the canvas.
@@ -127,34 +154,43 @@ public partial class Network : IAsyncDisposable {
     [Parameter]
     public EventCallback SetupCompletedCallback { get; set; }
 
-    public Network() {
+    public Network()
+    {
         thisReference = DotNetObjectReference.Create(this);
     }
 
-    async ValueTask IAsyncDisposable.DisposeAsync() {
-        if (firstRenderComplete) {
+    async ValueTask IAsyncDisposable.DisposeAsync()
+    {
+        if (firstRenderComplete)
+        {
             var task = JS.Destroy(element);
 
             thisReference?.Dispose();
 
-            try {
+            try
+            {
                 await task;
             }
-            catch when (task.IsCanceled) {
+            catch when (task.IsCanceled)
+            {
                 // ignored
             }
-            catch (JSDisconnectedException) {
+            catch (JSDisconnectedException)
+            {
                 // ignored
             }
         }
     }
 
-    protected override async Task OnParametersSetAsync() {
-        if (string.IsNullOrWhiteSpace(Id)) {
+    protected override async Task OnParametersSetAsync()
+    {
+        if (string.IsNullOrWhiteSpace(Id))
+        {
             Id = $"blazor-network-{Guid.NewGuid()}";
         }
 
-        if (firstRenderComplete && currentData != Data) {
+        if (firstRenderComplete && currentData != Data)
+        {
             await JS.SetData(element, thisReference, Data);
         }
 
@@ -162,8 +198,10 @@ public partial class Network : IAsyncDisposable {
         await base.OnParametersSetAsync();
     }
 
-    protected override async Task OnAfterRenderAsync(bool firstRender) {
-        if (firstRender) {
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
             var options = Options?.Invoke(this);
             options ??= new NetworkOptions();
 
@@ -174,73 +212,118 @@ public partial class Network : IAsyncDisposable {
         }
     }
 
-    internal async Task SetEventListeners() {
-        if (OnClick.HasDelegate) {
+    internal async Task SetEventListeners()
+    {
+        if (OnClick.HasDelegate)
+        {
             await JS.SetEventListener(element, thisReference, "click");
         }
-        if (OnDoubleClick.HasDelegate) {
+        if (OnDoubleClick.HasDelegate)
+        {
             await JS.SetEventListener(element, thisReference, "doubleClick");
         }
-        if (OnContext.HasDelegate) {
+        if (OnContext.HasDelegate)
+        {
             await JS.SetEventListener(element, thisReference, "oncontext");
         }
-        if (OnHold.HasDelegate) {
+        if (OnHold.HasDelegate)
+        {
             await JS.SetEventListener(element, thisReference, "hold");
         }
-        if (OnRelease.HasDelegate) {
+        if (OnRelease.HasDelegate)
+        {
             await JS.SetEventListener(element, thisReference, "release");
         }
-        if (OnSelect.HasDelegate) {
+        if (OnSelect.HasDelegate)
+        {
             await JS.SetEventListener(element, thisReference, "select");
         }
-        if (OnSelectNode.HasDelegate) {
+        if (OnSelectNode.HasDelegate)
+        {
             await JS.SetEventListener(element, thisReference, "selectNode");
         }
-        if (OnDeselectNode.HasDelegate) {
+        if (OnDeselectNode.HasDelegate)
+        {
             await JS.SetEventListener(element, thisReference, "deselectNode");
         }
-        if (OnSelectEdge.HasDelegate) {
+        if (OnSelectEdge.HasDelegate)
+        {
             await JS.SetEventListener(element, thisReference, "selectEdge");
         }
-        if (OnDeselectEdge.HasDelegate) {
+        if (OnDeselectEdge.HasDelegate)
+        {
             await JS.SetEventListener(element, thisReference, "deselectEdge");
         }
-        if (OnShowPopup.HasDelegate) {
+        if (OnShowPopup.HasDelegate)
+        {
             await JS.SetEventListener(element, thisReference, "showPopup");
         }
-        if (OnHidePopup.HasDelegate) {
+        if (OnHidePopup.HasDelegate)
+        {
             await JS.SetEventListener(element, thisReference, "hidePopup");
         }
 
+        // Events triggered the physics simulation.
+        if (OnStartStabilizing.HasDelegate)
+        {
+            await JS.SetEventListener(element, thisReference, "startStabilizing");
+        }
+        if (OnStabilizationProgress.HasDelegate)
+        {
+            await JS.SetEventListener(element, thisReference, "stabilizationProgress");
+        }
+        if (OnStabilizationIterationsDone.HasDelegate)
+        {
+            await JS.SetEventListener(element, thisReference, "stabilizationIterationsDone");
+        }
+        if (OnStabilized.HasDelegate)
+        {
+            await JS.SetEventListener(element, thisReference, "stabilized");
+        }
+
         // Rendering
-        if (OnBeforeDrawing.HasDelegate) {
+        if (OnBeforeDrawing.HasDelegate)
+        {
             await JS.SetEventListener(element, thisReference, "beforeDrawing");
         }
 
-        if (OnAfterDrawing.HasDelegate) {
+        if (OnAfterDrawing.HasDelegate)
+        {
             await JS.SetEventListener(element, thisReference, "afterDrawing");
         }
     }
 
-    [JSInvokable]
-    public async Task EventCallback(string eventName, string eventJson) {
-        var jsonOptions = new JsonSerializerOptions { PropertyNamingPolicy = JsonNamingPolicy.CamelCase };
+    private static readonly JsonSerializerOptions EventJsonOptions = new()
+    {
+        PropertyNamingPolicy = JsonNamingPolicy.CamelCase
+    };
 
-        var eventTask = eventName switch {
-            "click" => OnClick.InvokeAsync(JsonSerializer.Deserialize<ClickEvent>(eventJson, jsonOptions)),
-            "doubleClick" => OnDoubleClick.InvokeAsync(JsonSerializer.Deserialize<ClickEvent>(eventJson, jsonOptions)),
-            "oncontext" => OnContext.InvokeAsync(JsonSerializer.Deserialize<ClickEvent>(eventJson, jsonOptions)),
-            "hold" => OnHold.InvokeAsync(JsonSerializer.Deserialize<ClickEvent>(eventJson, jsonOptions)),
-            "release" => OnRelease.InvokeAsync(JsonSerializer.Deserialize<ClickEvent>(eventJson, jsonOptions)),
-            "select" => OnSelect.InvokeAsync(JsonSerializer.Deserialize<ClickEvent>(eventJson, jsonOptions)),
-            "selectNode" => OnSelectNode.InvokeAsync(JsonSerializer.Deserialize<ClickEvent>(eventJson, jsonOptions)),
-            "deselectNode" => OnDeselectNode.InvokeAsync(JsonSerializer.Deserialize<DeselectClickEvent>(eventJson, jsonOptions)),
-            "selectEdge" => OnSelectEdge.InvokeAsync(JsonSerializer.Deserialize<ClickEvent>(eventJson, jsonOptions)),
-            "deselectEdge" => OnDeselectEdge.InvokeAsync(JsonSerializer.Deserialize<DeselectClickEvent>(eventJson, jsonOptions)),
+    [JSInvokable]
+    public async Task EventCallback(string eventName, string eventJson)
+    {
+        var eventTask = eventName switch
+        {
+            "click" => OnClick.InvokeAsync(JsonSerializer.Deserialize<ClickEvent>(eventJson, EventJsonOptions)),
+            "doubleClick" => OnDoubleClick.InvokeAsync(JsonSerializer.Deserialize<ClickEvent>(eventJson, EventJsonOptions)),
+            "oncontext" => OnContext.InvokeAsync(JsonSerializer.Deserialize<ClickEvent>(eventJson, EventJsonOptions)),
+            "hold" => OnHold.InvokeAsync(JsonSerializer.Deserialize<ClickEvent>(eventJson, EventJsonOptions)),
+            "release" => OnRelease.InvokeAsync(JsonSerializer.Deserialize<ClickEvent>(eventJson, EventJsonOptions)),
+            "select" => OnSelect.InvokeAsync(JsonSerializer.Deserialize<ClickEvent>(eventJson, EventJsonOptions)),
+            "selectNode" => OnSelectNode.InvokeAsync(JsonSerializer.Deserialize<ClickEvent>(eventJson, EventJsonOptions)),
+            "deselectNode" => OnDeselectNode.InvokeAsync(JsonSerializer.Deserialize<DeselectClickEvent>(eventJson, EventJsonOptions)),
+            "selectEdge" => OnSelectEdge.InvokeAsync(JsonSerializer.Deserialize<ClickEvent>(eventJson, EventJsonOptions)),
+            "deselectEdge" => OnDeselectEdge.InvokeAsync(JsonSerializer.Deserialize<DeselectClickEvent>(eventJson, EventJsonOptions)),
             "showPopup" => OnShowPopup.InvokeAsync(eventJson),
             "hidePopup" => OnHidePopup.InvokeAsync(eventJson),
-            "beforeDrawing" => OnBeforeDrawing.InvokeAsync(JsonSerializer.Deserialize<DrawingEvent>(eventJson, jsonOptions)),
-            "afterDrawing" => OnAfterDrawing.InvokeAsync(JsonSerializer.Deserialize<DrawingEvent>(eventJson, jsonOptions)),
+            "beforeDrawing" => OnBeforeDrawing.InvokeAsync(JsonSerializer.Deserialize<DrawingEvent>(eventJson, EventJsonOptions)),
+            "afterDrawing" => OnAfterDrawing.InvokeAsync(JsonSerializer.Deserialize<DrawingEvent>(eventJson, EventJsonOptions)),
+
+            // Physics
+            "startStabilizing" => OnStartStabilizing.InvokeAsync(),
+            "stabilizationProgress" => OnStabilizationProgress.InvokeAsync(JsonSerializer.Deserialize<StabilizationProgressEvent>(eventJson, EventJsonOptions)),
+            "stabilizationIterationsDone" => OnStabilizationIterationsDone.InvokeAsync(),
+            "stabilized" => OnStabilized.InvokeAsync(JsonSerializer.Deserialize<StabilizedEvent>(eventJson, EventJsonOptions)),
+
             _ => Task.CompletedTask
         };
 
