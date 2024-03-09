@@ -6,11 +6,14 @@
 <h1>Events</h1>
 
 <div>
-    <Network Id="my-network" Data="@data" OnClick="NetworkOnClick" OnDoubleClick="NetworkOnDoubleClick"
+    <Network Id="my-network" Data="@data" Options="EditorConstructionOptions"
+             OnClick="NetworkOnClick" OnDoubleClick="NetworkOnDoubleClick"
              OnContext="NetworkOnContext" OnHold="NetworkOnHold" OnRelease="NetworkOnRelease" OnSelect="NetworkOnSelect"
              OnBeforeDrawing="NetworkBeforeDrawing" OnAfterDrawing="NetworkAfterDrawing" OnSelectEdge="NetworkSelectEdge"
              OnDeselectEdge="NetworkDeselectEdge" OnSelectNode="NetworkSelectNode" OnDeselectNode="NetworkDeselectNode"
-             OnShowPopup="NetworkShowPopup" OnHidePopup="NetworkHidePopup"
+             OnShowPopup="NetworkShowPopup" OnHidePopup="NetworkHidePopup" OnStartStabilizing="StartStabilizing"
+             OnStabilizationProgress="StabilizationProgress" OnStabilizationIterationsDone="StabilizationIterationsDone"
+             OnStabilized="Stabilized"
              class="vis-network-container" />
 </div>
 
@@ -57,6 +60,23 @@
             {
                 Edges = edges,
                 Nodes = nodes
+            };
+    }
+
+    private NetworkOptions EditorConstructionOptions(Network network)
+    {
+        return new NetworkOptions
+            {
+                AutoResize = true,
+                Physics = new PhysicsOptions
+                {
+                    Stabilization = new StabilizationOption()
+                    {
+                        Enabled = true,
+                        UpdateInterval = 5,
+
+                    }
+                }
             };
     }
 
@@ -119,6 +139,14 @@
     private async Task NetworkShowPopup(string id) => await AddEventDataAsync("showPopup", id);
 
     private async Task NetworkHidePopup(string id) => await AddEventDataAsync("hidePopup", id);
+
+    private async Task StartStabilizing() => await AddEventDataAsync("startStabilizing", default);
+
+    private void StabilizationProgress(StabilizationProgressEvent eventArg) => AddEvent("stabilizationProgress", eventArg);
+
+    private async Task StabilizationIterationsDone() => await AddEventDataAsync("stabilizationIterationsDone", default);
+
+    private void Stabilized(StabilizedEvent eventArg) => AddEvent("stabilized", eventArg);
 
     private static string SerializeArgs<T>(T instance)
     {

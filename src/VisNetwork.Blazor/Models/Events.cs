@@ -81,4 +81,26 @@ public class DrawingEvent
     public string CanvasDataUrl { get; set; }
 }
 
+public class StabilizationProgressEvent
+{
+    /// <summary>
+    /// Iterations so far.
+    /// </summary>
+    public int Iterations { get; set; }
+
+    /// <summary>
+    /// Total iterations in options.
+    /// </summary>
+    public int Total { get; set; }
+}
+
+
+public class StabilizedEvent
+{
+    /// <summary>
+    /// Iterations it took.
+    /// </summary>
+    public int Iterations { get; set; }
+}
+
 #nullable enable
