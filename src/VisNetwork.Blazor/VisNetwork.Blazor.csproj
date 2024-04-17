@@ -21,6 +21,8 @@
 		<EmbedUntrackedSources>true</EmbedUntrackedSources>
 		<Deterministic>true</Deterministic>
 		<ContinuousIntegrationBuild Condition="'$(GITHUB_ACTIONS)' == 'true'">true</ContinuousIntegrationBuild>
+
+		<PackageId>VisNetwork.Blazor.Fsd</PackageId>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(TargetFramework)' == 'net6.0'">
@@ -38,7 +40,7 @@
 	<ItemGroup>
 		<None Include="..\..\README.md" Pack="true" PackagePath="\" />
 	</ItemGroup>
-	
+
 	<ItemGroup>
 		<SupportedPlatform Include="browser" />
 		<Content Update="StaticAssets\*" Pack="false" />
@@ -72,7 +74,7 @@
 		<PackageReference Include="Microsoft.AspNetCore.Components" Version="8.0.*" />
 		<PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="8.0.*" />
 	</ItemGroup>
-	
+
 	<ItemGroup Condition="'$(TargetFramework)' == 'net7.0'">
 		<PackageReference Include="Microsoft.AspNetCore.Components" Version="7.0.*" />
 		<PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="7.0.*" />
