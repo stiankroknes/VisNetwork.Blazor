@@ -8,19 +8,21 @@ internal partial class JSModule : IAsyncDisposable
 {
     private readonly IJSRuntime jsRuntime;
     private readonly IVersionProvider versionProvider;
+    private readonly IJsFilePathProvider jsFilePathProvider;
 
     private Task<IJSObjectReference>? moduleTask;
     private bool isAsyncDisposed;
 
-    public JSModule(IJSRuntime jsRuntime, IVersionProvider versionProvider)
+    public JSModule(IJSRuntime jsRuntime, IVersionProvider versionProvider, IJsFilePathProvider jsFilePathProvider)
     {
         this.jsRuntime = jsRuntime;
         this.versionProvider = versionProvider;
+        this.jsFilePathProvider = jsFilePathProvider;
     }
 
     private Task<IJSObjectReference> Module => moduleTask ??= jsRuntime.InvokeAsync<IJSObjectReference>("import", ModuleFileName).AsTask();
 
-    public string ModuleFileName => $"./_content/VisNetwork.Blazor/BlazorVisNetwork.js?v={versionProvider.Version}";
+    public string ModuleFileName => $"{jsFilePathProvider.GetJsPath()}?v={versionProvider.Version}";
 
     private async ValueTask InvokeVoidAsync(string identifier, params object[] args)
     {

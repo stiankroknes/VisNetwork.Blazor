@@ -427,7 +427,7 @@ public class NetworkTests : TestContext
     private static BunitJSModuleInterop CreateJSModuleInterop(BunitJSInterop jSInterop)
     {
         var module = jSInterop.SetupModule(
-            new JSModule(jSInterop.JSRuntime, new DummyVersionProvider()).ModuleFileName);
+            new JSModule(jSInterop.JSRuntime, new DummyVersionProvider(), new JsFilePathProvider()).ModuleFileName);
 
         module.SetupVoid("create", _ => true).SetVoidResult();
 
