@@ -22,7 +22,7 @@
 		<Deterministic>true</Deterministic>
 		<ContinuousIntegrationBuild Condition="'$(GITHUB_ACTIONS)' == 'true'">true</ContinuousIntegrationBuild>
 
-		<PackageId>VisNetwork.Blazor.Fsd</PackageId>
+		<PackageId>Fsd.VisNetwork.Blazor</PackageId>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(TargetFramework)' == 'net6.0'">
