@@ -9,7 +9,7 @@ namespace VisNetwork.Blazor
     {
         public string GetJsPath()
         {
-            return "./_content/VisNetwork.Blazor/BlazorVisNetwork.js";
+            return "./_content/Fsd.VisNetwork.Blazor/BlazorVisNetwork.js";
         }
     }
 }
