@@ -1,0 +1,80 @@
+@page "/manipulation"
+
+@using VisNetwork.Blazor.Models
+
+<h1>Manipulation</h1>
+
+<div>
+    <button @onclick="AddNodeClick" aria-label="AddNode">Add Node</button>
+    <button @onclick="AddEdgeClick" aria-label="AddEdge">Add Edge</button>
+    <button @onclick="AddNodeAndEdgeClick" aria-label="AddNodeAndEdge">Add Node and Edge</button>
+</div>
+
+<div>
+    Node Id: <input type="text" @bind="nodeId" @bind:event="oninput" />
+    Node Label: <input type="text" @bind="nodeLabel" @bind:event="oninput" />
+</div>
+
+<div>
+    Edge Id: <input type="text" @bind="edgeId" @bind:event="oninput" />
+    Edge From: <input type="text" @bind="edgeFrom" @bind:event="oninput" />
+    Edge To: <input type="text" @bind="edgeTo" @bind:event="oninput" />
+</div>
+
+<div>
+    <Network @ref="network" Id="my-id" Data="@data" class="vis-network-container" />
+</div>
+
+@code {
+    private Network network;
+    private NetworkData data;
+    private string nodeLabel = "new node";
+    private string nodeId = "newNode1";
+    private string edgeId = "newEdge1";
+    private string edgeFrom = "newNode1";
+    private string edgeTo = "1";
+    
+    private async Task AddNodeClick()
+    {
+        await network.AddNode(new Node
+        {
+            Id = nodeId,
+            Label = nodeLabel
+        });
+    }
+    
+    private async Task AddEdgeClick()
+    {
+        await network.AddEdge(new Edge
+        {
+            Id = edgeId,
+            From = edgeFrom,
+            To = edgeTo
+        });
+    }
+    
+    private async Task AddNodeAndEdgeClick()
+    {
+        await AddNodeClick();
+        await AddEdgeClick();
+    }
+
+    public Manipulation()
+    {
+        var nodes = new List<Node>();
+        var edges = new List<Edge>();
+
+        nodes.Add(new Node("1", "Node 1", 1, "circle"));
+        nodes.Add(new Node("2", "Node 2", 2, "ellipse"));
+        edges.Add(new Edge("1", "2") { Id = "1-2" });
+        nodes.Add(new Node("3", "Node 3", 4, "database"));
+        edges.Add(new Edge("2", "3") { Id = "2-3" });
+
+        data = new NetworkData
+            {
+                Edges = edges,
+                Nodes = nodes
+            };
+    }
+
+}

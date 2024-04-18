@@ -5,6 +5,7 @@ import {
     Network, NetworkEvents,
     SelectionOptions, IdType, Options, Data, parseDOTNetwork
 } from "vis-network/standalone";
+import {Edge} from "vis-network/declarations/network/Network";
 
 type DotNetObjectReference = any;
 
@@ -226,4 +227,20 @@ export function populateDotNetwork(element: HTMLElement, dot: string): any {
     //console.log('VisNetwork.Blazor: [parseDotNetwork json]', json);
     //return json;
     //return parsedData;
+}
+
+export function addNode(element: HTMLElement, node: Node) {
+    console.log('VisNetwork.Blazor: [addNode] ', node);
+    const currentNetwork: Network = getNetworkById(element.id);
+    
+    // @ts-ignore
+    currentNetwork.body.data.nodes.getDataSet().add(node);
+}
+
+export function addEdge(element: HTMLElement, edge: Edge) {
+    console.log('VisNetwork.Blazor: [addEdge] ', edge);
+    const currentNetwork: Network = getNetworkById(element.id);
+
+    // @ts-ignore
+    currentNetwork.body.data.edges.getDataSet().add(edge);
 }
