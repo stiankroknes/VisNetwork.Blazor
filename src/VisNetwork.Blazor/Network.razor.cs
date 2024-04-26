@@ -373,10 +373,14 @@ public partial class Network : IAsyncDisposable
     public async Task ParseDOTNetwork(string dotString) =>
         await JS.ParseDOTNetwork(element, dotString);
     
+    // Manipulation
     public async Task AddNode(Node node) =>
         await JS.AddNode(element, thisReference, node);
     
     public async Task AddEdge(Edge edge) =>
         await JS.AddEdge(element, thisReference, edge);
+    
+    public async Task UpdateNode(Node node) =>
+        await JS.UpdateNode(element, thisReference, node);
 }
 #nullable enable

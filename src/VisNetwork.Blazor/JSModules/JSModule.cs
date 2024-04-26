@@ -38,6 +38,7 @@ internal interface IJSModule
     // Manipulation
     ValueTask<NodeEdgeComposite> AddNode(ElementReference element, DotNetObjectReference<Network> component, Node node);
     ValueTask<NodeEdgeComposite> AddEdge(ElementReference element, DotNetObjectReference<Network> component, Edge edge);
+    ValueTask<NodeEdgeComposite> UpdateNode(ElementReference element, DotNetObjectReference<Network> component, Node node);
 }
 
 internal partial class JSModule : IJSModule
@@ -104,11 +105,15 @@ internal partial class JSModule : IJSModule
     public ValueTask ParseDOTNetwork(ElementReference element, string dotString) =>
       InvokeVoidAsync("populateDotNetwork", element, dotString);
 
+    // Manipulation
     public ValueTask<NodeEdgeComposite> AddNode(ElementReference element, DotNetObjectReference<Network> component, Node node) => 
         InvokeAsync<NodeEdgeComposite>("addNode", element, SerializeIgnoreNull(node));
     
     public ValueTask<NodeEdgeComposite> AddEdge(ElementReference element, DotNetObjectReference<Network> component, Edge edge) => 
         InvokeAsync<NodeEdgeComposite>("addEdge", element, SerializeIgnoreNull(edge));
+    
+    public ValueTask<NodeEdgeComposite> UpdateNode(ElementReference element, DotNetObjectReference<Network> component, Node node) => 
+        InvokeAsync<NodeEdgeComposite>("updateNode", element, SerializeIgnoreNull(node));
 
     private static readonly JsonSerializerOptions JsonSerializerOptions = new()
     {

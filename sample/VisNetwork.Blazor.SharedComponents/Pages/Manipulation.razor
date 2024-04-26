@@ -11,6 +11,10 @@
 </div>
 
 <div>
+    <button @onclick="UpdateNodeClick" aria-label="UpdateNode">Update Node</button>
+</div>
+
+<div>
     Node Id: <input type="text" @bind="nodeId" @bind:event="oninput" />
     Node Label: <input type="text" @bind="nodeLabel" @bind:event="oninput" />
 </div>
@@ -57,6 +61,15 @@
     {
         await AddNodeClick();
         await AddEdgeClick();
+    }
+    
+    private async Task UpdateNodeClick()
+    {
+        await network.UpdateNode(new Node
+        {
+            Id = nodeId,
+            Label = nodeLabel
+        });
     }
 
     public Manipulation()

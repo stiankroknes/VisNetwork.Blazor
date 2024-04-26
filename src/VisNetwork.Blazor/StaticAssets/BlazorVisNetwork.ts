@@ -229,6 +229,8 @@ export function populateDotNetwork(element: HTMLElement, dot: string): any {
     //return parsedData;
 }
 
+// Modification
+
 export function addNode(element: HTMLElement, node: Node) {
     console.log('VisNetwork.Blazor: [addNode] ', node);
     const currentNetwork: Network = getNetworkById(element.id);
@@ -243,4 +245,12 @@ export function addEdge(element: HTMLElement, edge: Edge) {
 
     // @ts-ignore
     currentNetwork.body.data.edges.getDataSet().add(edge);
+}
+
+export function updateNode(element: HTMLElement, node: Node) {
+    console.log('VisNetwork.Blazor: [updateNode] ', node);
+    const currentNetwork: Network = getNetworkById(element.id);
+
+    // @ts-ignore
+    currentNetwork.body.data.nodes.getDataSet().update(node);
 }
