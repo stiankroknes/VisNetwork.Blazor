@@ -12,6 +12,7 @@
 
 <div>
     <button @onclick="UpdateNodeClick" aria-label="UpdateNode">Update Node</button>
+    <button @onclick="UpdateEdgeClick" aria-label="UpdateEdge">Update Edge</button>
 </div>
 
 <div>
@@ -69,6 +70,16 @@
         {
             Id = nodeId,
             Label = nodeLabel
+        });
+    }
+    
+    private async Task UpdateEdgeClick()
+    {
+        await network.UpdateEdge(new Edge
+        {
+            Id = edgeId,
+            From = edgeFrom,
+            To = edgeTo
         });
     }
 

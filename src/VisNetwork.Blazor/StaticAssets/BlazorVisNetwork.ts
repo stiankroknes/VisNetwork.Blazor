@@ -254,3 +254,11 @@ export function updateNode(element: HTMLElement, node: Node) {
     // @ts-ignore
     currentNetwork.body.data.nodes.getDataSet().update(node);
 }
+
+export function updateEdge(element: HTMLElement, edge: Edge) {
+    console.log('VisNetwork.Blazor: [updateEdge] ', edge);
+    const currentNetwork: Network = getNetworkById(element.id);
+
+    // @ts-ignore
+    currentNetwork.body.data.edges.getDataSet().update(edge);
+}
