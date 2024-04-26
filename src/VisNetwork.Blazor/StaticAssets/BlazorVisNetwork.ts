@@ -270,3 +270,11 @@ export function removeNode(element: HTMLElement, node: Node) {
     // @ts-ignore
     currentNetwork.body.data.nodes.getDataSet().remove(node);
 }
+
+export function removeEdge(element: HTMLElement, edge: Edge) {
+    console.log('VisNetwork.Blazor: [removeEdge] ', edge);
+    const currentNetwork: Network = getNetworkById(element.id);
+
+    // @ts-ignore
+    currentNetwork.body.data.edges.getDataSet().remove(edge);
+}
