@@ -385,5 +385,8 @@ public partial class Network : IAsyncDisposable
     
     public async Task UpdateEdge(Edge edge) =>
         await JS.UpdateEdge(element, thisReference, edge);
+    
+    public async Task RemoveNode(Node node) =>
+        await JS.RemoveNode(element, thisReference, node);
 }
 #nullable enable
