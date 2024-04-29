@@ -391,5 +391,9 @@ public partial class Network : IAsyncDisposable
     
     public async Task RemoveEdge(Edge edge) =>
         await JS.RemoveEdge(element, thisReference, edge);
+    
+    // Information
+    public async Task<NodePositions> GetNodePositions(string[] nodeIds) =>
+        await JS.GetNodePositions(element, thisReference, nodeIds);
 }
 #nullable enable

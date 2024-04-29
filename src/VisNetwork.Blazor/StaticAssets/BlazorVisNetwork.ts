@@ -5,7 +5,7 @@ import {
     Network, NetworkEvents,
     SelectionOptions, IdType, Options, Data, parseDOTNetwork
 } from "vis-network/standalone";
-import {Edge} from "vis-network/declarations/network/Network";
+import {Edge, Position} from "vis-network/declarations/network/Network";
 
 type DotNetObjectReference = any;
 
@@ -266,7 +266,7 @@ export function updateEdge(element: HTMLElement, edge: Edge) {
 export function removeNode(element: HTMLElement, node: Node) {
     console.log('VisNetwork.Blazor: [removeNode] ', node);
     const currentNetwork: Network = getNetworkById(element.id);
-
+    
     // @ts-ignore
     currentNetwork.body.data.nodes.getDataSet().remove(node);
 }
@@ -277,4 +277,13 @@ export function removeEdge(element: HTMLElement, edge: Edge) {
 
     // @ts-ignore
     currentNetwork.body.data.edges.getDataSet().remove(edge);
+}
+
+// Information
+
+export function getNodePositions(element: HTMLElement, nodeIds: string[]) : { [nodeId: string]: Position } {
+    console.log('VisNetwork.Blazor: [getNodePositions] ', nodeIds);
+    const currentNetwork: Network = getNetworkById(element.id);
+
+    return currentNetwork.getPositions(nodeIds);
 }

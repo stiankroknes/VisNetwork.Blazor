@@ -43519,6 +43519,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   clusterOutliers: () => (/* binding */ clusterOutliers),
 /* harmony export */   create: () => (/* binding */ create),
 /* harmony export */   destroy: () => (/* binding */ destroy),
+/* harmony export */   getNodePositions: () => (/* binding */ getNodePositions),
 /* harmony export */   getSelectedEdges: () => (/* binding */ getSelectedEdges),
 /* harmony export */   getSelectedNodes: () => (/* binding */ getSelectedNodes),
 /* harmony export */   getSelection: () => (/* binding */ getSelection),
@@ -43729,6 +43730,11 @@ function removeEdge(element, edge) {
     var currentNetwork = getNetworkById(element.id);
     currentNetwork.body.data.edges.getDataSet().remove(edge);
 }
+function getNodePositions(element, nodeIds) {
+    console.log('VisNetwork.Blazor: [getNodePositions] ', nodeIds);
+    var currentNetwork = getNetworkById(element.id);
+    return currentNetwork.getPositions(nodeIds);
+}
 
 })();
 
@@ -43737,6 +43743,7 @@ var __webpack_exports__addNode = __webpack_exports__.addNode;
 var __webpack_exports__clusterOutliers = __webpack_exports__.clusterOutliers;
 var __webpack_exports__create = __webpack_exports__.create;
 var __webpack_exports__destroy = __webpack_exports__.destroy;
+var __webpack_exports__getNodePositions = __webpack_exports__.getNodePositions;
 var __webpack_exports__getSelectedEdges = __webpack_exports__.getSelectedEdges;
 var __webpack_exports__getSelectedNodes = __webpack_exports__.getSelectedNodes;
 var __webpack_exports__getSelection = __webpack_exports__.getSelection;
@@ -43755,6 +43762,6 @@ var __webpack_exports__setSize = __webpack_exports__.setSize;
 var __webpack_exports__unselectAll = __webpack_exports__.unselectAll;
 var __webpack_exports__updateEdge = __webpack_exports__.updateEdge;
 var __webpack_exports__updateNode = __webpack_exports__.updateNode;
-export { __webpack_exports__addEdge as addEdge, __webpack_exports__addNode as addNode, __webpack_exports__clusterOutliers as clusterOutliers, __webpack_exports__create as create, __webpack_exports__destroy as destroy, __webpack_exports__getSelectedEdges as getSelectedEdges, __webpack_exports__getSelectedNodes as getSelectedNodes, __webpack_exports__getSelection as getSelection, __webpack_exports__off as off, __webpack_exports__on as on, __webpack_exports__populateDotNetwork as populateDotNetwork, __webpack_exports__redraw as redraw, __webpack_exports__removeEdge as removeEdge, __webpack_exports__removeNode as removeNode, __webpack_exports__selectEdges as selectEdges, __webpack_exports__selectNodes as selectNodes, __webpack_exports__setData as setData, __webpack_exports__setOptions as setOptions, __webpack_exports__setSelection as setSelection, __webpack_exports__setSize as setSize, __webpack_exports__unselectAll as unselectAll, __webpack_exports__updateEdge as updateEdge, __webpack_exports__updateNode as updateNode };
+export { __webpack_exports__addEdge as addEdge, __webpack_exports__addNode as addNode, __webpack_exports__clusterOutliers as clusterOutliers, __webpack_exports__create as create, __webpack_exports__destroy as destroy, __webpack_exports__getNodePositions as getNodePositions, __webpack_exports__getSelectedEdges as getSelectedEdges, __webpack_exports__getSelectedNodes as getSelectedNodes, __webpack_exports__getSelection as getSelection, __webpack_exports__off as off, __webpack_exports__on as on, __webpack_exports__populateDotNetwork as populateDotNetwork, __webpack_exports__redraw as redraw, __webpack_exports__removeEdge as removeEdge, __webpack_exports__removeNode as removeNode, __webpack_exports__selectEdges as selectEdges, __webpack_exports__selectNodes as selectNodes, __webpack_exports__setData as setData, __webpack_exports__setOptions as setOptions, __webpack_exports__setSelection as setSelection, __webpack_exports__setSize as setSize, __webpack_exports__unselectAll as unselectAll, __webpack_exports__updateEdge as updateEdge, __webpack_exports__updateNode as updateNode };
 
 //# sourceMappingURL=BlazorVisNetwork.js.map

@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Components;
+﻿using System.Collections.Generic;
+using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
 using System.Text.Json;
 using System.Text.Json.Serialization;
@@ -42,6 +43,7 @@ internal interface IJSModule
     ValueTask<NodeEdgeComposite> UpdateEdge(ElementReference element, DotNetObjectReference<Network> component, Edge edge);
     ValueTask<NodeEdgeComposite> RemoveNode(ElementReference element, DotNetObjectReference<Network> component, Node node);
     ValueTask<NodeEdgeComposite> RemoveEdge(ElementReference element, DotNetObjectReference<Network> component, Edge edge);
+    ValueTask<NodePositions> GetNodePositions(ElementReference element, DotNetObjectReference<Network> component, string[] nodeIds);
 }
 
 internal partial class JSModule : IJSModule
@@ -126,6 +128,16 @@ internal partial class JSModule : IJSModule
     
     public ValueTask<NodeEdgeComposite> RemoveEdge(ElementReference element, DotNetObjectReference<Network> component, Edge edge) => 
         InvokeAsync<NodeEdgeComposite>("removeEdge", element, SerializeIgnoreNull(edge));
+    
+    // Information
+    public async ValueTask<NodePositions> GetNodePositions(ElementReference element, DotNetObjectReference<Network> component, string[] nodeIds)
+    {
+        var nodePositionsDict = await InvokeAsync<Dictionary<string, Position>>("getNodePositions", element, nodeIds);
+        return new NodePositions
+        {
+            Positions = nodePositionsDict
+        };
+    }
 
     private static readonly JsonSerializerOptions JsonSerializerOptions = new()
     {
