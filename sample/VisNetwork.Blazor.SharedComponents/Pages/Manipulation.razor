@@ -66,16 +66,16 @@
     
     private async Task UpdateNodeClick()
     {
-        await network.UpdateNode(new Node
+        await network.UpdateNode(new[] {new Node
         {
             Id = nodeId,
             Label = nodeLabel
-        });
+        }});
     }
     
     private async Task UpdateEdgeClick()
     {
-        await network.UpdateEdge(new Edge
+        await network.UpdateEdge(new[] {new Edge
         {
             Id = edgeId,
             From = edgeFrom,

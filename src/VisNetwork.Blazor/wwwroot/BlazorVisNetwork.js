@@ -43537,7 +43537,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   setSize: () => (/* binding */ setSize),
 /* harmony export */   unselectAll: () => (/* binding */ unselectAll),
 /* harmony export */   updateEdge: () => (/* binding */ updateEdge),
-/* harmony export */   updateNode: () => (/* binding */ updateNode)
+/* harmony export */   updateEdges: () => (/* binding */ updateEdges),
+/* harmony export */   updateNode: () => (/* binding */ updateNode),
+/* harmony export */   updateNodes: () => (/* binding */ updateNodes)
 /* harmony export */ });
 /* harmony import */ var vis_network_standalone__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vis-network/standalone */ "./node_modules/vis-network/standalone/index.js");
 
@@ -43715,10 +43717,20 @@ function updateNode(element, node) {
     var currentNetwork = getNetworkById(element.id);
     currentNetwork.body.data.nodes.getDataSet().update(node);
 }
+function updateNodes(element, nodes) {
+    console.log('VisNetwork.Blazor: [updateNode] ', nodes);
+    var currentNetwork = getNetworkById(element.id);
+    currentNetwork.body.data.nodes.getDataSet().update(nodes);
+}
 function updateEdge(element, edge) {
     console.log('VisNetwork.Blazor: [updateEdge] ', edge);
     var currentNetwork = getNetworkById(element.id);
     currentNetwork.body.data.edges.getDataSet().update(edge);
+}
+function updateEdges(element, edges) {
+    console.log('VisNetwork.Blazor: [updateEdge] ', edges);
+    var currentNetwork = getNetworkById(element.id);
+    currentNetwork.body.data.edges.getDataSet().update(edges);
 }
 function removeNode(element, node) {
     console.log('VisNetwork.Blazor: [removeNode] ', node);
@@ -43761,7 +43773,9 @@ var __webpack_exports__setSelection = __webpack_exports__.setSelection;
 var __webpack_exports__setSize = __webpack_exports__.setSize;
 var __webpack_exports__unselectAll = __webpack_exports__.unselectAll;
 var __webpack_exports__updateEdge = __webpack_exports__.updateEdge;
+var __webpack_exports__updateEdges = __webpack_exports__.updateEdges;
 var __webpack_exports__updateNode = __webpack_exports__.updateNode;
-export { __webpack_exports__addEdge as addEdge, __webpack_exports__addNode as addNode, __webpack_exports__clusterOutliers as clusterOutliers, __webpack_exports__create as create, __webpack_exports__destroy as destroy, __webpack_exports__getNodePositions as getNodePositions, __webpack_exports__getSelectedEdges as getSelectedEdges, __webpack_exports__getSelectedNodes as getSelectedNodes, __webpack_exports__getSelection as getSelection, __webpack_exports__off as off, __webpack_exports__on as on, __webpack_exports__populateDotNetwork as populateDotNetwork, __webpack_exports__redraw as redraw, __webpack_exports__removeEdge as removeEdge, __webpack_exports__removeNode as removeNode, __webpack_exports__selectEdges as selectEdges, __webpack_exports__selectNodes as selectNodes, __webpack_exports__setData as setData, __webpack_exports__setOptions as setOptions, __webpack_exports__setSelection as setSelection, __webpack_exports__setSize as setSize, __webpack_exports__unselectAll as unselectAll, __webpack_exports__updateEdge as updateEdge, __webpack_exports__updateNode as updateNode };
+var __webpack_exports__updateNodes = __webpack_exports__.updateNodes;
+export { __webpack_exports__addEdge as addEdge, __webpack_exports__addNode as addNode, __webpack_exports__clusterOutliers as clusterOutliers, __webpack_exports__create as create, __webpack_exports__destroy as destroy, __webpack_exports__getNodePositions as getNodePositions, __webpack_exports__getSelectedEdges as getSelectedEdges, __webpack_exports__getSelectedNodes as getSelectedNodes, __webpack_exports__getSelection as getSelection, __webpack_exports__off as off, __webpack_exports__on as on, __webpack_exports__populateDotNetwork as populateDotNetwork, __webpack_exports__redraw as redraw, __webpack_exports__removeEdge as removeEdge, __webpack_exports__removeNode as removeNode, __webpack_exports__selectEdges as selectEdges, __webpack_exports__selectNodes as selectNodes, __webpack_exports__setData as setData, __webpack_exports__setOptions as setOptions, __webpack_exports__setSelection as setSelection, __webpack_exports__setSize as setSize, __webpack_exports__unselectAll as unselectAll, __webpack_exports__updateEdge as updateEdge, __webpack_exports__updateEdges as updateEdges, __webpack_exports__updateNode as updateNode, __webpack_exports__updateNodes as updateNodes };
 
 //# sourceMappingURL=BlazorVisNetwork.js.map

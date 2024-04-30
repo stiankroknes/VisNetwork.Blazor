@@ -8,44 +8,6 @@ using VisNetwork.Blazor.Models;
 
 namespace VisNetwork.Blazor;
 
-internal interface IJSModule
-{
-    // Gloabl
-    ValueTask CreateNetwork(ElementReference element, DotNetObjectReference<Network> component, NetworkOptions options, NetworkData data);
-    ValueTask Destroy(ElementReference element);
-    ValueTask SetSize(ElementReference element, DotNetObjectReference<Network> component, string width, string height);
-    ValueTask SetOptions(ElementReference element, DotNetObjectReference<Network> component, NetworkOptions options);
-    ValueTask SetData(ElementReference element, DotNetObjectReference<Network> component, NetworkData data);
-    ValueTask SetEventListener(ElementReference element, DotNetObjectReference<Network> component, string eventName);
-    ValueTask RemoveEventListener(ElementReference element, DotNetObjectReference<Network> component, string eventName);
-
-    // Canvas
-    ValueTask Redraw(ElementReference element, DotNetObjectReference<Network> component);
-
-    // Clustering
-    ValueTask ClusterOutliers(ElementReference element, DotNetObjectReference<Network> component);
-
-    // Selection
-    ValueTask<string[]> GetSelectedEdges(ElementReference element, DotNetObjectReference<Network> component);
-    ValueTask<string[]> GetSelectedNodes(ElementReference element, DotNetObjectReference<Network> component);
-    ValueTask<NodeEdgeComposite> GetSelection(ElementReference element, DotNetObjectReference<Network> component);
-    ValueTask<string[]> SelectEdges(ElementReference element, DotNetObjectReference<Network> component, string[] edgeIds);
-    ValueTask<string[]> SelectNodes(ElementReference element, DotNetObjectReference<Network> component, string[] nodeIds);
-    ValueTask<NodeEdgeComposite> SetSelection(ElementReference element, DotNetObjectReference<Network> component, NodeEdgeComposite composite);
-    ValueTask<NodeEdgeComposite> UnselectAll(ElementReference element, DotNetObjectReference<Network> component);
-
-    ValueTask ParseDOTNetwork(ElementReference element, string dotString);
-    
-    // Manipulation
-    ValueTask<NodeEdgeComposite> AddNode(ElementReference element, DotNetObjectReference<Network> component, Node node);
-    ValueTask<NodeEdgeComposite> AddEdge(ElementReference element, DotNetObjectReference<Network> component, Edge edge);
-    ValueTask<NodeEdgeComposite> UpdateNode(ElementReference element, DotNetObjectReference<Network> component, Node node);
-    ValueTask<NodeEdgeComposite> UpdateEdge(ElementReference element, DotNetObjectReference<Network> component, Edge edge);
-    ValueTask<NodeEdgeComposite> RemoveNode(ElementReference element, DotNetObjectReference<Network> component, Node node);
-    ValueTask<NodeEdgeComposite> RemoveEdge(ElementReference element, DotNetObjectReference<Network> component, Edge edge);
-    ValueTask<NodePositions> GetNodePositions(ElementReference element, DotNetObjectReference<Network> component, string[] nodeIds);
-}
-
 internal partial class JSModule : IJSModule
 {
     // Gloabl
@@ -108,7 +70,7 @@ internal partial class JSModule : IJSModule
         InvokeAsync<NodeEdgeComposite>("unselectAll", element);
 
     public ValueTask ParseDOTNetwork(ElementReference element, string dotString) =>
-      InvokeVoidAsync("populateDotNetwork", element, dotString);
+        InvokeVoidAsync("populateDotNetwork", element, dotString);
 
     // Manipulation
     public ValueTask<NodeEdgeComposite> AddNode(ElementReference element, DotNetObjectReference<Network> component, Node node) => 
@@ -120,8 +82,14 @@ internal partial class JSModule : IJSModule
     public ValueTask<NodeEdgeComposite> UpdateNode(ElementReference element, DotNetObjectReference<Network> component, Node node) => 
         InvokeAsync<NodeEdgeComposite>("updateNode", element, SerializeIgnoreNull(node));
     
+    public ValueTask<NodeEdgeComposite> UpdateNode(ElementReference element, DotNetObjectReference<Network> component, Node[] nodes) => 
+        InvokeAsync<NodeEdgeComposite>("updateNodes", element, SerializeIgnoreNull(nodes));
+    
     public ValueTask<NodeEdgeComposite> UpdateEdge(ElementReference element, DotNetObjectReference<Network> component, Edge edge) => 
         InvokeAsync<NodeEdgeComposite>("updateEdge", element, SerializeIgnoreNull(edge));
+    
+    public ValueTask<NodeEdgeComposite> UpdateEdge(ElementReference element, DotNetObjectReference<Network> component, Edge[] edges) => 
+        InvokeAsync<NodeEdgeComposite>("updateEdges", element, SerializeIgnoreNull(edges));
     
     public ValueTask<NodeEdgeComposite> RemoveNode(ElementReference element, DotNetObjectReference<Network> component, Node node) => 
         InvokeAsync<NodeEdgeComposite>("removeNode", element, SerializeIgnoreNull(node));
@@ -150,4 +118,44 @@ internal partial class JSModule : IJSModule
         var instanceJson = JsonSerializer.Serialize(instance, JsonSerializerOptions);
         return JsonSerializer.Deserialize<JsonElement>(instanceJson);
     }
+}
+
+internal interface IJSModule
+{
+    // Gloabl
+    ValueTask CreateNetwork(ElementReference element, DotNetObjectReference<Network> component, NetworkOptions options, NetworkData data);
+    ValueTask Destroy(ElementReference element);
+    ValueTask SetSize(ElementReference element, DotNetObjectReference<Network> component, string width, string height);
+    ValueTask SetOptions(ElementReference element, DotNetObjectReference<Network> component, NetworkOptions options);
+    ValueTask SetData(ElementReference element, DotNetObjectReference<Network> component, NetworkData data);
+    ValueTask SetEventListener(ElementReference element, DotNetObjectReference<Network> component, string eventName);
+    ValueTask RemoveEventListener(ElementReference element, DotNetObjectReference<Network> component, string eventName);
+
+    // Canvas
+    ValueTask Redraw(ElementReference element, DotNetObjectReference<Network> component);
+
+    // Clustering
+    ValueTask ClusterOutliers(ElementReference element, DotNetObjectReference<Network> component);
+
+    // Selection
+    ValueTask<string[]> GetSelectedEdges(ElementReference element, DotNetObjectReference<Network> component);
+    ValueTask<string[]> GetSelectedNodes(ElementReference element, DotNetObjectReference<Network> component);
+    ValueTask<NodeEdgeComposite> GetSelection(ElementReference element, DotNetObjectReference<Network> component);
+    ValueTask<string[]> SelectEdges(ElementReference element, DotNetObjectReference<Network> component, string[] edgeIds);
+    ValueTask<string[]> SelectNodes(ElementReference element, DotNetObjectReference<Network> component, string[] nodeIds);
+    ValueTask<NodeEdgeComposite> SetSelection(ElementReference element, DotNetObjectReference<Network> component, NodeEdgeComposite composite);
+    ValueTask<NodeEdgeComposite> UnselectAll(ElementReference element, DotNetObjectReference<Network> component);
+
+    ValueTask ParseDOTNetwork(ElementReference element, string dotString);
+    
+    // Manipulation
+    ValueTask<NodeEdgeComposite> AddNode(ElementReference element, DotNetObjectReference<Network> component, Node node);
+    ValueTask<NodeEdgeComposite> AddEdge(ElementReference element, DotNetObjectReference<Network> component, Edge edge);
+    ValueTask<NodeEdgeComposite> UpdateNode(ElementReference element, DotNetObjectReference<Network> component, Node node);
+    ValueTask<NodeEdgeComposite> UpdateNode(ElementReference element, DotNetObjectReference<Network> component, Node[] nodes);
+    ValueTask<NodeEdgeComposite> UpdateEdge(ElementReference element, DotNetObjectReference<Network> component, Edge edge);
+    ValueTask<NodeEdgeComposite> UpdateEdge(ElementReference element, DotNetObjectReference<Network> component, Edge[] edges);
+    ValueTask<NodeEdgeComposite> RemoveNode(ElementReference element, DotNetObjectReference<Network> component, Node node);
+    ValueTask<NodeEdgeComposite> RemoveEdge(ElementReference element, DotNetObjectReference<Network> component, Edge edge);
+    ValueTask<NodePositions> GetNodePositions(ElementReference element, DotNetObjectReference<Network> component, string[] nodeIds);
 }

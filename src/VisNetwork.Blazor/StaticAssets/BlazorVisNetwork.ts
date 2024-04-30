@@ -255,12 +255,28 @@ export function updateNode(element: HTMLElement, node: Node) {
     currentNetwork.body.data.nodes.getDataSet().update(node);
 }
 
+export function updateNodes(element: HTMLElement, nodes: Node[]) {
+    console.log('VisNetwork.Blazor: [updateNode] ', nodes);
+    const currentNetwork: Network = getNetworkById(element.id);
+
+    // @ts-ignore
+    currentNetwork.body.data.nodes.getDataSet().update(nodes);
+}
+
 export function updateEdge(element: HTMLElement, edge: Edge) {
     console.log('VisNetwork.Blazor: [updateEdge] ', edge);
     const currentNetwork: Network = getNetworkById(element.id);
 
     // @ts-ignore
     currentNetwork.body.data.edges.getDataSet().update(edge);
+}
+
+export function updateEdges(element: HTMLElement, edges: Edge[]) {
+    console.log('VisNetwork.Blazor: [updateEdge] ', edges);
+    const currentNetwork: Network = getNetworkById(element.id);
+
+    // @ts-ignore
+    currentNetwork.body.data.edges.getDataSet().update(edges);
 }
 
 export function removeNode(element: HTMLElement, node: Node) {
