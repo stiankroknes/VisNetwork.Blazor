@@ -9,7 +9,7 @@ using VisNetwork.Blazor.Models;
 #nullable disable
 namespace VisNetwork.Blazor;
 
-public partial class Network : IAsyncDisposable
+public partial class Network : IAsyncDisposable, INetwork
 {
     private readonly DotNetObjectReference<Network> thisReference;
     private ElementReference element;
