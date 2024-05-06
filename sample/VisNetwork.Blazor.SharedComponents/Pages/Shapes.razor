@@ -35,6 +35,14 @@
                 });
             idx++;
         }
+        
+        nodes.Add(new Node(idx.ToString(), $"dashed border cycle {idx}", idx, "circle")
+        {
+            ShapeProperties = new NodeShapePropertiesOption
+            {
+                BorderDashes = [10,10]
+            }
+        });
 
         data = new NetworkData
             {
