@@ -30,6 +30,52 @@
     <Network @ref="network" Id="my-id" Data="@data" class="vis-network-container" />
 </div>
 
+Nodes:
+<table class="table">
+    <thead>
+    <tr>
+        <th>Id</th>
+        <th>Label</th>
+    </tr>
+    </thead>
+    <tbody>
+    @if (network?.Data is not null)
+    {
+        @foreach (var node in network.Data.Nodes)
+        {
+            <tr>
+                <td>@node.Id</td>
+                <td>@node.Label</td>
+            </tr>
+        }
+    }
+    </tbody>
+</table>
+
+Edges:
+<table class="table">
+    <thead>
+    <tr>
+        <th>Id</th>
+        <th>From</th>
+        <th>To</th>
+    </tr>
+    </thead>
+    <tbody>
+    @if (network?.Data is not null)
+    {
+        @foreach (var edge in network.Data.Edges)
+        {
+            <tr>
+                <td>@edge.Id</td>
+                <td>@edge.From</td>
+                <td>@edge.To</td>
+            </tr>
+        }
+    }
+    </tbody>
+</table>
+
 @code {
     private Network network;
     private NetworkData data;
