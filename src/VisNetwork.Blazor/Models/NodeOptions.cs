@@ -44,9 +44,8 @@ public class NodeOption {
 
     /// <summary>
     /// Defines the font of the label.
-    /// Note: JS lib supports both string and object.
     /// </summary>
-    public string? Font { get; set; }
+    public NodeFontOption? Font { get; set; }
 
     /// <summary>
     /// When not null, the node will belong to the defined group. 
@@ -432,4 +431,11 @@ public class NodeScalingLabelOptions {
 public class NodeShapePropertiesOption
 {
     public int[]? BorderDashes { get; set; }
+}
+
+public class NodeFontOption 
+{
+    public string? Multi { get; set; }
+    public string? Face { get; set; }
+    public int Size { get; set; }
 }
