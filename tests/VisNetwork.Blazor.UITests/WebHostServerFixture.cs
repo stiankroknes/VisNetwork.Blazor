@@ -68,7 +68,6 @@ public sealed class BlazorWebAssemblyWebHostFixture : IDisposable // IAsyncDispo
             })
             .ConfigureWebHost(webHostBuilder => webHostBuilder
                 .UseKestrel()
-                .UseSolutionRelativeContentRoot(Path.Combine("sample", typeof(Wasm.App).Assembly.GetName().Name!))
                 .UseStaticWebAssets()
                 .UseUrls($"http://127.0.0.1:0") // :0 allows to choose a port automatically
                 .ConfigureServices(services =>
