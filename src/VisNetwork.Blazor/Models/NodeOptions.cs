@@ -1,6 +1,7 @@
 ﻿namespace VisNetwork.Blazor.Models;
 
-public class NodeOption {
+public class NodeOption
+{
     /// <summary>
     /// The width of the border of the node.
     /// </summary>
@@ -56,7 +57,7 @@ public class NodeOption {
     /// <summary>
     /// Node height constraints. The default is no height constraint applied.
     /// </summary>
-    public NodeHeightConstraint? NodeHeightConstraint { get; set; }
+    public NodeHeightConstraint? HeightConstraint { get; set; }
 
     /// <summary>
     /// When true, the node will not be shown. 
@@ -163,6 +164,11 @@ public class NodeOption {
     public double? Value { get; set; }
 
     /// <summary>
+    /// Node width constraints. The default is no width constraint applied.
+    /// </summary>
+    public NodeWidthConstraint? WidthConstraint { get; set; }
+
+    /// <summary>
     /// This gives a node its initial position on the x axis. When using hierarchical layout, this value has no effect. 
     /// When using stabilization, the stabilized position may be different from the initial one 
     /// (the node will start at this position but may move to different location based on the stabilization configuration). 
@@ -179,7 +185,8 @@ public class NodeOption {
     public int? Y { get; set; }
 }
 
-public class NodeShadowOption {
+public class NodeShadowOption
+{
     /// <summary>
     ///  Toggle the casting of shadows.
     ///  If this option is not defined, it is set to true if any of the properties in this object are defined.
@@ -212,7 +219,8 @@ public class NodeShadowOption {
     public int? Y { get; set; }
 }
 
-public class NodeImagePaddingOption {
+public class NodeImagePaddingOption
+{
     /// <summary>
     /// The top padding of the image inside the shape is set to this value. 
     /// The default is 0.
@@ -238,7 +246,8 @@ public class NodeImagePaddingOption {
     public int? Left { get; set; }
 
     public static NodeImagePaddingOption CreateWithEqualPadding(int padding) =>
-        new() {
+        new()
+        {
             Top = padding,
             Right = padding,
             Bottom = padding,
@@ -246,7 +255,8 @@ public class NodeImagePaddingOption {
         };
 }
 
-public class NodeFixedOption {
+public class NodeFixedOption
+{
     /// <summary>
     /// When true, the node will not move in the X direction.
     /// </summary>
@@ -259,7 +269,8 @@ public class NodeFixedOption {
 }
 
 
-public class NodeHeightConstraint {
+public class NodeHeightConstraint
+{
     /// <summary>
     ///  If a number is specified, the value is used as the minimum height of the node. 
     ///  The node's height will be set to the minimum if less than the value. 
@@ -273,7 +284,22 @@ public class NodeHeightConstraint {
     public string? Valign { get; set; }
 }
 
-public class NodeMarginOption {
+public class NodeWidthConstraint
+{
+    /// <summary>
+    /// If a number is specified, the minimum width of the node is set to the value. 
+    /// The node's width will be set to the minimum if less than the value.
+    /// </summary>
+    public int? Minimum { get; set; }
+    /// <summary>
+    /// If a number is specified, the maximum width of the node is set to the value. 
+    /// The node's label's lines will be broken on spaces to stay below the maximum. 
+    /// </summary>
+    public int? Maximum { get; set; }
+}
+
+public class NodeMarginOption
+{
     /// <summary>
     /// The top margin of the label is set to this value.
     /// The default is 5.
@@ -299,7 +325,8 @@ public class NodeMarginOption {
     public int? Left { get; set; }
 
     public static NodeMarginOption CreateWithEqualPadding(int padding) =>
-        new() {
+        new()
+        {
             Top = padding,
             Right = padding,
             Bottom = padding,
@@ -307,7 +334,8 @@ public class NodeMarginOption {
         };
 }
 
-public class Icon {
+public class Icon
+{
     /// <summary>
     /// The possible values for the face option are any font faces that are loaded on given page such as 'FontAwesome' or 'Ionicons'.
     /// </summary>
@@ -339,7 +367,8 @@ public class Icon {
 /// <summary>
 /// The color object contains the color information of the node in every situation.
 /// </summary>
-public class NodeColorType {
+public class NodeColorType
+{
     /// <summary>
     /// The color of the background of the node when it is not selected or hovered over (assuming hover is enabled in the interaction module). 
     /// </summary>
@@ -360,7 +389,8 @@ public class NodeColorType {
     /// </summary>
     public BorderBackgroundColor? Highlight { get; set; }
 
-    public class BorderBackgroundColor {
+    public class BorderBackgroundColor
+    {
         /// <summary>
         /// The color of the border of the node.
         /// </summary>
@@ -373,7 +403,8 @@ public class NodeColorType {
     }
 }
 
-public class NodeScalingOptions {
+public class NodeScalingOptions
+{
     /// <summary>
     /// If nodes have a value, their sizes are determined by the value, the scaling function and the min max values.
     /// The min value is the minimum allowed value. 
@@ -394,7 +425,8 @@ public class NodeScalingOptions {
     public NodeScalingLabelOptions? Label { get; set; }
 }
 
-public class NodeScalingLabelOptions {
+public class NodeScalingLabelOptions
+{
     /// <summary>
     /// Toggle the scaling of the label on or off. If this option is not defined, it is set to true if any of the properties in this object are defined.
     /// </summary>

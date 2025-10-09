@@ -1,4 +1,6 @@
-﻿namespace VisNetwork.Blazor.UITests;
+﻿using Microsoft.Playwright.TestAdapter;
+
+namespace VisNetwork.Blazor.UITests;
 
 public sealed class PlaywrightFixture : IAsyncLifetime
 {
@@ -6,6 +8,9 @@ public sealed class PlaywrightFixture : IAsyncLifetime
 
     public IPlaywright Playwright { get; private set; } = default!;
     public IBrowser Browser { get; private set; } = default!;
+
+    public string BrowserName { get; private set; } = default!;
+    public IBrowserType BrowserType { get; private set; } = default!;
 
     public PlaywrightFixture()
     {
@@ -31,10 +36,11 @@ public sealed class PlaywrightFixture : IAsyncLifetime
         Playwright.Selectors.SetTestIdAttribute("data-testid");
 
         // can use playwright.Firefox, playwright.Chromium, or playwright.WebKit
-        //BrowserName = "firefox";  
+        // BrowserName = "firefox";  
 
-        //BrowserName = PlaywrightSettingsProvider.BrowserName;
-        //BrowserType = PlaywrightFixture.Playwright[BrowserName];
+        BrowserName = PlaywrightSettingsProvider.BrowserName;
+        BrowserType = Playwright[BrowserName];
+
         //Browser = await Playwright[BrowserName].LaunchAsync(new BrowserTypeLaunchOptions
         //{
         //    //Headless = false,
@@ -42,7 +48,7 @@ public sealed class PlaywrightFixture : IAsyncLifetime
         //    TracesDir = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile)
         //});
 
-        Browser = await Playwright.Chromium.LaunchAsync(new BrowserTypeLaunchOptions
+        Browser = await Playwright[BrowserName].LaunchAsync(new BrowserTypeLaunchOptions
         {
             Headless = true,
         });

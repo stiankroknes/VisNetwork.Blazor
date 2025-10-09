@@ -20,10 +20,10 @@ internal static class ScreenshotHelper
 
         var compareImage = Image.Load<Rgb24>(screenshot);
 
-        var screenShotDumpFile = Path.Combine(imagePath, $"test.png");
-        Console.WriteLine("screenShotDumpFile " + screenShotDumpFile);
+        //var screenShotDumpFile = Path.Combine(imagePath, $"last-test-dump.png");
+        //Console.WriteLine("screenShotDumpFile " + screenShotDumpFile);
         //compareImage.Save(Path.Combine(imagePath, $"test-{screenShotFile}"));
-        compareImage.Save(screenShotDumpFile);
+        //compareImage.Save(screenShotDumpFile);
 
         var baseImage = Image.Load<Rgb24>(Path.Combine(imagePath, screenShotFile));
 

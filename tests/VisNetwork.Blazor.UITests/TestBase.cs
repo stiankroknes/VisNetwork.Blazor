@@ -23,13 +23,13 @@ public abstract class TestBase : IAsyncLifetime
     private readonly List<IBrowserContext> browserContexts = [];
 
     protected ITestOutputHelper TestOutputHelper { get; }
-   
+
     protected BlazorWebAssemblyWebHostFixture Fixture { get; }
     protected PlaywrightFixture PlaywrightFixture { get; }
 
     // PlaywrightSettingsProvider.BrowserName
-    public static string BrowserName => PlaywrightSettingsProvider.BrowserName;
-    public IBrowserType BrowserType => PlaywrightFixture.Playwright[BrowserName];
+    public string BrowserName => PlaywrightFixture.BrowserName;
+    public IBrowserType BrowserType => PlaywrightFixture.BrowserType;
     public IBrowser Browser => PlaywrightFixture.Browser;
     public IBrowserContext Context { get; private set; } = null!;
     public IPage Page { get; private set; } = null!;
