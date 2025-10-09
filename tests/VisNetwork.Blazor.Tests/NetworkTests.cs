@@ -12,7 +12,7 @@ using static VisNetwork.Blazor.Tests.VisNetworkConfig;
 
 namespace VisNetwork.Blazor.Tests;
 
-public class NetworkTests : TestContext
+public class NetworkTests : Bunit.TestContext
 {
     public NetworkTests()
     {
@@ -102,7 +102,7 @@ public class NetworkTests : TestContext
         invocation.Arguments[1].Should().Be("some dot string");
     }
 
-    public class EventTests : TestContext
+    public class EventTests : Bunit.TestContext
     {
         public EventTests()
         {

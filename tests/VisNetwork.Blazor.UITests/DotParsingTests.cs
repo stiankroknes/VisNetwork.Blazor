@@ -3,8 +3,9 @@ using VisNetwork.Blazor.UITests.Support;
 
 namespace VisNetwork.Blazor.UITests;
 
-[Collection("WebHostServerCollection")]
-public class DotParsingTests(BlazorWebAssemblyWebHostFixture fixture, ITestOutputHelper testOutputHelper) : TestBase(fixture, testOutputHelper)
+[Collection(typeof(CombinedTestCollection))]
+public class DotParsingTests(BlazorWebAssemblyWebHostFixture fixture, PlaywrightFixture playwrightFixture, ITestOutputHelper testOutputHelper)
+    : TestBase(fixture, playwrightFixture, testOutputHelper)
 {
     [Fact]
     public async Task Basic()

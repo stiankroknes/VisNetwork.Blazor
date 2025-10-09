@@ -2,7 +2,7 @@
 
 	<!--<Import Project="StaticAssets\StaticAssets.targets" />-->
 	<PropertyGroup>
-		<TargetFrameworks>net6.0;net7.0;net8.0</TargetFrameworks>
+		<TargetFrameworks>net8.0;net9.0;net10.0</TargetFrameworks>
 		<IsPackable>true</IsPackable>
 		<OutputType>Library</OutputType>
 		<Nullable>enable</Nullable>
@@ -23,29 +23,29 @@
 		<ContinuousIntegrationBuild Condition="'$(GITHUB_ACTIONS)' == 'true'">true</ContinuousIntegrationBuild>
 	</PropertyGroup>
 
-	<PropertyGroup Condition="'$(TargetFramework)' == 'net6.0'">
-		<RazorLangVersion>6.0</RazorLangVersion>
+	<!--<PropertyGroup Condition="'$(TargetFramework)' == 'net10.0'">
+		<RazorLangVersion>10.0</RazorLangVersion>
 	</PropertyGroup>
 
-	<PropertyGroup Condition="'$(TargetFramework)' == 'net7.0'">
-		<RazorLangVersion>7.0</RazorLangVersion>
+	<PropertyGroup Condition="'$(TargetFramework)' == 'net9.0'">
+		<RazorLangVersion>9.0</RazorLangVersion>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(TargetFramework)' == 'net8.0'">
 		<RazorLangVersion>8.0</RazorLangVersion>
-	</PropertyGroup>
+	</PropertyGroup>-->
 
 	<ItemGroup>
 		<None Include="..\..\README.md" Pack="true" PackagePath="\" />
 	</ItemGroup>
-	
+
 	<ItemGroup>
 		<SupportedPlatform Include="browser" />
 		<Content Update="StaticAssets\*" Pack="false" />
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="SonarAnalyzer.CSharp" Version="9.21.0.86780">
+		<PackageReference Include="SonarAnalyzer.CSharp" Version="10.15.0.120848">
 			<PrivateAssets>all</PrivateAssets>
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 		</PackageReference>
@@ -54,7 +54,7 @@
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 		</PackageReference>
 		<PackageReference Include="Microsoft.SourceLink.GitHub" Version="8.0.0" PrivateAssets="All" />
-		<PackageReference Include="MinVer" Version="5.0.0" PrivateAssets="All" />
+		<PackageReference Include="MinVer" Version="6.0.0" PrivateAssets="All" />
 	</ItemGroup>
 
 	<!--<Target Name="PreBuild" BeforeTargets="PreBuildEvent" Condition="'$(Configuration)'=='Debug'">
@@ -72,15 +72,15 @@
 		<PackageReference Include="Microsoft.AspNetCore.Components" Version="8.0.*" />
 		<PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="8.0.*" />
 	</ItemGroup>
+
+	<ItemGroup Condition="'$(TargetFramework)' == 'net9.0'">
+		<PackageReference Include="Microsoft.AspNetCore.Components" Version="9.0.*" />
+		<PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="9.0.*" />
+	</ItemGroup>
+
+	<ItemGroup Condition="'$(TargetFramework)' == 'net10.0'">
+		<PackageReference Include="Microsoft.AspNetCore.Components" Version="10.0.0-*" />
+		<PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="10.0.0-*" />
+	</ItemGroup>
 	
-	<ItemGroup Condition="'$(TargetFramework)' == 'net7.0'">
-		<PackageReference Include="Microsoft.AspNetCore.Components" Version="7.0.*" />
-		<PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="7.0.*" />
-	</ItemGroup>
-
-	<ItemGroup Condition="'$(TargetFramework)' == 'net6.0'">
-		<PackageReference Include="Microsoft.AspNetCore.Components" Version="6.0.*" />
-		<PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="6.0.*" />
-	</ItemGroup>
-
 </Project>

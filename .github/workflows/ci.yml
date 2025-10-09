@@ -1,9 +1,17 @@
-name: Publish Packages
+name: CI build
 
 on:
   push:
-    tags:
-      - '*.*.*'
+    branches:
+      - main
+    paths-ignore:
+      - '*.md'
+  pull_request:
+    paths-ignore:
+      - '*.md'
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
 
 env:
   DOTNET_NOLOGO: true                     # Disable the .NET logo in the console output
@@ -44,37 +52,3 @@ jobs:
       with:
         name: release-nuget
         path: artifacts
-
-
-  deploy-nuget:
-    runs-on: ubuntu-latest
-    name: Deploy to NuGet Packages
-    needs: [build]
-    
-    steps:
-      - name: Download NuGet Artifact
-        uses: actions/download-artifact@v5
-        with:
-           name: release-nuget
-           path: artifacts    
-
-      - name: Push to NuGet
-        run: dotnet nuget push artifacts/*.nupkg --skip-duplicate -s https://api.nuget.org/v3/index.json -k ${{secrets.NUGET_API_KEY}}
-
-  deploy-docs:
-    name: Deploy Docs
-    needs: [build, deploy-nuget]
-    runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@v3
-
-    - name: Build Documentation
-      uses: nikeee/docfx-action@v1.0.0
-      with:
-        args: docs/docfx.json
-
-    - name: Deploy to GitHub Pages
-      uses: peaceiris/actions-gh-pages@v4
-      with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
-        publish_dir: ./docs/_site

@@ -4,19 +4,13 @@ using System.Threading.Tasks;
 
 namespace VisNetwork.Blazor;
 
-internal partial class JSModule : IAsyncDisposable
+internal partial class JSModule(IJSRuntime jsRuntime, IVersionProvider versionProvider) : IAsyncDisposable
 {
-    private readonly IJSRuntime jsRuntime;
-    private readonly IVersionProvider versionProvider;
+    private readonly IJSRuntime jsRuntime = jsRuntime;
+    private readonly IVersionProvider versionProvider = versionProvider;
 
     private Task<IJSObjectReference>? moduleTask;
     private bool isAsyncDisposed;
-
-    public JSModule(IJSRuntime jsRuntime, IVersionProvider versionProvider)
-    {
-        this.jsRuntime = jsRuntime;
-        this.versionProvider = versionProvider;
-    }
 
     private Task<IJSObjectReference> Module => moduleTask ??= jsRuntime.InvokeAsync<IJSObjectReference>("import", ModuleFileName).AsTask();
 

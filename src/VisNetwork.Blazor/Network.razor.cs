@@ -6,7 +6,6 @@ using System.Text.Json;
 using System.Threading.Tasks;
 using VisNetwork.Blazor.Models;
 
-#nullable disable
 namespace VisNetwork.Blazor;
 
 public partial class Network : IAsyncDisposable
@@ -14,10 +13,10 @@ public partial class Network : IAsyncDisposable
     private readonly DotNetObjectReference<Network> thisReference;
     private ElementReference element;
     private bool firstRenderComplete;
-    private NetworkData currentData;
+    private NetworkData? currentData;
 
     [Inject]
-    internal IJSModule JS { get; set; }
+    internal IJSModule JS { get; init; }
 
     [Parameter] public string Id { get; set; }
 
@@ -157,15 +156,20 @@ public partial class Network : IAsyncDisposable
     public Network()
     {
         thisReference = DotNetObjectReference.Create(this);
+        JS = default!;
+        Id = default!;
+        Options = default!;
+        Data = default!;
+        ExtraAttributes = default!;
     }
 
     async ValueTask IAsyncDisposable.DisposeAsync()
     {
+        thisReference?.Dispose();
+
         if (firstRenderComplete)
         {
             var task = JS.Destroy(element);
-
-            thisReference?.Dispose();
 
             try
             {
@@ -373,4 +377,3 @@ public partial class Network : IAsyncDisposable
     public async Task ParseDOTNetwork(string dotString) =>
         await JS.ParseDOTNetwork(element, dotString);
 }
-#nullable enable

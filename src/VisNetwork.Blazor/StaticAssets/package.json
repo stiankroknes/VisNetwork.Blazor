@@ -4,11 +4,11 @@
     "build:Release": "webpack --mode production"
   },
   "devDependencies": {
-    "ts-loader": "9.4.2",
-    "typescript": "4.9.5",
-    "vis-data": "^7.1.6",
-    "vis-network": "^9.1.6",
-    "webpack": "^5.88.1",
-    "webpack-cli": "5.0.1"
+    "ts-loader": "9.5.4",
+    "typescript": "5.9.3",
+    "vis-data": "^8.0.3",
+    "vis-network": "^10.0.2",
+    "webpack": "^5.102.1",
+    "webpack-cli": "6.0.1"
   }
 }

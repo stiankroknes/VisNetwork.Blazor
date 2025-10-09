@@ -2,11 +2,17 @@
 //// <reference types="vis-network/declarations/entry-esnext" />
 
 import {
+    Data,
+    IdType,
     Network, NetworkEvents,
-    SelectionOptions, IdType, Options, Data, parseDOTNetwork
+    Options,
+    SelectionOptions,
+    parseDOTNetwork
 } from "vis-network/standalone";
 
-type DotNetObjectReference = any;
+type DotNetObjectReference = {
+    invokeMethodAsync: (method: string, ...args: any[]) => Promise<any>;
+};
 
 interface NetworkHolder {
     id: string;
@@ -14,38 +20,53 @@ interface NetworkHolder {
 }
 
 const _networks: NetworkHolder[] = [];
+const _listeners: { [id: string]: { [event: string]: Function } } = {};
 
-function getNetworkById(id: string, unobstrusive: boolean = false) {
+function getNetworkById(id: string): Network {
 
-    const networkHolder: NetworkHolder = _networks.find(e => e.id === id);
+    if (!id) {
+        throw new Error("Element id is required.");
+    }
+
+    const networkHolder: NetworkHolder | undefined = _networks.find(e => e.id === id);
 
     if (!networkHolder) {
-
-        if (unobstrusive) {
-            return null;
-        }
-
         throw new Error("Could not find the network with id: '" + id + "', network.length: " + _networks.length);
     }
     else if (!networkHolder.network) {
-
-        if (unobstrusive) {
-            return null;
-        }
-
         throw new Error("network is null in networkHolder for network with id:  " + id);
     }
 
     return networkHolder.network;
 }
 
+function getNetworkByIdOrUndefined(id: string): Network | undefined {
+
+    if (!id) {
+        throw new Error("Element id is required.");
+    }
+
+    const networkHolder: NetworkHolder | undefined = _networks.find(e => e.id === id);
+
+    if (!networkHolder) {
+
+        return undefined;
+
+    }
+    else if (!networkHolder.network) {
+
+        return undefined;
+    }
+
+    return networkHolder.network;
+}
 
 // Global
-export function create(element: HTMLElement, component: DotNetObjectReference, options: Options, data: any) {
+export function create(element: HTMLElement, _component: DotNetObjectReference, options: Options, data: any) {
     console.log('VisNetwork.Blazor: [create]', element, options, data);
 
-    const oldNetwork: Network = getNetworkById(element.id, true);
-    if (oldNetwork !== null) {
+    const oldNetwork: Network | undefined = getNetworkByIdOrUndefined(element.id);
+    if (oldNetwork !== undefined) {
 
         _networks.splice(_networks.findIndex(item => item.id === element.id), 1);
         oldNetwork.destroy();
@@ -80,9 +101,10 @@ export function destroy(element: HTMLElement) {
     console.log('VisNetwork.Blazor: [destroy] ', element);
     if (element) {
         const network: Network = getNetworkById(element.id);
-        if (network !== null && network !== undefined) {
+        if (network) {
             network.destroy();
             _networks.splice(_networks.findIndex(item => item.id === element.id), 1);
+            delete _listeners[element.id];
             console.log('VisNetwork.Blazor: [destroy] done.');
         }
     } else {
@@ -102,7 +124,7 @@ export function on(element: HTMLElement, component: DotNetObjectReference, event
         if (eventName === 'afterDrawing' ||
             eventName === 'beforeDrawing') {
             const data = { canvasDataUrl: '' };
-            const canvasContext = e as CanvasRenderingContext2D;
+            // const canvasContext = e as CanvasRenderingContext2D;
             component.invokeMethodAsync("EventCallback", eventName, JSON.stringify(data));
 
         } else {
@@ -114,7 +136,7 @@ export function on(element: HTMLElement, component: DotNetObjectReference, event
             catch (error) {
                 //  TypeError: cyclic object value: Occurs for deselectNode/Edge event, consider other solutions.
                 const seen: any = [];
-                params = JSON.stringify(e, function (key, val) {
+                params = JSON.stringify(e, function (_key, val) {
                     if (val != null && typeof val == 'object') {
                         if (seen.indexOf(val) >= 0) {
                             return;
@@ -129,15 +151,24 @@ export function on(element: HTMLElement, component: DotNetObjectReference, event
         }
     };
 
+    _listeners[element.id] = _listeners[element.id] || {};
+    _listeners[element.id][eventName] = listener;
+
     network.on(eventName, listener);
 }
 
-export function off(element: HTMLElement, component: DotNetObjectReference, eventName: NetworkEvents) {
+export function off(element: HTMLElement, _component: DotNetObjectReference, eventName: NetworkEvents) {
     console.log('VisNetwork.Blazor: [off] ', element, eventName);
     const network: Network = getNetworkById(element.id);
-    // Remove an event listener. The function you supply has to be the exact same as the one you used in the on function.
-    // If no function is supplied, all listeners will be removed. Look at the event section of the documentation for more information. 
-    network.off(eventName);
+    const listener: any = _listeners[element.id]?.[eventName];
+    if (listener) {
+        // Remove an event listener. The function you supply has to be the exact same as the one you used in the on function.
+        network.off(eventName, listener);
+        delete _listeners[element.id][eventName];
+    } else {
+        // If no function is supplied, all listeners will be removed. Look at the event section of the documentation for more information. 
+        network.off(eventName);
+    }
 }
 
 // Canvas
@@ -166,10 +197,10 @@ export function getSelectedNodes(element: HTMLElement): IdType[] {
     return network.getSelectedNodes();
 }
 
-export function selectNodes(element: HTMLElement, nodeIds: string[], higlightEdges?: boolean) {
-    console.log('VisNetwork.Blazor: [selectNodes] ', element, nodeIds, higlightEdges);
+export function selectNodes(element: HTMLElement, nodeIds: string[], highlightEdges?: boolean) {
+    console.log('VisNetwork.Blazor: [selectNodes] ', element, nodeIds, highlightEdges);
     const network: Network = getNetworkById(element.id);
-    network.selectNodes(nodeIds, higlightEdges);
+    network.selectNodes(nodeIds, highlightEdges);
 }
 
 export function getSelectedEdges(element: HTMLElement): IdType[] {
