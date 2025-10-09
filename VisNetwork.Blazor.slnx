@@ -1,0 +1,29 @@
+<Solution>
+  <Configurations>
+    <Platform Name="Any CPU" />
+    <Platform Name="x64" />
+    <Platform Name="x86" />
+  </Configurations>
+  <Folder Name="/01_SolutionItems/">
+    <File Path=".editorconfig" />
+    <File Path=".gitignore" />
+    <File Path="Directory.Build.props" />
+    <File Path="global.json" />
+    <File Path="README.md" />
+  </Folder>
+  <Folder Name="/01_SolutionItems/workflows/">
+    <File Path=".github/workflows/azure-static-web-apps-salmon-dune-0701e470f.yml" />
+    <File Path=".github/workflows/ci.yml" />
+    <File Path=".github/workflows/codeql-analysis.yml" />
+    <File Path=".github/workflows/docs.yml" />
+    <File Path=".github/workflows/publish.yml" />
+  </Folder>
+  <Folder Name="/Sample/">
+    <Project Path="sample/VisNetwork.Blazor.Server/VisNetwork.Blazor.Server.csproj" />
+    <Project Path="sample/VisNetwork.Blazor.SharedComponents/VisNetwork.Blazor.SharedComponents.csproj" />
+    <Project Path="sample/VisNetwork.Blazor.Wasm/VisNetwork.Blazor.Wasm.csproj" />
+  </Folder>
+  <Project Path="src/VisNetwork.Blazor/VisNetwork.Blazor.csproj" />
+  <Project Path="tests/VisNetwork.Blazor.Tests/VisNetwork.Blazor.Tests.csproj" />
+  <Project Path="tests/VisNetwork.Blazor.UITests/VisNetwork.Blazor.UITests.csproj" />
+</Solution>
