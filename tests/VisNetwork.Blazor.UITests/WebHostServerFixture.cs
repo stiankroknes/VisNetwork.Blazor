@@ -8,16 +8,14 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Serilog;
-using Serilog.Events;
+using Xunit.Sdk;
 
 namespace VisNetwork.Blazor.UITests;
 
-[CollectionDefinition("WebHostServerCollection")]
-public class WebHostServerCollectionDefinition : ICollectionFixture<BlazorWebAssemblyWebHostFixture>
+[CollectionDefinition("CombinedTestCollection")]
+public class CombinedTestCollection : ICollectionFixture<BlazorWebAssemblyWebHostFixture>, ICollectionFixture<PlaywrightFixture>
 {
-    // This class has no code, and is never created. Its purpose is simply
-    // to be the place to apply [CollectionDefinition] and all the
-    // ICollectionFixture<> interfaces.
+    // No code needed; just for fixture registration.
 }
 
 public sealed class BlazorWebAssemblyWebHostFixture : IDisposable // IAsyncDisposable
@@ -46,11 +44,11 @@ public sealed class BlazorWebAssemblyWebHostFixture : IDisposable // IAsyncDispo
             .Addresses.Single();
     }
 
-    private IHost CreateWebHost()
+    private static IHost CreateWebHost()
     {
         var serilogLogger = new LoggerConfiguration()
             .MinimumLevel.Verbose()
-            .WriteTo.TestOutput(messageSink, LogEventLevel.Verbose)
+            //.WriteTo.TestOutput(messageSink, LogEventLevel.Verbose)
             .CreateLogger();
 
         return new HostBuilder()

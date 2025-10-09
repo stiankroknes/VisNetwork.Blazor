@@ -3,9 +3,9 @@ using VisNetwork.Blazor.UITests.Support;
 
 namespace VisNetwork.Blazor.UITests;
 
-[Collection("WebHostServerCollection")]
-public class OptionsTests(BlazorWebAssemblyWebHostFixture fixture, ITestOutputHelper testOutputHelper)
-    : TestBase(fixture, testOutputHelper)
+[Collection(typeof(CombinedTestCollection))]
+public class OptionsTests(BlazorWebAssemblyWebHostFixture fixture, PlaywrightFixture playwrightFixture, ITestOutputHelper testOutputHelper)
+    : TestBase(fixture, playwrightFixture, testOutputHelper)
 {
     [Fact]
     public async Task Should_Render_Expected()

@@ -2,9 +2,9 @@ using VisNetwork.Blazor.UITests.Pages;
 
 namespace VisNetwork.Blazor.UITests;
 
-[Collection("WebHostServerCollection")]
-public class IssueTests(BlazorWebAssemblyWebHostFixture fixture, ITestOutputHelper testOutputHelper)
-    : TestBase(fixture, testOutputHelper)
+[Collection(typeof(CombinedTestCollection))]
+public class IssueTests(BlazorWebAssemblyWebHostFixture fixture, PlaywrightFixture playwrightFixture, ITestOutputHelper testOutputHelper)
+    : TestBase(fixture, playwrightFixture, testOutputHelper)
 {
     [Fact]
     public async Task Test1()

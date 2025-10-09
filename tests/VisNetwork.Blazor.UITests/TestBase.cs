@@ -20,39 +20,26 @@ public class PageTestContext
 
 public abstract class TestBase : IAsyncLifetime
 {
-    private readonly Task<IPlaywright> playwrightTask = Microsoft.Playwright.Playwright.CreateAsync();
-    private readonly Lazy<bool> BrowsersInstalled = new(InstallBrowsers);
     private readonly List<IBrowserContext> browserContexts = [];
 
     protected ITestOutputHelper TestOutputHelper { get; }
+   
     protected BlazorWebAssemblyWebHostFixture Fixture { get; }
+    protected PlaywrightFixture PlaywrightFixture { get; }
 
-    public string BrowserName { get; internal set; } = null!;
-    public IPlaywright Playwright { get; private set; } = null!;
-    public IBrowserType BrowserType { get; private set; } = null!;
-    public IBrowser Browser { get; internal set; } = null!;
+    // PlaywrightSettingsProvider.BrowserName
+    public static string BrowserName => PlaywrightSettingsProvider.BrowserName;
+    public IBrowserType BrowserType => PlaywrightFixture.Playwright[BrowserName];
+    public IBrowser Browser => PlaywrightFixture.Browser;
     public IBrowserContext Context { get; private set; } = null!;
     public IPage Page { get; private set; } = null!;
 
-    private static readonly string[] args = ["install"];
-
-    protected TestBase(BlazorWebAssemblyWebHostFixture fixture, ITestOutputHelper testOutputHelper)
+    protected TestBase(BlazorWebAssemblyWebHostFixture fixture, PlaywrightFixture playwrightFixture, ITestOutputHelper testOutputHelper)
     {
         Fixture = fixture;
+        PlaywrightFixture = playwrightFixture;
         TestOutputHelper = testOutputHelper;
         _ = Fixture.RootUri; // ensure webhost started
-        _ = BrowsersInstalled.Value;
-    }
-
-    private static bool InstallBrowsers()
-    {
-        var exitCode = Program.Main(args);
-        if (exitCode != 0)
-        {
-            Environment.Exit(exitCode);
-        }
-
-        return exitCode == 0;
     }
 
     public async Task<IBrowserContext> NewContext(BrowserNewContextOptions? options = null)
@@ -64,23 +51,8 @@ public abstract class TestBase : IAsyncLifetime
 
     public virtual BrowserNewContextOptions ContextOptions() => null!;
 
-    public async Task InitializeAsync()
+    public async ValueTask InitializeAsync()
     {
-        Playwright = await playwrightTask.ConfigureAwait(false);
-
-        // can use playwright.Firefox, playwright.Chromium, or playwright.WebKit
-        //BrowserName = "firefox";  
-        BrowserName = PlaywrightSettingsProvider.BrowserName;
-        BrowserType = Playwright[BrowserName];
-        Playwright.Selectors.SetTestIdAttribute("data-testid");
-
-        Browser = await Playwright[BrowserName].LaunchAsync(new BrowserTypeLaunchOptions
-        {
-            //Headless = false,
-            //SlowMo = 1000,
-            TracesDir = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile)
-        });
-
         Context = await NewContext(ContextOptions()).ConfigureAwait(false);
         Page = await Context.NewPageAsync().ConfigureAwait(false);
     }
@@ -91,7 +63,7 @@ public abstract class TestBase : IAsyncLifetime
             OutputHelper = TestOutputHelper,
             Page = Page,
             RootUrl = Fixture.RootUri.ToString(),
-            BrowserName = BrowserName
+            BrowserName = BrowserName,
         };
 
     protected async Task<PageTestContext> GetNewPageTestContext() =>
@@ -100,22 +72,15 @@ public abstract class TestBase : IAsyncLifetime
             OutputHelper = TestOutputHelper,
             Page = await Context.NewPageAsync(),
             RootUrl = Fixture.RootUri.ToString(),
-            BrowserName = BrowserName
+            BrowserName = BrowserName,
         };
 
-    async Task IAsyncLifetime.DisposeAsync()
+    async ValueTask IAsyncDisposable.DisposeAsync()
     {
         foreach (var context in browserContexts)
         {
             await context.CloseAsync().ConfigureAwait(false);
         }
-
-        if (Browser is not null)
-        {
-            await Browser.CloseAsync().ConfigureAwait(false);
-        }
-
-        Playwright?.Dispose();
     }
 
     public static ILocatorAssertions Expect(ILocator locator) => Assertions.Expect(locator);
