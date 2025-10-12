@@ -1,4 +1,6 @@
-﻿namespace VisNetwork.Blazor.Models;
+﻿using Microsoft.AspNetCore.Components;
+
+namespace VisNetwork.Blazor.Models;
 
 public class EdgeOption
 {
@@ -43,7 +45,7 @@ public class EdgeOption
     /// <summary>
     /// 
     /// </summary>
-    public string? Font { get; set; }
+    public Font? Font { get; set; }
 
     /// <summary>
     /// When true, the edge is not drawn.
@@ -169,14 +171,14 @@ public class EdgeSmoothOptions
     /// Default is true
     /// </summary>
     /// <value></value>
-    public bool? Enabled { get; set;}
+    public bool? Enabled { get; set; }
 
     /// <summary>
     /// Possible options: 'dynamic', 'continuous', 'discrete', 'diagonalCross', 'straightCross', 'horizontal', 'vertical', 'curvedCW', 'curvedCCW', 'cubicBezier'
     /// Default is 'dynamic'
     /// </summary>
     /// <value></value>
-    public string? Type { get; set; }    
+    public string? Type { get; set; }
 
     /// <summary>
     /// Accepted options: ['horizontal', 'vertical', 'none']. This options is only used with the cubicBezier curves. 

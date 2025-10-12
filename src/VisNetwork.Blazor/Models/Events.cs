@@ -102,5 +102,4 @@ public class StabilizedEvent
     /// </summary>
     public int Iterations { get; set; }
 }
-
 #nullable enable

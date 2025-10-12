@@ -1,4 +1,8 @@
-﻿namespace VisNetwork.Blazor.Models;
+﻿using System;
+using System.Text.Json;
+using System.Text.Json.Serialization;
+
+namespace VisNetwork.Blazor.Models;
 
 /// <summary>
 /// The options for the manipulation module.

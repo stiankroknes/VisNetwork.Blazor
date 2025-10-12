@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Components;
+using System;
 
 namespace VisNetwork.Blazor.Models;
 
@@ -19,7 +20,11 @@ public class Edge : EdgeOption, IEquatable<Edge>
     /// The id is optional for edges.
     /// When not supplied, an UUID will be assigned to the edge. This naturally only applies to individual edges.
     /// </summary>
-    public string? Id { get; set; }
+#if NET9_0_OR_GREATER
+    public string Id { get; set; } = Guid.CreateVersion7().ToString();
+#else
+    public string Id { get; set; } = Guid.NewGuid().ToString();
+#endif
 
     /// <summary>
     ///  Edges are between two nodes, one to and one from.

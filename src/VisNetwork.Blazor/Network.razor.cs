@@ -13,12 +13,17 @@ public partial class Network : IAsyncDisposable
     private readonly DotNetObjectReference<Network> thisReference;
     private ElementReference element;
     private bool firstRenderComplete;
-    private NetworkData? currentData;
+    private string networkId;
+
+    private INetworkData? currentData;
+    private IDataSet? subscribedNodeSet;
+    private IDataSet? subscribedEdgeSet;
 
     [Inject]
     internal IJSModule JS { get; init; }
 
     [Parameter] public string Id { get; set; }
+    [Parameter] public EventCallback<string> IdChanged { get; set; }
 
     /// <summary>
     /// Sets the options action to create the <see cref="NetworkOptions"/>.
@@ -28,7 +33,7 @@ public partial class Network : IAsyncDisposable
     /// <summary>
     /// The network data.
     /// </summary>
-    [Parameter] public NetworkData Data { get; set; }
+    [Parameter] public INetworkData Data { get; set; }
 
     [Parameter(CaptureUnmatchedValues = true)] public Dictionary<string, object> ExtraAttributes { get; set; }
 
@@ -158,6 +163,7 @@ public partial class Network : IAsyncDisposable
         thisReference = DotNetObjectReference.Create(this);
         JS = default!;
         Id = default!;
+        networkId = default!;
         Options = default!;
         Data = default!;
         ExtraAttributes = default!;
@@ -166,6 +172,16 @@ public partial class Network : IAsyncDisposable
     async ValueTask IAsyncDisposable.DisposeAsync()
     {
         thisReference?.Dispose();
+
+        if (subscribedNodeSet != null)
+        {
+            subscribedNodeSet.Changed -= OnDataSetChanged;
+        }
+
+        if (subscribedEdgeSet != null)
+        {
+            subscribedEdgeSet.Changed -= OnDataSetChanged;
+        }
 
         if (firstRenderComplete)
         {
@@ -188,19 +204,51 @@ public partial class Network : IAsyncDisposable
 
     protected override async Task OnParametersSetAsync()
     {
+        if (subscribedNodeSet != null)
+        {
+            subscribedNodeSet.Changed -= OnDataSetChanged;
+        }
+
+        if (subscribedEdgeSet != null)
+        {
+            subscribedEdgeSet.Changed -= OnDataSetChanged;
+        }
+
+        subscribedNodeSet = Data?.Nodes as IDataSet;
+        subscribedEdgeSet = Data?.Edges as IDataSet;
+
+        if (subscribedNodeSet is not null)
+        {
+            subscribedNodeSet.Changed += OnDataSetChanged;
+        }
+
+        if (subscribedEdgeSet is not null)
+        {
+            subscribedEdgeSet.Changed += OnDataSetChanged;
+        }
+
         if (string.IsNullOrWhiteSpace(Id))
         {
-            Id = $"blazor-network-{Guid.NewGuid()}";
+            networkId = $"blazor-network-{Guid.NewGuid()}";
+            await IdChanged.InvokeAsync(networkId);
+        }
+        else
+        {
+            networkId = Id;
         }
 
         if (firstRenderComplete && currentData != Data)
         {
-            await JS.SetData(element, thisReference, Data);
+            await JS.SetData(element, thisReference, Data!);
         }
 
         currentData = Data;
+
         await base.OnParametersSetAsync();
     }
+
+    private async void OnDataSetChanged(object? sender, EventArgs e) =>
+        await JS.SetData(element, thisReference, Data!);
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
@@ -209,7 +257,8 @@ public partial class Network : IAsyncDisposable
             var options = Options?.Invoke(this);
             options ??= new NetworkOptions();
 
-            await JS.CreateNetwork(element, thisReference, options, Data).AsTask();
+            await JS.CreateNetwork(element, thisReference, options, Data);
+
             firstRenderComplete = true;
             await SetupCompletedCallback.InvokeAsync(this);
             await SetEventListeners();
@@ -299,7 +348,7 @@ public partial class Network : IAsyncDisposable
 
     private static readonly JsonSerializerOptions EventJsonOptions = new()
     {
-        PropertyNamingPolicy = JsonNamingPolicy.CamelCase
+        PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
     };
 
     [JSInvokable]
@@ -336,6 +385,9 @@ public partial class Network : IAsyncDisposable
 
     // Global
     public async Task SetData(NetworkData data) =>
+        await JS.SetData(element, thisReference, data);
+
+    public async Task SetData(NetworkDataSet data) =>
         await JS.SetData(element, thisReference, data);
 
     public async Task SetOptions(NetworkOptions options) =>
@@ -376,4 +428,30 @@ public partial class Network : IAsyncDisposable
 
     public async Task ParseDOTNetwork(string dotString) =>
         await JS.ParseDOTNetwork(element, dotString);
+
+    // Manipulation
+    public async Task EnableEditMode() =>
+        await JS.EnableEditMode(element, thisReference);
+
+    public async Task DisableEditMode() =>
+        await JS.DisableEditMode(element, thisReference);
+
+    public async Task AddNodeMode() =>
+        await JS.AddNodeMode(element, thisReference);
+
+    public async Task AddEdgeMode() =>
+        await JS.AddEdgeMode(element, thisReference);
+
+    public async Task DeleteSelected() =>
+        await JS.DeleteSelected(element, thisReference);
+
+    // Information
+    public async Task<IDictionary<string, Position>> GetPositions(string[] nodeIds) =>
+        await JS.GetPositions(element, thisReference, nodeIds);
+
+    public async Task<Position> GetPosition(string nodeId) =>
+        await JS.GetPosition(element, thisReference, nodeId);
+
+    public async Task<string[]> GetConnectedEdges(string nodeId) =>
+        await JS.GetConnectedEdges(element, thisReference, nodeId);
 }

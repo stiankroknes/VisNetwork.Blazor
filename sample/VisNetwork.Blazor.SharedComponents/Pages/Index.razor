@@ -5,27 +5,38 @@
 <h1>VisNetwork Samples</h1>
 
 <div>
-    <Network Id="my-id" Data="@data" class="vis-network-container" />
+	<Network Id="my-id" Data="@data" class="vis-network-container" />
 </div>
 
 @code {
-    private NetworkData data;
+	private NetworkDataSet data;
 
-    public Index()
-    {
-        var nodes = new List<Node>();
-        var edges = new List<Edge>();
+	public Index()
+	{
+		var nodes = new DataSet<Node>(idSelector: n => n.Id);
+		var edges = new DataSet<Edge>(idSelector: n => n.Id);
 
-        nodes.Add(new Node("1", "Node 1", 1, "circle"));
-        nodes.Add(new Node("2", "Node 2", 2, "ellipse"));
-        edges.Add(new Edge("1", "2"));
-        nodes.Add(new Node("3", "Node 3", 4, "database"));
-        edges.Add(new Edge("2", "3"));
+		nodes.Add(new Node("1", "Node 1", 1, "circle")
+		{
+			Title = "I'm node 1",
+			Font = new Font
+			{
+				Size = 32,
+				Color = "#ff0000",
+				Face = "Arial",
+				StrokeWidth = 2,
+				StrokeColor = "#ffffff",
+			}
+		});
+		nodes.Add(new Node("2", "Node 2", 2, "ellipse"));
+		edges.Add(new Edge("1", "2") { Id = "1-2", });
+		nodes.Add(new Node("3", "Node 3", 4, "database"));
+		edges.Add(new Edge("2", "3") { Id = "2-3", });
 
-        data = new NetworkData
-            {
-                Edges = edges,
-                Nodes = nodes
-            };
-    }
+		data = new NetworkDataSet
+		{
+			Edges = edges,
+			Nodes = nodes
+		};
+	}
 }

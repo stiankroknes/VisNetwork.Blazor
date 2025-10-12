@@ -1,4 +1,6 @@
-﻿namespace VisNetwork.Blazor.Models;
+﻿using Microsoft.AspNetCore.Components;
+
+namespace VisNetwork.Blazor.Models;
 
 public class NodeOption
 {
@@ -45,7 +47,7 @@ public class NodeOption
     /// Defines the font of the label.
     /// Note: JS lib supports both string and object.
     /// </summary>
-    public string? Font { get; set; }
+    public Font? Font { get; set; }
 
     /// <summary>
     /// When not null, the node will belong to the defined group. 
@@ -141,9 +143,10 @@ public class NodeOption
     /// </summary>
     public string? Shape { get; set; }
 
-#pragma warning disable S125 // Sections of code should not be commented out
-    //public NodeShapePropertiesOption? ShapeProperties { get; set; }
-#pragma warning restore S125 // Sections of code should not be commented out
+    /// <summary>
+    /// Options for the shape.
+    /// </summary>
+    public NodeShapePropertiesOption? ShapeProperties { get; set; }
 
     /// <summary>
     /// The size is used to determine the size of node shapes that do not have the label inside of them. 
@@ -459,4 +462,38 @@ public class NodeScalingLabelOptions
     /// </summary>
     /// <value></value>
     public int? DrawThreshold { get; set; }
+}
+
+
+public class NodeShapePropertiesOption
+{
+    /// <summary>
+    /// Only for borders.
+    /// </summary>
+    public int[]? BorderDashes { get; set; }
+
+    /// <summary>
+    /// Only for box shape.
+    /// </summary>
+    public double? BorderRadius { get; set; }
+
+    /// <summary>
+    /// Only for image and circularImage shapes.
+    /// </summary>
+    public bool? Interpolation { get; set; }
+
+    /// <summary>
+    /// Only for image and circularImage shapes.
+    /// </summary>
+    public bool? UseImageSize { get; set; }
+
+    /// <summary>
+    /// Only for image shape.
+    /// </summary>
+    public bool? UseBorderWithImage { get; set; }
+
+    /// <summary>
+    /// Only for image and circularImage shapes.
+    /// </summary>
+    public string? CoordinateOrigin { get; set; }
 }

@@ -55,7 +55,7 @@ public class NetworkTests : Bunit.TestContext
         var networkData = new NetworkData
         {
             Nodes = [new Node("1", "Node1", 1, ""), new Node("2", "Node 2", 0, "")],
-            Edges = [new Edge("1", "2", "1 to 2")],
+            Edges = [new Edge("1", "2", title: "1 to 2")],
         };
 
         // Act
@@ -78,6 +78,24 @@ public class NetworkTests : Bunit.TestContext
         {
             Nodes = [new Node("1", "Node1", 1, ""), new Node("2", "Node 2", 0, "")],
             Edges = [new Edge("1", "2", "1 to 2")],
+        });
+
+        // Assert 
+        JSInterop.VerifyInvoke("create");
+        JSInterop.VerifyInvoke("setData");
+    }
+
+    [Fact]
+    public async Task Network_SetDataSet()
+    {
+        BunitJSModuleInterop module = CreateJSModuleInterop(JSInterop);
+        module.SetupVoid("setData", _ => true).SetVoidResult();
+        // Act
+        var cut = RenderComponent<Network>();
+        await cut.Instance.SetData(new NetworkDataSet
+        {
+            Nodes = new DataSet<Node>([new Node("1", "Node1", 1, ""), new Node("2", "Node 2", 0, "")], idSelector: n => n.Id),
+            Edges = new DataSet<Edge>([new Edge("1", "2", "1 to 2")], idSelector: n => n.Id),
         });
 
         // Assert 

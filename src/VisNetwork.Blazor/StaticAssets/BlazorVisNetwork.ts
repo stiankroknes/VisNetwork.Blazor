@@ -6,6 +6,7 @@ import {
     IdType,
     Network, NetworkEvents,
     Options,
+    Position,
     SelectionOptions,
     parseDOTNetwork
 } from "vis-network/standalone";
@@ -172,7 +173,6 @@ export function off(element: HTMLElement, _component: DotNetObjectReference, eve
 }
 
 // Canvas
-
 export function redraw(element: HTMLElement) {
     console.log('VisNetwork.Blazor: [redraw] ', element);
     const network: Network = getNetworkById(element.id);
@@ -180,7 +180,6 @@ export function redraw(element: HTMLElement) {
 }
 
 // Clustering
-
 export function clusterOutliers(element: HTMLElement) {
     console.log('VisNetwork.Blazor: [clusterOutliers] ', element);
     const network: Network = getNetworkById(element.id);
@@ -190,14 +189,13 @@ export function clusterOutliers(element: HTMLElement) {
 }
 
 // Selection
-
 export function getSelectedNodes(element: HTMLElement): IdType[] {
     console.log('VisNetwork.Blazor: [getSelectedNodes] ', element);
     const network: Network = getNetworkById(element.id);
     return network.getSelectedNodes();
 }
 
-export function selectNodes(element: HTMLElement, nodeIds: string[], highlightEdges?: boolean) {
+export function selectNodes(element: HTMLElement, nodeIds: IdType[], highlightEdges?: boolean) {
     console.log('VisNetwork.Blazor: [selectNodes] ', element, nodeIds, highlightEdges);
     const network: Network = getNetworkById(element.id);
     network.selectNodes(nodeIds, highlightEdges);
@@ -209,7 +207,7 @@ export function getSelectedEdges(element: HTMLElement): IdType[] {
     return network.getSelectedEdges();
 }
 
-export function selectEdges(element: HTMLElement, edgeIds: string[]) {
+export function selectEdges(element: HTMLElement, edgeIds: IdType[]) {
     console.log('VisNetwork.Blazor: [selectEdges] ', element, edgeIds);
     const network: Network = getNetworkById(element.id);
     network.selectEdges(edgeIds);
@@ -221,7 +219,7 @@ export function getSelection(element: HTMLElement): { nodes: IdType[], edges: Id
     return network.getSelection();
 }
 
-export function setSelection(element: HTMLElement, selection: { nodes: string[], edges: string[] }, options?: SelectionOptions) {
+export function setSelection(element: HTMLElement, selection: { nodes: IdType[], edges: IdType[] }, options?: SelectionOptions) {
     console.log('VisNetwork.Blazor: [setSelection] ', element, selection, options);
     const network: Network = getNetworkById(element.id);
     network.setSelection(selection, options);
@@ -258,3 +256,60 @@ export function populateDotNetwork(element: HTMLElement, dot: string): any {
     //return json;
     //return parsedData;
 }
+
+// Manipulation
+export function enableEditMode(element: HTMLElement) {
+    console.log('VisNetwork.Blazor: [enableEditMode] ', element);
+    const network: Network = getNetworkById(element.id);
+    network.enableEditMode();
+}
+
+export function disableEditMode(element: HTMLElement) {
+    console.log('VisNetwork.Blazor: [disableEditMode] ', element);
+    const network: Network = getNetworkById(element.id);
+    network.disableEditMode();
+}
+
+export function addNodeMode(element: HTMLElement) {
+    console.log('VisNetwork.Blazor: [addNodeMode] ', element);
+    const network: Network = getNetworkById(element.id);
+    network.addNodeMode();
+}
+
+export function addEdgeMode(element: HTMLElement) {
+    console.log('VisNetwork.Blazor: [addEdgeMode] ', element);
+    const network: Network = getNetworkById(element.id);
+    network.addEdgeMode();
+}
+
+export function deleteSelected(element: HTMLElement) {
+    console.log('VisNetwork.Blazor: [deleteSelected] ', element);
+    const network: Network = getNetworkById(element.id);
+    network.deleteSelected();
+}
+
+// Information
+export function getPositions(element: HTMLElement, nodeIds?: IdType[]): { [nodeId: string]: Position } {
+    console.log('VisNetwork.Blazor: [getPositions] ', element);
+    const network: Network = getNetworkById(element.id);
+    return network.getPositions(nodeIds);
+}
+
+export function getPosition(element: HTMLElement, nodeId: IdType): Position {
+    console.log('VisNetwork.Blazor: [getPosition] ', element);
+    const network: Network = getNetworkById(element.id);
+    return network.getPosition(nodeId);
+}
+
+export function getConnectedEdges(element: HTMLElement, nodeId: IdType): IdType[] {
+    console.log('VisNetwork.Blazor: [getConnectedEdges] ', element);
+    const network: Network = getNetworkById(element.id);
+    return network.getConnectedEdges(nodeId);
+}
+
+//export function getConnectedNodes(element: HTMLElement, nodeId: IdType): IdType[] {
+//    console.log('VisNetwork.Blazor: [getConnectedNodes] ', element);
+//    const network: Network = getNetworkById(element.id);
+//    // IdType[] | Array<{ fromId: IdType, toId: IdType }>
+//    return network.getConnectedNodes(nodeId);
+//}

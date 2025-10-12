@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
+using System.Collections.Generic;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using System.Threading.Tasks;
@@ -10,11 +11,11 @@ namespace VisNetwork.Blazor;
 internal interface IJSModule
 {
     // Gloabl
-    ValueTask CreateNetwork(ElementReference element, DotNetObjectReference<Network> component, NetworkOptions options, NetworkData data);
+    ValueTask CreateNetwork(ElementReference element, DotNetObjectReference<Network> component, NetworkOptions options, INetworkData data);
     ValueTask Destroy(ElementReference element);
     ValueTask SetSize(ElementReference element, DotNetObjectReference<Network> component, string width, string height);
     ValueTask SetOptions(ElementReference element, DotNetObjectReference<Network> component, NetworkOptions options);
-    ValueTask SetData(ElementReference element, DotNetObjectReference<Network> component, NetworkData data);
+    ValueTask SetData(ElementReference element, DotNetObjectReference<Network> component, INetworkData data);
     ValueTask SetEventListener(ElementReference element, DotNetObjectReference<Network> component, string eventName);
     ValueTask RemoveEventListener(ElementReference element, DotNetObjectReference<Network> component, string eventName);
 
@@ -34,12 +35,24 @@ internal interface IJSModule
     ValueTask<NodeEdgeComposite> UnselectAll(ElementReference element, DotNetObjectReference<Network> component);
 
     ValueTask ParseDOTNetwork(ElementReference element, string dotString);
+
+    // Manipulation
+    ValueTask EnableEditMode(ElementReference element, DotNetObjectReference<Network> component);
+    ValueTask DisableEditMode(ElementReference element, DotNetObjectReference<Network> component);
+    ValueTask AddNodeMode(ElementReference element, DotNetObjectReference<Network> component);
+    ValueTask AddEdgeMode(ElementReference element, DotNetObjectReference<Network> component);
+    ValueTask DeleteSelected(ElementReference element, DotNetObjectReference<Network> component);
+
+    // Information
+    ValueTask<IDictionary<string, Position>> GetPositions(ElementReference element, DotNetObjectReference<Network> component, string[] nodeIds);
+    ValueTask<Position> GetPosition(ElementReference element, DotNetObjectReference<Network> component, string nodeId);
+    ValueTask<string[]> GetConnectedEdges(ElementReference element, DotNetObjectReference<Network> component, string nodeId);
 }
 
 internal partial class JSModule : IJSModule
 {
     // Gloabl
-    public ValueTask CreateNetwork(ElementReference element, DotNetObjectReference<Network> component, NetworkOptions options, NetworkData data) =>
+    public ValueTask CreateNetwork(ElementReference element, DotNetObjectReference<Network> component, NetworkOptions options, INetworkData data) =>
         InvokeVoidAsync("create", element, component, SerializeIgnoreNull(options), SerializeIgnoreNull(data));
 
     public ValueTask Destroy(ElementReference element)
@@ -52,7 +65,7 @@ internal partial class JSModule : IJSModule
         return InvokeVoidAsync("destroy", element);
     }
 
-    public ValueTask SetData(ElementReference element, DotNetObjectReference<Network> component, NetworkData data) =>
+    public ValueTask SetData(ElementReference element, DotNetObjectReference<Network> component, INetworkData data) =>
         InvokeVoidAsync("setData", element, SerializeIgnoreNull(data));
 
     public ValueTask SetEventListener(ElementReference element, DotNetObjectReference<Network> component, string eventName) =>
@@ -98,7 +111,33 @@ internal partial class JSModule : IJSModule
         InvokeAsync<NodeEdgeComposite>("unselectAll", element);
 
     public ValueTask ParseDOTNetwork(ElementReference element, string dotString) =>
-      InvokeVoidAsync("populateDotNetwork", element, dotString);
+        InvokeVoidAsync("populateDotNetwork", element, dotString);
+
+    // Manipulation
+    public ValueTask EnableEditMode(ElementReference element, DotNetObjectReference<Network> component) =>
+        InvokeVoidAsync("enableEditMode", element);
+
+    public ValueTask DisableEditMode(ElementReference element, DotNetObjectReference<Network> component) =>
+        InvokeVoidAsync("disableEditMode", element);
+
+    public ValueTask AddNodeMode(ElementReference element, DotNetObjectReference<Network> component) =>
+        InvokeVoidAsync("addNodeMode", element);
+
+    public ValueTask AddEdgeMode(ElementReference element, DotNetObjectReference<Network> component) =>
+        InvokeVoidAsync("addEdgeMode", element);
+
+    public ValueTask DeleteSelected(ElementReference element, DotNetObjectReference<Network> component) =>
+        InvokeVoidAsync("deleteSelected", element);
+
+    // Information
+    public ValueTask<IDictionary<string, Position>> GetPositions(ElementReference element, DotNetObjectReference<Network> component, string[] nodeIds) =>
+        InvokeAsync<IDictionary<string, Position>>("getPositions", element, nodeIds);
+
+    public ValueTask<Position> GetPosition(ElementReference element, DotNetObjectReference<Network> component, string nodeId) =>
+        InvokeAsync<Position>("getPosition", element, nodeId);
+
+    public ValueTask<string[]> GetConnectedEdges(ElementReference element, DotNetObjectReference<Network> component, string nodeId) =>
+        InvokeAsync<string[]>("getConnectedEdges", element, nodeId);
 
     private static readonly JsonSerializerOptions JsonSerializerOptions = new()
     {
