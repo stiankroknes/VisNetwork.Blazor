@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 
 namespace VisNetwork.Blazor.Models;
@@ -10,7 +11,7 @@ public interface IDataSet
 }
 
 /// <summary>
-/// Model of vis.js DataSet, supporting flexible item types and id property.
+/// Model of vis.js DataSet, supporting flexible item types.
 /// </summary>
 public class DataSet<TItem> : IEnumerable<TItem>, IDataSet
 {
@@ -64,6 +65,7 @@ public class DataSet<TItem> : IEnumerable<TItem>, IDataSet
     public List<string> AddRange(IEnumerable<TItem> items)
     {
         var ids = new List<string>();
+
         foreach (var item in items)
         {
             ids.Add(AddCore(item));

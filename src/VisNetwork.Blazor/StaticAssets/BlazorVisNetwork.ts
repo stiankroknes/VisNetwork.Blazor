@@ -7,6 +7,7 @@ import {
     Network, NetworkEvents,
     Options,
     Position,
+    BoundingBox,
     SelectionOptions,
     parseDOTNetwork
 } from "vis-network/standalone";
@@ -89,7 +90,17 @@ export function setData(element: HTMLElement, data: Data) {
 export function setOptions(element: HTMLElement, options: Options) {
     console.log('VisNetwork.Blazor: [setOptions].', options);
     const network: Network = getNetworkById(element.id);
+
+    const cfg = options?.configure;
+    if (cfg) {
+        const realContainer = cfg.container instanceof HTMLElement
+            ? cfg.container
+            : unwrapReference(cfg.container);
+        options.configure = { ...cfg, container: realContainer };
+    }
+
     network.setOptions(options);
+    options.configure
 }
 
 export function setSize(element: HTMLElement, width: string, height: string) {
@@ -301,10 +312,23 @@ export function getPosition(element: HTMLElement, nodeId: IdType): Position {
     return network.getPosition(nodeId);
 }
 
+export function getBoundingBox(element: HTMLElement, nodeId: IdType): BoundingBox {
+    console.log('VisNetwork.Blazor: [getBoundingBox] ', element);
+    const network: Network = getNetworkById(element.id);
+    return network.getBoundingBox(nodeId);
+}
+
 export function getConnectedEdges(element: HTMLElement, nodeId: IdType): IdType[] {
     console.log('VisNetwork.Blazor: [getConnectedEdges] ', element);
     const network: Network = getNetworkById(element.id);
     return network.getConnectedEdges(nodeId);
+}
+
+// See: https://github.com/dotnet/aspnetcore/blob/28e5d3421e362e046b5391772159076f6ba382bf/src/Components/Web.JS/src/Rendering/ElementReferenceCapture.ts
+function unwrapReference(stub?: { id: string }): HTMLElement | undefined {
+    if (!stub?.id) { return; }
+    const attr = `_bl_${stub.id}`;
+    return document.querySelector<HTMLElement>(`[${attr}]`) ?? undefined;
 }
 
 //export function getConnectedNodes(element: HTMLElement, nodeId: IdType): IdType[] {

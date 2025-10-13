@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Components;
-using System;
+﻿using System;
 
 namespace VisNetwork.Blazor.Models;
 

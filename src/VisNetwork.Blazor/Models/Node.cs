@@ -1,5 +1,5 @@
-﻿using Microsoft.AspNetCore.Components;
-using System;
+﻿using System;
+using System.Diagnostics.CodeAnalysis;
 
 namespace VisNetwork.Blazor.Models;
 
@@ -10,9 +10,11 @@ public class Node : NodeOption, IEquatable<Node>
     /// The id of the node. The id is mandatory for nodes and they have to be unique. 
     /// This should obviously be set per node, not globally. 
     /// </summary>
-    public string? Id { get; set; }
+    public required string Id { get; init; }
 
-    public Node() { }
+    public Node()
+    {
+    }
 
     /// <summary>
     /// Initializes a new instance of the Node class with the specified identifier, label, level, shape, and optional
@@ -23,6 +25,7 @@ public class Node : NodeOption, IEquatable<Node>
     /// <param name="level">When using the hierarchical layout, the level determines where the node is going to be positioned. </param>
     /// <param name="shape">The visual shape of the node, such as "circle" or "rectangle".</param>
     /// <param name="title">Title to be displayed in a pop-up when the user hovers over the node.</param>
+    [SetsRequiredMembers]
     public Node(string id, string label, int? level, string shape, string? title = null)
     {
         Id = id;

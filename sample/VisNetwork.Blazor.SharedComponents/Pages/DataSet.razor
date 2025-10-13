@@ -1,4 +1,5 @@
 @page "/data-set"
+@using System.Diagnostics.CodeAnalysis
 @using VisNetwork.Blazor.Models
 
 <h3>DataSet and Custom Node/Edge type (not required for DataSet)</h3>
@@ -52,7 +53,7 @@
 	private string edgeTo = "1";
 	private string edgeLabel = "new edge";
 
-	public DataSetPage()
+	public DataSet()
 	{
 		var nodes = new DataSet<CustomNode>(idSelector: n => n.Id);
 		var edges = new DataSet<CustomEdge>(idSelector: n => n.Id);
@@ -109,6 +110,7 @@
 
 	private sealed class CustomNode : Node
 	{
+		[SetsRequiredMembers]
 		public CustomNode(string id, string label, int value, string shape) : base(id, label, value, shape)
 		{
 		}

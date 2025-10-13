@@ -8,6 +8,7 @@
 <div>
 	<button @onclick="@GetPosition" aria-label="GetPosition">GetPosition</button>
 	<button @onclick="@GetPositions" aria-label="GetPositions">GetPositions</button>
+	<button @onclick="@GetBoundingBox" aria-label="GetBoundingBox">GetBoundingBox</button>
 	<button @onclick="@GetConnectedEdges" aria-label="GetConnectedEdges">GetConnectedEdges</button>
 </div>
 
@@ -15,6 +16,7 @@
 	<p>Position of Node 1: @position</p>
 	<p>Positions of Node 1 and 2: @positions</p>
 	<p>Connected edges of Node 1: @connectedEdges</p>
+	<p>Bounding box of Node 1: @boundingBox</p>
 </div>
 
 <div>
@@ -27,6 +29,7 @@
 
 	private string position;
 	private string positions;
+	private string boundingBox;
 	private string connectedEdges;
 
 	public Information()
@@ -57,6 +60,12 @@
 	{
 		var result = await network.GetPositions(new[] { "1", "2" });
 		positions = string.Join(" | ", result.Select(kv => $"Id: {kv.Key}, X: {kv.Value.X}, Y: {kv.Value.Y}"));
+	}
+
+	private async Task GetBoundingBox()
+	{
+		var result = await network.GetBoundingBox("1");
+		boundingBox = $"Top: {result.Top}, Left: {result.Left}, Bottom: {result.Bottom}, Right: {result.Right}";
 	}
 
 	private async Task GetConnectedEdges()

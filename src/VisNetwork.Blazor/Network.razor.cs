@@ -452,6 +452,9 @@ public partial class Network : IAsyncDisposable
     public async Task<Position> GetPosition(string nodeId) =>
         await JS.GetPosition(element, thisReference, nodeId);
 
+    public async Task<BoundingBox> GetBoundingBox(string nodeId) =>
+        await JS.GetBoundingBox(element, thisReference, nodeId);
+
     public async Task<string[]> GetConnectedEdges(string nodeId) =>
         await JS.GetConnectedEdges(element, thisReference, nodeId);
 }

@@ -1,6 +1,4 @@
-﻿using Microsoft.AspNetCore.Components;
-
-namespace VisNetwork.Blazor.Models;
+﻿namespace VisNetwork.Blazor.Models;
 
 public class NodeOption
 {

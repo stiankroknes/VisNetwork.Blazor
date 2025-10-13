@@ -46,6 +46,7 @@ internal interface IJSModule
     // Information
     ValueTask<IDictionary<string, Position>> GetPositions(ElementReference element, DotNetObjectReference<Network> component, string[] nodeIds);
     ValueTask<Position> GetPosition(ElementReference element, DotNetObjectReference<Network> component, string nodeId);
+    ValueTask<BoundingBox> GetBoundingBox(ElementReference element, DotNetObjectReference<Network> component, string nodeId);
     ValueTask<string[]> GetConnectedEdges(ElementReference element, DotNetObjectReference<Network> component, string nodeId);
 }
 
@@ -135,6 +136,9 @@ internal partial class JSModule : IJSModule
 
     public ValueTask<Position> GetPosition(ElementReference element, DotNetObjectReference<Network> component, string nodeId) =>
         InvokeAsync<Position>("getPosition", element, nodeId);
+
+    public ValueTask<BoundingBox> GetBoundingBox(ElementReference element, DotNetObjectReference<Network> component, string nodeId) =>
+        InvokeAsync<BoundingBox>("getBoundingBox", element, nodeId);
 
     public ValueTask<string[]> GetConnectedEdges(ElementReference element, DotNetObjectReference<Network> component, string nodeId) =>
         InvokeAsync<string[]>("getConnectedEdges", element, nodeId);
