@@ -420,7 +420,7 @@ public partial class Network : IAsyncDisposable
     public async Task<NodeEdgeComposite> GetSelection() =>
         await JS.GetSelection(element, thisReference);
 
-    public async Task<NodeEdgeComposite> SetSelection(NodeEdgeComposite composite) =>
+    public async Task SetSelection(NodeEdgeComposite composite) =>
         await JS.SetSelection(element, thisReference, composite);
 
     public async Task<NodeEdgeComposite> UnselectAll() =>

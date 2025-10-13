@@ -1,8 +1,10 @@
 using Bunit;
 using FluentAssertions;
 using Microsoft.AspNetCore.Components;
+using Microsoft.Extensions.Options;
 using Microsoft.JSInterop;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Text.Json;
 using System.Threading.Tasks;
@@ -67,8 +69,10 @@ public class NetworkTests : Bunit.TestContext
         JSInterop.VerifyInvoke("create");
     }
 
+    // Global 
+
     [Fact]
-    public async Task Network_SetData()
+    public async Task Network_SetData_Using_NetworkData()
     {
         BunitJSModuleInterop module = CreateJSModuleInterop(JSInterop);
         module.SetupVoid("setData", _ => true).SetVoidResult();
@@ -86,7 +90,7 @@ public class NetworkTests : Bunit.TestContext
     }
 
     [Fact]
-    public async Task Network_SetDataSet()
+    public async Task Network_SetData_Using_NetworkDataSet()
     {
         BunitJSModuleInterop module = CreateJSModuleInterop(JSInterop);
         module.SetupVoid("setData", _ => true).SetVoidResult();
@@ -118,6 +122,281 @@ public class NetworkTests : Bunit.TestContext
         var invocation = JSInterop.Invocations["populateDotNetwork"].Single();
         invocation.Arguments[0].Should().BeOfType<ElementReference>();
         invocation.Arguments[1].Should().Be("some dot string");
+    }
+
+    // Selection
+    [Fact]
+    public async Task Network_GetSelectedNodes()
+    {
+        BunitJSModuleInterop module = CreateJSModuleInterop(JSInterop);
+        module.Setup<string[]>("getSelectedNodes", _ => true).SetResult(["1"]);
+
+        // Act
+        var cut = RenderComponent<Network>();
+        await cut.Instance.GetSelectedNodes();
+
+        // Assert 
+        JSInterop.VerifyInvoke("create");
+        JSInterop.VerifyInvoke("getSelectedNodes");
+        var invocation = JSInterop.Invocations["getSelectedNodes"].Single();
+        invocation.Arguments[0].Should().BeOfType<ElementReference>();
+    }
+
+    [Fact]
+    public async Task Network_SelectNodes()
+    {
+        BunitJSModuleInterop module = CreateJSModuleInterop(JSInterop);
+        module.SetupVoid("selectNodes", _ => true).SetVoidResult();
+        string[] args = ["1"];
+        // Act
+        var cut = RenderComponent<Network>();
+        await cut.Instance.SelectNodes(args);
+
+        // Assert 
+        JSInterop.VerifyInvoke("create");
+        JSInterop.VerifyInvoke("selectNodes");
+        var invocation = JSInterop.Invocations["selectNodes"].Single();
+        invocation.Arguments[0].Should().BeOfType<ElementReference>();
+        invocation.Arguments[1].Should().Be(args);
+    }
+
+    [Fact]
+    public async Task Network_GetSelectedEdges()
+    {
+        BunitJSModuleInterop module = CreateJSModuleInterop(JSInterop);
+        module.Setup<string[]>("getSelectedEdges", _ => true).SetResult(["1"]);
+
+        // Act
+        var cut = RenderComponent<Network>();
+        await cut.Instance.GetSelectedEdges();
+
+        // Assert 
+        JSInterop.VerifyInvoke("create");
+        JSInterop.VerifyInvoke("getSelectedEdges");
+        var invocation = JSInterop.Invocations["getSelectedEdges"].Single();
+        invocation.Arguments[0].Should().BeOfType<ElementReference>();
+    }
+
+    [Fact]
+    public async Task Network_SelectEdges()
+    {
+        BunitJSModuleInterop module = CreateJSModuleInterop(JSInterop);
+        module.SetupVoid("selectEdges", _ => true).SetVoidResult();
+        string[] args = ["1"];
+        // Act
+        var cut = RenderComponent<Network>();
+        await cut.Instance.SelectEdges(args);
+
+        // Assert 
+        JSInterop.VerifyInvoke("create");
+        JSInterop.VerifyInvoke("selectEdges");
+        var invocation = JSInterop.Invocations["selectEdges"].Single();
+        invocation.Arguments[0].Should().BeOfType<ElementReference>();
+        invocation.Arguments[1].Should().Be(args);
+    }
+
+    [Fact]
+    public async Task Network_GetSelection()
+    {
+        BunitJSModuleInterop module = CreateJSModuleInterop(JSInterop);
+        module.Setup<NodeEdgeComposite>("getSelection", _ => true).SetResult(new NodeEdgeComposite { Nodes = ["1"], Edges = ["1"], });
+
+        // Act
+        var cut = RenderComponent<Network>();
+        await cut.Instance.GetSelection();
+
+        // Assert 
+        JSInterop.VerifyInvoke("create");
+        JSInterop.VerifyInvoke("getSelection");
+        var invocation = JSInterop.Invocations["getSelection"].Single();
+        invocation.Arguments[0].Should().BeOfType<ElementReference>();
+    }
+
+    [Fact]
+    public async Task Network_SetSelection()
+    {
+        BunitJSModuleInterop module = CreateJSModuleInterop(JSInterop);
+        module.SetupVoid("setSelection", _ => true).SetVoidResult();
+        var args = new NodeEdgeComposite { Nodes = ["1"], Edges = ["1"], };
+
+        // Act
+        var cut = RenderComponent<Network>();
+        await cut.Instance.SetSelection(args);
+
+        // Assert 
+        JSInterop.VerifyInvoke("create");
+        JSInterop.VerifyInvoke("setSelection");
+        var invocation = JSInterop.Invocations["setSelection"].Single();
+        invocation.Arguments[0].Should().BeOfType<ElementReference>();
+        invocation.Arguments[1].Should().Be(args);
+    }
+
+    // Manipulation
+    [Fact]
+    public async Task Network_EnableEditMode()
+    {
+        BunitJSModuleInterop module = CreateJSModuleInterop(JSInterop);
+        module.SetupVoid("enableEditMode", _ => true).SetVoidResult();
+
+        // Act
+        var cut = RenderComponent<Network>();
+        await cut.Instance.EnableEditMode();
+
+        // Assert 
+        JSInterop.VerifyInvoke("create");
+        JSInterop.VerifyInvoke("enableEditMode");
+        var invocation = JSInterop.Invocations["enableEditMode"].Single();
+        invocation.Arguments[0].Should().BeOfType<ElementReference>();
+    }
+
+    [Fact]
+    public async Task Network_DisableEditMode()
+    {
+        BunitJSModuleInterop module = CreateJSModuleInterop(JSInterop);
+        module.SetupVoid("disableEditMode", _ => true).SetVoidResult();
+
+        // Act
+        var cut = RenderComponent<Network>();
+        await cut.Instance.DisableEditMode();
+
+        // Assert 
+        JSInterop.VerifyInvoke("create");
+        JSInterop.VerifyInvoke("disableEditMode");
+        var invocation = JSInterop.Invocations["disableEditMode"].Single();
+        invocation.Arguments[0].Should().BeOfType<ElementReference>();
+    }
+
+    [Fact]
+    public async Task Network_AddNodeMode()
+    {
+        BunitJSModuleInterop module = CreateJSModuleInterop(JSInterop);
+        module.SetupVoid("addNodeMode", _ => true).SetVoidResult();
+
+        // Act
+        var cut = RenderComponent<Network>();
+        await cut.Instance.AddNodeMode();
+
+        // Assert 
+        JSInterop.VerifyInvoke("create");
+        JSInterop.VerifyInvoke("addNodeMode");
+        var invocation = JSInterop.Invocations["addNodeMode"].Single();
+        invocation.Arguments[0].Should().BeOfType<ElementReference>();
+    }
+
+    [Fact]
+    public async Task Network_AddEdgeMode()
+    {
+        BunitJSModuleInterop module = CreateJSModuleInterop(JSInterop);
+        module.SetupVoid("addEdgeMode", _ => true).SetVoidResult();
+
+        // Act
+        var cut = RenderComponent<Network>();
+        await cut.Instance.AddEdgeMode();
+
+        // Assert 
+        JSInterop.VerifyInvoke("create");
+        JSInterop.VerifyInvoke("addEdgeMode");
+        var invocation = JSInterop.Invocations["addEdgeMode"].Single();
+        invocation.Arguments[0].Should().BeOfType<ElementReference>();
+    }
+
+    [Fact]
+    public async Task Network_DeleteSelected()
+    {
+        BunitJSModuleInterop module = CreateJSModuleInterop(JSInterop);
+        module.SetupVoid("deleteSelected", _ => true).SetVoidResult();
+
+        // Act
+        var cut = RenderComponent<Network>();
+        await cut.Instance.DeleteSelected();
+
+        // Assert 
+        JSInterop.VerifyInvoke("create");
+        JSInterop.VerifyInvoke("deleteSelected");
+        var invocation = JSInterop.Invocations["deleteSelected"].Single();
+        invocation.Arguments[0].Should().BeOfType<ElementReference>();
+    }
+
+    // Information 
+
+    [Fact]
+    public async Task Network_GetPosition()
+    {
+        BunitJSModuleInterop module = CreateJSModuleInterop(JSInterop);
+        module.Setup<Position>("getPosition", _ => true).SetResult(new Position { X = 1, Y = 2, });
+
+        // Act
+        var cut = RenderComponent<Network>();
+        await cut.Instance.GetPosition(nodeId: "1");
+
+        // Assert 
+        JSInterop.VerifyInvoke("create");
+        JSInterop.VerifyInvoke("getPosition");
+        var invocation = JSInterop.Invocations["getPosition"].Single();
+        invocation.Arguments[0].Should().BeOfType<ElementReference>();
+        invocation.Arguments[1].Should().Be("1");
+    }
+
+    [Fact]
+    public async Task Network_GetPositions()
+    {
+        BunitJSModuleInterop module = CreateJSModuleInterop(JSInterop);
+        module.Setup<IDictionary<string, Position>>("getPositions", _ => true).SetResult(new Dictionary<string, Position>
+        {
+            { "1", new Position { X = 1, Y = 2, } },
+            { "2", new Position { X = 5, Y = 5, } },
+        });
+
+        // Act
+        var cut = RenderComponent<Network>();
+
+        string[] args = ["1", "2"];
+        await cut.Instance.GetPositions(args);
+
+        // Assert 
+        JSInterop.VerifyInvoke("create");
+        JSInterop.VerifyInvoke("getPositions");
+        var invocation = JSInterop.Invocations["getPositions"].Single();
+        invocation.Arguments[0].Should().BeOfType<ElementReference>();
+        invocation.Arguments[1].Should().Be(args);
+    }
+
+    [Fact]
+    public async Task Network_GetBoundingBox()
+    {
+        BunitJSModuleInterop module = CreateJSModuleInterop(JSInterop);
+        module.Setup<BoundingBox>("getBoundingBox", _ => true).SetResult(new BoundingBox { Top = 1, Left = 2, Right = 3, Bottom = 4, });
+
+        // Act
+        var cut = RenderComponent<Network>();
+
+        await cut.Instance.GetBoundingBox(nodeId: "1");
+
+        // Assert 
+        JSInterop.VerifyInvoke("create");
+        JSInterop.VerifyInvoke("getBoundingBox");
+        var invocation = JSInterop.Invocations["getBoundingBox"].Single();
+        invocation.Arguments[0].Should().BeOfType<ElementReference>();
+        invocation.Arguments[1].Should().Be("1");
+    }
+
+
+    [Fact]
+    public async Task Network_GetConnectedEdges()
+    {
+        BunitJSModuleInterop module = CreateJSModuleInterop(JSInterop);
+        module.Setup<string[]>("getConnectedEdges", _ => true).SetResult(["1"]);
+
+        // Act
+        var cut = RenderComponent<Network>();
+        await cut.Instance.GetConnectedEdges(nodeId: "1");
+
+        // Assert 
+        JSInterop.VerifyInvoke("create");
+        JSInterop.VerifyInvoke("getConnectedEdges");
+        var invocation = JSInterop.Invocations["getConnectedEdges"].Single();
+        invocation.Arguments[0].Should().BeOfType<ElementReference>();
+        invocation.Arguments[1].Should().Be("1");
     }
 
     public class EventTests : Bunit.TestContext

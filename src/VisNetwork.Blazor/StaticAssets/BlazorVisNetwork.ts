@@ -326,6 +326,10 @@ export function getConnectedEdges(element: HTMLElement, nodeId: IdType): IdType[
 
 // See: https://github.com/dotnet/aspnetcore/blob/28e5d3421e362e046b5391772159076f6ba382bf/src/Components/Web.JS/src/Rendering/ElementReferenceCapture.ts
 function unwrapReference(stub?: { id: string }): HTMLElement | undefined {
+
+    // Blazor only “unwraps” an ElementReference to a real DOM node when it’s passed as a top - level argument in a JS interop call
+    // thus we need to do it ourselves for nested references.
+
     if (!stub?.id) { return; }
     const attr = `_bl_${stub.id}`;
     return document.querySelector<HTMLElement>(`[${attr}]`) ?? undefined;
