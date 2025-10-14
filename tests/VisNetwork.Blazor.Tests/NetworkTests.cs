@@ -13,7 +13,7 @@ using static VisNetwork.Blazor.Tests.VisNetworkConfig;
 
 namespace VisNetwork.Blazor.Tests;
 
-public class NetworkTests : Bunit.TestContext
+public class NetworkTests : BunitContext
 {
     public NetworkTests()
     {
@@ -27,7 +27,7 @@ public class NetworkTests : Bunit.TestContext
         BunitJSModuleInterop module = CreateJSModuleInterop(JSInterop);
 
         // Act
-        var cut = RenderComponent<Network>();
+        var cut = Render<Network>();
 
         // Assert
         cut.Find("div").Should().NotBeNull();
@@ -35,14 +35,14 @@ public class NetworkTests : Bunit.TestContext
     }
 
     [Fact]
-    public void Network_Dispose()
+    public async Task Network_Dispose()
     {
         BunitJSModuleInterop module = CreateJSModuleInterop(JSInterop);
         module.SetupVoid("destroy", _ => true).SetVoidResult();
-        var cut = RenderComponent<Network>();
+        var cut = Render<Network>();
 
         // Act
-        DisposeComponents();
+        await DisposeComponentsAsync();
 
         // Assert
         JSInterop.VerifyInvoke("create");
@@ -50,7 +50,7 @@ public class NetworkTests : Bunit.TestContext
     }
 
     [Fact]
-    public void Network_Dispose_DataSetSubscription()
+    public async Task Network_Dispose_DataSetSubscription()
     {
         BunitJSModuleInterop module = CreateJSModuleInterop(JSInterop);
         module.SetupVoid("destroy", _ => true).SetVoidResult();
@@ -59,10 +59,10 @@ public class NetworkTests : Bunit.TestContext
             Nodes = new DataSet<Node>([new Node("1", "Node1", 1, ""), new Node("2", "Node 2", 0, "")], idSelector: n => n.Id),
             Edges = new DataSet<Edge>([new Edge("1", "2", title: "1 to 2")], idSelector: n => n.Id),
         };
-        var cut = RenderComponent<Network>(p => p.Add(n => n.Data, networkData));
+        var cut = Render<Network>(p => p.Add(n => n.Data, networkData));
 
         // Act
-        DisposeComponents();
+        await DisposeComponentsAsync();
         networkData.Nodes.Add(new Node("3", "Node 3", 0, ""));
 
         // Assert
@@ -82,7 +82,7 @@ public class NetworkTests : Bunit.TestContext
         };
 
         // Act
-        var cut = RenderComponent<Network>(parameters => parameters.Add(n => n.Data, networkData));
+        var cut = Render<Network>(parameters => parameters.Add(n => n.Data, networkData));
 
         // Assert 
         JSInterop.VerifyInvoke("create");
@@ -97,7 +97,7 @@ public class NetworkTests : Bunit.TestContext
             Nodes = new DataSet<Node>([new Node("1", "Node1", 1, ""), new Node("2", "Node 2", 0, "")], idSelector: n => n.Id),
             Edges = new DataSet<Edge>([new Edge("1", "2", title: "1 to 2")], idSelector: n => n.Id),
         };
-        var cut = RenderComponent<Network>(parameters => parameters.Add(n => n.Data, networkData));
+        var cut = Render<Network>(parameters => parameters.Add(n => n.Data, networkData));
 
         // Act
         networkData.Nodes.Add(new Node("3", "Node 3", 0, ""));
@@ -114,7 +114,7 @@ public class NetworkTests : Bunit.TestContext
     {
         BunitJSModuleInterop module = CreateJSModuleInterop(JSInterop);
         module.SetupVoid("setData", _ => true).SetVoidResult();
-        var cut = RenderComponent<Network>();
+        var cut = Render<Network>();
 
         // Act
         await cut.Instance.SetData(new NetworkData
@@ -133,7 +133,7 @@ public class NetworkTests : Bunit.TestContext
     {
         BunitJSModuleInterop module = CreateJSModuleInterop(JSInterop);
         module.SetupVoid("setData", _ => true).SetVoidResult();
-        var cut = RenderComponent<Network>();
+        var cut = Render<Network>();
 
         // Act
         await cut.Instance.SetData(new NetworkDataSet
@@ -152,7 +152,7 @@ public class NetworkTests : Bunit.TestContext
     {
         BunitJSModuleInterop module = CreateJSModuleInterop(JSInterop);
         module.SetupVoid("setSize", _ => true).SetVoidResult();
-        var cut = RenderComponent<Network>();
+        var cut = Render<Network>();
 
         // Act
         await cut.Instance.SetSize(100, 200);
@@ -170,7 +170,7 @@ public class NetworkTests : Bunit.TestContext
     {
         BunitJSModuleInterop module = CreateJSModuleInterop(JSInterop);
         module.SetupVoid("redraw", _ => true).SetVoidResult();
-        var cut = RenderComponent<Network>();
+        var cut = Render<Network>();
 
         // Act
         await cut.Instance.Redraw();
@@ -187,7 +187,7 @@ public class NetworkTests : Bunit.TestContext
     {
         BunitJSModuleInterop module = CreateJSModuleInterop(JSInterop);
         module.Setup<Position>("canvasToDOM", _ => true).SetResult(new Position { X = 2, Y = 3, });
-        var cut = RenderComponent<Network>();
+        var cut = Render<Network>();
         var positionArg = new Position { X = 1, Y = 2, };
 
         // Act
@@ -208,7 +208,7 @@ public class NetworkTests : Bunit.TestContext
     {
         BunitJSModuleInterop module = CreateJSModuleInterop(JSInterop);
         module.Setup<Position>("DOMToCanvas", _ => true).SetResult(new Position { X = 2, Y = 3, });
-        var cut = RenderComponent<Network>();
+        var cut = Render<Network>();
         var positionArg = new Position { X = 1, Y = 2, };
 
         // Act
@@ -230,7 +230,7 @@ public class NetworkTests : Bunit.TestContext
     {
         BunitJSModuleInterop module = CreateJSModuleInterop(JSInterop);
         module.SetupVoid("clusterOutliers", _ => true).SetVoidResult();
-        var cut = RenderComponent<Network>();
+        var cut = Render<Network>();
 
         // Act
         await cut.Instance.ClusterOutliers();
@@ -249,7 +249,7 @@ public class NetworkTests : Bunit.TestContext
     {
         BunitJSModuleInterop module = CreateJSModuleInterop(JSInterop);
         module.SetupVoid("populateDotNetwork", _ => true).SetVoidResult();
-        var cut = RenderComponent<Network>();
+        var cut = Render<Network>();
 
         // Act
         await cut.Instance.ParseDOTNetwork("some dot string");
@@ -268,7 +268,7 @@ public class NetworkTests : Bunit.TestContext
     {
         BunitJSModuleInterop module = CreateJSModuleInterop(JSInterop);
         module.Setup<string[]>("getSelectedNodes", _ => true).SetResult(["1"]);
-        var cut = RenderComponent<Network>();
+        var cut = Render<Network>();
 
         // Act
         await cut.Instance.GetSelectedNodes();
@@ -286,7 +286,7 @@ public class NetworkTests : Bunit.TestContext
         BunitJSModuleInterop module = CreateJSModuleInterop(JSInterop);
         module.SetupVoid("selectNodes", _ => true).SetVoidResult();
         string[] args = ["1"];
-        var cut = RenderComponent<Network>();
+        var cut = Render<Network>();
 
         // Act
         await cut.Instance.SelectNodes(args);
@@ -304,7 +304,7 @@ public class NetworkTests : Bunit.TestContext
     {
         BunitJSModuleInterop module = CreateJSModuleInterop(JSInterop);
         module.Setup<string[]>("getSelectedEdges", _ => true).SetResult(["1"]);
-        var cut = RenderComponent<Network>();
+        var cut = Render<Network>();
 
         // Act
         await cut.Instance.GetSelectedEdges();
@@ -322,7 +322,7 @@ public class NetworkTests : Bunit.TestContext
         BunitJSModuleInterop module = CreateJSModuleInterop(JSInterop);
         module.SetupVoid("selectEdges", _ => true).SetVoidResult();
         string[] args = ["1"];
-        var cut = RenderComponent<Network>();
+        var cut = Render<Network>();
 
         // Act
         await cut.Instance.SelectEdges(args);
@@ -340,7 +340,7 @@ public class NetworkTests : Bunit.TestContext
     {
         BunitJSModuleInterop module = CreateJSModuleInterop(JSInterop);
         module.Setup<NodeEdgeComposite>("getSelection", _ => true).SetResult(new NodeEdgeComposite { Nodes = ["1"], Edges = ["1"], });
-        var cut = RenderComponent<Network>();
+        var cut = Render<Network>();
 
         // Act
         await cut.Instance.GetSelection();
@@ -358,7 +358,7 @@ public class NetworkTests : Bunit.TestContext
         BunitJSModuleInterop module = CreateJSModuleInterop(JSInterop);
         module.SetupVoid("setSelection", _ => true).SetVoidResult();
         var args = new NodeEdgeComposite { Nodes = ["1"], Edges = ["1"], };
-        var cut = RenderComponent<Network>();
+        var cut = Render<Network>();
 
         // Act
         await cut.Instance.SetSelection(args);
@@ -377,7 +377,7 @@ public class NetworkTests : Bunit.TestContext
     {
         BunitJSModuleInterop module = CreateJSModuleInterop(JSInterop);
         module.SetupVoid("unselectAll", _ => true).SetVoidResult();
-        var cut = RenderComponent<Network>();
+        var cut = Render<Network>();
 
         // Act
         await cut.Instance.UnselectAll();
@@ -395,7 +395,7 @@ public class NetworkTests : Bunit.TestContext
     {
         BunitJSModuleInterop module = CreateJSModuleInterop(JSInterop);
         module.SetupVoid("enableEditMode", _ => true).SetVoidResult();
-        var cut = RenderComponent<Network>();
+        var cut = Render<Network>();
 
         // Act
         await cut.Instance.EnableEditMode();
@@ -412,7 +412,7 @@ public class NetworkTests : Bunit.TestContext
     {
         BunitJSModuleInterop module = CreateJSModuleInterop(JSInterop);
         module.SetupVoid("disableEditMode", _ => true).SetVoidResult();
-        var cut = RenderComponent<Network>();
+        var cut = Render<Network>();
 
         // Act
         await cut.Instance.DisableEditMode();
@@ -429,7 +429,7 @@ public class NetworkTests : Bunit.TestContext
     {
         BunitJSModuleInterop module = CreateJSModuleInterop(JSInterop);
         module.SetupVoid("addNodeMode", _ => true).SetVoidResult();
-        var cut = RenderComponent<Network>();
+        var cut = Render<Network>();
 
         // Act
         await cut.Instance.AddNodeMode();
@@ -446,7 +446,7 @@ public class NetworkTests : Bunit.TestContext
     {
         BunitJSModuleInterop module = CreateJSModuleInterop(JSInterop);
         module.SetupVoid("addEdgeMode", _ => true).SetVoidResult();
-        var cut = RenderComponent<Network>();
+        var cut = Render<Network>();
 
         // Act
         await cut.Instance.AddEdgeMode();
@@ -463,7 +463,7 @@ public class NetworkTests : Bunit.TestContext
     {
         BunitJSModuleInterop module = CreateJSModuleInterop(JSInterop);
         module.SetupVoid("deleteSelected", _ => true).SetVoidResult();
-        var cut = RenderComponent<Network>();
+        var cut = Render<Network>();
 
         // Act
         await cut.Instance.DeleteSelected();
@@ -482,7 +482,7 @@ public class NetworkTests : Bunit.TestContext
     {
         BunitJSModuleInterop module = CreateJSModuleInterop(JSInterop);
         module.Setup<Position>("getPosition", _ => true).SetResult(new Position { X = 1, Y = 2, });
-        var cut = RenderComponent<Network>();
+        var cut = Render<Network>();
 
         // Act
         await cut.Instance.GetPosition(nodeId: "1");
@@ -504,7 +504,7 @@ public class NetworkTests : Bunit.TestContext
             { "1", new Position { X = 1, Y = 2, } },
             { "2", new Position { X = 5, Y = 5, } },
         });
-        var cut = RenderComponent<Network>();
+        var cut = Render<Network>();
         string[] args = ["1", "2"];
 
         // Act
@@ -523,7 +523,7 @@ public class NetworkTests : Bunit.TestContext
     {
         BunitJSModuleInterop module = CreateJSModuleInterop(JSInterop);
         module.Setup<BoundingBox>("getBoundingBox", _ => true).SetResult(new BoundingBox { Top = 1, Left = 2, Right = 3, Bottom = 4, });
-        var cut = RenderComponent<Network>();
+        var cut = Render<Network>();
 
         // Act
         await cut.Instance.GetBoundingBox(nodeId: "1");
@@ -542,7 +542,7 @@ public class NetworkTests : Bunit.TestContext
     {
         BunitJSModuleInterop module = CreateJSModuleInterop(JSInterop);
         module.Setup<string[]>("getConnectedEdges", _ => true).SetResult(["1"]);
-        var cut = RenderComponent<Network>();
+        var cut = Render<Network>();
 
         // Act
         await cut.Instance.GetConnectedEdges(nodeId: "1");
@@ -555,7 +555,7 @@ public class NetworkTests : Bunit.TestContext
         invocation.Arguments[1].Should().Be("1");
     }
 
-    public class EventTests : Bunit.TestContext
+    public class EventTests : BunitContext
     {
         public EventTests()
         {
@@ -571,7 +571,7 @@ public class NetworkTests : Bunit.TestContext
             BunitJSModuleInterop module = CreateJSModuleInterop(JSInterop);
             module.SetupVoid("on", _ => true);
             bool eventInvoked = false;
-            var cut = RenderComponent<Network>(c => c.Add(n => n.OnClick, _ => eventInvoked = true));
+            var cut = Render<Network>(c => c.Add(n => n.OnClick, _ => eventInvoked = true));
 
             // Act
             await cut.Instance.EventCallback("click", Serialize(CreateEvent<ClickEvent>(cut.Instance)));
@@ -588,7 +588,7 @@ public class NetworkTests : Bunit.TestContext
             BunitJSModuleInterop module = CreateJSModuleInterop(JSInterop);
             module.SetupVoid("on", _ => true);
             bool eventInvoked = false;
-            var cut = RenderComponent<Network>(c => c.Add(n => n.OnDoubleClick, _ => eventInvoked = true));
+            var cut = Render<Network>(c => c.Add(n => n.OnDoubleClick, _ => eventInvoked = true));
 
             // Act
             await cut.Instance.EventCallback("doubleClick", Serialize(CreateEvent<ClickEvent>(cut.Instance)));
@@ -605,7 +605,7 @@ public class NetworkTests : Bunit.TestContext
             BunitJSModuleInterop module = CreateJSModuleInterop(JSInterop);
             module.SetupVoid("on", _ => true);
             bool eventInvoked = false;
-            var cut = RenderComponent<Network>(c => c.Add(n => n.OnContext, _ => eventInvoked = true));
+            var cut = Render<Network>(c => c.Add(n => n.OnContext, _ => eventInvoked = true));
 
             // Act
             await cut.Instance.EventCallback("oncontext", Serialize(CreateEvent<ClickEvent>(cut.Instance)));
@@ -622,7 +622,7 @@ public class NetworkTests : Bunit.TestContext
             BunitJSModuleInterop module = CreateJSModuleInterop(JSInterop);
             module.SetupVoid("on", _ => true);
             bool eventInvoked = false;
-            var cut = RenderComponent<Network>(c => c.Add(n => n.OnHold, _ => eventInvoked = true));
+            var cut = Render<Network>(c => c.Add(n => n.OnHold, _ => eventInvoked = true));
 
             // Act
             await cut.Instance.EventCallback("hold", Serialize(CreateEvent<ClickEvent>(cut.Instance)));
@@ -639,7 +639,7 @@ public class NetworkTests : Bunit.TestContext
             BunitJSModuleInterop module = CreateJSModuleInterop(JSInterop);
             module.SetupVoid("on", _ => true);
             bool eventInvoked = false;
-            var cut = RenderComponent<Network>(c => c.Add(n => n.OnRelease, _ => eventInvoked = true));
+            var cut = Render<Network>(c => c.Add(n => n.OnRelease, _ => eventInvoked = true));
 
             // Act
             await cut.Instance.EventCallback("release", Serialize(CreateEvent<ClickEvent>(cut.Instance)));
@@ -656,7 +656,7 @@ public class NetworkTests : Bunit.TestContext
             BunitJSModuleInterop module = CreateJSModuleInterop(JSInterop);
             module.SetupVoid("on", _ => true);
             bool eventInvoked = false;
-            var cut = RenderComponent<Network>(c => c.Add(n => n.OnSelect, _ => eventInvoked = true));
+            var cut = Render<Network>(c => c.Add(n => n.OnSelect, _ => eventInvoked = true));
 
             // Act
             await cut.Instance.EventCallback("select", Serialize(CreateEvent<ClickEvent>(cut.Instance)));
@@ -673,7 +673,7 @@ public class NetworkTests : Bunit.TestContext
             BunitJSModuleInterop module = CreateJSModuleInterop(JSInterop);
             module.SetupVoid("on", _ => true);
             bool eventInvoked = false;
-            var cut = RenderComponent<Network>(c => c.Add(n => n.OnSelectNode, _ => eventInvoked = true));
+            var cut = Render<Network>(c => c.Add(n => n.OnSelectNode, _ => eventInvoked = true));
 
             // Act
             await cut.Instance.EventCallback("selectNode", Serialize(CreateEvent<ClickEvent>(cut.Instance)));
@@ -690,7 +690,7 @@ public class NetworkTests : Bunit.TestContext
             BunitJSModuleInterop module = CreateJSModuleInterop(JSInterop);
             module.SetupVoid("on", _ => true);
             bool eventInvoked = false;
-            var cut = RenderComponent<Network>(c => c.Add(n => n.OnDeselectNode, _ => eventInvoked = true));
+            var cut = Render<Network>(c => c.Add(n => n.OnDeselectNode, _ => eventInvoked = true));
 
             // Act
             await cut.Instance.EventCallback("deselectNode", Serialize(CreateEvent<DeselectClickEvent>(cut.Instance)));
@@ -707,7 +707,7 @@ public class NetworkTests : Bunit.TestContext
             BunitJSModuleInterop module = CreateJSModuleInterop(JSInterop);
             module.SetupVoid("on", _ => true);
             bool eventInvoked = false;
-            var cut = RenderComponent<Network>(c => c.Add(n => n.OnSelectEdge, _ => eventInvoked = true));
+            var cut = Render<Network>(c => c.Add(n => n.OnSelectEdge, _ => eventInvoked = true));
 
             // Act
             await cut.Instance.EventCallback("selectEdge", Serialize(CreateEvent<ClickEvent>(cut.Instance)));
@@ -724,7 +724,7 @@ public class NetworkTests : Bunit.TestContext
             BunitJSModuleInterop module = CreateJSModuleInterop(JSInterop);
             module.SetupVoid("on", _ => true);
             bool eventInvoked = false;
-            var cut = RenderComponent<Network>(c => c.Add(n => n.OnDeselectEdge, _ => eventInvoked = true));
+            var cut = Render<Network>(c => c.Add(n => n.OnDeselectEdge, _ => eventInvoked = true));
 
             // Act
             await cut.Instance.EventCallback("deselectEdge", Serialize(CreateEvent<DeselectClickEvent>(cut.Instance)));
@@ -741,7 +741,7 @@ public class NetworkTests : Bunit.TestContext
             BunitJSModuleInterop module = CreateJSModuleInterop(JSInterop);
             module.SetupVoid("on", _ => true);
             bool eventInvoked = false;
-            var cut = RenderComponent<Network>(c => c.Add(n => n.OnShowPopup, _ => eventInvoked = true));
+            var cut = Render<Network>(c => c.Add(n => n.OnShowPopup, _ => eventInvoked = true));
 
             // Act
             await cut.Instance.EventCallback("showPopup", "some data");
@@ -758,7 +758,7 @@ public class NetworkTests : Bunit.TestContext
             BunitJSModuleInterop module = CreateJSModuleInterop(JSInterop);
             module.SetupVoid("on", _ => true);
             bool eventInvoked = false;
-            var cut = RenderComponent<Network>(c => c.Add(n => n.OnHidePopup, _ => eventInvoked = true));
+            var cut = Render<Network>(c => c.Add(n => n.OnHidePopup, _ => eventInvoked = true));
 
             // Act
             await cut.Instance.EventCallback("hidePopup", "");
@@ -775,7 +775,7 @@ public class NetworkTests : Bunit.TestContext
             BunitJSModuleInterop module = CreateJSModuleInterop(JSInterop);
             module.SetupVoid("on", _ => true);
             bool eventInvoked = false;
-            var cut = RenderComponent<Network>(c => c.Add(n => n.OnBeforeDrawing, _ => eventInvoked = true));
+            var cut = Render<Network>(c => c.Add(n => n.OnBeforeDrawing, _ => eventInvoked = true));
 
             // Act
             await cut.Instance.EventCallback("beforeDrawing", Serialize(new DrawingEvent()));
@@ -792,7 +792,7 @@ public class NetworkTests : Bunit.TestContext
             BunitJSModuleInterop module = CreateJSModuleInterop(JSInterop);
             module.SetupVoid("on", _ => true);
             bool eventInvoked = false;
-            var cut = RenderComponent<Network>(c => c.Add(n => n.OnAfterDrawing, _ => eventInvoked = true));
+            var cut = Render<Network>(c => c.Add(n => n.OnAfterDrawing, _ => eventInvoked = true));
 
             // Act
             await cut.Instance.EventCallback("afterDrawing", Serialize(new DrawingEvent()));
@@ -809,7 +809,7 @@ public class NetworkTests : Bunit.TestContext
             BunitJSModuleInterop module = CreateJSModuleInterop(JSInterop);
             module.SetupVoid("on", _ => true);
             bool eventInvoked = false;
-            var cut = RenderComponent<Network>(c => c.Add(n => n.OnStartStabilizing, _ => eventInvoked = true));
+            var cut = Render<Network>(c => c.Add(n => n.OnStartStabilizing, _ => eventInvoked = true));
 
             // Act
             await cut.Instance.EventCallback("startStabilizing", "");
@@ -826,7 +826,7 @@ public class NetworkTests : Bunit.TestContext
             BunitJSModuleInterop module = CreateJSModuleInterop(JSInterop);
             module.SetupVoid("on", _ => true);
             bool eventInvoked = false;
-            var cut = RenderComponent<Network>(c => c.Add(n => n.OnStabilizationProgress, _ => eventInvoked = true));
+            var cut = Render<Network>(c => c.Add(n => n.OnStabilizationProgress, _ => eventInvoked = true));
 
             // Act
             await cut.Instance.EventCallback("stabilizationProgress", Serialize(new StabilizationProgressEvent()));
@@ -843,7 +843,7 @@ public class NetworkTests : Bunit.TestContext
             BunitJSModuleInterop module = CreateJSModuleInterop(JSInterop);
             module.SetupVoid("on", _ => true);
             bool eventInvoked = false;
-            var cut = RenderComponent<Network>(c => c.Add(n => n.OnStabilizationIterationsDone, _ => eventInvoked = true));
+            var cut = Render<Network>(c => c.Add(n => n.OnStabilizationIterationsDone, _ => eventInvoked = true));
 
             // Act
             await cut.Instance.EventCallback("stabilizationIterationsDone", "");
@@ -860,7 +860,7 @@ public class NetworkTests : Bunit.TestContext
             BunitJSModuleInterop module = CreateJSModuleInterop(JSInterop);
             module.SetupVoid("on", _ => true);
             bool eventInvoked = false;
-            var cut = RenderComponent<Network>(c => c.Add(n => n.OnStabilized, _ => eventInvoked = true));
+            var cut = Render<Network>(c => c.Add(n => n.OnStabilized, _ => eventInvoked = true));
 
             // Act
             await cut.Instance.EventCallback("stabilized", Serialize(new StabilizedEvent()));
