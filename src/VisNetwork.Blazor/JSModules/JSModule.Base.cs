@@ -16,7 +16,7 @@ internal partial class JSModule(IJSRuntime jsRuntime, IVersionProvider versionPr
 
     public string ModuleFileName => $"./_content/VisNetwork.Blazor/BlazorVisNetwork.js?v={versionProvider.Version}";
 
-    private async ValueTask InvokeVoidAsync(string identifier, params object[] args)
+    private async ValueTask InvokeVoidAsync(string identifier, params object?[]? args)
     {
         try
         {
@@ -35,7 +35,7 @@ internal partial class JSModule(IJSRuntime jsRuntime, IVersionProvider versionPr
         }
     }
 
-    private async ValueTask<TValue> InvokeAsync<TValue>(string identifier, params object[] args)
+    private async ValueTask<TValue> InvokeAsync<TValue>(string identifier, params object?[]? args)
     {
         try
         {

@@ -2,12 +2,12 @@
 //// <reference types="vis-network/declarations/entry-esnext" />
 
 import {
+    BoundingBox,
     Data,
     IdType,
     Network, NetworkEvents,
     Options,
     Position,
-    BoundingBox,
     SelectionOptions,
     parseDOTNetwork
 } from "vis-network/standalone";
@@ -103,12 +103,6 @@ export function setOptions(element: HTMLElement, options: Options) {
     options.configure
 }
 
-export function setSize(element: HTMLElement, width: string, height: string) {
-    console.log('VisNetwork.Blazor: [setSize].', element, width, height);
-    const network: Network = getNetworkById(element.id);
-    network.setSize(width, height);
-}
-
 export function destroy(element: HTMLElement) {
     console.log('VisNetwork.Blazor: [destroy] ', element);
     if (element) {
@@ -184,10 +178,28 @@ export function off(element: HTMLElement, _component: DotNetObjectReference, eve
 }
 
 // Canvas
+export function setSize(element: HTMLElement, width: string, height: string) {
+    console.log('VisNetwork.Blazor: [setSize].', element, width, height);
+    const network: Network = getNetworkById(element.id);
+    network.setSize(width, height);
+}
+
 export function redraw(element: HTMLElement) {
     console.log('VisNetwork.Blazor: [redraw] ', element);
     const network: Network = getNetworkById(element.id);
     network.redraw();
+}
+
+export function DOMtoCanvas(element: HTMLElement, position: Position) {
+    console.log('VisNetwork.Blazor: [DOMtoCanvas].', element, position);
+    const network: Network = getNetworkById(element.id);
+    network.DOMtoCanvas(position);
+}
+
+export function canvasToDOM(element: HTMLElement, position: Position) {
+    console.log('VisNetwork.Blazor: [canvasToDOM].', element, position);
+    const network: Network = getNetworkById(element.id);
+    network.canvasToDOM(position);
 }
 
 // Clustering
