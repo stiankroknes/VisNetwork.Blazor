@@ -221,7 +221,8 @@ export function getSelectedNodes(element: HTMLElement): IdType[] {
 export function selectNodes(element: HTMLElement, nodeIds: IdType[], highlightEdges?: boolean) {
     console.log('VisNetwork.Blazor: [selectNodes] ', element, nodeIds, highlightEdges);
     const network: Network = getNetworkById(element.id);
-    network.selectNodes(nodeIds, highlightEdges);
+    const arg = convertNullToUndefined(highlightEdges);
+    network.selectNodes(nodeIds, arg);
 }
 
 export function getSelectedEdges(element: HTMLElement): IdType[] {
@@ -245,7 +246,8 @@ export function getSelection(element: HTMLElement): { nodes: IdType[], edges: Id
 export function setSelection(element: HTMLElement, selection: { nodes: IdType[], edges: IdType[] }, options?: SelectionOptions) {
     console.log('VisNetwork.Blazor: [setSelection] ', element, selection, options);
     const network: Network = getNetworkById(element.id);
-    network.setSelection(selection, options);
+    const arg = convertNullToUndefined(options);
+    network.setSelection(selection, arg);
 }
 
 export function unselectAll(element: HTMLElement) {
@@ -345,6 +347,10 @@ function unwrapReference(stub?: { id: string }): HTMLElement | undefined {
     if (!stub?.id) { return; }
     const attr = `_bl_${stub.id}`;
     return document.querySelector<HTMLElement>(`[${attr}]`) ?? undefined;
+}
+
+function convertNullToUndefined<T>(value: T | null): T | undefined {
+    return value === null ? undefined : value;
 }
 
 //export function getConnectedNodes(element: HTMLElement, nodeId: IdType): IdType[] {
