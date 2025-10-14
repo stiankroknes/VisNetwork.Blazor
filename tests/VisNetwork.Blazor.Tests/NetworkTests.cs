@@ -104,7 +104,7 @@ public class NetworkTests : BunitContext
 
         // Assert 
         JSInterop.VerifyInvoke("create");
-        JSInterop.VerifyInvoke("setData");
+        cut.WaitForAssertion(() => JSInterop.VerifyInvoke("setData"));
     }
 
     // Global 
