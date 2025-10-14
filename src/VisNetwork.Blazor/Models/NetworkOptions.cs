@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+
 namespace VisNetwork.Blazor.Models;
 
 public class NetworkOptions
@@ -26,7 +28,10 @@ public class NetworkOptions
     /// </summary>
     public string? Locale { get; set; }
 
-    // locales
+    /// <summary>
+    /// Locales object. By default 'en', 'de', 'es', 'it', 'nl' 'pt-br', 'ru' are supported.
+    /// </summary>
+    public IDictionary<string, LocaleMessages>? Locales { get; set; }
 
     /// <summary>
     /// When a Network is configured to be clickToUse, it will react to mouse and touch events only when active.
@@ -52,7 +57,6 @@ public class NetworkOptions
     /// </summary>
     /// <value></value>
     public NodeOption? Nodes { get; set; }
-
 
 #pragma warning disable S1135 // Track uses of "TODO" tags
     // TODO groups, can add group:'myGroup' to node, and define styling for groups here

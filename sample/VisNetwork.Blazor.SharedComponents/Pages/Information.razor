@@ -1,0 +1,76 @@
+@page "/information"
+
+
+@using VisNetwork.Blazor.Models
+
+<h1>Information</h1>
+
+<div>
+	<button @onclick="@GetPosition" aria-label="GetPosition">GetPosition</button>
+	<button @onclick="@GetPositions" aria-label="GetPositions">GetPositions</button>
+	<button @onclick="@GetBoundingBox" aria-label="GetBoundingBox">GetBoundingBox</button>
+	<button @onclick="@GetConnectedEdges" aria-label="GetConnectedEdges">GetConnectedEdges</button>
+</div>
+
+<div>
+	<p>Position of Node 1: @position</p>
+	<p>Positions of Node 1 and 2: @positions</p>
+	<p>Connected edges of Node 1: @connectedEdges</p>
+	<p>Bounding box of Node 1: @boundingBox</p>
+</div>
+
+<div>
+	<Network @ref="network" Id="my-id" Data="@data" class="vis-network-container" />
+</div>
+
+@code {
+	private NetworkDataSet data;
+	private Network network;
+
+	private string position;
+	private string positions;
+	private string boundingBox;
+	private string connectedEdges;
+
+	public Information()
+	{
+		var nodes = new DataSet<Node>(idSelector: n => n.Id);
+		var edges = new DataSet<Edge>(idSelector: n => n.Id);
+
+		nodes.Add(new Node("1", "Node 1", 1, "circle"));
+		nodes.Add(new Node("2", "Node 2", 2, "ellipse"));
+		edges.Add(new Edge("1", "2") { Id = "1-2", });
+		nodes.Add(new Node("3", "Node 3", 4, "database"));
+		edges.Add(new Edge("2", "3") { Id = "2-3", });
+
+		data = new NetworkDataSet
+		{
+			Edges = edges,
+			Nodes = nodes
+		};
+	}
+
+	private async Task GetPosition()
+	{
+		var result = await network.GetPosition("1");
+		position = $"X: {result.X}, Y: {result.Y}";
+	}
+
+	private async Task GetPositions()
+	{
+		var result = await network.GetPositions(new[] { "1", "2" });
+		positions = string.Join(" | ", result.Select(kv => $"Id: {kv.Key}, X: {kv.Value.X}, Y: {kv.Value.Y}"));
+	}
+
+	private async Task GetBoundingBox()
+	{
+		var result = await network.GetBoundingBox("1");
+		boundingBox = $"Top: {result.Top}, Left: {result.Left}, Bottom: {result.Bottom}, Right: {result.Right}";
+	}
+
+	private async Task GetConnectedEdges()
+	{
+		var result = await network.GetConnectedEdges("1");
+		connectedEdges = string.Join(", ", result);
+	}
+}

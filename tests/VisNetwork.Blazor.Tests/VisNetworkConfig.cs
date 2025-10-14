@@ -5,7 +5,7 @@ namespace VisNetwork.Blazor.Tests;
 
 public class VisNetworkConfig
 {
-    public static void AddVisNetwork(TestServiceProvider services)
+    public static void AddVisNetwork(BunitServiceProvider services)
     {
         services.AddSingleton<IVersionProvider, DummyVersionProvider>();
         services.AddScoped<IJSModule, JSModule>();

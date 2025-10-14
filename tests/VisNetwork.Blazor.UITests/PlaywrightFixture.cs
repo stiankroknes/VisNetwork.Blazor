@@ -36,7 +36,7 @@ public sealed class PlaywrightFixture : IAsyncLifetime
         Playwright.Selectors.SetTestIdAttribute("data-testid");
 
         // can use playwright.Firefox, playwright.Chromium, or playwright.WebKit
-        // BrowserName = "firefox";  
+        //BrowserName = "firefox";
 
         BrowserName = PlaywrightSettingsProvider.BrowserName;
         BrowserType = Playwright[BrowserName];

@@ -1,0 +1,61 @@
+@page "/manipulation"
+
+@using VisNetwork.Blazor.Models
+
+<h1>Manipulation</h1>
+
+
+<div>
+	<button @onclick="@AddNodeMode" aria-label="AddNodeMode">AddNodeMode</button>
+	<button @onclick="@AddEdgeMode" aria-label="AddEdgeMode">AddEdgeMode</button>
+	<button @onclick="@DeleteSelected" aria-label="DeleteSelected">DeleteSelected</button>
+</div>
+<div>
+	<Network @ref="network" Id="my-id" Data="@data" Options="@NetworkOptions" class="vis-network-container" />
+</div>
+
+@code {
+	private NetworkDataSet data;
+	private Network network;
+
+	public Manipulation()
+	{
+		var nodes = new DataSet<Node>(idSelector: n => n.Id);
+		var edges = new DataSet<Edge>(idSelector: n => n.Id);
+
+		nodes.Add(new Node("1", "Node 1", 1, "circle"));
+		nodes.Add(new Node("2", "Node 2", 2, "ellipse"));
+		edges.Add(new Edge("1", "2") { Id = "1-2", });
+		nodes.Add(new Node("3", "Node 3", 4, "database"));
+		edges.Add(new Edge("2", "3") { Id = "2-3", });
+
+		data = new NetworkDataSet
+		{
+			Edges = edges,
+			Nodes = nodes
+		};
+	}
+
+	private NetworkOptions NetworkOptions(Network network)
+	{
+		return new NetworkOptions
+		{
+			AutoResize = true,
+			Nodes = new NodeOption
+			{
+				BorderWidth = 1,
+			},
+			Manipulation = new()
+			{
+				Enabled = true,
+			}
+		};
+	}
+
+	private async Task AddNodeMode() => await network.AddNodeMode();
+
+	private async Task AddEdgeMode() => await network.AddEdgeMode();
+
+	private async Task DeleteSelected() => await network.DeleteSelected();
+}
+

@@ -1,4 +1,6 @@
-﻿namespace VisNetwork.Blazor.Models;
+﻿using Microsoft.AspNetCore.Components;
+
+namespace VisNetwork.Blazor.Models;
 
 /// <summary>
 /// The options for the canvas.
@@ -18,14 +20,12 @@ public class ConfigureOptions
     /// </summary>
     public string? Filter { get; set; }
 
-#pragma warning disable S125 // Sections of code should not be commented out
     /// <summary>
     /// This allows you to put the configure list in another HTML container than below the network. 
     /// </summary>
-    //public ElementReference Container {get;set;}
-#pragma warning restore S125 // Sections of code should not be commented out
+    public ElementReference Container { get; set; }
 
-        /// <summary>
+    /// <summary>
     /// Show the generate options button at the bottom of the configurator.
     /// The default is true.
     /// </summary>

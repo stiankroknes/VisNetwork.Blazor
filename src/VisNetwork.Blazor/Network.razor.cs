@@ -13,12 +13,17 @@ public partial class Network : IAsyncDisposable
     private readonly DotNetObjectReference<Network> thisReference;
     private ElementReference element;
     private bool firstRenderComplete;
-    private NetworkData? currentData;
+    private string networkId;
+
+    private INetworkData? currentData;
+    private IDataSet? subscribedNodeSet;
+    private IDataSet? subscribedEdgeSet;
 
     [Inject]
     internal IJSModule JS { get; init; }
 
     [Parameter] public string Id { get; set; }
+    [Parameter] public EventCallback<string> IdChanged { get; set; }
 
     /// <summary>
     /// Sets the options action to create the <see cref="NetworkOptions"/>.
@@ -28,7 +33,7 @@ public partial class Network : IAsyncDisposable
     /// <summary>
     /// The network data.
     /// </summary>
-    [Parameter] public NetworkData Data { get; set; }
+    [Parameter] public INetworkData Data { get; set; }
 
     [Parameter(CaptureUnmatchedValues = true)] public Dictionary<string, object> ExtraAttributes { get; set; }
 
@@ -130,7 +135,6 @@ public partial class Network : IAsyncDisposable
     // Event triggered by the canvas.
     // TODO
 
-
     // Events triggered by the rendering module. Can be used to draw custom elements on the canvas.
     // TOOD
 #pragma warning restore S1135 // Track uses of "TODO" tags
@@ -158,6 +162,7 @@ public partial class Network : IAsyncDisposable
         thisReference = DotNetObjectReference.Create(this);
         JS = default!;
         Id = default!;
+        networkId = default!;
         Options = default!;
         Data = default!;
         ExtraAttributes = default!;
@@ -166,6 +171,16 @@ public partial class Network : IAsyncDisposable
     async ValueTask IAsyncDisposable.DisposeAsync()
     {
         thisReference?.Dispose();
+
+        if (subscribedNodeSet != null)
+        {
+            subscribedNodeSet.Changed -= OnDataSetChanged;
+        }
+
+        if (subscribedEdgeSet != null)
+        {
+            subscribedEdgeSet.Changed -= OnDataSetChanged;
+        }
 
         if (firstRenderComplete)
         {
@@ -188,19 +203,50 @@ public partial class Network : IAsyncDisposable
 
     protected override async Task OnParametersSetAsync()
     {
+        if (subscribedNodeSet != null)
+        {
+            subscribedNodeSet.Changed -= OnDataSetChanged;
+        }
+
+        if (subscribedEdgeSet != null)
+        {
+            subscribedEdgeSet.Changed -= OnDataSetChanged;
+        }
+
+        subscribedNodeSet = Data?.Nodes as IDataSet;
+        subscribedEdgeSet = Data?.Edges as IDataSet;
+
+        if (subscribedNodeSet is not null)
+        {
+            subscribedNodeSet.Changed += OnDataSetChanged;
+        }
+
+        if (subscribedEdgeSet is not null)
+        {
+            subscribedEdgeSet.Changed += OnDataSetChanged;
+        }
+
         if (string.IsNullOrWhiteSpace(Id))
         {
-            Id = $"blazor-network-{Guid.NewGuid()}";
+            networkId = $"blazor-network-{Guid.NewGuid()}";
+            await IdChanged.InvokeAsync(networkId);
+        }
+        else
+        {
+            networkId = Id;
         }
 
         if (firstRenderComplete && currentData != Data)
         {
-            await JS.SetData(element, thisReference, Data);
+            await JS.SetData(element, thisReference, Data!);
         }
 
         currentData = Data;
+
         await base.OnParametersSetAsync();
     }
+
+    private async void OnDataSetChanged(object? sender, EventArgs e) => await JS.SetData(element, thisReference, Data!);
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
@@ -209,7 +255,8 @@ public partial class Network : IAsyncDisposable
             var options = Options?.Invoke(this);
             options ??= new NetworkOptions();
 
-            await JS.CreateNetwork(element, thisReference, options, Data).AsTask();
+            await JS.CreateNetwork(element, thisReference, options, Data);
+
             firstRenderComplete = true;
             await SetupCompletedCallback.InvokeAsync(this);
             await SetEventListeners();
@@ -299,7 +346,7 @@ public partial class Network : IAsyncDisposable
 
     private static readonly JsonSerializerOptions EventJsonOptions = new()
     {
-        PropertyNamingPolicy = JsonNamingPolicy.CamelCase
+        PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
     };
 
     [JSInvokable]
@@ -335,45 +382,204 @@ public partial class Network : IAsyncDisposable
     }
 
     // Global
-    public async Task SetData(NetworkData data) =>
-        await JS.SetData(element, thisReference, data);
 
-    public async Task SetOptions(NetworkOptions options) =>
-       await JS.SetOptions(element, thisReference, options);
+    /// <summary>
+    /// Override all the data in the network. 
+    /// </summary>
+    /// <remarks>
+    /// If stabilization is enabled in the physics module, the network will stabilize again. This method is also performed when first initializing the network.
+    /// </remarks>
+    /// <param name="data"></param>
+    /// <returns></returns>
+    public async Task SetData(NetworkData data) => await JS.SetData(element, thisReference, data);
 
-    public async Task SetSize(int width, int height) =>
-        await JS.SetSize(element, thisReference, width.ToString(), height.ToString());
+    /// <inheritdoc cref="SetData(NetworkData)"/>
+    public async Task SetData(NetworkDataSet data) => await JS.SetData(element, thisReference, data);
+
+    /// <summary>
+    /// Set the options.
+    /// </summary>
+    /// <param name="options"></param>
+    /// <returns></returns>
+    public async Task SetOptions(NetworkOptions options) => await JS.SetOptions(element, thisReference, options);
 
     // Canvas
-    public async Task Redraw() =>
-        await JS.Redraw(element, thisReference);
+
+    /// <summary>
+    /// Redraw the network.
+    /// </summary>
+    /// <returns></returns>
+    public async Task Redraw() => await JS.Redraw(element, thisReference);
+
+    /// <summary>
+    /// Set the size of the canvas. This is automatically done on a window resize.
+    /// </summary>
+    /// <param name="width"></param>
+    /// <param name="height"></param>
+    /// <returns></returns>
+    public async Task SetSize(int width, int height) => await JS.SetSize(element, thisReference, width.ToString(), height.ToString());
+
+    /// <summary>
+    /// This function converts canvas coordinates to coordinates on the DOM. 
+    /// </summary>
+    /// <remarks>
+    /// The DOM values are relative to the network container. 
+    /// </remarks>
+    /// <param name="position"></param>
+    /// <returns></returns>
+    public async Task<Position> CanvasToDOM(Position position) => await JS.CanvasToDOM(element, thisReference, position);
+
+    /// <summary>
+    /// This function converts DOM coordinates to coordinates on the canvas. 
+    /// </summary>
+    /// <remarks>
+    /// The DOM values are relative to the network container. 
+    /// </remarks>
+    /// <param name="position"></param>
+    /// <returns></returns>
+    public async Task<Position> DOMToCanvas(Position position) => await JS.DOMToCanvas(element, thisReference, position);
 
     // Clustering
-    public async Task ClusterOutliers() =>
-        await JS.ClusterOutliers(element, thisReference);
+    // NOTE: Missing APIs here.
+
+    /// <summary>
+    /// This method will cluster all nodes with 1 edge with their respective connected node.
+    /// </summary>
+    /// <returns></returns>
+    /// NOTE: Need to implement options.
+    public async Task ClusterOutliers() => await JS.ClusterOutliers(element, thisReference);
 
     // Selection
-    public async Task<string[]> GetSelectedNodes() =>
-        await JS.GetSelectedNodes(element, thisReference);
 
-    public async Task SelectNodes(string[] nodeIds) =>
-        await JS.SelectNodes(element, thisReference, nodeIds);
+    /// <summary>
+    /// Returns an array of selected node ids
+    /// </summary>
+    /// <returns></returns>
+    public async Task<string[]> GetSelectedNodes() => await JS.GetSelectedNodes(element, thisReference);
 
-    public async Task<string[]> GetSelectedEdges() =>
-        await JS.GetSelectedEdges(element, thisReference);
+    /// <summary>
+    /// Selects the nodes corresponding to the id's in the input array. If <paramref name="highlightEdges"/> is true or null, the neighbouring edges will also be selected.
+    /// This method unselects all other objects before selecting its own objects.
+    /// Does not fire events. 
+    /// </summary>
+    /// <param name="nodeIds"></param>
+    /// <param name="highlightEdges"></param>
+    /// <returns></returns>
+    public async Task SelectNodes(string[] nodeIds, bool? highlightEdges = null) => await JS.SelectNodes(element, thisReference, nodeIds, highlightEdges);
 
-    public async Task SelectEdges(string[] nodeIds) =>
-        await JS.SelectEdges(element, thisReference, nodeIds);
+    /// <summary>
+    /// Returns an array of selected edge ids.
+    /// </summary>
+    /// <returns></returns>
+    public async Task<string[]> GetSelectedEdges() => await JS.GetSelectedEdges(element, thisReference);
 
-    public async Task<NodeEdgeComposite> GetSelection() =>
-        await JS.GetSelection(element, thisReference);
+    /// <summary>
+    /// Selects the edges corresponding to the id's in the input array.
+    /// This method unselects all other objects before selecting its own objects.
+    /// Does not fire events.
+    /// </summary>
+    /// <param name="nodeIds"></param>
+    /// <returns></returns>
+    public async Task SelectEdges(string[] nodeIds) => await JS.SelectEdges(element, thisReference, nodeIds);
 
-    public async Task<NodeEdgeComposite> SetSelection(NodeEdgeComposite composite) =>
-        await JS.SetSelection(element, thisReference, composite);
+    /// <summary>
+    /// Returns an object with selected nodes and edges ids.
+    /// </summary>
+    /// <returns></returns>
+    public async Task<NodeEdgeComposite> GetSelection() => await JS.GetSelection(element, thisReference);
 
-    public async Task<NodeEdgeComposite> UnselectAll() =>
-        await JS.UnselectAll(element, thisReference);
+    /// <summary>
+    /// Sets the selection. 
+    /// You can also pass only nodes or edges in selection object.
+    /// </summary>
+    /// <param name="selection">The selection to set.</param>
+    /// <param name="options">Options for setting the selection.</param>
+    /// <returns></returns>
+    public async Task SetSelection(NodeEdgeComposite selection, SelectionOptions? options = null) =>
+        await JS.SetSelection(element, thisReference, selection, options);
 
-    public async Task ParseDOTNetwork(string dotString) =>
-        await JS.ParseDOTNetwork(element, dotString);
+    /// <summary>
+    /// Unselect all objects. Does not fire events.
+    /// </summary>
+    /// <returns></returns>
+    public async Task UnselectAll() => await JS.UnselectAll(element, thisReference);
+
+    /// <summary>
+    /// Parse a DOT string and load the network.
+    /// </summary>
+    /// <param name="dotString">A string in DOT language.</param>
+    /// <returns></returns>
+    public async Task ParseDOTNetwork(string dotString) => await JS.ParseDOTNetwork(element, dotString);
+
+    // Manipulation
+    // NOTE: The callback functions defined in handlerFunctions still apply. To use these methods without having the manipulation GUI, make sure you set enabled to false.
+    // NOTE: Need some work to integrate the handler functions, if possible.
+
+    /// <summary>
+    /// Programmatically enable the edit mode. Similar effect to pressing the edit button.
+    /// </summary>
+    /// <returns></returns>
+    public async Task EnableEditMode() => await JS.EnableEditMode(element, thisReference);
+
+    /// <summary>
+    /// Programmatically disable the edit mode. Similar effect to pressing the close icon (small cross in the corner of the toolbar).
+    /// </summary>
+    /// <returns></returns>
+    public async Task DisableEditMode() => await JS.DisableEditMode(element, thisReference);
+
+    /// <summary>
+    /// Go into addNode mode. Having edit mode or manipulation enabled is not required. To get out of this mode, call <see cref="DisableEditMode"/>.
+    /// </summary>
+    /// <returns></returns>
+    public async Task AddNodeMode() => await JS.AddNodeMode(element, thisReference);
+
+    /// <summary>
+    /// Go into addEdge mode. The explanation from <see cref="AddNodeMode"/> applies here as well. 
+    /// </summary>
+    /// <returns></returns>
+    public async Task AddEdgeMode() => await JS.AddEdgeMode(element, thisReference);
+
+    /// <summary>
+    /// Delete selected. Having edit mode or manipulation enabled is not required.
+    /// </summary>
+    /// <returns></returns>
+    public async Task DeleteSelected() => await JS.DeleteSelected(element, thisReference);
+
+    // Information
+    /// <summary>
+    /// Returns the positions of the nodes specified in the input array.
+    /// </summary>
+    /// <remarks>
+    /// If a non-existent id is supplied, the method will return an empty object. 
+    /// </remarks>
+    /// <param name="nodeIds">An array of node ids for which the positions will be returned.</param>
+    /// <returns></returns>
+    public async Task<IDictionary<string, Position>> GetPositions(string[] nodeIds) => await JS.GetPositions(element, thisReference, nodeIds);
+
+    /// <summary>
+    /// Returns the position of the node with the specified id.
+    /// </summary>
+    /// <remarks>
+    /// If no id is provided, the method will throw a TypeError If an id is provided that does not correspond to a node in the network, the method will throw a ReferenceError.
+    /// </remarks>
+    /// <param name="nodeId">The id of the node for which the position will be returned.</param>
+    /// <returns></returns>
+    public async Task<Position> GetPosition(string nodeId) => await JS.GetPosition(element, thisReference, nodeId);
+
+    /// <summary>
+    /// Returns a bounding box for the node including label.
+    /// </summary>
+    /// <remarks>
+    /// These values are in canvas space. 
+    /// </remarks>
+    /// <param name="nodeId"></param>
+    /// <returns></returns>
+    public async Task<BoundingBox> GetBoundingBox(string nodeId) => await JS.GetBoundingBox(element, thisReference, nodeId);
+
+    /// <summary>
+    /// Returns an array of edgeIds of the edges connected to this node.
+    /// </summary>
+    /// <param name="nodeId"></param>
+    /// <returns></returns>
+    public async Task<string[]> GetConnectedEdges(string nodeId) => await JS.GetConnectedEdges(element, thisReference, nodeId);
 }

@@ -1,0 +1,65 @@
+@page "/configure"
+
+@using VisNetwork.Blazor.Models
+
+<h1>Configure</h1>
+
+<button @onclick="@ShowConfigure" aria-label="ShowConfigure">ShowConfigure</button>
+
+<div class="row">
+	<div class="column">
+		<Network @ref="network" Id="my-id" Data="@data" Options="@NetworkOptions" class="vis-network-container" />
+	</div>
+	<div class="column">
+		<div @ref="@config"></div>
+	</div>
+</div>
+
+@code {
+	private NetworkDataSet data;
+	private Network network;
+	private ElementReference config;
+
+	public Configure()
+	{
+		var nodes = new DataSet<Node>(idSelector: n => n.Id);
+		var edges = new DataSet<Edge>(idSelector: n => n.Id);
+
+		nodes.Add(new Node("1", "Node 1", level: default, "circle"));
+		nodes.Add(new Node("2", "Node 2", level: default, "ellipse"));
+		edges.Add(new Edge("1", "2") { Id = "1-2", });
+		nodes.Add(new Node("3", "Node 3", level: default, "database"));
+		edges.Add(new Edge("2", "3") { Id = "2-3", });
+
+		data = new NetworkDataSet
+		{
+			Edges = edges,
+			Nodes = nodes
+		};
+	}
+
+	private async Task ShowConfigure()
+	{
+		await network.SetOptions(new Models.NetworkOptions
+		{
+			Configure = new()
+			{
+				Enabled = true,
+				Container = config,
+			},
+		});
+	}
+
+	private NetworkOptions NetworkOptions(Network network)
+	{
+		return new NetworkOptions
+		{
+			AutoResize = true,
+			Nodes = new NodeOption
+			{
+				BorderWidth = 1,
+			},
+		};
+	}
+}
+

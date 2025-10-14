@@ -5,7 +5,7 @@
 
 <div>
 	<button @onclick="ChangeOptionClick" aria-label="ChangeOption">Change options</button>
-	<Network @ref="network" Id="my-id" Data="@data" Options="EditorConstructionOptions" class="vis-network-container" />
+	<Network @ref="network" Id="my-id" Data="@data" Options="@NetworkOptions" class="vis-network-container" />
 </div>
 
 @code {
@@ -30,7 +30,7 @@
 		};
 	}
 
-	private NetworkOptions EditorConstructionOptions(Network network)
+	private NetworkOptions NetworkOptions(Network network)
 	{
 		return new NetworkOptions
 		{
@@ -44,6 +44,8 @@
 
 	private async Task ChangeOptionClick()
 	{
+		await network.EnableEditMode();
+
 		await network.SetOptions(new NetworkOptions
 		{
 			AutoResize = true,
@@ -60,7 +62,27 @@
 					Minimum = 100,
 					Maximum = 300,
 				}
-			}
+			},
+			Locale = "nb-NO",
+			Locales = new Dictionary<string, LocaleMessages>
+			{
+				["nb-NO"] = new LocaleMessages
+				{
+					Edit = "Rediger",
+					Del = "Slett valgt",
+					Back = "Tilbake",
+					AddNode = "Legg til node",
+					AddEdge = "Legg til kant",
+					EditNode = "Rediger node",
+					EditEdge = "Rediger kant",
+					AddDescription = "Klikk tomt område for å legge til node.",
+					EdgeDescription = "Klikk på en node og dra kanten til en annen node for å koble dem.",
+					EditEdgeDescription = "Klikk på kontrollpunktene og dra dem til en node for å koble til den.",
+					CreateEdgeError = "Kan ikke koble kanter til en klynge.",
+					DeleteClusterError = "Klynger kan ikke slettes.",
+					EditClusterError = "Klynger kan ikke redigeres.",
+				},
+			},
 		});
 	}
 }

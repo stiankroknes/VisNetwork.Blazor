@@ -2,10 +2,12 @@
 //// <reference types="vis-network/declarations/entry-esnext" />
 
 import {
+    BoundingBox,
     Data,
     IdType,
     Network, NetworkEvents,
     Options,
+    Position,
     SelectionOptions,
     parseDOTNetwork
 } from "vis-network/standalone";
@@ -88,13 +90,17 @@ export function setData(element: HTMLElement, data: Data) {
 export function setOptions(element: HTMLElement, options: Options) {
     console.log('VisNetwork.Blazor: [setOptions].', options);
     const network: Network = getNetworkById(element.id);
-    network.setOptions(options);
-}
 
-export function setSize(element: HTMLElement, width: string, height: string) {
-    console.log('VisNetwork.Blazor: [setSize].', element, width, height);
-    const network: Network = getNetworkById(element.id);
-    network.setSize(width, height);
+    const cfg = options?.configure;
+    if (cfg) {
+        const realContainer = cfg.container instanceof HTMLElement
+            ? cfg.container
+            : unwrapReference(cfg.container);
+        options.configure = { ...cfg, container: realContainer };
+    }
+
+    network.setOptions(options);
+    options.configure
 }
 
 export function destroy(element: HTMLElement) {
@@ -172,6 +178,11 @@ export function off(element: HTMLElement, _component: DotNetObjectReference, eve
 }
 
 // Canvas
+export function setSize(element: HTMLElement, width: string, height: string) {
+    console.log('VisNetwork.Blazor: [setSize].', element, width, height);
+    const network: Network = getNetworkById(element.id);
+    network.setSize(width, height);
+}
 
 export function redraw(element: HTMLElement) {
     console.log('VisNetwork.Blazor: [redraw] ', element);
@@ -179,8 +190,19 @@ export function redraw(element: HTMLElement) {
     network.redraw();
 }
 
-// Clustering
+export function DOMtoCanvas(element: HTMLElement, position: Position) {
+    console.log('VisNetwork.Blazor: [DOMtoCanvas].', element, position);
+    const network: Network = getNetworkById(element.id);
+    network.DOMtoCanvas(position);
+}
 
+export function canvasToDOM(element: HTMLElement, position: Position) {
+    console.log('VisNetwork.Blazor: [canvasToDOM].', element, position);
+    const network: Network = getNetworkById(element.id);
+    network.canvasToDOM(position);
+}
+
+// Clustering
 export function clusterOutliers(element: HTMLElement) {
     console.log('VisNetwork.Blazor: [clusterOutliers] ', element);
     const network: Network = getNetworkById(element.id);
@@ -190,17 +212,17 @@ export function clusterOutliers(element: HTMLElement) {
 }
 
 // Selection
-
 export function getSelectedNodes(element: HTMLElement): IdType[] {
     console.log('VisNetwork.Blazor: [getSelectedNodes] ', element);
     const network: Network = getNetworkById(element.id);
     return network.getSelectedNodes();
 }
 
-export function selectNodes(element: HTMLElement, nodeIds: string[], highlightEdges?: boolean) {
+export function selectNodes(element: HTMLElement, nodeIds: IdType[], highlightEdges?: boolean) {
     console.log('VisNetwork.Blazor: [selectNodes] ', element, nodeIds, highlightEdges);
     const network: Network = getNetworkById(element.id);
-    network.selectNodes(nodeIds, highlightEdges);
+    const arg = convertNullToUndefined(highlightEdges);
+    network.selectNodes(nodeIds, arg);
 }
 
 export function getSelectedEdges(element: HTMLElement): IdType[] {
@@ -209,7 +231,7 @@ export function getSelectedEdges(element: HTMLElement): IdType[] {
     return network.getSelectedEdges();
 }
 
-export function selectEdges(element: HTMLElement, edgeIds: string[]) {
+export function selectEdges(element: HTMLElement, edgeIds: IdType[]) {
     console.log('VisNetwork.Blazor: [selectEdges] ', element, edgeIds);
     const network: Network = getNetworkById(element.id);
     network.selectEdges(edgeIds);
@@ -221,10 +243,11 @@ export function getSelection(element: HTMLElement): { nodes: IdType[], edges: Id
     return network.getSelection();
 }
 
-export function setSelection(element: HTMLElement, selection: { nodes: string[], edges: string[] }, options?: SelectionOptions) {
+export function setSelection(element: HTMLElement, selection: { nodes: IdType[], edges: IdType[] }, options?: SelectionOptions) {
     console.log('VisNetwork.Blazor: [setSelection] ', element, selection, options);
     const network: Network = getNetworkById(element.id);
-    network.setSelection(selection, options);
+    const arg = convertNullToUndefined(options);
+    network.setSelection(selection, arg);
 }
 
 export function unselectAll(element: HTMLElement) {
@@ -258,3 +281,81 @@ export function populateDotNetwork(element: HTMLElement, dot: string): any {
     //return json;
     //return parsedData;
 }
+
+// Manipulation
+export function enableEditMode(element: HTMLElement) {
+    console.log('VisNetwork.Blazor: [enableEditMode] ', element);
+    const network: Network = getNetworkById(element.id);
+    network.enableEditMode();
+}
+
+export function disableEditMode(element: HTMLElement) {
+    console.log('VisNetwork.Blazor: [disableEditMode] ', element);
+    const network: Network = getNetworkById(element.id);
+    network.disableEditMode();
+}
+
+export function addNodeMode(element: HTMLElement) {
+    console.log('VisNetwork.Blazor: [addNodeMode] ', element);
+    const network: Network = getNetworkById(element.id);
+    network.addNodeMode();
+}
+
+export function addEdgeMode(element: HTMLElement) {
+    console.log('VisNetwork.Blazor: [addEdgeMode] ', element);
+    const network: Network = getNetworkById(element.id);
+    network.addEdgeMode();
+}
+
+export function deleteSelected(element: HTMLElement) {
+    console.log('VisNetwork.Blazor: [deleteSelected] ', element);
+    const network: Network = getNetworkById(element.id);
+    network.deleteSelected();
+}
+
+// Information
+export function getPositions(element: HTMLElement, nodeIds?: IdType[]): { [nodeId: string]: Position } {
+    console.log('VisNetwork.Blazor: [getPositions] ', element);
+    const network: Network = getNetworkById(element.id);
+    return network.getPositions(nodeIds);
+}
+
+export function getPosition(element: HTMLElement, nodeId: IdType): Position {
+    console.log('VisNetwork.Blazor: [getPosition] ', element);
+    const network: Network = getNetworkById(element.id);
+    return network.getPosition(nodeId);
+}
+
+export function getBoundingBox(element: HTMLElement, nodeId: IdType): BoundingBox {
+    console.log('VisNetwork.Blazor: [getBoundingBox] ', element);
+    const network: Network = getNetworkById(element.id);
+    return network.getBoundingBox(nodeId);
+}
+
+export function getConnectedEdges(element: HTMLElement, nodeId: IdType): IdType[] {
+    console.log('VisNetwork.Blazor: [getConnectedEdges] ', element);
+    const network: Network = getNetworkById(element.id);
+    return network.getConnectedEdges(nodeId);
+}
+
+// See: https://github.com/dotnet/aspnetcore/blob/28e5d3421e362e046b5391772159076f6ba382bf/src/Components/Web.JS/src/Rendering/ElementReferenceCapture.ts
+function unwrapReference(stub?: { id: string }): HTMLElement | undefined {
+
+    // Blazor only “unwraps” an ElementReference to a real DOM node when it’s passed as a top - level argument in a JS interop call
+    // thus we need to do it ourselves for nested references.
+
+    if (!stub?.id) { return; }
+    const attr = `_bl_${stub.id}`;
+    return document.querySelector<HTMLElement>(`[${attr}]`) ?? undefined;
+}
+
+function convertNullToUndefined<T>(value: T | null): T | undefined {
+    return value === null ? undefined : value;
+}
+
+//export function getConnectedNodes(element: HTMLElement, nodeId: IdType): IdType[] {
+//    console.log('VisNetwork.Blazor: [getConnectedNodes] ', element);
+//    const network: Network = getNetworkById(element.id);
+//    // IdType[] | Array<{ fromId: IdType, toId: IdType }>
+//    return network.getConnectedNodes(nodeId);
+//}

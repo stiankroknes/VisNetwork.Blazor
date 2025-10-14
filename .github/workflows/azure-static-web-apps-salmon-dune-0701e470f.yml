@@ -13,12 +13,27 @@ jobs:
   build_and_deploy_job:
     if: github.event_name == 'push' || (github.event_name == 'pull_request' && github.event.action != 'closed')
     runs-on: ubuntu-latest
+        
     name: Build and Deploy Job
+   
     steps:
       - uses: actions/checkout@v5
         with:
           submodules: true
-      - name: Build And Deploy
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v5
+        with:
+            global-json-file: global.json
+            dotnet-version: |
+                8.0.x
+                10.0.x
+
+      - name: Build WASM App
+        run: |
+          dotnet publish sample/VisNetwork.Blazor.Wasm -c Release --output dist
+
+      - name: Deploy
         id: builddeploy
         uses: Azure/static-web-apps-deploy@v1
         with:
@@ -27,9 +42,11 @@ jobs:
           action: "upload"
           ###### Repository/Build Configurations - These values can be configured to match you app requirements. ######
           # For more information regarding Static Web App workflow configurations, please visit: https://aka.ms/swaworkflowconfig
-          app_location: "sample/VisNetwork.Blazor.Wasm" # App source code path
+          app_location: "dist/wwwroot" # App source code path
           api_location: "api" # Api source code path - optional
           output_location: "wwwroot" # Built app content directory - optional
+          skip_app_build: true
+          skip_api_build: true
           ###### End of Repository/Build Configurations ######
 
   close_pull_request_job:

@@ -1,0 +1,133 @@
+@page "/data-set"
+@using System.Diagnostics.CodeAnalysis
+@using VisNetwork.Blazor.Models
+
+<h3>DataSet and Custom Node/Edge type (not required for DataSet)</h3>
+
+<div>
+	<button @onclick="@AddNode" aria-label="AddNode">Add Node</button>
+	<button @onclick="@AddEdge" aria-label="AddEdge">Add Edge</button>
+</div>
+
+<div>
+	<button @onclick="@UpdateNode" aria-label="UpdateNode">Update Node</button>
+	<button @onclick="@UpdateEdge" aria-label="UpdateEdge">Update Edge</button>
+</div>
+
+<div>
+	<button @onclick="@RemoveNode" aria-label="RemoveNode">Remove Node</button>
+	<button @onclick="@RemoveEdge" aria-label="Remove">Remove Edge</button>
+</div>
+
+<div>
+	Node Id: <input type="text" @bind="nodeId" @bind:event="oninput" />
+	Node Label: <input type="text" @bind="nodeLabel" @bind:event="oninput" />
+</div>
+
+<div>
+	Edge Id: <input type="text" @bind="edgeId" @bind:event="oninput" />
+	Edge Label: <input type="text" @bind="edgeLabel" @bind:event="oninput" />
+	Edge From: <input type="text" @bind="edgeFrom" @bind:event="oninput" />
+	Edge To: <input type="text" @bind="edgeTo" @bind:event="oninput" />
+</div>
+
+
+<div>
+	<Network @ref="network" Id="my-id" Data="@data" class="vis-network-container" />
+</div>
+
+<div>
+	<p>Total Price of Nodes: @TotalPrice</p>
+	<p>Total Weight of Edges: @TotalWeight</p>
+</div>
+
+@code {
+	private NetworkDataSet<CustomNode, CustomEdge> data;
+	private Network network;
+
+	private string nodeLabel = "new node";
+	private string nodeId = "newNode1";
+
+	private string edgeId = "newEdge1";
+	private string edgeFrom = "newNode1";
+	private string edgeTo = "1";
+	private string edgeLabel = "new edge";
+
+	public DataSet()
+	{
+		var nodes = new DataSet<CustomNode>(idSelector: n => n.Id);
+		var edges = new DataSet<CustomEdge>(idSelector: n => n.Id);
+
+		nodes.Add(new CustomNode("1", "Node 1", 1, "circle")
+		{
+			Price = 10m,
+			ShapeProperties = new NodeShapePropertiesOption
+			{
+				BorderDashes = [10, 10],
+			},
+		});
+		nodes.Add(new CustomNode("2", "Node 2", 2, "ellipse") { Price = 10m, });
+		edges.Add(new CustomEdge("1", "2") { Id = "1-2", Weight = 1m, });
+		nodes.Add(new CustomNode("3", "Node 3", 3, "database") { Price = 10m, });
+		edges.Add(new CustomEdge("2", "3") { Id = "2-3", Weight = 2m, });
+
+		data = new NetworkDataSet<CustomNode, CustomEdge>
+		{
+			Edges = edges,
+			Nodes = nodes,
+		};
+	}
+
+	private void AddNode()
+	{
+		data.Nodes.Add(new CustomNode(nodeId, nodeLabel, 4, "circle") { Price = 12m, });
+	}
+
+	private void AddEdge()
+	{
+		data.Edges.Add(new CustomEdge(edgeFrom, edgeTo) { Id = edgeId, From = edgeFrom, To = edgeTo, Label = edgeLabel, Weight = 3m, });
+	}
+
+	private void UpdateNode()
+	{
+		data.Nodes.Update(new CustomNode(nodeId, nodeLabel, 4, "circle") { Price = 12m, });
+	}
+
+	private void UpdateEdge()
+	{
+		data.Edges.Update(new CustomEdge(edgeFrom, edgeTo) { Id = edgeId, From = edgeFrom, To = edgeTo, Label = edgeLabel, Weight = 4m, });
+	}
+
+	private void RemoveNode()
+	{
+		data.Nodes.Remove(nodeId);
+	}
+
+	private void RemoveEdge()
+	{
+		data.Edges.Remove(edgeId);
+	}
+
+	private sealed class CustomNode : Node
+	{
+		[SetsRequiredMembers]
+		public CustomNode(string id, string label, int value, string shape) : base(id, label, value, shape)
+		{
+		}
+
+		public required decimal Price { get; init; }
+	}
+
+	private sealed class CustomEdge : Edge
+	{
+		public CustomEdge(string from, string to) : base(from, to)
+		{
+		}
+
+		public required decimal Weight { get; init; }
+	}
+
+	private decimal TotalPrice => data.Nodes.Sum(n => n.Price);
+
+	private decimal TotalWeight => data.Edges.Sum(e => e.Weight);
+}
