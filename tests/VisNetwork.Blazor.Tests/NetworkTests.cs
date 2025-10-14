@@ -92,6 +92,7 @@ public class NetworkTests : BunitContext
     public void Network_Data_Using_DataSet_Changes()
     {
         BunitJSModuleInterop module = CreateJSModuleInterop(JSInterop);
+        module.SetupVoid("setData", _ => true).SetVoidResult();
         var networkData = new NetworkDataSet
         {
             Nodes = new DataSet<Node>([new Node("1", "Node1", 1, ""), new Node("2", "Node 2", 0, "")], idSelector: n => n.Id),
