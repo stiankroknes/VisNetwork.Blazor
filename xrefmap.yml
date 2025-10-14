@@ -329,6 +329,12 @@ references:
   isSpec: "True"
   fullName: VisNetwork.Blazor.Models.BaseClickEvent.Source
   nameWithType: BaseClickEvent.Source
+- uid: VisNetwork.Blazor.Models.BoundingBox
+  name: BoundingBox
+  href: api/VisNetwork.Blazor.Models.BoundingBox.html
+  commentId: T:VisNetwork.Blazor.Models.BoundingBox
+  fullName: VisNetwork.Blazor.Models.BoundingBox
+  nameWithType: BoundingBox
 - uid: VisNetwork.Blazor.Models.ClickedItem
   name: ClickedItem
   href: api/VisNetwork.Blazor.Models.ClickedItem.html
@@ -505,6 +511,19 @@ references:
   commentId: T:VisNetwork.Blazor.Models.ConfigureOptions
   fullName: VisNetwork.Blazor.Models.ConfigureOptions
   nameWithType: ConfigureOptions
+- uid: VisNetwork.Blazor.Models.ConfigureOptions.Container
+  name: Container
+  href: api/VisNetwork.Blazor.Models.ConfigureOptions.html#VisNetwork_Blazor_Models_ConfigureOptions_Container
+  commentId: P:VisNetwork.Blazor.Models.ConfigureOptions.Container
+  fullName: VisNetwork.Blazor.Models.ConfigureOptions.Container
+  nameWithType: ConfigureOptions.Container
+- uid: VisNetwork.Blazor.Models.ConfigureOptions.Container*
+  name: Container
+  href: api/VisNetwork.Blazor.Models.ConfigureOptions.html#VisNetwork_Blazor_Models_ConfigureOptions_Container_
+  commentId: Overload:VisNetwork.Blazor.Models.ConfigureOptions.Container
+  isSpec: "True"
+  fullName: VisNetwork.Blazor.Models.ConfigureOptions.Container
+  nameWithType: ConfigureOptions.Container
 - uid: VisNetwork.Blazor.Models.ConfigureOptions.Enabled
   name: Enabled
   href: api/VisNetwork.Blazor.Models.ConfigureOptions.html#VisNetwork_Blazor_Models_ConfigureOptions_Enabled
@@ -544,6 +563,329 @@ references:
   isSpec: "True"
   fullName: VisNetwork.Blazor.Models.ConfigureOptions.ShowButton
   nameWithType: ConfigureOptions.ShowButton
+- uid: VisNetwork.Blazor.Models.DataSet`1
+  name: DataSet<TItem>
+  href: api/VisNetwork.Blazor.Models.DataSet-1.html
+  commentId: T:VisNetwork.Blazor.Models.DataSet`1
+  name.vb: DataSet(Of TItem)
+  fullName: VisNetwork.Blazor.Models.DataSet<TItem>
+  fullName.vb: VisNetwork.Blazor.Models.DataSet(Of TItem)
+  nameWithType: DataSet<TItem>
+  nameWithType.vb: DataSet(Of TItem)
+- uid: VisNetwork.Blazor.Models.DataSet`1.#ctor(Func{`0,System.String})
+  name: DataSet(Func<TItem, String>)
+  href: api/VisNetwork.Blazor.Models.DataSet-1.html#VisNetwork_Blazor_Models_DataSet_1__ctor_Func__0_System_String__
+  commentId: M:VisNetwork.Blazor.Models.DataSet`1.#ctor(Func{`0,System.String})
+  name.vb: DataSet(Func(Of TItem, String))
+  fullName: VisNetwork.Blazor.Models.DataSet<TItem>.DataSet(Func<TItem, System.String>)
+  fullName.vb: VisNetwork.Blazor.Models.DataSet(Of TItem).DataSet(Func(Of TItem, System.String))
+  nameWithType: DataSet<TItem>.DataSet(Func<TItem, String>)
+  nameWithType.vb: DataSet(Of TItem).DataSet(Func(Of TItem, String))
+- uid: VisNetwork.Blazor.Models.DataSet`1.#ctor(IEnumerable{`0},Func{`0,System.String})
+  name: DataSet(IEnumerable<TItem>, Func<TItem, String>)
+  href: api/VisNetwork.Blazor.Models.DataSet-1.html#VisNetwork_Blazor_Models_DataSet_1__ctor_IEnumerable__0__Func__0_System_String__
+  commentId: M:VisNetwork.Blazor.Models.DataSet`1.#ctor(IEnumerable{`0},Func{`0,System.String})
+  name.vb: DataSet(IEnumerable(Of TItem), Func(Of TItem, String))
+  fullName: VisNetwork.Blazor.Models.DataSet<TItem>.DataSet(IEnumerable<TItem>, Func<TItem, System.String>)
+  fullName.vb: VisNetwork.Blazor.Models.DataSet(Of TItem).DataSet(IEnumerable(Of TItem), Func(Of TItem, System.String))
+  nameWithType: DataSet<TItem>.DataSet(IEnumerable<TItem>, Func<TItem, String>)
+  nameWithType.vb: DataSet(Of TItem).DataSet(IEnumerable(Of TItem), Func(Of TItem, String))
+- uid: VisNetwork.Blazor.Models.DataSet`1.#ctor*
+  name: DataSet
+  href: api/VisNetwork.Blazor.Models.DataSet-1.html#VisNetwork_Blazor_Models_DataSet_1__ctor_
+  commentId: Overload:VisNetwork.Blazor.Models.DataSet`1.#ctor
+  isSpec: "True"
+  fullName: VisNetwork.Blazor.Models.DataSet<TItem>.DataSet
+  fullName.vb: VisNetwork.Blazor.Models.DataSet(Of TItem).DataSet
+  nameWithType: DataSet<TItem>.DataSet
+  nameWithType.vb: DataSet(Of TItem).DataSet
+- uid: VisNetwork.Blazor.Models.DataSet`1.Add(`0)
+  name: Add(TItem)
+  href: api/VisNetwork.Blazor.Models.DataSet-1.html#VisNetwork_Blazor_Models_DataSet_1_Add__0_
+  commentId: M:VisNetwork.Blazor.Models.DataSet`1.Add(`0)
+  fullName: VisNetwork.Blazor.Models.DataSet<TItem>.Add(TItem)
+  fullName.vb: VisNetwork.Blazor.Models.DataSet(Of TItem).Add(TItem)
+  nameWithType: DataSet<TItem>.Add(TItem)
+  nameWithType.vb: DataSet(Of TItem).Add(TItem)
+- uid: VisNetwork.Blazor.Models.DataSet`1.Add*
+  name: Add
+  href: api/VisNetwork.Blazor.Models.DataSet-1.html#VisNetwork_Blazor_Models_DataSet_1_Add_
+  commentId: Overload:VisNetwork.Blazor.Models.DataSet`1.Add
+  isSpec: "True"
+  fullName: VisNetwork.Blazor.Models.DataSet<TItem>.Add
+  fullName.vb: VisNetwork.Blazor.Models.DataSet(Of TItem).Add
+  nameWithType: DataSet<TItem>.Add
+  nameWithType.vb: DataSet(Of TItem).Add
+- uid: VisNetwork.Blazor.Models.DataSet`1.AddRange(IEnumerable{`0})
+  name: AddRange(IEnumerable<TItem>)
+  href: api/VisNetwork.Blazor.Models.DataSet-1.html#VisNetwork_Blazor_Models_DataSet_1_AddRange_IEnumerable__0__
+  commentId: M:VisNetwork.Blazor.Models.DataSet`1.AddRange(IEnumerable{`0})
+  name.vb: AddRange(IEnumerable(Of TItem))
+  fullName: VisNetwork.Blazor.Models.DataSet<TItem>.AddRange(IEnumerable<TItem>)
+  fullName.vb: VisNetwork.Blazor.Models.DataSet(Of TItem).AddRange(IEnumerable(Of TItem))
+  nameWithType: DataSet<TItem>.AddRange(IEnumerable<TItem>)
+  nameWithType.vb: DataSet(Of TItem).AddRange(IEnumerable(Of TItem))
+- uid: VisNetwork.Blazor.Models.DataSet`1.AddRange*
+  name: AddRange
+  href: api/VisNetwork.Blazor.Models.DataSet-1.html#VisNetwork_Blazor_Models_DataSet_1_AddRange_
+  commentId: Overload:VisNetwork.Blazor.Models.DataSet`1.AddRange
+  isSpec: "True"
+  fullName: VisNetwork.Blazor.Models.DataSet<TItem>.AddRange
+  fullName.vb: VisNetwork.Blazor.Models.DataSet(Of TItem).AddRange
+  nameWithType: DataSet<TItem>.AddRange
+  nameWithType.vb: DataSet(Of TItem).AddRange
+- uid: VisNetwork.Blazor.Models.DataSet`1.Changed
+  name: Changed
+  href: api/VisNetwork.Blazor.Models.DataSet-1.html#VisNetwork_Blazor_Models_DataSet_1_Changed
+  commentId: E:VisNetwork.Blazor.Models.DataSet`1.Changed
+  fullName: VisNetwork.Blazor.Models.DataSet<TItem>.Changed
+  fullName.vb: VisNetwork.Blazor.Models.DataSet(Of TItem).Changed
+  nameWithType: DataSet<TItem>.Changed
+  nameWithType.vb: DataSet(Of TItem).Changed
+- uid: VisNetwork.Blazor.Models.DataSet`1.Clear
+  name: Clear()
+  href: api/VisNetwork.Blazor.Models.DataSet-1.html#VisNetwork_Blazor_Models_DataSet_1_Clear
+  commentId: M:VisNetwork.Blazor.Models.DataSet`1.Clear
+  fullName: VisNetwork.Blazor.Models.DataSet<TItem>.Clear()
+  fullName.vb: VisNetwork.Blazor.Models.DataSet(Of TItem).Clear()
+  nameWithType: DataSet<TItem>.Clear()
+  nameWithType.vb: DataSet(Of TItem).Clear()
+- uid: VisNetwork.Blazor.Models.DataSet`1.Clear*
+  name: Clear
+  href: api/VisNetwork.Blazor.Models.DataSet-1.html#VisNetwork_Blazor_Models_DataSet_1_Clear_
+  commentId: Overload:VisNetwork.Blazor.Models.DataSet`1.Clear
+  isSpec: "True"
+  fullName: VisNetwork.Blazor.Models.DataSet<TItem>.Clear
+  fullName.vb: VisNetwork.Blazor.Models.DataSet(Of TItem).Clear
+  nameWithType: DataSet<TItem>.Clear
+  nameWithType.vb: DataSet(Of TItem).Clear
+- uid: VisNetwork.Blazor.Models.DataSet`1.Distinct*
+  name: Distinct
+  href: api/VisNetwork.Blazor.Models.DataSet-1.html#VisNetwork_Blazor_Models_DataSet_1_Distinct_
+  commentId: Overload:VisNetwork.Blazor.Models.DataSet`1.Distinct
+  isSpec: "True"
+  fullName: VisNetwork.Blazor.Models.DataSet<TItem>.Distinct
+  fullName.vb: VisNetwork.Blazor.Models.DataSet(Of TItem).Distinct
+  nameWithType: DataSet<TItem>.Distinct
+  nameWithType.vb: DataSet(Of TItem).Distinct
+- uid: VisNetwork.Blazor.Models.DataSet`1.Distinct``1(Func{`0,``0})
+  name: Distinct<TValue>(Func<TItem, TValue>)
+  href: api/VisNetwork.Blazor.Models.DataSet-1.html#VisNetwork_Blazor_Models_DataSet_1_Distinct__1_Func__0___0__
+  commentId: M:VisNetwork.Blazor.Models.DataSet`1.Distinct``1(Func{`0,``0})
+  name.vb: Distinct(Of TValue)(Func(Of TItem, TValue))
+  fullName: VisNetwork.Blazor.Models.DataSet<TItem>.Distinct<TValue>(Func<TItem, TValue>)
+  fullName.vb: VisNetwork.Blazor.Models.DataSet(Of TItem).Distinct(Of TValue)(Func(Of TItem, TValue))
+  nameWithType: DataSet<TItem>.Distinct<TValue>(Func<TItem, TValue>)
+  nameWithType.vb: DataSet(Of TItem).Distinct(Of TValue)(Func(Of TItem, TValue))
+- uid: VisNetwork.Blazor.Models.DataSet`1.ForEach(Action{`0,System.String})
+  name: ForEach(Action<TItem, String>)
+  href: api/VisNetwork.Blazor.Models.DataSet-1.html#VisNetwork_Blazor_Models_DataSet_1_ForEach_Action__0_System_String__
+  commentId: M:VisNetwork.Blazor.Models.DataSet`1.ForEach(Action{`0,System.String})
+  name.vb: ForEach(Action(Of TItem, String))
+  fullName: VisNetwork.Blazor.Models.DataSet<TItem>.ForEach(Action<TItem, System.String>)
+  fullName.vb: VisNetwork.Blazor.Models.DataSet(Of TItem).ForEach(Action(Of TItem, System.String))
+  nameWithType: DataSet<TItem>.ForEach(Action<TItem, String>)
+  nameWithType.vb: DataSet(Of TItem).ForEach(Action(Of TItem, String))
+- uid: VisNetwork.Blazor.Models.DataSet`1.ForEach*
+  name: ForEach
+  href: api/VisNetwork.Blazor.Models.DataSet-1.html#VisNetwork_Blazor_Models_DataSet_1_ForEach_
+  commentId: Overload:VisNetwork.Blazor.Models.DataSet`1.ForEach
+  isSpec: "True"
+  fullName: VisNetwork.Blazor.Models.DataSet<TItem>.ForEach
+  fullName.vb: VisNetwork.Blazor.Models.DataSet(Of TItem).ForEach
+  nameWithType: DataSet<TItem>.ForEach
+  nameWithType.vb: DataSet(Of TItem).ForEach
+- uid: VisNetwork.Blazor.Models.DataSet`1.Get(System.String)
+  name: Get(String)
+  href: api/VisNetwork.Blazor.Models.DataSet-1.html#VisNetwork_Blazor_Models_DataSet_1_Get_System_String_
+  commentId: M:VisNetwork.Blazor.Models.DataSet`1.Get(System.String)
+  fullName: VisNetwork.Blazor.Models.DataSet<TItem>.Get(System.String)
+  fullName.vb: VisNetwork.Blazor.Models.DataSet(Of TItem).Get(System.String)
+  nameWithType: DataSet<TItem>.Get(String)
+  nameWithType.vb: DataSet(Of TItem).Get(String)
+- uid: VisNetwork.Blazor.Models.DataSet`1.Get*
+  name: Get
+  href: api/VisNetwork.Blazor.Models.DataSet-1.html#VisNetwork_Blazor_Models_DataSet_1_Get_
+  commentId: Overload:VisNetwork.Blazor.Models.DataSet`1.Get
+  isSpec: "True"
+  fullName: VisNetwork.Blazor.Models.DataSet<TItem>.Get
+  fullName.vb: VisNetwork.Blazor.Models.DataSet(Of TItem).Get
+  nameWithType: DataSet<TItem>.Get
+  nameWithType.vb: DataSet(Of TItem).Get
+- uid: VisNetwork.Blazor.Models.DataSet`1.GetAll
+  name: GetAll()
+  href: api/VisNetwork.Blazor.Models.DataSet-1.html#VisNetwork_Blazor_Models_DataSet_1_GetAll
+  commentId: M:VisNetwork.Blazor.Models.DataSet`1.GetAll
+  fullName: VisNetwork.Blazor.Models.DataSet<TItem>.GetAll()
+  fullName.vb: VisNetwork.Blazor.Models.DataSet(Of TItem).GetAll()
+  nameWithType: DataSet<TItem>.GetAll()
+  nameWithType.vb: DataSet(Of TItem).GetAll()
+- uid: VisNetwork.Blazor.Models.DataSet`1.GetAll*
+  name: GetAll
+  href: api/VisNetwork.Blazor.Models.DataSet-1.html#VisNetwork_Blazor_Models_DataSet_1_GetAll_
+  commentId: Overload:VisNetwork.Blazor.Models.DataSet`1.GetAll
+  isSpec: "True"
+  fullName: VisNetwork.Blazor.Models.DataSet<TItem>.GetAll
+  fullName.vb: VisNetwork.Blazor.Models.DataSet(Of TItem).GetAll
+  nameWithType: DataSet<TItem>.GetAll
+  nameWithType.vb: DataSet(Of TItem).GetAll
+- uid: VisNetwork.Blazor.Models.DataSet`1.GetEnumerator
+  name: GetEnumerator()
+  href: api/VisNetwork.Blazor.Models.DataSet-1.html#VisNetwork_Blazor_Models_DataSet_1_GetEnumerator
+  commentId: M:VisNetwork.Blazor.Models.DataSet`1.GetEnumerator
+  fullName: VisNetwork.Blazor.Models.DataSet<TItem>.GetEnumerator()
+  fullName.vb: VisNetwork.Blazor.Models.DataSet(Of TItem).GetEnumerator()
+  nameWithType: DataSet<TItem>.GetEnumerator()
+  nameWithType.vb: DataSet(Of TItem).GetEnumerator()
+- uid: VisNetwork.Blazor.Models.DataSet`1.GetEnumerator*
+  name: GetEnumerator
+  href: api/VisNetwork.Blazor.Models.DataSet-1.html#VisNetwork_Blazor_Models_DataSet_1_GetEnumerator_
+  commentId: Overload:VisNetwork.Blazor.Models.DataSet`1.GetEnumerator
+  isSpec: "True"
+  fullName: VisNetwork.Blazor.Models.DataSet<TItem>.GetEnumerator
+  fullName.vb: VisNetwork.Blazor.Models.DataSet(Of TItem).GetEnumerator
+  nameWithType: DataSet<TItem>.GetEnumerator
+  nameWithType.vb: DataSet(Of TItem).GetEnumerator
+- uid: VisNetwork.Blazor.Models.DataSet`1.GetIds
+  name: GetIds()
+  href: api/VisNetwork.Blazor.Models.DataSet-1.html#VisNetwork_Blazor_Models_DataSet_1_GetIds
+  commentId: M:VisNetwork.Blazor.Models.DataSet`1.GetIds
+  fullName: VisNetwork.Blazor.Models.DataSet<TItem>.GetIds()
+  fullName.vb: VisNetwork.Blazor.Models.DataSet(Of TItem).GetIds()
+  nameWithType: DataSet<TItem>.GetIds()
+  nameWithType.vb: DataSet(Of TItem).GetIds()
+- uid: VisNetwork.Blazor.Models.DataSet`1.GetIds*
+  name: GetIds
+  href: api/VisNetwork.Blazor.Models.DataSet-1.html#VisNetwork_Blazor_Models_DataSet_1_GetIds_
+  commentId: Overload:VisNetwork.Blazor.Models.DataSet`1.GetIds
+  isSpec: "True"
+  fullName: VisNetwork.Blazor.Models.DataSet<TItem>.GetIds
+  fullName.vb: VisNetwork.Blazor.Models.DataSet(Of TItem).GetIds
+  nameWithType: DataSet<TItem>.GetIds
+  nameWithType.vb: DataSet(Of TItem).GetIds
+- uid: VisNetwork.Blazor.Models.DataSet`1.Length
+  name: Length
+  href: api/VisNetwork.Blazor.Models.DataSet-1.html#VisNetwork_Blazor_Models_DataSet_1_Length
+  commentId: P:VisNetwork.Blazor.Models.DataSet`1.Length
+  fullName: VisNetwork.Blazor.Models.DataSet<TItem>.Length
+  fullName.vb: VisNetwork.Blazor.Models.DataSet(Of TItem).Length
+  nameWithType: DataSet<TItem>.Length
+  nameWithType.vb: DataSet(Of TItem).Length
+- uid: VisNetwork.Blazor.Models.DataSet`1.Length*
+  name: Length
+  href: api/VisNetwork.Blazor.Models.DataSet-1.html#VisNetwork_Blazor_Models_DataSet_1_Length_
+  commentId: Overload:VisNetwork.Blazor.Models.DataSet`1.Length
+  isSpec: "True"
+  fullName: VisNetwork.Blazor.Models.DataSet<TItem>.Length
+  fullName.vb: VisNetwork.Blazor.Models.DataSet(Of TItem).Length
+  nameWithType: DataSet<TItem>.Length
+  nameWithType.vb: DataSet(Of TItem).Length
+- uid: VisNetwork.Blazor.Models.DataSet`1.Map*
+  name: Map
+  href: api/VisNetwork.Blazor.Models.DataSet-1.html#VisNetwork_Blazor_Models_DataSet_1_Map_
+  commentId: Overload:VisNetwork.Blazor.Models.DataSet`1.Map
+  isSpec: "True"
+  fullName: VisNetwork.Blazor.Models.DataSet<TItem>.Map
+  fullName.vb: VisNetwork.Blazor.Models.DataSet(Of TItem).Map
+  nameWithType: DataSet<TItem>.Map
+  nameWithType.vb: DataSet(Of TItem).Map
+- uid: VisNetwork.Blazor.Models.DataSet`1.Map``1(Func{`0,System.String,``0})
+  name: Map<TResult>(Func<TItem, String, TResult>)
+  href: api/VisNetwork.Blazor.Models.DataSet-1.html#VisNetwork_Blazor_Models_DataSet_1_Map__1_Func__0_System_String___0__
+  commentId: M:VisNetwork.Blazor.Models.DataSet`1.Map``1(Func{`0,System.String,``0})
+  name.vb: Map(Of TResult)(Func(Of TItem, String, TResult))
+  fullName: VisNetwork.Blazor.Models.DataSet<TItem>.Map<TResult>(Func<TItem, System.String, TResult>)
+  fullName.vb: VisNetwork.Blazor.Models.DataSet(Of TItem).Map(Of TResult)(Func(Of TItem, System.String, TResult))
+  nameWithType: DataSet<TItem>.Map<TResult>(Func<TItem, String, TResult>)
+  nameWithType.vb: DataSet(Of TItem).Map(Of TResult)(Func(Of TItem, String, TResult))
+- uid: VisNetwork.Blazor.Models.DataSet`1.Max*
+  name: Max
+  href: api/VisNetwork.Blazor.Models.DataSet-1.html#VisNetwork_Blazor_Models_DataSet_1_Max_
+  commentId: Overload:VisNetwork.Blazor.Models.DataSet`1.Max
+  isSpec: "True"
+  fullName: VisNetwork.Blazor.Models.DataSet<TItem>.Max
+  fullName.vb: VisNetwork.Blazor.Models.DataSet(Of TItem).Max
+  nameWithType: DataSet<TItem>.Max
+  nameWithType.vb: DataSet(Of TItem).Max
+- uid: VisNetwork.Blazor.Models.DataSet`1.Max``1(Func{`0,``0})
+  name: Max<TKey>(Func<TItem, TKey>)
+  href: api/VisNetwork.Blazor.Models.DataSet-1.html#VisNetwork_Blazor_Models_DataSet_1_Max__1_Func__0___0__
+  commentId: M:VisNetwork.Blazor.Models.DataSet`1.Max``1(Func{`0,``0})
+  name.vb: Max(Of TKey)(Func(Of TItem, TKey))
+  fullName: VisNetwork.Blazor.Models.DataSet<TItem>.Max<TKey>(Func<TItem, TKey>)
+  fullName.vb: VisNetwork.Blazor.Models.DataSet(Of TItem).Max(Of TKey)(Func(Of TItem, TKey))
+  nameWithType: DataSet<TItem>.Max<TKey>(Func<TItem, TKey>)
+  nameWithType.vb: DataSet(Of TItem).Max(Of TKey)(Func(Of TItem, TKey))
+- uid: VisNetwork.Blazor.Models.DataSet`1.Min*
+  name: Min
+  href: api/VisNetwork.Blazor.Models.DataSet-1.html#VisNetwork_Blazor_Models_DataSet_1_Min_
+  commentId: Overload:VisNetwork.Blazor.Models.DataSet`1.Min
+  isSpec: "True"
+  fullName: VisNetwork.Blazor.Models.DataSet<TItem>.Min
+  fullName.vb: VisNetwork.Blazor.Models.DataSet(Of TItem).Min
+  nameWithType: DataSet<TItem>.Min
+  nameWithType.vb: DataSet(Of TItem).Min
+- uid: VisNetwork.Blazor.Models.DataSet`1.Min``1(Func{`0,``0})
+  name: Min<TKey>(Func<TItem, TKey>)
+  href: api/VisNetwork.Blazor.Models.DataSet-1.html#VisNetwork_Blazor_Models_DataSet_1_Min__1_Func__0___0__
+  commentId: M:VisNetwork.Blazor.Models.DataSet`1.Min``1(Func{`0,``0})
+  name.vb: Min(Of TKey)(Func(Of TItem, TKey))
+  fullName: VisNetwork.Blazor.Models.DataSet<TItem>.Min<TKey>(Func<TItem, TKey>)
+  fullName.vb: VisNetwork.Blazor.Models.DataSet(Of TItem).Min(Of TKey)(Func(Of TItem, TKey))
+  nameWithType: DataSet<TItem>.Min<TKey>(Func<TItem, TKey>)
+  nameWithType.vb: DataSet(Of TItem).Min(Of TKey)(Func(Of TItem, TKey))
+- uid: VisNetwork.Blazor.Models.DataSet`1.Remove(IEnumerable{System.String})
+  name: Remove(IEnumerable<String>)
+  href: api/VisNetwork.Blazor.Models.DataSet-1.html#VisNetwork_Blazor_Models_DataSet_1_Remove_IEnumerable_System_String__
+  commentId: M:VisNetwork.Blazor.Models.DataSet`1.Remove(IEnumerable{System.String})
+  name.vb: Remove(IEnumerable(Of String))
+  fullName: VisNetwork.Blazor.Models.DataSet<TItem>.Remove(IEnumerable<System.String>)
+  fullName.vb: VisNetwork.Blazor.Models.DataSet(Of TItem).Remove(IEnumerable(Of System.String))
+  nameWithType: DataSet<TItem>.Remove(IEnumerable<String>)
+  nameWithType.vb: DataSet(Of TItem).Remove(IEnumerable(Of String))
+- uid: VisNetwork.Blazor.Models.DataSet`1.Remove(System.String)
+  name: Remove(String)
+  href: api/VisNetwork.Blazor.Models.DataSet-1.html#VisNetwork_Blazor_Models_DataSet_1_Remove_System_String_
+  commentId: M:VisNetwork.Blazor.Models.DataSet`1.Remove(System.String)
+  fullName: VisNetwork.Blazor.Models.DataSet<TItem>.Remove(System.String)
+  fullName.vb: VisNetwork.Blazor.Models.DataSet(Of TItem).Remove(System.String)
+  nameWithType: DataSet<TItem>.Remove(String)
+  nameWithType.vb: DataSet(Of TItem).Remove(String)
+- uid: VisNetwork.Blazor.Models.DataSet`1.Remove*
+  name: Remove
+  href: api/VisNetwork.Blazor.Models.DataSet-1.html#VisNetwork_Blazor_Models_DataSet_1_Remove_
+  commentId: Overload:VisNetwork.Blazor.Models.DataSet`1.Remove
+  isSpec: "True"
+  fullName: VisNetwork.Blazor.Models.DataSet<TItem>.Remove
+  fullName.vb: VisNetwork.Blazor.Models.DataSet(Of TItem).Remove
+  nameWithType: DataSet<TItem>.Remove
+  nameWithType.vb: DataSet(Of TItem).Remove
+- uid: VisNetwork.Blazor.Models.DataSet`1.Update(`0)
+  name: Update(TItem)
+  href: api/VisNetwork.Blazor.Models.DataSet-1.html#VisNetwork_Blazor_Models_DataSet_1_Update__0_
+  commentId: M:VisNetwork.Blazor.Models.DataSet`1.Update(`0)
+  fullName: VisNetwork.Blazor.Models.DataSet<TItem>.Update(TItem)
+  fullName.vb: VisNetwork.Blazor.Models.DataSet(Of TItem).Update(TItem)
+  nameWithType: DataSet<TItem>.Update(TItem)
+  nameWithType.vb: DataSet(Of TItem).Update(TItem)
+- uid: VisNetwork.Blazor.Models.DataSet`1.Update(IEnumerable{`0})
+  name: Update(IEnumerable<TItem>)
+  href: api/VisNetwork.Blazor.Models.DataSet-1.html#VisNetwork_Blazor_Models_DataSet_1_Update_IEnumerable__0__
+  commentId: M:VisNetwork.Blazor.Models.DataSet`1.Update(IEnumerable{`0})
+  name.vb: Update(IEnumerable(Of TItem))
+  fullName: VisNetwork.Blazor.Models.DataSet<TItem>.Update(IEnumerable<TItem>)
+  fullName.vb: VisNetwork.Blazor.Models.DataSet(Of TItem).Update(IEnumerable(Of TItem))
+  nameWithType: DataSet<TItem>.Update(IEnumerable<TItem>)
+  nameWithType.vb: DataSet(Of TItem).Update(IEnumerable(Of TItem))
+- uid: VisNetwork.Blazor.Models.DataSet`1.Update*
+  name: Update
+  href: api/VisNetwork.Blazor.Models.DataSet-1.html#VisNetwork_Blazor_Models_DataSet_1_Update_
+  commentId: Overload:VisNetwork.Blazor.Models.DataSet`1.Update
+  isSpec: "True"
+  fullName: VisNetwork.Blazor.Models.DataSet<TItem>.Update
+  fullName.vb: VisNetwork.Blazor.Models.DataSet(Of TItem).Update
+  nameWithType: DataSet<TItem>.Update
+  nameWithType.vb: DataSet(Of TItem).Update
 - uid: VisNetwork.Blazor.Models.DeselectClickEvent
   name: DeselectClickEvent
   href: api/VisNetwork.Blazor.Models.DeselectClickEvent.html
@@ -1278,6 +1620,252 @@ references:
   isSpec: "True"
   fullName: VisNetwork.Blazor.Models.EndPointOffsetOption.To
   nameWithType: EndPointOffsetOption.To
+- uid: VisNetwork.Blazor.Models.Font
+  name: Font
+  href: api/VisNetwork.Blazor.Models.Font.html
+  commentId: T:VisNetwork.Blazor.Models.Font
+  fullName: VisNetwork.Blazor.Models.Font
+  nameWithType: Font
+- uid: VisNetwork.Blazor.Models.Font.Align
+  name: Align
+  href: api/VisNetwork.Blazor.Models.Font.html#VisNetwork_Blazor_Models_Font_Align
+  commentId: P:VisNetwork.Blazor.Models.Font.Align
+  fullName: VisNetwork.Blazor.Models.Font.Align
+  nameWithType: Font.Align
+- uid: VisNetwork.Blazor.Models.Font.Align*
+  name: Align
+  href: api/VisNetwork.Blazor.Models.Font.html#VisNetwork_Blazor_Models_Font_Align_
+  commentId: Overload:VisNetwork.Blazor.Models.Font.Align
+  isSpec: "True"
+  fullName: VisNetwork.Blazor.Models.Font.Align
+  nameWithType: Font.Align
+- uid: VisNetwork.Blazor.Models.Font.Background
+  name: Background
+  href: api/VisNetwork.Blazor.Models.Font.html#VisNetwork_Blazor_Models_Font_Background
+  commentId: P:VisNetwork.Blazor.Models.Font.Background
+  fullName: VisNetwork.Blazor.Models.Font.Background
+  nameWithType: Font.Background
+- uid: VisNetwork.Blazor.Models.Font.Background*
+  name: Background
+  href: api/VisNetwork.Blazor.Models.Font.html#VisNetwork_Blazor_Models_Font_Background_
+  commentId: Overload:VisNetwork.Blazor.Models.Font.Background
+  isSpec: "True"
+  fullName: VisNetwork.Blazor.Models.Font.Background
+  nameWithType: Font.Background
+- uid: VisNetwork.Blazor.Models.Font.Bold
+  name: Bold
+  href: api/VisNetwork.Blazor.Models.Font.html#VisNetwork_Blazor_Models_Font_Bold
+  commentId: P:VisNetwork.Blazor.Models.Font.Bold
+  fullName: VisNetwork.Blazor.Models.Font.Bold
+  nameWithType: Font.Bold
+- uid: VisNetwork.Blazor.Models.Font.Bold*
+  name: Bold
+  href: api/VisNetwork.Blazor.Models.Font.html#VisNetwork_Blazor_Models_Font_Bold_
+  commentId: Overload:VisNetwork.Blazor.Models.Font.Bold
+  isSpec: "True"
+  fullName: VisNetwork.Blazor.Models.Font.Bold
+  nameWithType: Font.Bold
+- uid: VisNetwork.Blazor.Models.Font.BoldItal
+  name: BoldItal
+  href: api/VisNetwork.Blazor.Models.Font.html#VisNetwork_Blazor_Models_Font_BoldItal
+  commentId: P:VisNetwork.Blazor.Models.Font.BoldItal
+  fullName: VisNetwork.Blazor.Models.Font.BoldItal
+  nameWithType: Font.BoldItal
+- uid: VisNetwork.Blazor.Models.Font.BoldItal*
+  name: BoldItal
+  href: api/VisNetwork.Blazor.Models.Font.html#VisNetwork_Blazor_Models_Font_BoldItal_
+  commentId: Overload:VisNetwork.Blazor.Models.Font.BoldItal
+  isSpec: "True"
+  fullName: VisNetwork.Blazor.Models.Font.BoldItal
+  nameWithType: Font.BoldItal
+- uid: VisNetwork.Blazor.Models.Font.Color
+  name: Color
+  href: api/VisNetwork.Blazor.Models.Font.html#VisNetwork_Blazor_Models_Font_Color
+  commentId: P:VisNetwork.Blazor.Models.Font.Color
+  fullName: VisNetwork.Blazor.Models.Font.Color
+  nameWithType: Font.Color
+- uid: VisNetwork.Blazor.Models.Font.Color*
+  name: Color
+  href: api/VisNetwork.Blazor.Models.Font.html#VisNetwork_Blazor_Models_Font_Color_
+  commentId: Overload:VisNetwork.Blazor.Models.Font.Color
+  isSpec: "True"
+  fullName: VisNetwork.Blazor.Models.Font.Color
+  nameWithType: Font.Color
+- uid: VisNetwork.Blazor.Models.Font.Face
+  name: Face
+  href: api/VisNetwork.Blazor.Models.Font.html#VisNetwork_Blazor_Models_Font_Face
+  commentId: P:VisNetwork.Blazor.Models.Font.Face
+  fullName: VisNetwork.Blazor.Models.Font.Face
+  nameWithType: Font.Face
+- uid: VisNetwork.Blazor.Models.Font.Face*
+  name: Face
+  href: api/VisNetwork.Blazor.Models.Font.html#VisNetwork_Blazor_Models_Font_Face_
+  commentId: Overload:VisNetwork.Blazor.Models.Font.Face
+  isSpec: "True"
+  fullName: VisNetwork.Blazor.Models.Font.Face
+  nameWithType: Font.Face
+- uid: VisNetwork.Blazor.Models.Font.Ital
+  name: Ital
+  href: api/VisNetwork.Blazor.Models.Font.html#VisNetwork_Blazor_Models_Font_Ital
+  commentId: P:VisNetwork.Blazor.Models.Font.Ital
+  fullName: VisNetwork.Blazor.Models.Font.Ital
+  nameWithType: Font.Ital
+- uid: VisNetwork.Blazor.Models.Font.Ital*
+  name: Ital
+  href: api/VisNetwork.Blazor.Models.Font.html#VisNetwork_Blazor_Models_Font_Ital_
+  commentId: Overload:VisNetwork.Blazor.Models.Font.Ital
+  isSpec: "True"
+  fullName: VisNetwork.Blazor.Models.Font.Ital
+  nameWithType: Font.Ital
+- uid: VisNetwork.Blazor.Models.Font.Mono
+  name: Mono
+  href: api/VisNetwork.Blazor.Models.Font.html#VisNetwork_Blazor_Models_Font_Mono
+  commentId: P:VisNetwork.Blazor.Models.Font.Mono
+  fullName: VisNetwork.Blazor.Models.Font.Mono
+  nameWithType: Font.Mono
+- uid: VisNetwork.Blazor.Models.Font.Mono*
+  name: Mono
+  href: api/VisNetwork.Blazor.Models.Font.html#VisNetwork_Blazor_Models_Font_Mono_
+  commentId: Overload:VisNetwork.Blazor.Models.Font.Mono
+  isSpec: "True"
+  fullName: VisNetwork.Blazor.Models.Font.Mono
+  nameWithType: Font.Mono
+- uid: VisNetwork.Blazor.Models.Font.Multi
+  name: Multi
+  href: api/VisNetwork.Blazor.Models.Font.html#VisNetwork_Blazor_Models_Font_Multi
+  commentId: P:VisNetwork.Blazor.Models.Font.Multi
+  fullName: VisNetwork.Blazor.Models.Font.Multi
+  nameWithType: Font.Multi
+- uid: VisNetwork.Blazor.Models.Font.Multi*
+  name: Multi
+  href: api/VisNetwork.Blazor.Models.Font.html#VisNetwork_Blazor_Models_Font_Multi_
+  commentId: Overload:VisNetwork.Blazor.Models.Font.Multi
+  isSpec: "True"
+  fullName: VisNetwork.Blazor.Models.Font.Multi
+  nameWithType: Font.Multi
+- uid: VisNetwork.Blazor.Models.Font.Size
+  name: Size
+  href: api/VisNetwork.Blazor.Models.Font.html#VisNetwork_Blazor_Models_Font_Size
+  commentId: P:VisNetwork.Blazor.Models.Font.Size
+  fullName: VisNetwork.Blazor.Models.Font.Size
+  nameWithType: Font.Size
+- uid: VisNetwork.Blazor.Models.Font.Size*
+  name: Size
+  href: api/VisNetwork.Blazor.Models.Font.html#VisNetwork_Blazor_Models_Font_Size_
+  commentId: Overload:VisNetwork.Blazor.Models.Font.Size
+  isSpec: "True"
+  fullName: VisNetwork.Blazor.Models.Font.Size
+  nameWithType: Font.Size
+- uid: VisNetwork.Blazor.Models.Font.StrokeColor
+  name: StrokeColor
+  href: api/VisNetwork.Blazor.Models.Font.html#VisNetwork_Blazor_Models_Font_StrokeColor
+  commentId: P:VisNetwork.Blazor.Models.Font.StrokeColor
+  fullName: VisNetwork.Blazor.Models.Font.StrokeColor
+  nameWithType: Font.StrokeColor
+- uid: VisNetwork.Blazor.Models.Font.StrokeColor*
+  name: StrokeColor
+  href: api/VisNetwork.Blazor.Models.Font.html#VisNetwork_Blazor_Models_Font_StrokeColor_
+  commentId: Overload:VisNetwork.Blazor.Models.Font.StrokeColor
+  isSpec: "True"
+  fullName: VisNetwork.Blazor.Models.Font.StrokeColor
+  nameWithType: Font.StrokeColor
+- uid: VisNetwork.Blazor.Models.Font.StrokeWidth
+  name: StrokeWidth
+  href: api/VisNetwork.Blazor.Models.Font.html#VisNetwork_Blazor_Models_Font_StrokeWidth
+  commentId: P:VisNetwork.Blazor.Models.Font.StrokeWidth
+  fullName: VisNetwork.Blazor.Models.Font.StrokeWidth
+  nameWithType: Font.StrokeWidth
+- uid: VisNetwork.Blazor.Models.Font.StrokeWidth*
+  name: StrokeWidth
+  href: api/VisNetwork.Blazor.Models.Font.html#VisNetwork_Blazor_Models_Font_StrokeWidth_
+  commentId: Overload:VisNetwork.Blazor.Models.Font.StrokeWidth
+  isSpec: "True"
+  fullName: VisNetwork.Blazor.Models.Font.StrokeWidth
+  nameWithType: Font.StrokeWidth
+- uid: VisNetwork.Blazor.Models.Font.Vadjust
+  name: Vadjust
+  href: api/VisNetwork.Blazor.Models.Font.html#VisNetwork_Blazor_Models_Font_Vadjust
+  commentId: P:VisNetwork.Blazor.Models.Font.Vadjust
+  fullName: VisNetwork.Blazor.Models.Font.Vadjust
+  nameWithType: Font.Vadjust
+- uid: VisNetwork.Blazor.Models.Font.Vadjust*
+  name: Vadjust
+  href: api/VisNetwork.Blazor.Models.Font.html#VisNetwork_Blazor_Models_Font_Vadjust_
+  commentId: Overload:VisNetwork.Blazor.Models.Font.Vadjust
+  isSpec: "True"
+  fullName: VisNetwork.Blazor.Models.Font.Vadjust
+  nameWithType: Font.Vadjust
+- uid: VisNetwork.Blazor.Models.FontStyles
+  name: FontStyles
+  href: api/VisNetwork.Blazor.Models.FontStyles.html
+  commentId: T:VisNetwork.Blazor.Models.FontStyles
+  fullName: VisNetwork.Blazor.Models.FontStyles
+  nameWithType: FontStyles
+- uid: VisNetwork.Blazor.Models.FontStyles.Color
+  name: Color
+  href: api/VisNetwork.Blazor.Models.FontStyles.html#VisNetwork_Blazor_Models_FontStyles_Color
+  commentId: P:VisNetwork.Blazor.Models.FontStyles.Color
+  fullName: VisNetwork.Blazor.Models.FontStyles.Color
+  nameWithType: FontStyles.Color
+- uid: VisNetwork.Blazor.Models.FontStyles.Color*
+  name: Color
+  href: api/VisNetwork.Blazor.Models.FontStyles.html#VisNetwork_Blazor_Models_FontStyles_Color_
+  commentId: Overload:VisNetwork.Blazor.Models.FontStyles.Color
+  isSpec: "True"
+  fullName: VisNetwork.Blazor.Models.FontStyles.Color
+  nameWithType: FontStyles.Color
+- uid: VisNetwork.Blazor.Models.FontStyles.Face
+  name: Face
+  href: api/VisNetwork.Blazor.Models.FontStyles.html#VisNetwork_Blazor_Models_FontStyles_Face
+  commentId: P:VisNetwork.Blazor.Models.FontStyles.Face
+  fullName: VisNetwork.Blazor.Models.FontStyles.Face
+  nameWithType: FontStyles.Face
+- uid: VisNetwork.Blazor.Models.FontStyles.Face*
+  name: Face
+  href: api/VisNetwork.Blazor.Models.FontStyles.html#VisNetwork_Blazor_Models_FontStyles_Face_
+  commentId: Overload:VisNetwork.Blazor.Models.FontStyles.Face
+  isSpec: "True"
+  fullName: VisNetwork.Blazor.Models.FontStyles.Face
+  nameWithType: FontStyles.Face
+- uid: VisNetwork.Blazor.Models.FontStyles.Mod
+  name: Mod
+  href: api/VisNetwork.Blazor.Models.FontStyles.html#VisNetwork_Blazor_Models_FontStyles_Mod
+  commentId: P:VisNetwork.Blazor.Models.FontStyles.Mod
+  fullName: VisNetwork.Blazor.Models.FontStyles.Mod
+  nameWithType: FontStyles.Mod
+- uid: VisNetwork.Blazor.Models.FontStyles.Mod*
+  name: Mod
+  href: api/VisNetwork.Blazor.Models.FontStyles.html#VisNetwork_Blazor_Models_FontStyles_Mod_
+  commentId: Overload:VisNetwork.Blazor.Models.FontStyles.Mod
+  isSpec: "True"
+  fullName: VisNetwork.Blazor.Models.FontStyles.Mod
+  nameWithType: FontStyles.Mod
+- uid: VisNetwork.Blazor.Models.FontStyles.Size
+  name: Size
+  href: api/VisNetwork.Blazor.Models.FontStyles.html#VisNetwork_Blazor_Models_FontStyles_Size
+  commentId: P:VisNetwork.Blazor.Models.FontStyles.Size
+  fullName: VisNetwork.Blazor.Models.FontStyles.Size
+  nameWithType: FontStyles.Size
+- uid: VisNetwork.Blazor.Models.FontStyles.Size*
+  name: Size
+  href: api/VisNetwork.Blazor.Models.FontStyles.html#VisNetwork_Blazor_Models_FontStyles_Size_
+  commentId: Overload:VisNetwork.Blazor.Models.FontStyles.Size
+  isSpec: "True"
+  fullName: VisNetwork.Blazor.Models.FontStyles.Size
+  nameWithType: FontStyles.Size
+- uid: VisNetwork.Blazor.Models.FontStyles.Vadjust
+  name: Vadjust
+  href: api/VisNetwork.Blazor.Models.FontStyles.html#VisNetwork_Blazor_Models_FontStyles_Vadjust
+  commentId: P:VisNetwork.Blazor.Models.FontStyles.Vadjust
+  fullName: VisNetwork.Blazor.Models.FontStyles.Vadjust
+  nameWithType: FontStyles.Vadjust
+- uid: VisNetwork.Blazor.Models.FontStyles.Vadjust*
+  name: Vadjust
+  href: api/VisNetwork.Blazor.Models.FontStyles.html#VisNetwork_Blazor_Models_FontStyles_Vadjust_
+  commentId: Overload:VisNetwork.Blazor.Models.FontStyles.Vadjust
+  isSpec: "True"
+  fullName: VisNetwork.Blazor.Models.FontStyles.Vadjust
+  nameWithType: FontStyles.Vadjust
 - uid: VisNetwork.Blazor.Models.ForceAtlas2BasedOption
   name: ForceAtlas2BasedOption
   href: api/VisNetwork.Blazor.Models.ForceAtlas2BasedOption.html
@@ -1666,6 +2254,50 @@ references:
   isSpec: "True"
   fullName: VisNetwork.Blazor.Models.Icon.Weight
   nameWithType: Icon.Weight
+- uid: VisNetwork.Blazor.Models.IDataSet
+  name: IDataSet
+  href: api/VisNetwork.Blazor.Models.IDataSet.html
+  commentId: T:VisNetwork.Blazor.Models.IDataSet
+  fullName: VisNetwork.Blazor.Models.IDataSet
+  nameWithType: IDataSet
+- uid: VisNetwork.Blazor.Models.IDataSet.Changed
+  name: Changed
+  href: api/VisNetwork.Blazor.Models.IDataSet.html#VisNetwork_Blazor_Models_IDataSet_Changed
+  commentId: E:VisNetwork.Blazor.Models.IDataSet.Changed
+  fullName: VisNetwork.Blazor.Models.IDataSet.Changed
+  nameWithType: IDataSet.Changed
+- uid: VisNetwork.Blazor.Models.INetworkData
+  name: INetworkData
+  href: api/VisNetwork.Blazor.Models.INetworkData.html
+  commentId: T:VisNetwork.Blazor.Models.INetworkData
+  fullName: VisNetwork.Blazor.Models.INetworkData
+  nameWithType: INetworkData
+- uid: VisNetwork.Blazor.Models.INetworkData.Edges
+  name: Edges
+  href: api/VisNetwork.Blazor.Models.INetworkData.html#VisNetwork_Blazor_Models_INetworkData_Edges
+  commentId: P:VisNetwork.Blazor.Models.INetworkData.Edges
+  fullName: VisNetwork.Blazor.Models.INetworkData.Edges
+  nameWithType: INetworkData.Edges
+- uid: VisNetwork.Blazor.Models.INetworkData.Edges*
+  name: Edges
+  href: api/VisNetwork.Blazor.Models.INetworkData.html#VisNetwork_Blazor_Models_INetworkData_Edges_
+  commentId: Overload:VisNetwork.Blazor.Models.INetworkData.Edges
+  isSpec: "True"
+  fullName: VisNetwork.Blazor.Models.INetworkData.Edges
+  nameWithType: INetworkData.Edges
+- uid: VisNetwork.Blazor.Models.INetworkData.Nodes
+  name: Nodes
+  href: api/VisNetwork.Blazor.Models.INetworkData.html#VisNetwork_Blazor_Models_INetworkData_Nodes
+  commentId: P:VisNetwork.Blazor.Models.INetworkData.Nodes
+  fullName: VisNetwork.Blazor.Models.INetworkData.Nodes
+  nameWithType: INetworkData.Nodes
+- uid: VisNetwork.Blazor.Models.INetworkData.Nodes*
+  name: Nodes
+  href: api/VisNetwork.Blazor.Models.INetworkData.html#VisNetwork_Blazor_Models_INetworkData_Nodes_
+  commentId: Overload:VisNetwork.Blazor.Models.INetworkData.Nodes
+  isSpec: "True"
+  fullName: VisNetwork.Blazor.Models.INetworkData.Nodes
+  nameWithType: INetworkData.Nodes
 - uid: VisNetwork.Blazor.Models.InteractionOptions
   name: InteractionOptions
   href: api/VisNetwork.Blazor.Models.InteractionOptions.html
@@ -2002,6 +2634,12 @@ references:
   isSpec: "True"
   fullName: VisNetwork.Blazor.Models.LayoutOptions.ImprovedLayout
   nameWithType: LayoutOptions.ImprovedLayout
+- uid: VisNetwork.Blazor.Models.LocaleMessages
+  name: LocaleMessages
+  href: api/VisNetwork.Blazor.Models.LocaleMessages.html
+  commentId: T:VisNetwork.Blazor.Models.LocaleMessages
+  fullName: VisNetwork.Blazor.Models.LocaleMessages
+  nameWithType: LocaleMessages
 - uid: VisNetwork.Blazor.Models.ManipulationOptions
   name: ManipulationOptions
   href: api/VisNetwork.Blazor.Models.ManipulationOptions.html
@@ -2118,32 +2756,204 @@ references:
   commentId: T:VisNetwork.Blazor.Models.NetworkData
   fullName: VisNetwork.Blazor.Models.NetworkData
   nameWithType: NetworkData
-- uid: VisNetwork.Blazor.Models.NetworkData.Edges
-  name: Edges
-  href: api/VisNetwork.Blazor.Models.NetworkData.html#VisNetwork_Blazor_Models_NetworkData_Edges
-  commentId: P:VisNetwork.Blazor.Models.NetworkData.Edges
-  fullName: VisNetwork.Blazor.Models.NetworkData.Edges
-  nameWithType: NetworkData.Edges
-- uid: VisNetwork.Blazor.Models.NetworkData.Edges*
-  name: Edges
-  href: api/VisNetwork.Blazor.Models.NetworkData.html#VisNetwork_Blazor_Models_NetworkData_Edges_
-  commentId: Overload:VisNetwork.Blazor.Models.NetworkData.Edges
+- uid: VisNetwork.Blazor.Models.NetworkData.IReadOnlyCollection*
+  name: IReadOnlyCollection
+  href: api/VisNetwork.Blazor.Models.NetworkData.html#VisNetwork_Blazor_Models_NetworkData_IReadOnlyCollection_
+  commentId: Overload:VisNetwork.Blazor.Models.NetworkData.IReadOnlyCollection
   isSpec: "True"
-  fullName: VisNetwork.Blazor.Models.NetworkData.Edges
-  nameWithType: NetworkData.Edges
-- uid: VisNetwork.Blazor.Models.NetworkData.Nodes
-  name: Nodes
-  href: api/VisNetwork.Blazor.Models.NetworkData.html#VisNetwork_Blazor_Models_NetworkData_Nodes
-  commentId: P:VisNetwork.Blazor.Models.NetworkData.Nodes
-  fullName: VisNetwork.Blazor.Models.NetworkData.Nodes
-  nameWithType: NetworkData.Nodes
-- uid: VisNetwork.Blazor.Models.NetworkData.Nodes*
-  name: Nodes
-  href: api/VisNetwork.Blazor.Models.NetworkData.html#VisNetwork_Blazor_Models_NetworkData_Nodes_
-  commentId: Overload:VisNetwork.Blazor.Models.NetworkData.Nodes
+  fullName: VisNetwork.Blazor.Models.NetworkData.IReadOnlyCollection
+  nameWithType: NetworkData.IReadOnlyCollection
+- uid: VisNetwork.Blazor.Models.NetworkData.IReadOnlyCollection``1(Edges)
+  name: IReadOnlyCollection<Edge>(Edges)
+  href: api/VisNetwork.Blazor.Models.NetworkData.html#VisNetwork_Blazor_Models_NetworkData_IReadOnlyCollection__1_Edges_
+  commentId: M:VisNetwork.Blazor.Models.NetworkData.IReadOnlyCollection``1(Edges)
+  name.vb: IReadOnlyCollection(Of Edge)(Edges)
+  fullName: VisNetwork.Blazor.Models.NetworkData.IReadOnlyCollection<Edge>(Edges)
+  fullName.vb: VisNetwork.Blazor.Models.NetworkData.IReadOnlyCollection(Of Edge)(Edges)
+  nameWithType: NetworkData.IReadOnlyCollection<Edge>(Edges)
+  nameWithType.vb: NetworkData.IReadOnlyCollection(Of Edge)(Edges)
+- uid: VisNetwork.Blazor.Models.NetworkData.IReadOnlyCollection``1(Nodes)
+  name: IReadOnlyCollection<Node>(Nodes)
+  href: api/VisNetwork.Blazor.Models.NetworkData.html#VisNetwork_Blazor_Models_NetworkData_IReadOnlyCollection__1_Nodes_
+  commentId: M:VisNetwork.Blazor.Models.NetworkData.IReadOnlyCollection``1(Nodes)
+  name.vb: IReadOnlyCollection(Of Node)(Nodes)
+  fullName: VisNetwork.Blazor.Models.NetworkData.IReadOnlyCollection<Node>(Nodes)
+  fullName.vb: VisNetwork.Blazor.Models.NetworkData.IReadOnlyCollection(Of Node)(Nodes)
+  nameWithType: NetworkData.IReadOnlyCollection<Node>(Nodes)
+  nameWithType.vb: NetworkData.IReadOnlyCollection(Of Node)(Nodes)
+- uid: VisNetwork.Blazor.Models.NetworkData.VisNetwork#Blazor#Models#INetworkData#Edges
+  name: INetworkData.Edges
+  href: api/VisNetwork.Blazor.Models.NetworkData.html#VisNetwork_Blazor_Models_NetworkData_VisNetwork_Blazor_Models_INetworkData_Edges
+  commentId: P:VisNetwork.Blazor.Models.NetworkData.VisNetwork#Blazor#Models#INetworkData#Edges
+  name.vb: VisNetwork.Blazor.Models.INetworkData.Edges
+  fullName: VisNetwork.Blazor.Models.NetworkData.VisNetwork.Blazor.Models.INetworkData.Edges
+  nameWithType: NetworkData.INetworkData.Edges
+  nameWithType.vb: NetworkData.VisNetwork.Blazor.Models.INetworkData.Edges
+- uid: VisNetwork.Blazor.Models.NetworkData.VisNetwork#Blazor#Models#INetworkData#Edges*
+  name: INetworkData.Edges
+  href: api/VisNetwork.Blazor.Models.NetworkData.html#VisNetwork_Blazor_Models_NetworkData_VisNetwork_Blazor_Models_INetworkData_Edges_
+  commentId: Overload:VisNetwork.Blazor.Models.NetworkData.VisNetwork#Blazor#Models#INetworkData#Edges
   isSpec: "True"
-  fullName: VisNetwork.Blazor.Models.NetworkData.Nodes
-  nameWithType: NetworkData.Nodes
+  name.vb: VisNetwork.Blazor.Models.INetworkData.Edges
+  fullName: VisNetwork.Blazor.Models.NetworkData.VisNetwork.Blazor.Models.INetworkData.Edges
+  nameWithType: NetworkData.INetworkData.Edges
+  nameWithType.vb: NetworkData.VisNetwork.Blazor.Models.INetworkData.Edges
+- uid: VisNetwork.Blazor.Models.NetworkData.VisNetwork#Blazor#Models#INetworkData#Nodes
+  name: INetworkData.Nodes
+  href: api/VisNetwork.Blazor.Models.NetworkData.html#VisNetwork_Blazor_Models_NetworkData_VisNetwork_Blazor_Models_INetworkData_Nodes
+  commentId: P:VisNetwork.Blazor.Models.NetworkData.VisNetwork#Blazor#Models#INetworkData#Nodes
+  name.vb: VisNetwork.Blazor.Models.INetworkData.Nodes
+  fullName: VisNetwork.Blazor.Models.NetworkData.VisNetwork.Blazor.Models.INetworkData.Nodes
+  nameWithType: NetworkData.INetworkData.Nodes
+  nameWithType.vb: NetworkData.VisNetwork.Blazor.Models.INetworkData.Nodes
+- uid: VisNetwork.Blazor.Models.NetworkData.VisNetwork#Blazor#Models#INetworkData#Nodes*
+  name: INetworkData.Nodes
+  href: api/VisNetwork.Blazor.Models.NetworkData.html#VisNetwork_Blazor_Models_NetworkData_VisNetwork_Blazor_Models_INetworkData_Nodes_
+  commentId: Overload:VisNetwork.Blazor.Models.NetworkData.VisNetwork#Blazor#Models#INetworkData#Nodes
+  isSpec: "True"
+  name.vb: VisNetwork.Blazor.Models.INetworkData.Nodes
+  fullName: VisNetwork.Blazor.Models.NetworkData.VisNetwork.Blazor.Models.INetworkData.Nodes
+  nameWithType: NetworkData.INetworkData.Nodes
+  nameWithType.vb: NetworkData.VisNetwork.Blazor.Models.INetworkData.Nodes
+- uid: VisNetwork.Blazor.Models.NetworkDataSet
+  name: NetworkDataSet
+  href: api/VisNetwork.Blazor.Models.NetworkDataSet.html
+  commentId: T:VisNetwork.Blazor.Models.NetworkDataSet
+  fullName: VisNetwork.Blazor.Models.NetworkDataSet
+  nameWithType: NetworkDataSet
+- uid: VisNetwork.Blazor.Models.NetworkDataSet.DataSet*
+  name: DataSet
+  href: api/VisNetwork.Blazor.Models.NetworkDataSet.html#VisNetwork_Blazor_Models_NetworkDataSet_DataSet_
+  commentId: Overload:VisNetwork.Blazor.Models.NetworkDataSet.DataSet
+  isSpec: "True"
+  fullName: VisNetwork.Blazor.Models.NetworkDataSet.DataSet
+  nameWithType: NetworkDataSet.DataSet
+- uid: VisNetwork.Blazor.Models.NetworkDataSet.DataSet``1(Edges)
+  name: DataSet<Edge>(Edges)
+  href: api/VisNetwork.Blazor.Models.NetworkDataSet.html#VisNetwork_Blazor_Models_NetworkDataSet_DataSet__1_Edges_
+  commentId: M:VisNetwork.Blazor.Models.NetworkDataSet.DataSet``1(Edges)
+  name.vb: DataSet(Of Edge)(Edges)
+  fullName: VisNetwork.Blazor.Models.NetworkDataSet.DataSet<Edge>(Edges)
+  fullName.vb: VisNetwork.Blazor.Models.NetworkDataSet.DataSet(Of Edge)(Edges)
+  nameWithType: NetworkDataSet.DataSet<Edge>(Edges)
+  nameWithType.vb: NetworkDataSet.DataSet(Of Edge)(Edges)
+- uid: VisNetwork.Blazor.Models.NetworkDataSet.DataSet``1(Nodes)
+  name: DataSet<Node>(Nodes)
+  href: api/VisNetwork.Blazor.Models.NetworkDataSet.html#VisNetwork_Blazor_Models_NetworkDataSet_DataSet__1_Nodes_
+  commentId: M:VisNetwork.Blazor.Models.NetworkDataSet.DataSet``1(Nodes)
+  name.vb: DataSet(Of Node)(Nodes)
+  fullName: VisNetwork.Blazor.Models.NetworkDataSet.DataSet<Node>(Nodes)
+  fullName.vb: VisNetwork.Blazor.Models.NetworkDataSet.DataSet(Of Node)(Nodes)
+  nameWithType: NetworkDataSet.DataSet<Node>(Nodes)
+  nameWithType.vb: NetworkDataSet.DataSet(Of Node)(Nodes)
+- uid: VisNetwork.Blazor.Models.NetworkDataSet.VisNetwork#Blazor#Models#INetworkData#Edges
+  name: INetworkData.Edges
+  href: api/VisNetwork.Blazor.Models.NetworkDataSet.html#VisNetwork_Blazor_Models_NetworkDataSet_VisNetwork_Blazor_Models_INetworkData_Edges
+  commentId: P:VisNetwork.Blazor.Models.NetworkDataSet.VisNetwork#Blazor#Models#INetworkData#Edges
+  name.vb: VisNetwork.Blazor.Models.INetworkData.Edges
+  fullName: VisNetwork.Blazor.Models.NetworkDataSet.VisNetwork.Blazor.Models.INetworkData.Edges
+  nameWithType: NetworkDataSet.INetworkData.Edges
+  nameWithType.vb: NetworkDataSet.VisNetwork.Blazor.Models.INetworkData.Edges
+- uid: VisNetwork.Blazor.Models.NetworkDataSet.VisNetwork#Blazor#Models#INetworkData#Edges*
+  name: INetworkData.Edges
+  href: api/VisNetwork.Blazor.Models.NetworkDataSet.html#VisNetwork_Blazor_Models_NetworkDataSet_VisNetwork_Blazor_Models_INetworkData_Edges_
+  commentId: Overload:VisNetwork.Blazor.Models.NetworkDataSet.VisNetwork#Blazor#Models#INetworkData#Edges
+  isSpec: "True"
+  name.vb: VisNetwork.Blazor.Models.INetworkData.Edges
+  fullName: VisNetwork.Blazor.Models.NetworkDataSet.VisNetwork.Blazor.Models.INetworkData.Edges
+  nameWithType: NetworkDataSet.INetworkData.Edges
+  nameWithType.vb: NetworkDataSet.VisNetwork.Blazor.Models.INetworkData.Edges
+- uid: VisNetwork.Blazor.Models.NetworkDataSet.VisNetwork#Blazor#Models#INetworkData#Nodes
+  name: INetworkData.Nodes
+  href: api/VisNetwork.Blazor.Models.NetworkDataSet.html#VisNetwork_Blazor_Models_NetworkDataSet_VisNetwork_Blazor_Models_INetworkData_Nodes
+  commentId: P:VisNetwork.Blazor.Models.NetworkDataSet.VisNetwork#Blazor#Models#INetworkData#Nodes
+  name.vb: VisNetwork.Blazor.Models.INetworkData.Nodes
+  fullName: VisNetwork.Blazor.Models.NetworkDataSet.VisNetwork.Blazor.Models.INetworkData.Nodes
+  nameWithType: NetworkDataSet.INetworkData.Nodes
+  nameWithType.vb: NetworkDataSet.VisNetwork.Blazor.Models.INetworkData.Nodes
+- uid: VisNetwork.Blazor.Models.NetworkDataSet.VisNetwork#Blazor#Models#INetworkData#Nodes*
+  name: INetworkData.Nodes
+  href: api/VisNetwork.Blazor.Models.NetworkDataSet.html#VisNetwork_Blazor_Models_NetworkDataSet_VisNetwork_Blazor_Models_INetworkData_Nodes_
+  commentId: Overload:VisNetwork.Blazor.Models.NetworkDataSet.VisNetwork#Blazor#Models#INetworkData#Nodes
+  isSpec: "True"
+  name.vb: VisNetwork.Blazor.Models.INetworkData.Nodes
+  fullName: VisNetwork.Blazor.Models.NetworkDataSet.VisNetwork.Blazor.Models.INetworkData.Nodes
+  nameWithType: NetworkDataSet.INetworkData.Nodes
+  nameWithType.vb: NetworkDataSet.VisNetwork.Blazor.Models.INetworkData.Nodes
+- uid: VisNetwork.Blazor.Models.NetworkDataSet`2
+  name: NetworkDataSet<TNode, TEdge>
+  href: api/VisNetwork.Blazor.Models.NetworkDataSet-2.html
+  commentId: T:VisNetwork.Blazor.Models.NetworkDataSet`2
+  name.vb: NetworkDataSet(Of TNode, TEdge)
+  fullName: VisNetwork.Blazor.Models.NetworkDataSet<TNode, TEdge>
+  fullName.vb: VisNetwork.Blazor.Models.NetworkDataSet(Of TNode, TEdge)
+  nameWithType: NetworkDataSet<TNode, TEdge>
+  nameWithType.vb: NetworkDataSet(Of TNode, TEdge)
+- uid: VisNetwork.Blazor.Models.NetworkDataSet`2.DataSet*
+  name: DataSet
+  href: api/VisNetwork.Blazor.Models.NetworkDataSet-2.html#VisNetwork_Blazor_Models_NetworkDataSet_2_DataSet_
+  commentId: Overload:VisNetwork.Blazor.Models.NetworkDataSet`2.DataSet
+  isSpec: "True"
+  fullName: VisNetwork.Blazor.Models.NetworkDataSet<TNode, TEdge>.DataSet
+  fullName.vb: VisNetwork.Blazor.Models.NetworkDataSet(Of TNode, TEdge).DataSet
+  nameWithType: NetworkDataSet<TNode, TEdge>.DataSet
+  nameWithType.vb: NetworkDataSet(Of TNode, TEdge).DataSet
+- uid: VisNetwork.Blazor.Models.NetworkDataSet`2.DataSet``1(Edges)
+  name: DataSet<TEdge>(Edges)
+  href: api/VisNetwork.Blazor.Models.NetworkDataSet-2.html#VisNetwork_Blazor_Models_NetworkDataSet_2_DataSet__1_Edges_
+  commentId: M:VisNetwork.Blazor.Models.NetworkDataSet`2.DataSet``1(Edges)
+  name.vb: DataSet(Of TEdge)(Edges)
+  fullName: VisNetwork.Blazor.Models.NetworkDataSet<TNode, TEdge>.DataSet<TEdge>(Edges)
+  fullName.vb: VisNetwork.Blazor.Models.NetworkDataSet(Of TNode, TEdge).DataSet(Of TEdge)(Edges)
+  nameWithType: NetworkDataSet<TNode, TEdge>.DataSet<TEdge>(Edges)
+  nameWithType.vb: NetworkDataSet(Of TNode, TEdge).DataSet(Of TEdge)(Edges)
+- uid: VisNetwork.Blazor.Models.NetworkDataSet`2.DataSet``1(Nodes)
+  name: DataSet<TNode>(Nodes)
+  href: api/VisNetwork.Blazor.Models.NetworkDataSet-2.html#VisNetwork_Blazor_Models_NetworkDataSet_2_DataSet__1_Nodes_
+  commentId: M:VisNetwork.Blazor.Models.NetworkDataSet`2.DataSet``1(Nodes)
+  name.vb: DataSet(Of TNode)(Nodes)
+  fullName: VisNetwork.Blazor.Models.NetworkDataSet<TNode, TEdge>.DataSet<TNode>(Nodes)
+  fullName.vb: VisNetwork.Blazor.Models.NetworkDataSet(Of TNode, TEdge).DataSet(Of TNode)(Nodes)
+  nameWithType: NetworkDataSet<TNode, TEdge>.DataSet<TNode>(Nodes)
+  nameWithType.vb: NetworkDataSet(Of TNode, TEdge).DataSet(Of TNode)(Nodes)
+- uid: VisNetwork.Blazor.Models.NetworkDataSet`2.VisNetwork#Blazor#Models#INetworkData#Edges
+  name: INetworkData.Edges
+  href: api/VisNetwork.Blazor.Models.NetworkDataSet-2.html#VisNetwork_Blazor_Models_NetworkDataSet_2_VisNetwork_Blazor_Models_INetworkData_Edges
+  commentId: P:VisNetwork.Blazor.Models.NetworkDataSet`2.VisNetwork#Blazor#Models#INetworkData#Edges
+  name.vb: VisNetwork.Blazor.Models.INetworkData.Edges
+  fullName: VisNetwork.Blazor.Models.NetworkDataSet<TNode, TEdge>.VisNetwork.Blazor.Models.INetworkData.Edges
+  fullName.vb: VisNetwork.Blazor.Models.NetworkDataSet(Of TNode, TEdge).VisNetwork.Blazor.Models.INetworkData.Edges
+  nameWithType: NetworkDataSet<TNode, TEdge>.INetworkData.Edges
+  nameWithType.vb: NetworkDataSet(Of TNode, TEdge).VisNetwork.Blazor.Models.INetworkData.Edges
+- uid: VisNetwork.Blazor.Models.NetworkDataSet`2.VisNetwork#Blazor#Models#INetworkData#Edges*
+  name: INetworkData.Edges
+  href: api/VisNetwork.Blazor.Models.NetworkDataSet-2.html#VisNetwork_Blazor_Models_NetworkDataSet_2_VisNetwork_Blazor_Models_INetworkData_Edges_
+  commentId: Overload:VisNetwork.Blazor.Models.NetworkDataSet`2.VisNetwork#Blazor#Models#INetworkData#Edges
+  isSpec: "True"
+  name.vb: VisNetwork.Blazor.Models.INetworkData.Edges
+  fullName: VisNetwork.Blazor.Models.NetworkDataSet<TNode, TEdge>.VisNetwork.Blazor.Models.INetworkData.Edges
+  fullName.vb: VisNetwork.Blazor.Models.NetworkDataSet(Of TNode, TEdge).VisNetwork.Blazor.Models.INetworkData.Edges
+  nameWithType: NetworkDataSet<TNode, TEdge>.INetworkData.Edges
+  nameWithType.vb: NetworkDataSet(Of TNode, TEdge).VisNetwork.Blazor.Models.INetworkData.Edges
+- uid: VisNetwork.Blazor.Models.NetworkDataSet`2.VisNetwork#Blazor#Models#INetworkData#Nodes
+  name: INetworkData.Nodes
+  href: api/VisNetwork.Blazor.Models.NetworkDataSet-2.html#VisNetwork_Blazor_Models_NetworkDataSet_2_VisNetwork_Blazor_Models_INetworkData_Nodes
+  commentId: P:VisNetwork.Blazor.Models.NetworkDataSet`2.VisNetwork#Blazor#Models#INetworkData#Nodes
+  name.vb: VisNetwork.Blazor.Models.INetworkData.Nodes
+  fullName: VisNetwork.Blazor.Models.NetworkDataSet<TNode, TEdge>.VisNetwork.Blazor.Models.INetworkData.Nodes
+  fullName.vb: VisNetwork.Blazor.Models.NetworkDataSet(Of TNode, TEdge).VisNetwork.Blazor.Models.INetworkData.Nodes
+  nameWithType: NetworkDataSet<TNode, TEdge>.INetworkData.Nodes
+  nameWithType.vb: NetworkDataSet(Of TNode, TEdge).VisNetwork.Blazor.Models.INetworkData.Nodes
+- uid: VisNetwork.Blazor.Models.NetworkDataSet`2.VisNetwork#Blazor#Models#INetworkData#Nodes*
+  name: INetworkData.Nodes
+  href: api/VisNetwork.Blazor.Models.NetworkDataSet-2.html#VisNetwork_Blazor_Models_NetworkDataSet_2_VisNetwork_Blazor_Models_INetworkData_Nodes_
+  commentId: Overload:VisNetwork.Blazor.Models.NetworkDataSet`2.VisNetwork#Blazor#Models#INetworkData#Nodes
+  isSpec: "True"
+  name.vb: VisNetwork.Blazor.Models.INetworkData.Nodes
+  fullName: VisNetwork.Blazor.Models.NetworkDataSet<TNode, TEdge>.VisNetwork.Blazor.Models.INetworkData.Nodes
+  fullName.vb: VisNetwork.Blazor.Models.NetworkDataSet(Of TNode, TEdge).VisNetwork.Blazor.Models.INetworkData.Nodes
+  nameWithType: NetworkDataSet<TNode, TEdge>.INetworkData.Nodes
+  nameWithType.vb: NetworkDataSet(Of TNode, TEdge).VisNetwork.Blazor.Models.INetworkData.Nodes
 - uid: VisNetwork.Blazor.Models.NetworkOptions
   name: NetworkOptions
   href: api/VisNetwork.Blazor.Models.NetworkOptions.html
@@ -2254,6 +3064,19 @@ references:
   isSpec: "True"
   fullName: VisNetwork.Blazor.Models.NetworkOptions.Locale
   nameWithType: NetworkOptions.Locale
+- uid: VisNetwork.Blazor.Models.NetworkOptions.Locales
+  name: Locales
+  href: api/VisNetwork.Blazor.Models.NetworkOptions.html#VisNetwork_Blazor_Models_NetworkOptions_Locales
+  commentId: P:VisNetwork.Blazor.Models.NetworkOptions.Locales
+  fullName: VisNetwork.Blazor.Models.NetworkOptions.Locales
+  nameWithType: NetworkOptions.Locales
+- uid: VisNetwork.Blazor.Models.NetworkOptions.Locales*
+  name: Locales
+  href: api/VisNetwork.Blazor.Models.NetworkOptions.html#VisNetwork_Blazor_Models_NetworkOptions_Locales_
+  commentId: Overload:VisNetwork.Blazor.Models.NetworkOptions.Locales
+  isSpec: "True"
+  fullName: VisNetwork.Blazor.Models.NetworkOptions.Locales
+  nameWithType: NetworkOptions.Locales
 - uid: VisNetwork.Blazor.Models.NetworkOptions.Manipulation
   name: Manipulation
   href: api/VisNetwork.Blazor.Models.NetworkOptions.html#VisNetwork_Blazor_Models_NetworkOptions_Manipulation
@@ -2318,15 +3141,15 @@ references:
   commentId: M:VisNetwork.Blazor.Models.Node.#ctor
   fullName: VisNetwork.Blazor.Models.Node.Node()
   nameWithType: Node.Node()
-- uid: VisNetwork.Blazor.Models.Node.#ctor(System.String,System.String,System.Int32,System.String,System.Nullable{System.String})
-  name: Node(String, String, Int32, String, Nullable<String>)
-  href: api/VisNetwork.Blazor.Models.Node.html#VisNetwork_Blazor_Models_Node__ctor_System_String_System_String_System_Int32_System_String_System_Nullable_System_String__
-  commentId: M:VisNetwork.Blazor.Models.Node.#ctor(System.String,System.String,System.Int32,System.String,System.Nullable{System.String})
-  name.vb: Node(String, String, Int32, String, Nullable(Of String))
-  fullName: VisNetwork.Blazor.Models.Node.Node(System.String, System.String, System.Int32, System.String, System.Nullable<System.String>)
-  fullName.vb: VisNetwork.Blazor.Models.Node.Node(System.String, System.String, System.Int32, System.String, System.Nullable(Of System.String))
-  nameWithType: Node.Node(String, String, Int32, String, Nullable<String>)
-  nameWithType.vb: Node.Node(String, String, Int32, String, Nullable(Of String))
+- uid: VisNetwork.Blazor.Models.Node.#ctor(System.String,System.String,System.Nullable{System.Int32},System.String,System.Nullable{System.String})
+  name: Node(String, String, Nullable<Int32>, String, Nullable<String>)
+  href: api/VisNetwork.Blazor.Models.Node.html#VisNetwork_Blazor_Models_Node__ctor_System_String_System_String_System_Nullable_System_Int32__System_String_System_Nullable_System_String__
+  commentId: M:VisNetwork.Blazor.Models.Node.#ctor(System.String,System.String,System.Nullable{System.Int32},System.String,System.Nullable{System.String})
+  name.vb: Node(String, String, Nullable(Of Int32), String, Nullable(Of String))
+  fullName: VisNetwork.Blazor.Models.Node.Node(System.String, System.String, System.Nullable<System.Int32>, System.String, System.Nullable<System.String>)
+  fullName.vb: VisNetwork.Blazor.Models.Node.Node(System.String, System.String, System.Nullable(Of System.Int32), System.String, System.Nullable(Of System.String))
+  nameWithType: Node.Node(String, String, Nullable<Int32>, String, Nullable<String>)
+  nameWithType.vb: Node.Node(String, String, Nullable(Of Int32), String, Nullable(Of String))
 - uid: VisNetwork.Blazor.Models.Node.#ctor*
   name: Node
   href: api/VisNetwork.Blazor.Models.Node.html#VisNetwork_Blazor_Models_Node__ctor_
@@ -2369,19 +3192,6 @@ references:
   isSpec: "True"
   fullName: VisNetwork.Blazor.Models.Node.GetHashCode
   nameWithType: Node.GetHashCode
-- uid: VisNetwork.Blazor.Models.Node.Id
-  name: Id
-  href: api/VisNetwork.Blazor.Models.Node.html#VisNetwork_Blazor_Models_Node_Id
-  commentId: P:VisNetwork.Blazor.Models.Node.Id
-  fullName: VisNetwork.Blazor.Models.Node.Id
-  nameWithType: Node.Id
-- uid: VisNetwork.Blazor.Models.Node.Id*
-  name: Id
-  href: api/VisNetwork.Blazor.Models.Node.html#VisNetwork_Blazor_Models_Node_Id_
-  commentId: Overload:VisNetwork.Blazor.Models.Node.Id
-  isSpec: "True"
-  fullName: VisNetwork.Blazor.Models.Node.Id
-  nameWithType: Node.Id
 - uid: VisNetwork.Blazor.Models.NodeColorType
   name: NodeColorType
   href: api/VisNetwork.Blazor.Models.NodeColorType.html
@@ -2852,6 +3662,19 @@ references:
   isSpec: "True"
   fullName: VisNetwork.Blazor.Models.NodeOption.Group
   nameWithType: NodeOption.Group
+- uid: VisNetwork.Blazor.Models.NodeOption.HeightConstraint
+  name: HeightConstraint
+  href: api/VisNetwork.Blazor.Models.NodeOption.html#VisNetwork_Blazor_Models_NodeOption_HeightConstraint
+  commentId: P:VisNetwork.Blazor.Models.NodeOption.HeightConstraint
+  fullName: VisNetwork.Blazor.Models.NodeOption.HeightConstraint
+  nameWithType: NodeOption.HeightConstraint
+- uid: VisNetwork.Blazor.Models.NodeOption.HeightConstraint*
+  name: HeightConstraint
+  href: api/VisNetwork.Blazor.Models.NodeOption.html#VisNetwork_Blazor_Models_NodeOption_HeightConstraint_
+  commentId: Overload:VisNetwork.Blazor.Models.NodeOption.HeightConstraint
+  isSpec: "True"
+  fullName: VisNetwork.Blazor.Models.NodeOption.HeightConstraint
+  nameWithType: NodeOption.HeightConstraint
 - uid: VisNetwork.Blazor.Models.NodeOption.Hidden
   name: Hidden
   href: api/VisNetwork.Blazor.Models.NodeOption.html#VisNetwork_Blazor_Models_NodeOption_Hidden
@@ -2969,19 +3792,6 @@ references:
   isSpec: "True"
   fullName: VisNetwork.Blazor.Models.NodeOption.Mass
   nameWithType: NodeOption.Mass
-- uid: VisNetwork.Blazor.Models.NodeOption.NodeHeightConstraint
-  name: NodeHeightConstraint
-  href: api/VisNetwork.Blazor.Models.NodeOption.html#VisNetwork_Blazor_Models_NodeOption_NodeHeightConstraint
-  commentId: P:VisNetwork.Blazor.Models.NodeOption.NodeHeightConstraint
-  fullName: VisNetwork.Blazor.Models.NodeOption.NodeHeightConstraint
-  nameWithType: NodeOption.NodeHeightConstraint
-- uid: VisNetwork.Blazor.Models.NodeOption.NodeHeightConstraint*
-  name: NodeHeightConstraint
-  href: api/VisNetwork.Blazor.Models.NodeOption.html#VisNetwork_Blazor_Models_NodeOption_NodeHeightConstraint_
-  commentId: Overload:VisNetwork.Blazor.Models.NodeOption.NodeHeightConstraint
-  isSpec: "True"
-  fullName: VisNetwork.Blazor.Models.NodeOption.NodeHeightConstraint
-  nameWithType: NodeOption.NodeHeightConstraint
 - uid: VisNetwork.Blazor.Models.NodeOption.Opacity
   name: Opacity
   href: api/VisNetwork.Blazor.Models.NodeOption.html#VisNetwork_Blazor_Models_NodeOption_Opacity
@@ -3047,6 +3857,19 @@ references:
   isSpec: "True"
   fullName: VisNetwork.Blazor.Models.NodeOption.Shape
   nameWithType: NodeOption.Shape
+- uid: VisNetwork.Blazor.Models.NodeOption.ShapeProperties
+  name: ShapeProperties
+  href: api/VisNetwork.Blazor.Models.NodeOption.html#VisNetwork_Blazor_Models_NodeOption_ShapeProperties
+  commentId: P:VisNetwork.Blazor.Models.NodeOption.ShapeProperties
+  fullName: VisNetwork.Blazor.Models.NodeOption.ShapeProperties
+  nameWithType: NodeOption.ShapeProperties
+- uid: VisNetwork.Blazor.Models.NodeOption.ShapeProperties*
+  name: ShapeProperties
+  href: api/VisNetwork.Blazor.Models.NodeOption.html#VisNetwork_Blazor_Models_NodeOption_ShapeProperties_
+  commentId: Overload:VisNetwork.Blazor.Models.NodeOption.ShapeProperties
+  isSpec: "True"
+  fullName: VisNetwork.Blazor.Models.NodeOption.ShapeProperties
+  nameWithType: NodeOption.ShapeProperties
 - uid: VisNetwork.Blazor.Models.NodeOption.Size
   name: Size
   href: api/VisNetwork.Blazor.Models.NodeOption.html#VisNetwork_Blazor_Models_NodeOption_Size
@@ -3086,6 +3909,19 @@ references:
   isSpec: "True"
   fullName: VisNetwork.Blazor.Models.NodeOption.Value
   nameWithType: NodeOption.Value
+- uid: VisNetwork.Blazor.Models.NodeOption.WidthConstraint
+  name: WidthConstraint
+  href: api/VisNetwork.Blazor.Models.NodeOption.html#VisNetwork_Blazor_Models_NodeOption_WidthConstraint
+  commentId: P:VisNetwork.Blazor.Models.NodeOption.WidthConstraint
+  fullName: VisNetwork.Blazor.Models.NodeOption.WidthConstraint
+  nameWithType: NodeOption.WidthConstraint
+- uid: VisNetwork.Blazor.Models.NodeOption.WidthConstraint*
+  name: WidthConstraint
+  href: api/VisNetwork.Blazor.Models.NodeOption.html#VisNetwork_Blazor_Models_NodeOption_WidthConstraint_
+  commentId: Overload:VisNetwork.Blazor.Models.NodeOption.WidthConstraint
+  isSpec: "True"
+  fullName: VisNetwork.Blazor.Models.NodeOption.WidthConstraint
+  nameWithType: NodeOption.WidthConstraint
 - uid: VisNetwork.Blazor.Models.NodeOption.X
   name: X
   href: api/VisNetwork.Blazor.Models.NodeOption.html#VisNetwork_Blazor_Models_NodeOption_X
@@ -3344,6 +4180,122 @@ references:
   isSpec: "True"
   fullName: VisNetwork.Blazor.Models.NodeShadowOption.Y
   nameWithType: NodeShadowOption.Y
+- uid: VisNetwork.Blazor.Models.NodeShapePropertiesOption
+  name: NodeShapePropertiesOption
+  href: api/VisNetwork.Blazor.Models.NodeShapePropertiesOption.html
+  commentId: T:VisNetwork.Blazor.Models.NodeShapePropertiesOption
+  fullName: VisNetwork.Blazor.Models.NodeShapePropertiesOption
+  nameWithType: NodeShapePropertiesOption
+- uid: VisNetwork.Blazor.Models.NodeShapePropertiesOption.BorderDashes
+  name: BorderDashes
+  href: api/VisNetwork.Blazor.Models.NodeShapePropertiesOption.html#VisNetwork_Blazor_Models_NodeShapePropertiesOption_BorderDashes
+  commentId: P:VisNetwork.Blazor.Models.NodeShapePropertiesOption.BorderDashes
+  fullName: VisNetwork.Blazor.Models.NodeShapePropertiesOption.BorderDashes
+  nameWithType: NodeShapePropertiesOption.BorderDashes
+- uid: VisNetwork.Blazor.Models.NodeShapePropertiesOption.BorderDashes*
+  name: BorderDashes
+  href: api/VisNetwork.Blazor.Models.NodeShapePropertiesOption.html#VisNetwork_Blazor_Models_NodeShapePropertiesOption_BorderDashes_
+  commentId: Overload:VisNetwork.Blazor.Models.NodeShapePropertiesOption.BorderDashes
+  isSpec: "True"
+  fullName: VisNetwork.Blazor.Models.NodeShapePropertiesOption.BorderDashes
+  nameWithType: NodeShapePropertiesOption.BorderDashes
+- uid: VisNetwork.Blazor.Models.NodeShapePropertiesOption.BorderRadius
+  name: BorderRadius
+  href: api/VisNetwork.Blazor.Models.NodeShapePropertiesOption.html#VisNetwork_Blazor_Models_NodeShapePropertiesOption_BorderRadius
+  commentId: P:VisNetwork.Blazor.Models.NodeShapePropertiesOption.BorderRadius
+  fullName: VisNetwork.Blazor.Models.NodeShapePropertiesOption.BorderRadius
+  nameWithType: NodeShapePropertiesOption.BorderRadius
+- uid: VisNetwork.Blazor.Models.NodeShapePropertiesOption.BorderRadius*
+  name: BorderRadius
+  href: api/VisNetwork.Blazor.Models.NodeShapePropertiesOption.html#VisNetwork_Blazor_Models_NodeShapePropertiesOption_BorderRadius_
+  commentId: Overload:VisNetwork.Blazor.Models.NodeShapePropertiesOption.BorderRadius
+  isSpec: "True"
+  fullName: VisNetwork.Blazor.Models.NodeShapePropertiesOption.BorderRadius
+  nameWithType: NodeShapePropertiesOption.BorderRadius
+- uid: VisNetwork.Blazor.Models.NodeShapePropertiesOption.CoordinateOrigin
+  name: CoordinateOrigin
+  href: api/VisNetwork.Blazor.Models.NodeShapePropertiesOption.html#VisNetwork_Blazor_Models_NodeShapePropertiesOption_CoordinateOrigin
+  commentId: P:VisNetwork.Blazor.Models.NodeShapePropertiesOption.CoordinateOrigin
+  fullName: VisNetwork.Blazor.Models.NodeShapePropertiesOption.CoordinateOrigin
+  nameWithType: NodeShapePropertiesOption.CoordinateOrigin
+- uid: VisNetwork.Blazor.Models.NodeShapePropertiesOption.CoordinateOrigin*
+  name: CoordinateOrigin
+  href: api/VisNetwork.Blazor.Models.NodeShapePropertiesOption.html#VisNetwork_Blazor_Models_NodeShapePropertiesOption_CoordinateOrigin_
+  commentId: Overload:VisNetwork.Blazor.Models.NodeShapePropertiesOption.CoordinateOrigin
+  isSpec: "True"
+  fullName: VisNetwork.Blazor.Models.NodeShapePropertiesOption.CoordinateOrigin
+  nameWithType: NodeShapePropertiesOption.CoordinateOrigin
+- uid: VisNetwork.Blazor.Models.NodeShapePropertiesOption.Interpolation
+  name: Interpolation
+  href: api/VisNetwork.Blazor.Models.NodeShapePropertiesOption.html#VisNetwork_Blazor_Models_NodeShapePropertiesOption_Interpolation
+  commentId: P:VisNetwork.Blazor.Models.NodeShapePropertiesOption.Interpolation
+  fullName: VisNetwork.Blazor.Models.NodeShapePropertiesOption.Interpolation
+  nameWithType: NodeShapePropertiesOption.Interpolation
+- uid: VisNetwork.Blazor.Models.NodeShapePropertiesOption.Interpolation*
+  name: Interpolation
+  href: api/VisNetwork.Blazor.Models.NodeShapePropertiesOption.html#VisNetwork_Blazor_Models_NodeShapePropertiesOption_Interpolation_
+  commentId: Overload:VisNetwork.Blazor.Models.NodeShapePropertiesOption.Interpolation
+  isSpec: "True"
+  fullName: VisNetwork.Blazor.Models.NodeShapePropertiesOption.Interpolation
+  nameWithType: NodeShapePropertiesOption.Interpolation
+- uid: VisNetwork.Blazor.Models.NodeShapePropertiesOption.UseBorderWithImage
+  name: UseBorderWithImage
+  href: api/VisNetwork.Blazor.Models.NodeShapePropertiesOption.html#VisNetwork_Blazor_Models_NodeShapePropertiesOption_UseBorderWithImage
+  commentId: P:VisNetwork.Blazor.Models.NodeShapePropertiesOption.UseBorderWithImage
+  fullName: VisNetwork.Blazor.Models.NodeShapePropertiesOption.UseBorderWithImage
+  nameWithType: NodeShapePropertiesOption.UseBorderWithImage
+- uid: VisNetwork.Blazor.Models.NodeShapePropertiesOption.UseBorderWithImage*
+  name: UseBorderWithImage
+  href: api/VisNetwork.Blazor.Models.NodeShapePropertiesOption.html#VisNetwork_Blazor_Models_NodeShapePropertiesOption_UseBorderWithImage_
+  commentId: Overload:VisNetwork.Blazor.Models.NodeShapePropertiesOption.UseBorderWithImage
+  isSpec: "True"
+  fullName: VisNetwork.Blazor.Models.NodeShapePropertiesOption.UseBorderWithImage
+  nameWithType: NodeShapePropertiesOption.UseBorderWithImage
+- uid: VisNetwork.Blazor.Models.NodeShapePropertiesOption.UseImageSize
+  name: UseImageSize
+  href: api/VisNetwork.Blazor.Models.NodeShapePropertiesOption.html#VisNetwork_Blazor_Models_NodeShapePropertiesOption_UseImageSize
+  commentId: P:VisNetwork.Blazor.Models.NodeShapePropertiesOption.UseImageSize
+  fullName: VisNetwork.Blazor.Models.NodeShapePropertiesOption.UseImageSize
+  nameWithType: NodeShapePropertiesOption.UseImageSize
+- uid: VisNetwork.Blazor.Models.NodeShapePropertiesOption.UseImageSize*
+  name: UseImageSize
+  href: api/VisNetwork.Blazor.Models.NodeShapePropertiesOption.html#VisNetwork_Blazor_Models_NodeShapePropertiesOption_UseImageSize_
+  commentId: Overload:VisNetwork.Blazor.Models.NodeShapePropertiesOption.UseImageSize
+  isSpec: "True"
+  fullName: VisNetwork.Blazor.Models.NodeShapePropertiesOption.UseImageSize
+  nameWithType: NodeShapePropertiesOption.UseImageSize
+- uid: VisNetwork.Blazor.Models.NodeWidthConstraint
+  name: NodeWidthConstraint
+  href: api/VisNetwork.Blazor.Models.NodeWidthConstraint.html
+  commentId: T:VisNetwork.Blazor.Models.NodeWidthConstraint
+  fullName: VisNetwork.Blazor.Models.NodeWidthConstraint
+  nameWithType: NodeWidthConstraint
+- uid: VisNetwork.Blazor.Models.NodeWidthConstraint.Maximum
+  name: Maximum
+  href: api/VisNetwork.Blazor.Models.NodeWidthConstraint.html#VisNetwork_Blazor_Models_NodeWidthConstraint_Maximum
+  commentId: P:VisNetwork.Blazor.Models.NodeWidthConstraint.Maximum
+  fullName: VisNetwork.Blazor.Models.NodeWidthConstraint.Maximum
+  nameWithType: NodeWidthConstraint.Maximum
+- uid: VisNetwork.Blazor.Models.NodeWidthConstraint.Maximum*
+  name: Maximum
+  href: api/VisNetwork.Blazor.Models.NodeWidthConstraint.html#VisNetwork_Blazor_Models_NodeWidthConstraint_Maximum_
+  commentId: Overload:VisNetwork.Blazor.Models.NodeWidthConstraint.Maximum
+  isSpec: "True"
+  fullName: VisNetwork.Blazor.Models.NodeWidthConstraint.Maximum
+  nameWithType: NodeWidthConstraint.Maximum
+- uid: VisNetwork.Blazor.Models.NodeWidthConstraint.Minimum
+  name: Minimum
+  href: api/VisNetwork.Blazor.Models.NodeWidthConstraint.html#VisNetwork_Blazor_Models_NodeWidthConstraint_Minimum
+  commentId: P:VisNetwork.Blazor.Models.NodeWidthConstraint.Minimum
+  fullName: VisNetwork.Blazor.Models.NodeWidthConstraint.Minimum
+  nameWithType: NodeWidthConstraint.Minimum
+- uid: VisNetwork.Blazor.Models.NodeWidthConstraint.Minimum*
+  name: Minimum
+  href: api/VisNetwork.Blazor.Models.NodeWidthConstraint.html#VisNetwork_Blazor_Models_NodeWidthConstraint_Minimum_
+  commentId: Overload:VisNetwork.Blazor.Models.NodeWidthConstraint.Minimum
+  isSpec: "True"
+  fullName: VisNetwork.Blazor.Models.NodeWidthConstraint.Minimum
+  nameWithType: NodeWidthConstraint.Minimum
 - uid: VisNetwork.Blazor.Models.PhysicsOptions
   name: PhysicsOptions
   href: api/VisNetwork.Blazor.Models.PhysicsOptions.html
@@ -3506,6 +4458,38 @@ references:
   isSpec: "True"
   fullName: VisNetwork.Blazor.Models.PhysicsOptions.Wind
   nameWithType: PhysicsOptions.Wind
+- uid: VisNetwork.Blazor.Models.Position
+  name: Position
+  href: api/VisNetwork.Blazor.Models.Position.html
+  commentId: T:VisNetwork.Blazor.Models.Position
+  fullName: VisNetwork.Blazor.Models.Position
+  nameWithType: Position
+- uid: VisNetwork.Blazor.Models.Position.X
+  name: X
+  href: api/VisNetwork.Blazor.Models.Position.html#VisNetwork_Blazor_Models_Position_X
+  commentId: P:VisNetwork.Blazor.Models.Position.X
+  fullName: VisNetwork.Blazor.Models.Position.X
+  nameWithType: Position.X
+- uid: VisNetwork.Blazor.Models.Position.X*
+  name: X
+  href: api/VisNetwork.Blazor.Models.Position.html#VisNetwork_Blazor_Models_Position_X_
+  commentId: Overload:VisNetwork.Blazor.Models.Position.X
+  isSpec: "True"
+  fullName: VisNetwork.Blazor.Models.Position.X
+  nameWithType: Position.X
+- uid: VisNetwork.Blazor.Models.Position.Y
+  name: Y
+  href: api/VisNetwork.Blazor.Models.Position.html#VisNetwork_Blazor_Models_Position_Y
+  commentId: P:VisNetwork.Blazor.Models.Position.Y
+  fullName: VisNetwork.Blazor.Models.Position.Y
+  nameWithType: Position.Y
+- uid: VisNetwork.Blazor.Models.Position.Y*
+  name: Y
+  href: api/VisNetwork.Blazor.Models.Position.html#VisNetwork_Blazor_Models_Position_Y_
+  commentId: Overload:VisNetwork.Blazor.Models.Position.Y
+  isSpec: "True"
+  fullName: VisNetwork.Blazor.Models.Position.Y
+  nameWithType: Position.Y
 - uid: VisNetwork.Blazor.Models.RepulsionOption
   name: RepulsionOption
   href: api/VisNetwork.Blazor.Models.RepulsionOption.html
@@ -3577,6 +4561,38 @@ references:
   isSpec: "True"
   fullName: VisNetwork.Blazor.Models.RepulsionOption.SpringLength
   nameWithType: RepulsionOption.SpringLength
+- uid: VisNetwork.Blazor.Models.SelectionOptions
+  name: SelectionOptions
+  href: api/VisNetwork.Blazor.Models.SelectionOptions.html
+  commentId: T:VisNetwork.Blazor.Models.SelectionOptions
+  fullName: VisNetwork.Blazor.Models.SelectionOptions
+  nameWithType: SelectionOptions
+- uid: VisNetwork.Blazor.Models.SelectionOptions.GighlightEdges
+  name: GighlightEdges
+  href: api/VisNetwork.Blazor.Models.SelectionOptions.html#VisNetwork_Blazor_Models_SelectionOptions_GighlightEdges
+  commentId: P:VisNetwork.Blazor.Models.SelectionOptions.GighlightEdges
+  fullName: VisNetwork.Blazor.Models.SelectionOptions.GighlightEdges
+  nameWithType: SelectionOptions.GighlightEdges
+- uid: VisNetwork.Blazor.Models.SelectionOptions.GighlightEdges*
+  name: GighlightEdges
+  href: api/VisNetwork.Blazor.Models.SelectionOptions.html#VisNetwork_Blazor_Models_SelectionOptions_GighlightEdges_
+  commentId: Overload:VisNetwork.Blazor.Models.SelectionOptions.GighlightEdges
+  isSpec: "True"
+  fullName: VisNetwork.Blazor.Models.SelectionOptions.GighlightEdges
+  nameWithType: SelectionOptions.GighlightEdges
+- uid: VisNetwork.Blazor.Models.SelectionOptions.UnselectAll
+  name: UnselectAll
+  href: api/VisNetwork.Blazor.Models.SelectionOptions.html#VisNetwork_Blazor_Models_SelectionOptions_UnselectAll
+  commentId: P:VisNetwork.Blazor.Models.SelectionOptions.UnselectAll
+  fullName: VisNetwork.Blazor.Models.SelectionOptions.UnselectAll
+  nameWithType: SelectionOptions.UnselectAll
+- uid: VisNetwork.Blazor.Models.SelectionOptions.UnselectAll*
+  name: UnselectAll
+  href: api/VisNetwork.Blazor.Models.SelectionOptions.html#VisNetwork_Blazor_Models_SelectionOptions_UnselectAll_
+  commentId: Overload:VisNetwork.Blazor.Models.SelectionOptions.UnselectAll
+  isSpec: "True"
+  fullName: VisNetwork.Blazor.Models.SelectionOptions.UnselectAll
+  nameWithType: SelectionOptions.UnselectAll
 - uid: VisNetwork.Blazor.Models.StabilizationOption
   name: StabilizationOption
   href: api/VisNetwork.Blazor.Models.StabilizationOption.html
@@ -3750,6 +4766,45 @@ references:
   isSpec: "True"
   fullName: VisNetwork.Blazor.Network.Network
   nameWithType: Network.Network
+- uid: VisNetwork.Blazor.Network.AddEdgeMode
+  name: AddEdgeMode()
+  href: api/VisNetwork.Blazor.Network.html#VisNetwork_Blazor_Network_AddEdgeMode
+  commentId: M:VisNetwork.Blazor.Network.AddEdgeMode
+  fullName: VisNetwork.Blazor.Network.AddEdgeMode()
+  nameWithType: Network.AddEdgeMode()
+- uid: VisNetwork.Blazor.Network.AddEdgeMode*
+  name: AddEdgeMode
+  href: api/VisNetwork.Blazor.Network.html#VisNetwork_Blazor_Network_AddEdgeMode_
+  commentId: Overload:VisNetwork.Blazor.Network.AddEdgeMode
+  isSpec: "True"
+  fullName: VisNetwork.Blazor.Network.AddEdgeMode
+  nameWithType: Network.AddEdgeMode
+- uid: VisNetwork.Blazor.Network.AddNodeMode
+  name: AddNodeMode()
+  href: api/VisNetwork.Blazor.Network.html#VisNetwork_Blazor_Network_AddNodeMode
+  commentId: M:VisNetwork.Blazor.Network.AddNodeMode
+  fullName: VisNetwork.Blazor.Network.AddNodeMode()
+  nameWithType: Network.AddNodeMode()
+- uid: VisNetwork.Blazor.Network.AddNodeMode*
+  name: AddNodeMode
+  href: api/VisNetwork.Blazor.Network.html#VisNetwork_Blazor_Network_AddNodeMode_
+  commentId: Overload:VisNetwork.Blazor.Network.AddNodeMode
+  isSpec: "True"
+  fullName: VisNetwork.Blazor.Network.AddNodeMode
+  nameWithType: Network.AddNodeMode
+- uid: VisNetwork.Blazor.Network.CanvasToDOM(VisNetwork.Blazor.Models.Position)
+  name: CanvasToDOM(Position)
+  href: api/VisNetwork.Blazor.Network.html#VisNetwork_Blazor_Network_CanvasToDOM_VisNetwork_Blazor_Models_Position_
+  commentId: M:VisNetwork.Blazor.Network.CanvasToDOM(VisNetwork.Blazor.Models.Position)
+  fullName: VisNetwork.Blazor.Network.CanvasToDOM(VisNetwork.Blazor.Models.Position)
+  nameWithType: Network.CanvasToDOM(Position)
+- uid: VisNetwork.Blazor.Network.CanvasToDOM*
+  name: CanvasToDOM
+  href: api/VisNetwork.Blazor.Network.html#VisNetwork_Blazor_Network_CanvasToDOM_
+  commentId: Overload:VisNetwork.Blazor.Network.CanvasToDOM
+  isSpec: "True"
+  fullName: VisNetwork.Blazor.Network.CanvasToDOM
+  nameWithType: Network.CanvasToDOM
 - uid: VisNetwork.Blazor.Network.ClusterOutliers
   name: ClusterOutliers()
   href: api/VisNetwork.Blazor.Network.html#VisNetwork_Blazor_Network_ClusterOutliers
@@ -3776,6 +4831,58 @@ references:
   isSpec: "True"
   fullName: VisNetwork.Blazor.Network.Data
   nameWithType: Network.Data
+- uid: VisNetwork.Blazor.Network.DeleteSelected
+  name: DeleteSelected()
+  href: api/VisNetwork.Blazor.Network.html#VisNetwork_Blazor_Network_DeleteSelected
+  commentId: M:VisNetwork.Blazor.Network.DeleteSelected
+  fullName: VisNetwork.Blazor.Network.DeleteSelected()
+  nameWithType: Network.DeleteSelected()
+- uid: VisNetwork.Blazor.Network.DeleteSelected*
+  name: DeleteSelected
+  href: api/VisNetwork.Blazor.Network.html#VisNetwork_Blazor_Network_DeleteSelected_
+  commentId: Overload:VisNetwork.Blazor.Network.DeleteSelected
+  isSpec: "True"
+  fullName: VisNetwork.Blazor.Network.DeleteSelected
+  nameWithType: Network.DeleteSelected
+- uid: VisNetwork.Blazor.Network.DisableEditMode
+  name: DisableEditMode()
+  href: api/VisNetwork.Blazor.Network.html#VisNetwork_Blazor_Network_DisableEditMode
+  commentId: M:VisNetwork.Blazor.Network.DisableEditMode
+  fullName: VisNetwork.Blazor.Network.DisableEditMode()
+  nameWithType: Network.DisableEditMode()
+- uid: VisNetwork.Blazor.Network.DisableEditMode*
+  name: DisableEditMode
+  href: api/VisNetwork.Blazor.Network.html#VisNetwork_Blazor_Network_DisableEditMode_
+  commentId: Overload:VisNetwork.Blazor.Network.DisableEditMode
+  isSpec: "True"
+  fullName: VisNetwork.Blazor.Network.DisableEditMode
+  nameWithType: Network.DisableEditMode
+- uid: VisNetwork.Blazor.Network.DOMToCanvas(VisNetwork.Blazor.Models.Position)
+  name: DOMToCanvas(Position)
+  href: api/VisNetwork.Blazor.Network.html#VisNetwork_Blazor_Network_DOMToCanvas_VisNetwork_Blazor_Models_Position_
+  commentId: M:VisNetwork.Blazor.Network.DOMToCanvas(VisNetwork.Blazor.Models.Position)
+  fullName: VisNetwork.Blazor.Network.DOMToCanvas(VisNetwork.Blazor.Models.Position)
+  nameWithType: Network.DOMToCanvas(Position)
+- uid: VisNetwork.Blazor.Network.DOMToCanvas*
+  name: DOMToCanvas
+  href: api/VisNetwork.Blazor.Network.html#VisNetwork_Blazor_Network_DOMToCanvas_
+  commentId: Overload:VisNetwork.Blazor.Network.DOMToCanvas
+  isSpec: "True"
+  fullName: VisNetwork.Blazor.Network.DOMToCanvas
+  nameWithType: Network.DOMToCanvas
+- uid: VisNetwork.Blazor.Network.EnableEditMode
+  name: EnableEditMode()
+  href: api/VisNetwork.Blazor.Network.html#VisNetwork_Blazor_Network_EnableEditMode
+  commentId: M:VisNetwork.Blazor.Network.EnableEditMode
+  fullName: VisNetwork.Blazor.Network.EnableEditMode()
+  nameWithType: Network.EnableEditMode()
+- uid: VisNetwork.Blazor.Network.EnableEditMode*
+  name: EnableEditMode
+  href: api/VisNetwork.Blazor.Network.html#VisNetwork_Blazor_Network_EnableEditMode_
+  commentId: Overload:VisNetwork.Blazor.Network.EnableEditMode
+  isSpec: "True"
+  fullName: VisNetwork.Blazor.Network.EnableEditMode
+  nameWithType: Network.EnableEditMode
 - uid: VisNetwork.Blazor.Network.EventCallback(System.String,System.String)
   name: EventCallback(String, String)
   href: api/VisNetwork.Blazor.Network.html#VisNetwork_Blazor_Network_EventCallback_System_String_System_String_
@@ -3802,6 +4909,61 @@ references:
   isSpec: "True"
   fullName: VisNetwork.Blazor.Network.ExtraAttributes
   nameWithType: Network.ExtraAttributes
+- uid: VisNetwork.Blazor.Network.GetBoundingBox(System.String)
+  name: GetBoundingBox(String)
+  href: api/VisNetwork.Blazor.Network.html#VisNetwork_Blazor_Network_GetBoundingBox_System_String_
+  commentId: M:VisNetwork.Blazor.Network.GetBoundingBox(System.String)
+  fullName: VisNetwork.Blazor.Network.GetBoundingBox(System.String)
+  nameWithType: Network.GetBoundingBox(String)
+- uid: VisNetwork.Blazor.Network.GetBoundingBox*
+  name: GetBoundingBox
+  href: api/VisNetwork.Blazor.Network.html#VisNetwork_Blazor_Network_GetBoundingBox_
+  commentId: Overload:VisNetwork.Blazor.Network.GetBoundingBox
+  isSpec: "True"
+  fullName: VisNetwork.Blazor.Network.GetBoundingBox
+  nameWithType: Network.GetBoundingBox
+- uid: VisNetwork.Blazor.Network.GetConnectedEdges(System.String)
+  name: GetConnectedEdges(String)
+  href: api/VisNetwork.Blazor.Network.html#VisNetwork_Blazor_Network_GetConnectedEdges_System_String_
+  commentId: M:VisNetwork.Blazor.Network.GetConnectedEdges(System.String)
+  fullName: VisNetwork.Blazor.Network.GetConnectedEdges(System.String)
+  nameWithType: Network.GetConnectedEdges(String)
+- uid: VisNetwork.Blazor.Network.GetConnectedEdges*
+  name: GetConnectedEdges
+  href: api/VisNetwork.Blazor.Network.html#VisNetwork_Blazor_Network_GetConnectedEdges_
+  commentId: Overload:VisNetwork.Blazor.Network.GetConnectedEdges
+  isSpec: "True"
+  fullName: VisNetwork.Blazor.Network.GetConnectedEdges
+  nameWithType: Network.GetConnectedEdges
+- uid: VisNetwork.Blazor.Network.GetPosition(System.String)
+  name: GetPosition(String)
+  href: api/VisNetwork.Blazor.Network.html#VisNetwork_Blazor_Network_GetPosition_System_String_
+  commentId: M:VisNetwork.Blazor.Network.GetPosition(System.String)
+  fullName: VisNetwork.Blazor.Network.GetPosition(System.String)
+  nameWithType: Network.GetPosition(String)
+- uid: VisNetwork.Blazor.Network.GetPosition*
+  name: GetPosition
+  href: api/VisNetwork.Blazor.Network.html#VisNetwork_Blazor_Network_GetPosition_
+  commentId: Overload:VisNetwork.Blazor.Network.GetPosition
+  isSpec: "True"
+  fullName: VisNetwork.Blazor.Network.GetPosition
+  nameWithType: Network.GetPosition
+- uid: VisNetwork.Blazor.Network.GetPositions(System.String[])
+  name: GetPositions(String[])
+  href: api/VisNetwork.Blazor.Network.html#VisNetwork_Blazor_Network_GetPositions_System_String___
+  commentId: M:VisNetwork.Blazor.Network.GetPositions(System.String[])
+  name.vb: GetPositions(String())
+  fullName: VisNetwork.Blazor.Network.GetPositions(System.String[])
+  fullName.vb: VisNetwork.Blazor.Network.GetPositions(System.String())
+  nameWithType: Network.GetPositions(String[])
+  nameWithType.vb: Network.GetPositions(String())
+- uid: VisNetwork.Blazor.Network.GetPositions*
+  name: GetPositions
+  href: api/VisNetwork.Blazor.Network.html#VisNetwork_Blazor_Network_GetPositions_
+  commentId: Overload:VisNetwork.Blazor.Network.GetPositions
+  isSpec: "True"
+  fullName: VisNetwork.Blazor.Network.GetPositions
+  nameWithType: Network.GetPositions
 - uid: VisNetwork.Blazor.Network.GetSelectedEdges
   name: GetSelectedEdges()
   href: api/VisNetwork.Blazor.Network.html#VisNetwork_Blazor_Network_GetSelectedEdges
@@ -3854,6 +5016,19 @@ references:
   isSpec: "True"
   fullName: VisNetwork.Blazor.Network.Id
   nameWithType: Network.Id
+- uid: VisNetwork.Blazor.Network.IdChanged
+  name: IdChanged
+  href: api/VisNetwork.Blazor.Network.html#VisNetwork_Blazor_Network_IdChanged
+  commentId: P:VisNetwork.Blazor.Network.IdChanged
+  fullName: VisNetwork.Blazor.Network.IdChanged
+  nameWithType: Network.IdChanged
+- uid: VisNetwork.Blazor.Network.IdChanged*
+  name: IdChanged
+  href: api/VisNetwork.Blazor.Network.html#VisNetwork_Blazor_Network_IdChanged_
+  commentId: Overload:VisNetwork.Blazor.Network.IdChanged
+  isSpec: "True"
+  fullName: VisNetwork.Blazor.Network.IdChanged
+  nameWithType: Network.IdChanged
 - uid: VisNetwork.Blazor.Network.OnAfterDrawing
   name: OnAfterDrawing
   href: api/VisNetwork.Blazor.Network.html#VisNetwork_Blazor_Network_OnAfterDrawing
@@ -4169,15 +5344,15 @@ references:
   isSpec: "True"
   fullName: VisNetwork.Blazor.Network.SelectEdges
   nameWithType: Network.SelectEdges
-- uid: VisNetwork.Blazor.Network.SelectNodes(System.String[])
-  name: SelectNodes(String[])
-  href: api/VisNetwork.Blazor.Network.html#VisNetwork_Blazor_Network_SelectNodes_System_String___
-  commentId: M:VisNetwork.Blazor.Network.SelectNodes(System.String[])
-  name.vb: SelectNodes(String())
-  fullName: VisNetwork.Blazor.Network.SelectNodes(System.String[])
-  fullName.vb: VisNetwork.Blazor.Network.SelectNodes(System.String())
-  nameWithType: Network.SelectNodes(String[])
-  nameWithType.vb: Network.SelectNodes(String())
+- uid: VisNetwork.Blazor.Network.SelectNodes(System.String[],System.Nullable{System.Boolean})
+  name: SelectNodes(String[], Nullable<Boolean>)
+  href: api/VisNetwork.Blazor.Network.html#VisNetwork_Blazor_Network_SelectNodes_System_String___System_Nullable_System_Boolean__
+  commentId: M:VisNetwork.Blazor.Network.SelectNodes(System.String[],System.Nullable{System.Boolean})
+  name.vb: SelectNodes(String(), Nullable(Of Boolean))
+  fullName: VisNetwork.Blazor.Network.SelectNodes(System.String[], System.Nullable<System.Boolean>)
+  fullName.vb: VisNetwork.Blazor.Network.SelectNodes(System.String(), System.Nullable(Of System.Boolean))
+  nameWithType: Network.SelectNodes(String[], Nullable<Boolean>)
+  nameWithType.vb: Network.SelectNodes(String(), Nullable(Of Boolean))
 - uid: VisNetwork.Blazor.Network.SelectNodes*
   name: SelectNodes
   href: api/VisNetwork.Blazor.Network.html#VisNetwork_Blazor_Network_SelectNodes_
@@ -4191,6 +5366,12 @@ references:
   commentId: M:VisNetwork.Blazor.Network.SetData(VisNetwork.Blazor.Models.NetworkData)
   fullName: VisNetwork.Blazor.Network.SetData(VisNetwork.Blazor.Models.NetworkData)
   nameWithType: Network.SetData(NetworkData)
+- uid: VisNetwork.Blazor.Network.SetData(VisNetwork.Blazor.Models.NetworkDataSet)
+  name: SetData(NetworkDataSet)
+  href: api/VisNetwork.Blazor.Network.html#VisNetwork_Blazor_Network_SetData_VisNetwork_Blazor_Models_NetworkDataSet_
+  commentId: M:VisNetwork.Blazor.Network.SetData(VisNetwork.Blazor.Models.NetworkDataSet)
+  fullName: VisNetwork.Blazor.Network.SetData(VisNetwork.Blazor.Models.NetworkDataSet)
+  nameWithType: Network.SetData(NetworkDataSet)
 - uid: VisNetwork.Blazor.Network.SetData*
   name: SetData
   href: api/VisNetwork.Blazor.Network.html#VisNetwork_Blazor_Network_SetData_
@@ -4211,12 +5392,12 @@ references:
   isSpec: "True"
   fullName: VisNetwork.Blazor.Network.SetOptions
   nameWithType: Network.SetOptions
-- uid: VisNetwork.Blazor.Network.SetSelection(VisNetwork.Blazor.Models.NodeEdgeComposite)
-  name: SetSelection(NodeEdgeComposite)
-  href: api/VisNetwork.Blazor.Network.html#VisNetwork_Blazor_Network_SetSelection_VisNetwork_Blazor_Models_NodeEdgeComposite_
-  commentId: M:VisNetwork.Blazor.Network.SetSelection(VisNetwork.Blazor.Models.NodeEdgeComposite)
-  fullName: VisNetwork.Blazor.Network.SetSelection(VisNetwork.Blazor.Models.NodeEdgeComposite)
-  nameWithType: Network.SetSelection(NodeEdgeComposite)
+- uid: VisNetwork.Blazor.Network.SetSelection(VisNetwork.Blazor.Models.NodeEdgeComposite,VisNetwork.Blazor.Models.SelectionOptions)
+  name: SetSelection(NodeEdgeComposite, SelectionOptions)
+  href: api/VisNetwork.Blazor.Network.html#VisNetwork_Blazor_Network_SetSelection_VisNetwork_Blazor_Models_NodeEdgeComposite_VisNetwork_Blazor_Models_SelectionOptions_
+  commentId: M:VisNetwork.Blazor.Network.SetSelection(VisNetwork.Blazor.Models.NodeEdgeComposite,VisNetwork.Blazor.Models.SelectionOptions)
+  fullName: VisNetwork.Blazor.Network.SetSelection(VisNetwork.Blazor.Models.NodeEdgeComposite, VisNetwork.Blazor.Models.SelectionOptions)
+  nameWithType: Network.SetSelection(NodeEdgeComposite, SelectionOptions)
 - uid: VisNetwork.Blazor.Network.SetSelection*
   name: SetSelection
   href: api/VisNetwork.Blazor.Network.html#VisNetwork_Blazor_Network_SetSelection_

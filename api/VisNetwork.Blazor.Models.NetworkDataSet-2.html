@@ -5,10 +5,10 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Class NetworkData
+    <title>Class NetworkDataSet&lt;TNode, TEdge&gt;
    | VisNetwork.Blazor </title>
     <meta name="viewport" content="width=device-width">
-    <meta name="title" content="Class NetworkData
+    <meta name="title" content="Class NetworkDataSet&lt;TNode, TEdge&gt;
    | VisNetwork.Blazor ">
     <meta name="generator" content="docfx 2.56.7.0">
     
@@ -78,17 +78,17 @@
         </div>
         <div class="article row grid-right">
           <div class="col-md-10">
-            <article class="content wrap" id="_content" data-uid="VisNetwork.Blazor.Models.NetworkData">
+            <article class="content wrap" id="_content" data-uid="VisNetwork.Blazor.Models.NetworkDataSet`2">
   
   
-  <h1 id="VisNetwork_Blazor_Models_NetworkData" data-uid="VisNetwork.Blazor.Models.NetworkData" class="text-break">Class NetworkData
+  <h1 id="VisNetwork_Blazor_Models_NetworkDataSet_2" data-uid="VisNetwork.Blazor.Models.NetworkDataSet`2" class="text-break">Class NetworkDataSet&lt;TNode, TEdge&gt;
   </h1>
   <div class="markdown level0 summary"></div>
   <div class="markdown level0 conceptual"></div>
   <div class="inheritance">
     <h5>Inheritance</h5>
     <div class="level0"><span class="xref">System.Object</span></div>
-    <div class="level1"><span class="xref">NetworkData</span></div>
+    <div class="level1"><span class="xref">NetworkDataSet&lt;TNode, TEdge&gt;</span></div>
   </div>
   <div classs="implements">
     <h5>Implements</h5>
@@ -96,26 +96,45 @@
   </div>
   <h6><strong>Namespace</strong>: <a class="xref" href="VisNetwork.Blazor.Models.html">VisNetwork.Blazor.Models</a></h6>
   <h6><strong>Assembly</strong>: VisNetwork.Blazor.dll</h6>
-  <h5 id="VisNetwork_Blazor_Models_NetworkData_syntax">Syntax</h5>
+  <h5 id="VisNetwork_Blazor_Models_NetworkDataSet_2_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class NetworkData : object, INetworkData</code></pre>
+    <pre><code class="lang-csharp hljs">public class NetworkDataSet&lt;TNode, TEdge&gt; : object, INetworkData where TNode : Node where TEdge : Edge</code></pre>
   </div>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">TNode</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="parametername">TEdge</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
   <h3 id="methods">Methods
   </h3>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/stiankroknes/VisNetwork.Blazor/new/50c4e3eb92db729596c6f06f328c06a0a266aa02/apiSpec/new?filename=VisNetwork_Blazor_Models_NetworkData_IReadOnlyCollection__1_Edges_.md&amp;value=---%0Auid%3A%20VisNetwork.Blazor.Models.NetworkData.IReadOnlyCollection%60%601(Edges)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/stiankroknes/VisNetwork.Blazor/new/50c4e3eb92db729596c6f06f328c06a0a266aa02/apiSpec/new?filename=VisNetwork_Blazor_Models_NetworkDataSet_2_DataSet__1_Edges_.md&amp;value=---%0Auid%3A%20VisNetwork.Blazor.Models.NetworkDataSet%602.DataSet%60%601(Edges)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/stiankroknes/VisNetwork.Blazor/blob/50c4e3eb92db729596c6f06f328c06a0a266aa02/src/VisNetwork.Blazor/Models/NetworkData.cs/#L19">View Source</a>
+    <a href="https://github.com/stiankroknes/VisNetwork.Blazor/blob/50c4e3eb92db729596c6f06f328c06a0a266aa02/src/VisNetwork.Blazor/Models/NetworkData.cs/#L39">View Source</a>
   </span>
-  <a id="VisNetwork_Blazor_Models_NetworkData_IReadOnlyCollection_" data-uid="VisNetwork.Blazor.Models.NetworkData.IReadOnlyCollection*"></a>
-  <h4 id="VisNetwork_Blazor_Models_NetworkData_IReadOnlyCollection__1_Edges_" data-uid="VisNetwork.Blazor.Models.NetworkData.IReadOnlyCollection``1(Edges)">IReadOnlyCollection&lt;Edge&gt;(Edges)</h4>
+  <a id="VisNetwork_Blazor_Models_NetworkDataSet_2_DataSet_" data-uid="VisNetwork.Blazor.Models.NetworkDataSet`2.DataSet*"></a>
+  <h4 id="VisNetwork_Blazor_Models_NetworkDataSet_2_DataSet__1_Edges_" data-uid="VisNetwork.Blazor.Models.NetworkDataSet`2.DataSet``1(Edges)">DataSet&lt;TEdge&gt;(Edges)</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public required IReadOnlyCollection&lt;Edge&gt;(Edges)</code></pre>
+    <pre><code class="lang-csharp hljs">public required DataSet&lt;TEdge&gt;(Edges)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -159,25 +178,25 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="parametername">Edge</span></td>
+        <td><span class="parametername">TEdge</span></td>
         <td></td>
       </tr>
     </tbody>
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/stiankroknes/VisNetwork.Blazor/new/50c4e3eb92db729596c6f06f328c06a0a266aa02/apiSpec/new?filename=VisNetwork_Blazor_Models_NetworkData_IReadOnlyCollection__1_Nodes_.md&amp;value=---%0Auid%3A%20VisNetwork.Blazor.Models.NetworkData.IReadOnlyCollection%60%601(Nodes)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/stiankroknes/VisNetwork.Blazor/new/50c4e3eb92db729596c6f06f328c06a0a266aa02/apiSpec/new?filename=VisNetwork_Blazor_Models_NetworkDataSet_2_DataSet__1_Nodes_.md&amp;value=---%0Auid%3A%20VisNetwork.Blazor.Models.NetworkDataSet%602.DataSet%60%601(Nodes)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/stiankroknes/VisNetwork.Blazor/blob/50c4e3eb92db729596c6f06f328c06a0a266aa02/src/VisNetwork.Blazor/Models/NetworkData.cs/#L20">View Source</a>
+    <a href="https://github.com/stiankroknes/VisNetwork.Blazor/blob/50c4e3eb92db729596c6f06f328c06a0a266aa02/src/VisNetwork.Blazor/Models/NetworkData.cs/#L40">View Source</a>
   </span>
-  <a id="VisNetwork_Blazor_Models_NetworkData_IReadOnlyCollection_" data-uid="VisNetwork.Blazor.Models.NetworkData.IReadOnlyCollection*"></a>
-  <h4 id="VisNetwork_Blazor_Models_NetworkData_IReadOnlyCollection__1_Nodes_" data-uid="VisNetwork.Blazor.Models.NetworkData.IReadOnlyCollection``1(Nodes)">IReadOnlyCollection&lt;Node&gt;(Nodes)</h4>
+  <a id="VisNetwork_Blazor_Models_NetworkDataSet_2_DataSet_" data-uid="VisNetwork.Blazor.Models.NetworkDataSet`2.DataSet*"></a>
+  <h4 id="VisNetwork_Blazor_Models_NetworkDataSet_2_DataSet__1_Nodes_" data-uid="VisNetwork.Blazor.Models.NetworkDataSet`2.DataSet``1(Nodes)">DataSet&lt;TNode&gt;(Nodes)</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public required IReadOnlyCollection&lt;Node&gt;(Nodes)</code></pre>
+    <pre><code class="lang-csharp hljs">public required DataSet&lt;TNode&gt;(Nodes)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -221,7 +240,7 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="parametername">Node</span></td>
+        <td><span class="parametername">TNode</span></td>
         <td></td>
       </tr>
     </tbody>
@@ -230,13 +249,13 @@
   </h3>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/stiankroknes/VisNetwork.Blazor/new/50c4e3eb92db729596c6f06f328c06a0a266aa02/apiSpec/new?filename=VisNetwork_Blazor_Models_NetworkData_VisNetwork_Blazor_Models_INetworkData_Edges.md&amp;value=---%0Auid%3A%20VisNetwork.Blazor.Models.NetworkData.VisNetwork%23Blazor%23Models%23INetworkData%23Edges%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/stiankroknes/VisNetwork.Blazor/new/50c4e3eb92db729596c6f06f328c06a0a266aa02/apiSpec/new?filename=VisNetwork_Blazor_Models_NetworkDataSet_2_VisNetwork_Blazor_Models_INetworkData_Edges.md&amp;value=---%0Auid%3A%20VisNetwork.Blazor.Models.NetworkDataSet%602.VisNetwork%23Blazor%23Models%23INetworkData%23Edges%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/stiankroknes/VisNetwork.Blazor/blob/50c4e3eb92db729596c6f06f328c06a0a266aa02/src/VisNetwork.Blazor/Models/NetworkData.cs/#L23">View Source</a>
+    <a href="https://github.com/stiankroknes/VisNetwork.Blazor/blob/50c4e3eb92db729596c6f06f328c06a0a266aa02/src/VisNetwork.Blazor/Models/NetworkData.cs/#L43">View Source</a>
   </span>
-  <a id="VisNetwork_Blazor_Models_NetworkData_VisNetwork_Blazor_Models_INetworkData_Edges_" data-uid="VisNetwork.Blazor.Models.NetworkData.VisNetwork#Blazor#Models#INetworkData#Edges*"></a>
-  <h4 id="VisNetwork_Blazor_Models_NetworkData_VisNetwork_Blazor_Models_INetworkData_Edges" data-uid="VisNetwork.Blazor.Models.NetworkData.VisNetwork#Blazor#Models#INetworkData#Edges">INetworkData.Edges</h4>
+  <a id="VisNetwork_Blazor_Models_NetworkDataSet_2_VisNetwork_Blazor_Models_INetworkData_Edges_" data-uid="VisNetwork.Blazor.Models.NetworkDataSet`2.VisNetwork#Blazor#Models#INetworkData#Edges*"></a>
+  <h4 id="VisNetwork_Blazor_Models_NetworkDataSet_2_VisNetwork_Blazor_Models_INetworkData_Edges" data-uid="VisNetwork.Blazor.Models.NetworkDataSet`2.VisNetwork#Blazor#Models#INetworkData#Edges">INetworkData.Edges</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -260,13 +279,13 @@
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/stiankroknes/VisNetwork.Blazor/new/50c4e3eb92db729596c6f06f328c06a0a266aa02/apiSpec/new?filename=VisNetwork_Blazor_Models_NetworkData_VisNetwork_Blazor_Models_INetworkData_Nodes.md&amp;value=---%0Auid%3A%20VisNetwork.Blazor.Models.NetworkData.VisNetwork%23Blazor%23Models%23INetworkData%23Nodes%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/stiankroknes/VisNetwork.Blazor/new/50c4e3eb92db729596c6f06f328c06a0a266aa02/apiSpec/new?filename=VisNetwork_Blazor_Models_NetworkDataSet_2_VisNetwork_Blazor_Models_INetworkData_Nodes.md&amp;value=---%0Auid%3A%20VisNetwork.Blazor.Models.NetworkDataSet%602.VisNetwork%23Blazor%23Models%23INetworkData%23Nodes%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/stiankroknes/VisNetwork.Blazor/blob/50c4e3eb92db729596c6f06f328c06a0a266aa02/src/VisNetwork.Blazor/Models/NetworkData.cs/#L22">View Source</a>
+    <a href="https://github.com/stiankroknes/VisNetwork.Blazor/blob/50c4e3eb92db729596c6f06f328c06a0a266aa02/src/VisNetwork.Blazor/Models/NetworkData.cs/#L42">View Source</a>
   </span>
-  <a id="VisNetwork_Blazor_Models_NetworkData_VisNetwork_Blazor_Models_INetworkData_Nodes_" data-uid="VisNetwork.Blazor.Models.NetworkData.VisNetwork#Blazor#Models#INetworkData#Nodes*"></a>
-  <h4 id="VisNetwork_Blazor_Models_NetworkData_VisNetwork_Blazor_Models_INetworkData_Nodes" data-uid="VisNetwork.Blazor.Models.NetworkData.VisNetwork#Blazor#Models#INetworkData#Nodes">INetworkData.Nodes</h4>
+  <a id="VisNetwork_Blazor_Models_NetworkDataSet_2_VisNetwork_Blazor_Models_INetworkData_Nodes_" data-uid="VisNetwork.Blazor.Models.NetworkDataSet`2.VisNetwork#Blazor#Models#INetworkData#Nodes*"></a>
+  <h4 id="VisNetwork_Blazor_Models_NetworkDataSet_2_VisNetwork_Blazor_Models_INetworkData_Nodes" data-uid="VisNetwork.Blazor.Models.NetworkDataSet`2.VisNetwork#Blazor#Models#INetworkData#Nodes">INetworkData.Nodes</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -300,10 +319,10 @@
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/stiankroknes/VisNetwork.Blazor/new/50c4e3eb92db729596c6f06f328c06a0a266aa02/apiSpec/new?filename=VisNetwork_Blazor_Models_NetworkData.md&amp;value=---%0Auid%3A%20VisNetwork.Blazor.Models.NetworkData%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
+                    <a href="https://github.com/stiankroknes/VisNetwork.Blazor/new/50c4e3eb92db729596c6f06f328c06a0a266aa02/apiSpec/new?filename=VisNetwork_Blazor_Models_NetworkDataSet_2.md&amp;value=---%0Auid%3A%20VisNetwork.Blazor.Models.NetworkDataSet%602%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
                   </li>
                   <li>
-                    <a href="https://github.com/stiankroknes/VisNetwork.Blazor/blob/50c4e3eb92db729596c6f06f328c06a0a266aa02/src/VisNetwork.Blazor/Models/NetworkData.cs/#L17" class="contribution-link">View Source</a>
+                    <a href="https://github.com/stiankroknes/VisNetwork.Blazor/blob/50c4e3eb92db729596c6f06f328c06a0a266aa02/src/VisNetwork.Blazor/Models/NetworkData.cs/#L35" class="contribution-link">View Source</a>
                   </li>
                 </ul>
               </div>

@@ -5,10 +5,10 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Class NodeColorType.BorderBackgroundColor
+    <title>Interface INetworkData
    | VisNetwork.Blazor </title>
     <meta name="viewport" content="width=device-width">
-    <meta name="title" content="Class NodeColorType.BorderBackgroundColor
+    <meta name="title" content="Interface INetworkData
    | VisNetwork.Blazor ">
     <meta name="generator" content="docfx 2.56.7.0">
     
@@ -78,41 +78,39 @@
         </div>
         <div class="article row grid-right">
           <div class="col-md-10">
-            <article class="content wrap" id="_content" data-uid="VisNetwork.Blazor.Models.NodeColorType.BorderBackgroundColor">
+            <article class="content wrap" id="_content" data-uid="VisNetwork.Blazor.Models.INetworkData">
   
   
-  <h1 id="VisNetwork_Blazor_Models_NodeColorType_BorderBackgroundColor" data-uid="VisNetwork.Blazor.Models.NodeColorType.BorderBackgroundColor" class="text-break">Class NodeColorType.BorderBackgroundColor
+  <h1 id="VisNetwork_Blazor_Models_INetworkData" data-uid="VisNetwork.Blazor.Models.INetworkData" class="text-break">Interface INetworkData
   </h1>
-  <div class="markdown level0 summary"></div>
+  <div class="markdown level0 summary"><p>Represents the data for a network, including nodes and edges.</p>
+</div>
   <div class="markdown level0 conceptual"></div>
-  <div class="inheritance">
-    <h5>Inheritance</h5>
-    <div class="level0"><span class="xref">System.Object</span></div>
-    <div class="level1"><span class="xref">NodeColorType.BorderBackgroundColor</span></div>
-  </div>
   <h6><strong>Namespace</strong>: <a class="xref" href="VisNetwork.Blazor.Models.html">VisNetwork.Blazor.Models</a></h6>
   <h6><strong>Assembly</strong>: VisNetwork.Blazor.dll</h6>
-  <h5 id="VisNetwork_Blazor_Models_NodeColorType_BorderBackgroundColor_syntax">Syntax</h5>
+  <h5 id="VisNetwork_Blazor_Models_INetworkData_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class BorderBackgroundColor : object</code></pre>
+    <pre><code class="lang-csharp hljs">public interface INetworkData</code></pre>
   </div>
+  <h5 id="VisNetwork_Blazor_Models_INetworkData_remarks"><strong>Remarks</strong></h5>
+  <div class="markdown level0 remarks"><p>When using DataSet in the <a class="xref" href="VisNetwork.Blazor.Models.INetworkData.html">INetworkData</a> implementations ensure that Nodes and Edges properties are init only properties to avoid memory leaks due to event subscriptions.</p>
+</div>
   <h3 id="properties">Properties
   </h3>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/stiankroknes/VisNetwork.Blazor/new/50c4e3eb92db729596c6f06f328c06a0a266aa02/apiSpec/new?filename=VisNetwork_Blazor_Models_NodeColorType_BorderBackgroundColor_Background.md&amp;value=---%0Auid%3A%20VisNetwork.Blazor.Models.NodeColorType.BorderBackgroundColor.Background%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/stiankroknes/VisNetwork.Blazor/new/50c4e3eb92db729596c6f06f328c06a0a266aa02/apiSpec/new?filename=VisNetwork_Blazor_Models_INetworkData_Edges.md&amp;value=---%0Auid%3A%20VisNetwork.Blazor.Models.INetworkData.Edges%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/stiankroknes/VisNetwork.Blazor/blob/50c4e3eb92db729596c6f06f328c06a0a266aa02/src/VisNetwork.Blazor/Models/NodeOptions.cs/#L403">View Source</a>
+    <a href="https://github.com/stiankroknes/VisNetwork.Blazor/blob/50c4e3eb92db729596c6f06f328c06a0a266aa02/src/VisNetwork.Blazor/Models/NetworkData.cs/#L14">View Source</a>
   </span>
-  <a id="VisNetwork_Blazor_Models_NodeColorType_BorderBackgroundColor_Background_" data-uid="VisNetwork.Blazor.Models.NodeColorType.BorderBackgroundColor.Background*"></a>
-  <h4 id="VisNetwork_Blazor_Models_NodeColorType_BorderBackgroundColor_Background" data-uid="VisNetwork.Blazor.Models.NodeColorType.BorderBackgroundColor.Background">Background</h4>
-  <div class="markdown level1 summary"><p>The color of the background of the node.</p>
-</div>
+  <a id="VisNetwork_Blazor_Models_INetworkData_Edges_" data-uid="VisNetwork.Blazor.Models.INetworkData.Edges*"></a>
+  <h4 id="VisNetwork_Blazor_Models_INetworkData_Edges" data-uid="VisNetwork.Blazor.Models.INetworkData.Edges">Edges</h4>
+  <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public string? Background { get; set; }</code></pre>
+    <pre><code class="lang-csharp hljs">IEnumerable&lt;Edge&gt; Edges { get; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -124,26 +122,25 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.Nullable</span>&lt;<span class="xref">System.String</span>&gt;</td>
+        <td><span class="xref">IEnumerable</span>&lt;<a class="xref" href="VisNetwork.Blazor.Models.Edge.html">Edge</a>&gt;</td>
         <td></td>
       </tr>
     </tbody>
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/stiankroknes/VisNetwork.Blazor/new/50c4e3eb92db729596c6f06f328c06a0a266aa02/apiSpec/new?filename=VisNetwork_Blazor_Models_NodeColorType_BorderBackgroundColor_Border.md&amp;value=---%0Auid%3A%20VisNetwork.Blazor.Models.NodeColorType.BorderBackgroundColor.Border%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/stiankroknes/VisNetwork.Blazor/new/50c4e3eb92db729596c6f06f328c06a0a266aa02/apiSpec/new?filename=VisNetwork_Blazor_Models_INetworkData_Nodes.md&amp;value=---%0Auid%3A%20VisNetwork.Blazor.Models.INetworkData.Nodes%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/stiankroknes/VisNetwork.Blazor/blob/50c4e3eb92db729596c6f06f328c06a0a266aa02/src/VisNetwork.Blazor/Models/NodeOptions.cs/#L398">View Source</a>
+    <a href="https://github.com/stiankroknes/VisNetwork.Blazor/blob/50c4e3eb92db729596c6f06f328c06a0a266aa02/src/VisNetwork.Blazor/Models/NetworkData.cs/#L13">View Source</a>
   </span>
-  <a id="VisNetwork_Blazor_Models_NodeColorType_BorderBackgroundColor_Border_" data-uid="VisNetwork.Blazor.Models.NodeColorType.BorderBackgroundColor.Border*"></a>
-  <h4 id="VisNetwork_Blazor_Models_NodeColorType_BorderBackgroundColor_Border" data-uid="VisNetwork.Blazor.Models.NodeColorType.BorderBackgroundColor.Border">Border</h4>
-  <div class="markdown level1 summary"><p>The color of the border of the node.</p>
-</div>
+  <a id="VisNetwork_Blazor_Models_INetworkData_Nodes_" data-uid="VisNetwork.Blazor.Models.INetworkData.Nodes*"></a>
+  <h4 id="VisNetwork_Blazor_Models_INetworkData_Nodes" data-uid="VisNetwork.Blazor.Models.INetworkData.Nodes">Nodes</h4>
+  <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public string? Border { get; set; }</code></pre>
+    <pre><code class="lang-csharp hljs">IEnumerable&lt;Node&gt; Nodes { get; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -155,7 +152,7 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.Nullable</span>&lt;<span class="xref">System.String</span>&gt;</td>
+        <td><span class="xref">IEnumerable</span>&lt;<a class="xref" href="VisNetwork.Blazor.Models.Node.html">Node</a>&gt;</td>
         <td></td>
       </tr>
     </tbody>
@@ -168,10 +165,10 @@
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/stiankroknes/VisNetwork.Blazor/new/50c4e3eb92db729596c6f06f328c06a0a266aa02/apiSpec/new?filename=VisNetwork_Blazor_Models_NodeColorType_BorderBackgroundColor.md&amp;value=---%0Auid%3A%20VisNetwork.Blazor.Models.NodeColorType.BorderBackgroundColor%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
+                    <a href="https://github.com/stiankroknes/VisNetwork.Blazor/new/50c4e3eb92db729596c6f06f328c06a0a266aa02/apiSpec/new?filename=VisNetwork_Blazor_Models_INetworkData.md&amp;value=---%0Auid%3A%20VisNetwork.Blazor.Models.INetworkData%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
                   </li>
                   <li>
-                    <a href="https://github.com/stiankroknes/VisNetwork.Blazor/blob/50c4e3eb92db729596c6f06f328c06a0a266aa02/src/VisNetwork.Blazor/Models/NodeOptions.cs/#L393" class="contribution-link">View Source</a>
+                    <a href="https://github.com/stiankroknes/VisNetwork.Blazor/blob/50c4e3eb92db729596c6f06f328c06a0a266aa02/src/VisNetwork.Blazor/Models/NetworkData.cs/#L11" class="contribution-link">View Source</a>
                   </li>
                 </ul>
               </div>
