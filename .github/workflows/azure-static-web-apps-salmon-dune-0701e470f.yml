@@ -13,11 +13,22 @@ jobs:
   build_and_deploy_job:
     if: github.event_name == 'push' || (github.event_name == 'pull_request' && github.event.action != 'closed')
     runs-on: ubuntu-latest
+        
     name: Build and Deploy Job
+   
     steps:
       - uses: actions/checkout@v5
         with:
           submodules: true
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v5
+        with:
+            global-json-file: global.json
+            dotnet-version: |
+                8.0.x
+                10.0.x
+
       - name: Build And Deploy
         id: builddeploy
         uses: Azure/static-web-apps-deploy@v1
