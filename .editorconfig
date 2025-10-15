@@ -32,6 +32,11 @@ dotnet_diagnostic.S125.severity = suggestion
 # AsyncFixer01: Unnecessary async/await usage
 dotnet_diagnostic.AsyncFixer01.severity = none
 
+# TODO: fix this later?
+# CS1591: Missing XML comment for publicly visible type or member
+dotnet_diagnostic.CS1591.severity = none
+
+
 [*.{cs,vb}]
 dotnet_style_operator_placement_when_wrapping = beginning_of_line
 tab_width = 4

@@ -1,5 +1,4 @@
-﻿using Microsoft.Playwright.TestAdapter;
-using System.Runtime.CompilerServices;
+﻿using System.Runtime.CompilerServices;
 
 namespace VisNetwork.Blazor.UITests;
 
