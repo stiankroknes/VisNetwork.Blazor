@@ -41,12 +41,9 @@ internal partial class JSModule(IJSRuntime jsRuntime, IVersionProvider versionPr
         {
             var module = await Module;
 
-            if (isAsyncDisposed)
-            {
-                return default!;
-            }
-
-            return await module.InvokeAsync<TValue>(identifier, args);
+            return isAsyncDisposed
+                ? default!
+                : await module.InvokeAsync<TValue>(identifier, args);
         }
         catch (Exception exception) when (exception is JSDisconnectedException or ObjectDisposedException or TaskCanceledException)
         {

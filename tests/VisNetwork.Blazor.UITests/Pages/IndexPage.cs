@@ -5,25 +5,20 @@ namespace VisNetwork.Blazor.UITests.Pages;
 internal sealed class IndexPage : BasePage
 {
     private readonly IPage page;
-    private readonly ILocator networkDiv;
-    private readonly ILocator heading;
 
     public IndexPage(PageTestContext pageTestContext) : base(pageTestContext)
     {
         page = pageTestContext.Page;
-        networkDiv = page.Locator("#my-id");
-        heading = GetByRoleHeading("VisNetwork Samples");
+        Network = page.Locator("#my-id");
+        Heading = GetByRoleHeading("VisNetwork Samples");
     }
 
-    public async Task GotoAsync()
-    {
-        await page.GotoAsync(PageTestContext.RootUrl);
-    }
+    public async Task GotoAsync() => await page.GotoAsync(PageTestContext.RootUrl);
 
-    public ILocator Network => networkDiv;
+    public ILocator Network { get; }
 
-    public ILocator Heading => heading;
+    public ILocator Heading { get; }
 
     public async Task<byte[]> CaptureNetworkImage([CallerMemberName] string? caller = null) =>
-        await TakeScreenshot(networkDiv, nameof(IndexPage), caller);
+        await TakeScreenshot(Network, nameof(IndexPage), caller);
 }

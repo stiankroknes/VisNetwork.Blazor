@@ -32,11 +32,11 @@ internal static class ScreenshotHelper
             return false;
         }
 
-        int invalidPixelsCount = 0;
+        var invalidPixelsCount = 0;
 
-        for (int y = 0; y < baseImage.Height; y++)
+        for (var y = 0; y < baseImage.Height; y++)
         {
-            for (int x = 0; x < baseImage.Width; x++)
+            for (var x = 0; x < baseImage.Width; x++)
             {
                 var pixelA = baseImage[x, y];
                 var pixelB = compareImage[x, y];
@@ -56,7 +56,7 @@ internal static class ScreenshotHelper
 
     private static string FindParentDirectory(string directory)
     {
-        string current = AppContext.BaseDirectory;
+        var current = AppContext.BaseDirectory;
 
         while (!Directory.Exists(Path.Combine(current, directory)))
         {

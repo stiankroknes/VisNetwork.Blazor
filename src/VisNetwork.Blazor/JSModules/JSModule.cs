@@ -58,15 +58,10 @@ internal partial class JSModule : IJSModule
     public ValueTask CreateNetwork(ElementReference element, DotNetObjectReference<Network> component, NetworkOptions options, INetworkData data) =>
         InvokeVoidAsync("create", element, component, SerializeIgnoreNull(options), SerializeIgnoreNull(data));
 
-    public ValueTask Destroy(ElementReference element)
-    {
-        if (isAsyncDisposed || moduleTask == null)
-        {
-            return ValueTask.CompletedTask;
-        }
-
-        return InvokeVoidAsync("destroy", element);
-    }
+    public ValueTask Destroy(ElementReference element) =>
+        isAsyncDisposed || moduleTask == null
+            ? ValueTask.CompletedTask
+            : InvokeVoidAsync("destroy", element);
 
     public ValueTask SetData(ElementReference element, DotNetObjectReference<Network> component, INetworkData data) =>
         InvokeVoidAsync("setData", element, SerializeIgnoreNull(data));

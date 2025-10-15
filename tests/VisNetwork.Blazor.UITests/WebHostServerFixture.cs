@@ -2,7 +2,6 @@
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Hosting.Server;
 using Microsoft.AspNetCore.Hosting.Server.Features;
-using Microsoft.AspNetCore.TestHost;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -21,6 +20,7 @@ public class CombinedTestCollection : ICollectionFixture<BlazorWebAssemblyWebHos
 public sealed class BlazorWebAssemblyWebHostFixture : IDisposable // IAsyncDisposable
 {
     private readonly Lazy<Uri> rootUriInitializer;
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Style", "IDE0052:Remove unread private members", Justification = "<Pending>")]
     private readonly IMessageSink messageSink;
 
     public Uri RootUri => rootUriInitializer.Value;

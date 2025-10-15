@@ -1,6 +1,4 @@
-﻿using Microsoft.AspNetCore.Components;
-
-namespace VisNetwork.Blazor.Models;
+﻿namespace VisNetwork.Blazor.Models;
 
 public class EdgeOption
 {
@@ -272,7 +270,7 @@ public class ColorType
         Opacity = opacity;
     }
 
-    public static ColorType Create(string color) => new ColorType(color, color, color, 1.0);
+    public static ColorType Create(string color) => new(color, color, color, 1.0);
 
 
     /// <summary>

@@ -43,5 +43,5 @@ public class Edge : EdgeOption, IEquatable<Edge>
 
     public override bool Equals(object? obj) => obj is Edge other && Equals(other);
 
-    public bool Equals(Edge? other) => other is object && other.From == From && other.To == To;
+    public bool Equals(Edge? other) => other is not null && other.From == From && other.To == To;
 }

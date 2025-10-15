@@ -11,6 +11,7 @@ namespace VisNetwork.Blazor;
 public partial class Network : IAsyncDisposable
 {
     private readonly DotNetObjectReference<Network> thisReference;
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Style", "IDE0044:Add readonly modifier", Justification = "<Pending>")]
     private ElementReference element;
     private bool firstRenderComplete;
     private string networkId;

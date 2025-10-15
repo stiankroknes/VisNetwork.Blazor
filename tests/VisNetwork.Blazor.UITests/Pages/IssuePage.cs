@@ -5,14 +5,13 @@ namespace VisNetwork.Blazor.UITests.Pages;
 internal sealed class IssuePage : BasePage
 {
     private readonly IPage page;
-    private readonly ILocator networkDiv;
     private readonly ILocator input;
     private readonly ILocator submitButton;
 
     public IssuePage(PageTestContext pageTestContext) : base(pageTestContext)
     {
         page = pageTestContext.Page;
-        networkDiv = page.Locator("#mynetwork");
+        Network = page.Locator("#mynetwork");
         input = page.Locator("#name");
         submitButton = GetByRoleButton("Submit");
     }
@@ -24,8 +23,8 @@ internal sealed class IssuePage : BasePage
 
     public async Task Submit() => await submitButton.ClickAsync();
 
-    public ILocator Network => networkDiv;
+    public ILocator Network { get; }
 
     public async Task<byte[]> CaptureNetworkImage([CallerMemberName] string? caller = null) =>
-        await TakeScreenshot(networkDiv, nameof(IssuePage), caller);
+        await TakeScreenshot(Network, nameof(IssuePage), caller);
 }
