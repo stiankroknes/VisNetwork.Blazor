@@ -20,7 +20,7 @@ public class ConfigureOptions
     /// Any combination of the following is allowed: nodes, edges, layout, interaction, manipulation, physics, selection, renderer.
     /// Note: JS lib allos String, Array, Boolean and Function.
     /// </summary>
-    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)] 
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
     public string? Filter { get; set; }
 
     /// <summary>
@@ -33,6 +33,6 @@ public class ConfigureOptions
     /// Show the generate options button at the bottom of the configurator.
     /// The default is true.
     /// </summary>
-    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)] 
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
     public bool? ShowButton { get; set; }
 }

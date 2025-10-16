@@ -13,6 +13,6 @@ public class BorderBackgroundColor
     /// <summary>
     /// The color of the background of the node.
     /// </summary>
-    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)] 
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
     public string? Background { get; init; }
 }

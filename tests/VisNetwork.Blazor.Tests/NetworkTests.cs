@@ -1,14 +1,7 @@
-using Bunit;
-using FluentAssertions;
 using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text.Json;
-using System.Threading.Tasks;
 using VisNetwork.Blazor.Models;
-using Xunit;
 using static VisNetwork.Blazor.Tests.VisNetworkConfig;
 
 namespace VisNetwork.Blazor.Tests;

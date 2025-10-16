@@ -3,9 +3,13 @@
 	<!--<Import Project="StaticAssets\StaticAssets.targets" />-->
 	<PropertyGroup>
 		<TargetFrameworks>net8.0;net9.0</TargetFrameworks>
+		<Nullable>enable</Nullable>
+		<ImplicitUsings>enable</ImplicitUsings>
+	</PropertyGroup>
+
+	<PropertyGroup>
 		<IsPackable>true</IsPackable>
 		<OutputType>Library</OutputType>
-		<Nullable>enable</Nullable>
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>
 		<PackageTags>blazor;razor;vis-network</PackageTags>
 		<PackageReadmeFile>README.md</PackageReadmeFile>
@@ -82,5 +86,5 @@
 		<PackageReference Include="Microsoft.AspNetCore.Components" Version="10.0.0-*" />
 		<PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="10.0.0-*" />
 	</ItemGroup>
-	
+
 </Project>

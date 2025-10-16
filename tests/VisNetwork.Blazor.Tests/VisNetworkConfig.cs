@@ -1,5 +1,4 @@
-﻿using Bunit;
-using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.Extensions.DependencyInjection;
 
 namespace VisNetwork.Blazor.Tests;
 
