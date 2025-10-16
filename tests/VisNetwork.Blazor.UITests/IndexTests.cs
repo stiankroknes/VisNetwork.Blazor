@@ -3,7 +3,7 @@ using VisNetwork.Blazor.UITests.Support;
 
 namespace VisNetwork.Blazor.UITests;
 
-[Collection(typeof(CombinedTestCollection))]
+[Collection(typeof(CombinedTestCollectionFixture))]
 public class IndexTests(BlazorWebAssemblyWebHostFixture fixture, PlaywrightFixture playwrightFixture, ITestOutputHelper testOutputHelper)
     : TestBase(fixture, playwrightFixture, testOutputHelper)
 {

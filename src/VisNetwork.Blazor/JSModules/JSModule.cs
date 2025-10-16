@@ -28,8 +28,8 @@ internal interface IJSModule
     ValueTask ClusterOutliers(ElementReference element, DotNetObjectReference<Network> component);
 
     // Selection
-    ValueTask<string[]> GetSelectedEdges(ElementReference element, DotNetObjectReference<Network> component);
-    ValueTask<string[]> GetSelectedNodes(ElementReference element, DotNetObjectReference<Network> component);
+    ValueTask<IReadOnlyCollection<string>> GetSelectedEdges(ElementReference element, DotNetObjectReference<Network> component);
+    ValueTask<IReadOnlyCollection<string>> GetSelectedNodes(ElementReference element, DotNetObjectReference<Network> component);
     ValueTask<NodeEdgeComposite> GetSelection(ElementReference element, DotNetObjectReference<Network> component);
     ValueTask SelectEdges(ElementReference element, DotNetObjectReference<Network> component, string[] edgeIds);
     ValueTask SelectNodes(ElementReference element, DotNetObjectReference<Network> component, string[] nodeIds, bool? highlightEdges = null);
@@ -93,11 +93,11 @@ internal partial class JSModule : IJSModule
         InvokeVoidAsync("clusterOutliers", element, component);
 
     // Selection
-    public ValueTask<string[]> GetSelectedEdges(ElementReference element, DotNetObjectReference<Network> component) =>
-        InvokeAsync<string[]>("getSelectedEdges", element);
+    public ValueTask<IReadOnlyCollection<string>> GetSelectedEdges(ElementReference element, DotNetObjectReference<Network> component) =>
+        InvokeAsync<IReadOnlyCollection<string>>("getSelectedEdges", element);
 
-    public ValueTask<string[]> GetSelectedNodes(ElementReference element, DotNetObjectReference<Network> component) =>
-        InvokeAsync<string[]>("getSelectedNodes", element);
+    public ValueTask<IReadOnlyCollection<string>> GetSelectedNodes(ElementReference element, DotNetObjectReference<Network> component) =>
+        InvokeAsync<IReadOnlyCollection<string>>("getSelectedNodes", element);
 
     public ValueTask<NodeEdgeComposite> GetSelection(ElementReference element, DotNetObjectReference<Network> component) =>
         InvokeAsync<NodeEdgeComposite>("getSelection", element);

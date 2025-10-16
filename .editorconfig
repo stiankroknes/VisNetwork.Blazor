@@ -32,6 +32,9 @@ dotnet_diagnostic.S125.severity = suggestion
 # AsyncFixer01: Unnecessary async/await usage
 dotnet_diagnostic.AsyncFixer01.severity = none
 
+# CA2007: Consider calling ConfigureAwait on the awaited task
+dotnet_diagnostic.CA2007.severity = silent
+
 # TODO: fix this later?
 # CS1591: Missing XML comment for publicly visible type or member
 dotnet_diagnostic.CS1591.severity = none

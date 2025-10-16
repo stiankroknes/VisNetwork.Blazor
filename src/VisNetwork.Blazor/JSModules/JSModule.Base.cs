@@ -1,4 +1,5 @@
 ﻿using Microsoft.JSInterop;
+using Microsoft.JSInterop.Implementation;
 using System;
 using System.Threading.Tasks;
 
@@ -55,37 +56,27 @@ internal partial class JSModule(IJSRuntime jsRuntime, IVersionProvider versionPr
 
     private async ValueTask DisposeAsync(bool disposing)
     {
-        try
+        if (!isAsyncDisposed)
         {
-            if (!isAsyncDisposed)
+            isAsyncDisposed = true;
+
+            if (disposing && moduleTask is not null)
             {
-                isAsyncDisposed = true;
+                var moduleInstance = await moduleTask;
 
-                if (disposing && moduleTask != null)
+                try
                 {
-                    var moduleInstance = await moduleTask;
-                    var disposableTask = moduleInstance.DisposeAsync();
-
-                    try
-                    {
-                        await disposableTask;
-                    }
-                    catch when (disposableTask.IsCanceled)
-                    {
-                        // Ignore
-                    }
-                    catch (JSDisconnectedException)
-                    {
-                        // Ignore
-                    }
-
-                    moduleTask = null;
+                    await moduleInstance.DisposeAsync().ConfigureAwait(false);
                 }
+                catch (JSDisconnectedException)
+                {
+                    // Per https://learn.microsoft.com/aspnet/core/blazor/javascript-interoperability/?view=aspnetcore-7.0#javascript-interop-calls-without-a-circuit
+                    // this is one of the calls that will fail if the circuit is disconnected, and we just need to catch the exception so it doesn't pollute the logs
+                }
+
+                moduleTask = null;
             }
         }
-        catch (Exception exception)
-        {
-            await Task.FromException(exception);
-        }
+
     }
 }

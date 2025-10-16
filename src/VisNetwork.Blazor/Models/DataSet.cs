@@ -36,11 +36,11 @@ public class DataSet<TItem> : IEnumerable<TItem>, IDataSet
 
     private void NotifyChanged() => Changed?.Invoke(this, EventArgs.Empty);
 
-    public IEnumerable<string> GetIds() => data.Keys;
+    public IEnumerable<string> Ids => data.Keys;
 
     public TItem? Get(string id) => data.TryGetValue(id, out var item) ? item : default;
 
-    public IEnumerable<TItem> GetAll() => data.Values;
+    public IEnumerable<TItem> All => data.Values;
 
     private string AddCore(TItem item)
     {
@@ -62,8 +62,10 @@ public class DataSet<TItem> : IEnumerable<TItem>, IDataSet
         NotifyChanged();
     }
 
-    public List<string> AddRange(IEnumerable<TItem> items)
+    public IReadOnlyCollection<string> AddRange(IEnumerable<TItem> items)
     {
+        ArgumentNullException.ThrowIfNull(items);
+
         var ids = new List<string>();
 
         foreach (var item in items)
@@ -75,8 +77,10 @@ public class DataSet<TItem> : IEnumerable<TItem>, IDataSet
         return ids;
     }
 
-    public List<string> Update(IEnumerable<TItem> items)
+    public IReadOnlyCollection<string> Update(IEnumerable<TItem> items)
     {
+        ArgumentNullException.ThrowIfNull(items);
+
         var ids = new List<string>();
 
         foreach (var item in items)
@@ -93,6 +97,7 @@ public class DataSet<TItem> : IEnumerable<TItem>, IDataSet
 
     public void Update(TItem item)
     {
+        ArgumentNullException.ThrowIfNull(item);
         var id = idSelector(item);
         data[id] = item;
         NotifyChanged();
@@ -100,6 +105,8 @@ public class DataSet<TItem> : IEnumerable<TItem>, IDataSet
 
     public bool Remove(string id)
     {
+        ArgumentException.ThrowIfNullOrEmpty(id);
+
         var removed = data.Remove(id);
         if (removed)
         {
@@ -108,8 +115,10 @@ public class DataSet<TItem> : IEnumerable<TItem>, IDataSet
         return removed;
     }
 
-    public List<string> Remove(IEnumerable<string> ids)
+    public IReadOnlyCollection<string> Remove(IEnumerable<string> ids)
     {
+        ArgumentNullException.ThrowIfNull(ids);
+
         List<string> removed = [.. ids.Where(data.Remove)];
         if (removed.Count > 0)
         {
@@ -132,6 +141,8 @@ public class DataSet<TItem> : IEnumerable<TItem>, IDataSet
 
     public void ForEach(Action<TItem, string> action)
     {
+        ArgumentNullException.ThrowIfNull(action);
+
         foreach (var kvp in data)
         {
             action(kvp.Value, kvp.Key);

@@ -12,11 +12,13 @@ using Xunit.Sdk;
 namespace VisNetwork.Blazor.UITests;
 
 [CollectionDefinition("CombinedTestCollection")]
-public class CombinedTestCollection : ICollectionFixture<BlazorWebAssemblyWebHostFixture>, ICollectionFixture<PlaywrightFixture>
+[System.Diagnostics.CodeAnalysis.SuppressMessage("Maintainability", "CA1515:Consider making public types internal", Justification = "Collection fixture needs to be public")]
+public class CombinedTestCollectionFixture : ICollectionFixture<BlazorWebAssemblyWebHostFixture>, ICollectionFixture<PlaywrightFixture>
 {
     // No code needed; just for fixture registration.
 }
 
+[System.Diagnostics.CodeAnalysis.SuppressMessage("Maintainability", "CA1515:Consider making public types internal", Justification = "<Pending>")]
 public sealed class BlazorWebAssemblyWebHostFixture : IDisposable // IAsyncDisposable
 {
     private readonly Lazy<Uri> rootUriInitializer;
@@ -94,7 +96,7 @@ public sealed class BlazorWebAssemblyWebHostFixture : IDisposable // IAsyncDispo
             .Build();
     }
 
-    void IDisposable.Dispose()
+    public void Dispose()
     {
         if (Host is not null)
         {

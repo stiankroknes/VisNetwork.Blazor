@@ -2,6 +2,7 @@
 
 namespace VisNetwork.Blazor.UITests;
 
+[System.Diagnostics.CodeAnalysis.SuppressMessage("Maintainability", "CA1515:Consider making public types internal", Justification = "<Pending>")]
 public sealed class PlaywrightFixture : IAsyncLifetime
 {
     private readonly Lazy<bool> BrowsersInstalled = new(InstallBrowsers);

@@ -4,9 +4,10 @@ using System.Diagnostics;
 
 namespace VisNetwork.Blazor.Server.Pages;
 
+#pragma warning disable CA1812
 [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
 [IgnoreAntiforgeryToken]
-public class ErrorModel() : PageModel
+internal sealed class ErrorModel() : PageModel
 {
     public string? RequestId { get; set; }
 
@@ -14,3 +15,4 @@ public class ErrorModel() : PageModel
 
     public void OnGet() => RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier;
 }
+#pragma warning restore CA1812
