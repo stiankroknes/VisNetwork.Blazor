@@ -48,9 +48,10 @@ public sealed class BlazorWebAssemblyWebHostFixture : IDisposable // IAsyncDispo
 
     private static IHost CreateWebHost()
     {
+        //.WriteTo.TestOutput(messageSink, LogEventLevel.Verbose)
+
         var serilogLogger = new LoggerConfiguration()
             .MinimumLevel.Verbose()
-            //.WriteTo.TestOutput(messageSink, LogEventLevel.Verbose)
             .CreateLogger();
 
         return new HostBuilder()
