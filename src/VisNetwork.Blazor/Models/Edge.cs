@@ -2,6 +2,7 @@
 
 namespace VisNetwork.Blazor.Models;
 
+#pragma warning disable IDE0055
 [System.Diagnostics.CodeAnalysis.SuppressMessage("Major Code Smell", "S4035:Classes implementing \"IEquatable<T>\" should be sealed", Justification = "<Pending>")]
 public class Edge : EdgeOption, IEquatable<Edge>
 {
@@ -47,3 +48,4 @@ public class Edge : EdgeOption, IEquatable<Edge>
 
     public bool Equals(Edge? other) => other is not null && other.From == From && other.To == To;
 }
+#pragma warning restore IDE0055
