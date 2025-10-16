@@ -1,14 +1,7 @@
-using Bunit;
-using FluentAssertions;
 using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text.Json;
-using System.Threading.Tasks;
 using VisNetwork.Blazor.Models;
-using Xunit;
 using static VisNetwork.Blazor.Tests.VisNetworkConfig;
 
 namespace VisNetwork.Blazor.Tests;
@@ -22,9 +15,9 @@ public class NetworkTests : BunitContext
     }
 
     [Fact]
-    public void Network_Renders_Basic_Structure()
+    public async Task Network_Renders_Basic_Structure()
     {
-        BunitJSModuleInterop module = CreateJSModuleInterop(JSInterop);
+        var module = await CreateJSModuleInterop(JSInterop);
 
         // Act
         var cut = Render<Network>();
@@ -37,7 +30,7 @@ public class NetworkTests : BunitContext
     [Fact]
     public async Task Network_Dispose()
     {
-        BunitJSModuleInterop module = CreateJSModuleInterop(JSInterop);
+        var module = await CreateJSModuleInterop(JSInterop);
         module.SetupVoid("destroy", _ => true).SetVoidResult();
         var cut = Render<Network>();
 
@@ -52,7 +45,7 @@ public class NetworkTests : BunitContext
     [Fact]
     public async Task Network_Dispose_DataSetSubscription()
     {
-        BunitJSModuleInterop module = CreateJSModuleInterop(JSInterop);
+        var module = await CreateJSModuleInterop(JSInterop);
         module.SetupVoid("destroy", _ => true).SetVoidResult();
         var networkData = new NetworkDataSet
         {
@@ -72,9 +65,9 @@ public class NetworkTests : BunitContext
     }
 
     [Fact]
-    public void Network_Data()
+    public async Task Network_Data()
     {
-        BunitJSModuleInterop module = CreateJSModuleInterop(JSInterop);
+        var module = await CreateJSModuleInterop(JSInterop);
         var networkData = new NetworkData
         {
             Nodes = [new Node("1", "Node1", 1, ""), new Node("2", "Node 2", 0, "")],
@@ -89,9 +82,9 @@ public class NetworkTests : BunitContext
     }
 
     [Fact]
-    public void Network_Data_Using_DataSet_Changes()
+    public async Task Network_Data_Using_DataSet_Changes()
     {
-        BunitJSModuleInterop module = CreateJSModuleInterop(JSInterop);
+        var module = await CreateJSModuleInterop(JSInterop);
         module.SetupVoid("setData", _ => true).SetVoidResult();
         var networkData = new NetworkDataSet
         {
@@ -113,7 +106,7 @@ public class NetworkTests : BunitContext
     [Fact]
     public async Task Network_SetData_Using_NetworkData()
     {
-        BunitJSModuleInterop module = CreateJSModuleInterop(JSInterop);
+        var module = await CreateJSModuleInterop(JSInterop);
         module.SetupVoid("setData", _ => true).SetVoidResult();
         var cut = Render<Network>();
 
@@ -132,7 +125,7 @@ public class NetworkTests : BunitContext
     [Fact]
     public async Task Network_SetData_Using_NetworkDataSet()
     {
-        BunitJSModuleInterop module = CreateJSModuleInterop(JSInterop);
+        var module = await CreateJSModuleInterop(JSInterop);
         module.SetupVoid("setData", _ => true).SetVoidResult();
         var cut = Render<Network>();
 
@@ -151,7 +144,7 @@ public class NetworkTests : BunitContext
     [Fact]
     public async Task Network_SetSize()
     {
-        BunitJSModuleInterop module = CreateJSModuleInterop(JSInterop);
+        var module = await CreateJSModuleInterop(JSInterop);
         module.SetupVoid("setSize", _ => true).SetVoidResult();
         var cut = Render<Network>();
 
@@ -169,7 +162,7 @@ public class NetworkTests : BunitContext
     [Fact]
     public async Task Network_Redraw()
     {
-        BunitJSModuleInterop module = CreateJSModuleInterop(JSInterop);
+        var module = await CreateJSModuleInterop(JSInterop);
         module.SetupVoid("redraw", _ => true).SetVoidResult();
         var cut = Render<Network>();
 
@@ -186,7 +179,7 @@ public class NetworkTests : BunitContext
     [Fact]
     public async Task Network_CanvasToDOM()
     {
-        BunitJSModuleInterop module = CreateJSModuleInterop(JSInterop);
+        var module = await CreateJSModuleInterop(JSInterop);
         module.Setup<Position>("canvasToDOM", _ => true).SetResult(new Position { X = 2, Y = 3, });
         var cut = Render<Network>();
         var positionArg = new Position { X = 1, Y = 2, };
@@ -207,7 +200,7 @@ public class NetworkTests : BunitContext
     [Fact]
     public async Task Network_DOMToCanvas()
     {
-        BunitJSModuleInterop module = CreateJSModuleInterop(JSInterop);
+        var module = await CreateJSModuleInterop(JSInterop);
         module.Setup<Position>("DOMToCanvas", _ => true).SetResult(new Position { X = 2, Y = 3, });
         var cut = Render<Network>();
         var positionArg = new Position { X = 1, Y = 2, };
@@ -229,7 +222,7 @@ public class NetworkTests : BunitContext
     [Fact]
     public async Task Network_ClusterOutliers()
     {
-        BunitJSModuleInterop module = CreateJSModuleInterop(JSInterop);
+        var module = await CreateJSModuleInterop(JSInterop);
         module.SetupVoid("clusterOutliers", _ => true).SetVoidResult();
         var cut = Render<Network>();
 
@@ -248,7 +241,7 @@ public class NetworkTests : BunitContext
     [Fact]
     public async Task Network_ParseDOTNetwork()
     {
-        BunitJSModuleInterop module = CreateJSModuleInterop(JSInterop);
+        var module = await CreateJSModuleInterop(JSInterop);
         module.SetupVoid("populateDotNetwork", _ => true).SetVoidResult();
         var cut = Render<Network>();
 
@@ -267,8 +260,8 @@ public class NetworkTests : BunitContext
     [Fact]
     public async Task Network_GetSelectedNodes()
     {
-        BunitJSModuleInterop module = CreateJSModuleInterop(JSInterop);
-        module.Setup<string[]>("getSelectedNodes", _ => true).SetResult(["1"]);
+        var module = await CreateJSModuleInterop(JSInterop);
+        module.Setup<IReadOnlyCollection<string>>("getSelectedNodes", _ => true).SetResult(["1"]);
         var cut = Render<Network>();
 
         // Act
@@ -284,7 +277,7 @@ public class NetworkTests : BunitContext
     [Fact]
     public async Task Network_SelectNodes()
     {
-        BunitJSModuleInterop module = CreateJSModuleInterop(JSInterop);
+        var module = await CreateJSModuleInterop(JSInterop);
         module.SetupVoid("selectNodes", _ => true).SetVoidResult();
         string[] args = ["1"];
         var cut = Render<Network>();
@@ -303,8 +296,8 @@ public class NetworkTests : BunitContext
     [Fact]
     public async Task Network_GetSelectedEdges()
     {
-        BunitJSModuleInterop module = CreateJSModuleInterop(JSInterop);
-        module.Setup<string[]>("getSelectedEdges", _ => true).SetResult(["1"]);
+        var module = await CreateJSModuleInterop(JSInterop);
+        module.Setup<IReadOnlyCollection<string>>("getSelectedEdges", _ => true).SetResult(["1"]);
         var cut = Render<Network>();
 
         // Act
@@ -320,7 +313,7 @@ public class NetworkTests : BunitContext
     [Fact]
     public async Task Network_SelectEdges()
     {
-        BunitJSModuleInterop module = CreateJSModuleInterop(JSInterop);
+        var module = await CreateJSModuleInterop(JSInterop);
         module.SetupVoid("selectEdges", _ => true).SetVoidResult();
         string[] args = ["1"];
         var cut = Render<Network>();
@@ -339,7 +332,7 @@ public class NetworkTests : BunitContext
     [Fact]
     public async Task Network_GetSelection()
     {
-        BunitJSModuleInterop module = CreateJSModuleInterop(JSInterop);
+        var module = await CreateJSModuleInterop(JSInterop);
         module.Setup<NodeEdgeComposite>("getSelection", _ => true).SetResult(new NodeEdgeComposite { Nodes = ["1"], Edges = ["1"], });
         var cut = Render<Network>();
 
@@ -356,7 +349,7 @@ public class NetworkTests : BunitContext
     [Fact]
     public async Task Network_SetSelection()
     {
-        BunitJSModuleInterop module = CreateJSModuleInterop(JSInterop);
+        var module = await CreateJSModuleInterop(JSInterop);
         module.SetupVoid("setSelection", _ => true).SetVoidResult();
         var args = new NodeEdgeComposite { Nodes = ["1"], Edges = ["1"], };
         var cut = Render<Network>();
@@ -376,7 +369,7 @@ public class NetworkTests : BunitContext
     [Fact]
     public async Task Network_UnselectAll()
     {
-        BunitJSModuleInterop module = CreateJSModuleInterop(JSInterop);
+        var module = await CreateJSModuleInterop(JSInterop);
         module.SetupVoid("unselectAll", _ => true).SetVoidResult();
         var cut = Render<Network>();
 
@@ -394,7 +387,7 @@ public class NetworkTests : BunitContext
     [Fact]
     public async Task Network_EnableEditMode()
     {
-        BunitJSModuleInterop module = CreateJSModuleInterop(JSInterop);
+        var module = await CreateJSModuleInterop(JSInterop);
         module.SetupVoid("enableEditMode", _ => true).SetVoidResult();
         var cut = Render<Network>();
 
@@ -411,7 +404,7 @@ public class NetworkTests : BunitContext
     [Fact]
     public async Task Network_DisableEditMode()
     {
-        BunitJSModuleInterop module = CreateJSModuleInterop(JSInterop);
+        var module = await CreateJSModuleInterop(JSInterop);
         module.SetupVoid("disableEditMode", _ => true).SetVoidResult();
         var cut = Render<Network>();
 
@@ -428,7 +421,7 @@ public class NetworkTests : BunitContext
     [Fact]
     public async Task Network_AddNodeMode()
     {
-        BunitJSModuleInterop module = CreateJSModuleInterop(JSInterop);
+        var module = await CreateJSModuleInterop(JSInterop);
         module.SetupVoid("addNodeMode", _ => true).SetVoidResult();
         var cut = Render<Network>();
 
@@ -445,7 +438,7 @@ public class NetworkTests : BunitContext
     [Fact]
     public async Task Network_AddEdgeMode()
     {
-        BunitJSModuleInterop module = CreateJSModuleInterop(JSInterop);
+        var module = await CreateJSModuleInterop(JSInterop);
         module.SetupVoid("addEdgeMode", _ => true).SetVoidResult();
         var cut = Render<Network>();
 
@@ -462,7 +455,7 @@ public class NetworkTests : BunitContext
     [Fact]
     public async Task Network_DeleteSelected()
     {
-        BunitJSModuleInterop module = CreateJSModuleInterop(JSInterop);
+        var module = await CreateJSModuleInterop(JSInterop);
         module.SetupVoid("deleteSelected", _ => true).SetVoidResult();
         var cut = Render<Network>();
 
@@ -481,7 +474,7 @@ public class NetworkTests : BunitContext
     [Fact]
     public async Task Network_GetPosition()
     {
-        BunitJSModuleInterop module = CreateJSModuleInterop(JSInterop);
+        var module = await CreateJSModuleInterop(JSInterop);
         module.Setup<Position>("getPosition", _ => true).SetResult(new Position { X = 1, Y = 2, });
         var cut = Render<Network>();
 
@@ -499,7 +492,7 @@ public class NetworkTests : BunitContext
     [Fact]
     public async Task Network_GetPositions()
     {
-        BunitJSModuleInterop module = CreateJSModuleInterop(JSInterop);
+        var module = await CreateJSModuleInterop(JSInterop);
         module.Setup<IDictionary<string, Position>>("getPositions", _ => true).SetResult(new Dictionary<string, Position>
         {
             { "1", new Position { X = 1, Y = 2, } },
@@ -522,7 +515,7 @@ public class NetworkTests : BunitContext
     [Fact]
     public async Task Network_GetBoundingBox()
     {
-        BunitJSModuleInterop module = CreateJSModuleInterop(JSInterop);
+        var module = await CreateJSModuleInterop(JSInterop);
         module.Setup<BoundingBox>("getBoundingBox", _ => true).SetResult(new BoundingBox { Top = 1, Left = 2, Right = 3, Bottom = 4, });
         var cut = Render<Network>();
 
@@ -541,7 +534,7 @@ public class NetworkTests : BunitContext
     [Fact]
     public async Task Network_GetConnectedEdges()
     {
-        BunitJSModuleInterop module = CreateJSModuleInterop(JSInterop);
+        var module = await CreateJSModuleInterop(JSInterop);
         module.Setup<string[]>("getConnectedEdges", _ => true).SetResult(["1"]);
         var cut = Render<Network>();
 
@@ -556,6 +549,7 @@ public class NetworkTests : BunitContext
         invocation.Arguments[1].Should().Be("1");
     }
 
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1034:Nested types should not be visible", Justification = "<Pending>")]
     public class EventTests : BunitContext
     {
         public EventTests()
@@ -569,9 +563,9 @@ public class NetworkTests : BunitContext
         public async Task EventCallback_Should_Trigger_Click()
         {
             // Arrange
-            BunitJSModuleInterop module = CreateJSModuleInterop(JSInterop);
+            var module = await CreateJSModuleInterop(JSInterop);
             module.SetupVoid("on", _ => true);
-            bool eventInvoked = false;
+            var eventInvoked = false;
             var cut = Render<Network>(c => c.Add(n => n.OnClick, _ => eventInvoked = true));
 
             // Act
@@ -586,9 +580,9 @@ public class NetworkTests : BunitContext
         public async Task EventCallback_Should_Trigger_DoubleClick()
         {
             // Arrange
-            BunitJSModuleInterop module = CreateJSModuleInterop(JSInterop);
+            var module = await CreateJSModuleInterop(JSInterop);
             module.SetupVoid("on", _ => true);
-            bool eventInvoked = false;
+            var eventInvoked = false;
             var cut = Render<Network>(c => c.Add(n => n.OnDoubleClick, _ => eventInvoked = true));
 
             // Act
@@ -603,9 +597,9 @@ public class NetworkTests : BunitContext
         public async Task EventCallback_Should_Trigger_OnContext()
         {
             // Arrange
-            BunitJSModuleInterop module = CreateJSModuleInterop(JSInterop);
+            var module = await CreateJSModuleInterop(JSInterop);
             module.SetupVoid("on", _ => true);
-            bool eventInvoked = false;
+            var eventInvoked = false;
             var cut = Render<Network>(c => c.Add(n => n.OnContext, _ => eventInvoked = true));
 
             // Act
@@ -620,9 +614,9 @@ public class NetworkTests : BunitContext
         public async Task EventCallback_Should_Trigger_Hold()
         {
             // Arrange
-            BunitJSModuleInterop module = CreateJSModuleInterop(JSInterop);
+            var module = await CreateJSModuleInterop(JSInterop);
             module.SetupVoid("on", _ => true);
-            bool eventInvoked = false;
+            var eventInvoked = false;
             var cut = Render<Network>(c => c.Add(n => n.OnHold, _ => eventInvoked = true));
 
             // Act
@@ -637,9 +631,9 @@ public class NetworkTests : BunitContext
         public async Task EventCallback_Should_Trigger_Release()
         {
             // Arrange
-            BunitJSModuleInterop module = CreateJSModuleInterop(JSInterop);
+            var module = await CreateJSModuleInterop(JSInterop);
             module.SetupVoid("on", _ => true);
-            bool eventInvoked = false;
+            var eventInvoked = false;
             var cut = Render<Network>(c => c.Add(n => n.OnRelease, _ => eventInvoked = true));
 
             // Act
@@ -654,9 +648,9 @@ public class NetworkTests : BunitContext
         public async Task EventCallback_Should_Trigger_Select()
         {
             // Arrange
-            BunitJSModuleInterop module = CreateJSModuleInterop(JSInterop);
+            var module = await CreateJSModuleInterop(JSInterop);
             module.SetupVoid("on", _ => true);
-            bool eventInvoked = false;
+            var eventInvoked = false;
             var cut = Render<Network>(c => c.Add(n => n.OnSelect, _ => eventInvoked = true));
 
             // Act
@@ -671,9 +665,9 @@ public class NetworkTests : BunitContext
         public async Task EventCallback_Should_Trigger_SelectNode()
         {
             // Arrange
-            BunitJSModuleInterop module = CreateJSModuleInterop(JSInterop);
+            var module = await CreateJSModuleInterop(JSInterop);
             module.SetupVoid("on", _ => true);
-            bool eventInvoked = false;
+            var eventInvoked = false;
             var cut = Render<Network>(c => c.Add(n => n.OnSelectNode, _ => eventInvoked = true));
 
             // Act
@@ -688,9 +682,9 @@ public class NetworkTests : BunitContext
         public async Task EventCallback_Should_Trigger_DeselectNode()
         {
             // Arrange
-            BunitJSModuleInterop module = CreateJSModuleInterop(JSInterop);
+            var module = await CreateJSModuleInterop(JSInterop);
             module.SetupVoid("on", _ => true);
-            bool eventInvoked = false;
+            var eventInvoked = false;
             var cut = Render<Network>(c => c.Add(n => n.OnDeselectNode, _ => eventInvoked = true));
 
             // Act
@@ -705,9 +699,9 @@ public class NetworkTests : BunitContext
         public async Task EventCallback_Should_Trigger_SelectEdge()
         {
             // Arrange
-            BunitJSModuleInterop module = CreateJSModuleInterop(JSInterop);
+            var module = await CreateJSModuleInterop(JSInterop);
             module.SetupVoid("on", _ => true);
-            bool eventInvoked = false;
+            var eventInvoked = false;
             var cut = Render<Network>(c => c.Add(n => n.OnSelectEdge, _ => eventInvoked = true));
 
             // Act
@@ -722,9 +716,9 @@ public class NetworkTests : BunitContext
         public async Task EventCallback_Should_Trigger_DeselectEdge()
         {
             // Arrange
-            BunitJSModuleInterop module = CreateJSModuleInterop(JSInterop);
+            var module = await CreateJSModuleInterop(JSInterop);
             module.SetupVoid("on", _ => true);
-            bool eventInvoked = false;
+            var eventInvoked = false;
             var cut = Render<Network>(c => c.Add(n => n.OnDeselectEdge, _ => eventInvoked = true));
 
             // Act
@@ -739,9 +733,9 @@ public class NetworkTests : BunitContext
         public async Task EventCallback_Should_Trigger_ShowPopup()
         {
             // Arrange
-            BunitJSModuleInterop module = CreateJSModuleInterop(JSInterop);
+            var module = await CreateJSModuleInterop(JSInterop);
             module.SetupVoid("on", _ => true);
-            bool eventInvoked = false;
+            var eventInvoked = false;
             var cut = Render<Network>(c => c.Add(n => n.OnShowPopup, _ => eventInvoked = true));
 
             // Act
@@ -756,9 +750,9 @@ public class NetworkTests : BunitContext
         public async Task EventCallback_Should_Trigger_HidePopup()
         {
             // Arrange
-            BunitJSModuleInterop module = CreateJSModuleInterop(JSInterop);
+            var module = await CreateJSModuleInterop(JSInterop);
             module.SetupVoid("on", _ => true);
-            bool eventInvoked = false;
+            var eventInvoked = false;
             var cut = Render<Network>(c => c.Add(n => n.OnHidePopup, _ => eventInvoked = true));
 
             // Act
@@ -773,9 +767,9 @@ public class NetworkTests : BunitContext
         public async Task EventCallback_Should_Trigger_BeforeDrawing()
         {
             // Arrange
-            BunitJSModuleInterop module = CreateJSModuleInterop(JSInterop);
+            var module = await CreateJSModuleInterop(JSInterop);
             module.SetupVoid("on", _ => true);
-            bool eventInvoked = false;
+            var eventInvoked = false;
             var cut = Render<Network>(c => c.Add(n => n.OnBeforeDrawing, _ => eventInvoked = true));
 
             // Act
@@ -790,9 +784,9 @@ public class NetworkTests : BunitContext
         public async Task EventCallback_Should_Trigger_AfterDrawing()
         {
             // Arrange
-            BunitJSModuleInterop module = CreateJSModuleInterop(JSInterop);
+            var module = await CreateJSModuleInterop(JSInterop);
             module.SetupVoid("on", _ => true);
-            bool eventInvoked = false;
+            var eventInvoked = false;
             var cut = Render<Network>(c => c.Add(n => n.OnAfterDrawing, _ => eventInvoked = true));
 
             // Act
@@ -807,9 +801,9 @@ public class NetworkTests : BunitContext
         public async Task EventCallback_Should_Trigger_StartStabilizing()
         {
             // Arrange
-            BunitJSModuleInterop module = CreateJSModuleInterop(JSInterop);
+            var module = await CreateJSModuleInterop(JSInterop);
             module.SetupVoid("on", _ => true);
-            bool eventInvoked = false;
+            var eventInvoked = false;
             var cut = Render<Network>(c => c.Add(n => n.OnStartStabilizing, _ => eventInvoked = true));
 
             // Act
@@ -824,9 +818,9 @@ public class NetworkTests : BunitContext
         public async Task EventCallback_Should_Trigger_StabilizationProgress()
         {
             // Arrange
-            BunitJSModuleInterop module = CreateJSModuleInterop(JSInterop);
+            var module = await CreateJSModuleInterop(JSInterop);
             module.SetupVoid("on", _ => true);
-            bool eventInvoked = false;
+            var eventInvoked = false;
             var cut = Render<Network>(c => c.Add(n => n.OnStabilizationProgress, _ => eventInvoked = true));
 
             // Act
@@ -841,9 +835,9 @@ public class NetworkTests : BunitContext
         public async Task EventCallback_Should_Trigger_StabilizationIterationsDone()
         {
             // Arrange
-            BunitJSModuleInterop module = CreateJSModuleInterop(JSInterop);
+            var module = await CreateJSModuleInterop(JSInterop);
             module.SetupVoid("on", _ => true);
-            bool eventInvoked = false;
+            var eventInvoked = false;
             var cut = Render<Network>(c => c.Add(n => n.OnStabilizationIterationsDone, _ => eventInvoked = true));
 
             // Act
@@ -858,9 +852,9 @@ public class NetworkTests : BunitContext
         public async Task EventCallback_Should_Trigger_Stabilized()
         {
             // Arrange
-            BunitJSModuleInterop module = CreateJSModuleInterop(JSInterop);
+            var module = await CreateJSModuleInterop(JSInterop);
             module.SetupVoid("on", _ => true);
-            bool eventInvoked = false;
+            var eventInvoked = false;
             var cut = Render<Network>(c => c.Add(n => n.OnStabilized, _ => eventInvoked = true));
 
             // Act
@@ -870,6 +864,7 @@ public class NetworkTests : BunitContext
             cut.Find("div").Should().NotBeNull();
             eventInvoked.Should().BeTrue();
         }
+
         private static T CreateEvent<T>(Network network) where T : BaseClickEvent
         {
             var instance = Activator.CreateInstance<T>();
@@ -878,10 +873,11 @@ public class NetworkTests : BunitContext
         }
     }
 
-    private static BunitJSModuleInterop CreateJSModuleInterop(BunitJSInterop jSInterop)
+    private static async Task<BunitJSModuleInterop> CreateJSModuleInterop(BunitJSInterop jSInterop)
     {
-        var module = jSInterop.SetupModule(
-            new JSModule(jSInterop.JSRuntime, new DummyVersionProvider()).ModuleFileName);
+        await using var dummyModule = new JSModule(jSInterop.JSRuntime, new DummyVersionProvider());
+
+        var module = jSInterop.SetupModule(dummyModule.ModuleFileName);
 
         module.SetupVoid("create", _ => true).SetVoidResult();
 
@@ -890,8 +886,3 @@ public class NetworkTests : BunitContext
 
     private static string Serialize<T>(T data) where T : class => JsonSerializer.Serialize(data);
 }
-
-// <div class="vis-network" style="position: relative; overflow: hidden; touch-action: pan-y; user-select: none; width: 100%; height: 100%;" tabindex="900">
-// <canvas style="position: relative; touch-action: none; user-select: none; width: 100%; height: 100%;" width="2433" height="600">
-// </canvas><div class="vis-tooltip" style="left: 0px; top: 0px; visibility: hidden;"><
-// /div></div>

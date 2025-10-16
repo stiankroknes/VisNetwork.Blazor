@@ -2,7 +2,6 @@
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Hosting.Server;
 using Microsoft.AspNetCore.Hosting.Server.Features;
-using Microsoft.AspNetCore.TestHost;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -13,14 +12,17 @@ using Xunit.Sdk;
 namespace VisNetwork.Blazor.UITests;
 
 [CollectionDefinition("CombinedTestCollection")]
-public class CombinedTestCollection : ICollectionFixture<BlazorWebAssemblyWebHostFixture>, ICollectionFixture<PlaywrightFixture>
+[System.Diagnostics.CodeAnalysis.SuppressMessage("Maintainability", "CA1515:Consider making public types internal", Justification = "Collection fixture needs to be public")]
+public class CombinedTestCollectionFixture : ICollectionFixture<BlazorWebAssemblyWebHostFixture>, ICollectionFixture<PlaywrightFixture>
 {
     // No code needed; just for fixture registration.
 }
 
+[System.Diagnostics.CodeAnalysis.SuppressMessage("Maintainability", "CA1515:Consider making public types internal", Justification = "<Pending>")]
 public sealed class BlazorWebAssemblyWebHostFixture : IDisposable // IAsyncDisposable
 {
     private readonly Lazy<Uri> rootUriInitializer;
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Style", "IDE0052:Remove unread private members", Justification = "<Pending>")]
     private readonly IMessageSink messageSink;
 
     public Uri RootUri => rootUriInitializer.Value;
@@ -46,9 +48,10 @@ public sealed class BlazorWebAssemblyWebHostFixture : IDisposable // IAsyncDispo
 
     private static IHost CreateWebHost()
     {
+        //.WriteTo.TestOutput(messageSink, LogEventLevel.Verbose)
+
         var serilogLogger = new LoggerConfiguration()
             .MinimumLevel.Verbose()
-            //.WriteTo.TestOutput(messageSink, LogEventLevel.Verbose)
             .CreateLogger();
 
         return new HostBuilder()
@@ -94,7 +97,7 @@ public sealed class BlazorWebAssemblyWebHostFixture : IDisposable // IAsyncDispo
             .Build();
     }
 
-    void IDisposable.Dispose()
+    public void Dispose()
     {
         if (Host is not null)
         {

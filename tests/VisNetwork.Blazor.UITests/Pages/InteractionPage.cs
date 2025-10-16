@@ -4,6 +4,7 @@ namespace VisNetwork.Blazor.UITests.Pages;
 
 internal sealed class InteractionPage : BasePage
 {
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Style", "IDE0052:Remove unread private members", Justification = "<Pending>")]
     private readonly LayoutPage layoutPage;
 
     private readonly ILocator networkDiv;
@@ -49,6 +50,7 @@ internal sealed class InteractionPage : BasePage
         clearSelectionButton = GetByRoleButton("ClearSelection");
     }
 
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Style", "IDE0022:Use expression body for method", Justification = "<Pending>")]
     public Task GotoAsync()
     {
         return Page.GotoAsync(new Uri(new Uri(PageTestContext.RootUrl), "interaction").ToString());

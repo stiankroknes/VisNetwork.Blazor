@@ -1,7 +1,8 @@
-﻿using System;
+﻿using System.Text.Json.Serialization;
 
 namespace VisNetwork.Blazor.Models;
 
+#pragma warning disable IDE0055
 [System.Diagnostics.CodeAnalysis.SuppressMessage("Major Code Smell", "S4035:Classes implementing \"IEquatable<T>\" should be sealed", Justification = "<Pending>")]
 public class Edge : EdgeOption, IEquatable<Edge>
 {
@@ -20,9 +21,9 @@ public class Edge : EdgeOption, IEquatable<Edge>
     /// When not supplied, an UUID will be assigned to the edge. This naturally only applies to individual edges.
     /// </summary>
 #if NET9_0_OR_GREATER
-    public string Id { get; set; } = Guid.CreateVersion7().ToString();
+    public string Id { get; init; } = Guid.CreateVersion7().ToString();
 #else
-    public string Id { get; set; } = Guid.NewGuid().ToString();
+    public string Id { get; init; } = Guid.NewGuid().ToString();
 #endif
 
     /// <summary>
@@ -30,6 +31,7 @@ public class Edge : EdgeOption, IEquatable<Edge>
     ///  This is where you define the from node. You have to supply the corresponding node ID.
     ///  This naturally only applies to individual edges. 
     /// </summary>
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
     public string? From { get; set; }
 
     /// <summary>
@@ -37,11 +39,13 @@ public class Edge : EdgeOption, IEquatable<Edge>
     /// This is where you define the to node. You have to supply the corresponding node ID.
     /// This naturally only applies to individual edges. 
     /// </summary>
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
     public string? To { get; set; }
 
     public override int GetHashCode() => HashCode.Combine(From, To);
 
     public override bool Equals(object? obj) => obj is Edge other && Equals(other);
 
-    public bool Equals(Edge? other) => other is object && other.From == From && other.To == To;
+    public bool Equals(Edge? other) => other is not null && other.From == From && other.To == To;
 }
+#pragma warning restore IDE0055

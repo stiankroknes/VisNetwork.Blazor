@@ -1,27 +1,26 @@
-using System.Collections.Generic;
-
 namespace VisNetwork.Blazor.Models;
 
 #nullable disable
 public class BaseClickEvent
 {
-    public Microsoft.JSInterop.DotNetObjectReference<Network> Source { get; set; }
+    public Microsoft.JSInterop.DotNetObjectReference<Network> Source { get; internal set; }
 
     /// <summary>
     ///  Selected node ids
     /// </summary>
     /// <value></value>
-    public List<string> Nodes { get; set; }
+    public IReadOnlyCollection<string> Nodes { get; init; }
 
     /// <summary>
     /// Selected edge ids
     /// </summary>
     /// <value></value>
-    public List<string> Edges { get; set; }
+    public IReadOnlyCollection<string> Edges { get; init; }
 
-    public object Event { get; set; }
+    public object Event { get; init; }
 
-    public object Pointer { get; set; }
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Naming", "CA1720:Identifier contains type name", Justification = "<Pending>")]
+    public object Pointer { get; init; }
 }
 
 /// <summary>
@@ -30,14 +29,14 @@ public class BaseClickEvent
 public class ClickEvent : BaseClickEvent
 {
     // The order of the items array is descending in z-order. Thus, to get the topmost item, get the value at index 0.
-    public List<ClickedItem> Items { get; set; }
+    public IReadOnlyCollection<ClickedItem> Items { get; init; }
 }
 
 public class ClickedItem
 {
-    public string NodeId { get; set; }
-    public string EdgeId { get; set; }
-    public string LabelId { get; set; }
+    public string NodeId { get; init; }
+    public string EdgeId { get; init; }
+    public string LabelId { get; init; }
 }
 
 /// <summary>
@@ -52,33 +51,33 @@ public class DoubleClickEvent : ClickEvent
 
 public class DeselectClickEvent : BaseClickEvent
 {
-    public NodeEdgeSelection PreviousSelection { get; set; }
+    public NodeEdgeSelection PreviousSelection { get; init; }
 }
-
 
 public class NodeEdgeSelection
 {
-    public IReadOnlyCollection<NodeSelection> Nodes { get; set; }
-    public IReadOnlyCollection<EdgeSelection> Edges { get; set; }
+    public IReadOnlyCollection<NodeSelection> Nodes { get; init; }
+    public IReadOnlyCollection<EdgeSelection> Edges { get; init; }
 }
 
 public class NodeSelection
 {
-    public string Id { get; set; }
-    public double X { get; set; }
-    public double Y { get; set; }
+    public string Id { get; init; }
+    public double X { get; init; }
+    public double Y { get; init; }
 }
 
 public class EdgeSelection
 {
-    public string Id { get; set; }
-    public string FromId { get; set; }
-    public string ToId { get; set; }
+    public string Id { get; init; }
+    public string FromId { get; init; }
+    public string ToId { get; init; }
 }
 
 public class DrawingEvent
 {
-    public string CanvasDataUrl { get; set; }
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1056:URI-like properties should not be strings", Justification = "<Pending>")]
+    public string CanvasDataUrl { get; init; }
 }
 
 public class StabilizationProgressEvent
@@ -86,20 +85,20 @@ public class StabilizationProgressEvent
     /// <summary>
     /// Iterations so far.
     /// </summary>
-    public int Iterations { get; set; }
+    public int Iterations { get; init; }
 
     /// <summary>
     /// Total iterations in options.
     /// </summary>
-    public int Total { get; set; }
+    public int Total { get; init; }
 }
-
 
 public class StabilizedEvent
 {
     /// <summary>
     /// Iterations it took.
     /// </summary>
-    public int Iterations { get; set; }
+    public int Iterations { get; init; }
 }
+
 #nullable enable

@@ -6,10 +6,14 @@
   </Configurations>
   <Folder Name="/01_SolutionItems/">
     <File Path=".editorconfig" />
+    <File Path=".gitattributes" />
     <File Path=".gitignore" />
     <File Path="Directory.Build.props" />
     <File Path="global.json" />
     <File Path="README.md" />
+  </Folder>
+  <Folder Name="/01_SolutionItems/tests/">
+    <File Path="tests/.editorconfig" />
   </Folder>
   <Folder Name="/01_SolutionItems/workflows/">
     <File Path=".github/workflows/azure-static-web-apps-salmon-dune-0701e470f.yml" />

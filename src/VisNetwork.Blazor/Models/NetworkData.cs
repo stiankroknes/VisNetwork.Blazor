@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+﻿using System.Text.Json.Serialization;
 
 namespace VisNetwork.Blazor.Models;
 
@@ -16,7 +16,9 @@ public interface INetworkData
 
 public class NetworkData : INetworkData
 {
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
     public required IReadOnlyCollection<Edge> Edges { get; init; }
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
     public required IReadOnlyCollection<Node> Nodes { get; init; }
 
     IEnumerable<Node> INetworkData.Nodes => Nodes;
@@ -25,7 +27,9 @@ public class NetworkData : INetworkData
 
 public class NetworkDataSet : INetworkData
 {
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
     public required DataSet<Edge> Edges { get; init; }
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
     public required DataSet<Node> Nodes { get; init; }
 
     IEnumerable<Node> INetworkData.Nodes => Nodes;
@@ -36,7 +40,9 @@ public class NetworkDataSet<TNode, TEdge> : INetworkData
     where TNode : Node
     where TEdge : Edge
 {
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
     public required DataSet<TEdge> Edges { get; init; }
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
     public required DataSet<TNode> Nodes { get; init; }
 
     IEnumerable<Node> INetworkData.Nodes => Nodes;

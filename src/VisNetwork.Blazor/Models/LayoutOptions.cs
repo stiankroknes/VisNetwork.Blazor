@@ -1,10 +1,13 @@
-﻿namespace VisNetwork.Blazor.Models;
+﻿using System.Text.Json.Serialization;
+
+namespace VisNetwork.Blazor.Models;
 
 public class LayoutOptions
 {
     /// <summary>
     /// Options for hierarchical layout.
     /// </summary>
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
     public HierarchicalOptions? Hierarchical { get; set; }
 
     /// <summary>
@@ -15,12 +18,14 @@ public class LayoutOptions
     /// Performance will be improved in the future.
     /// The default is true.
     /// </summary>
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
     public bool? ImprovedLayout { get; set; }
 
     /// <summary>
     /// Cluster threshold to which improvedLayout applies.
     /// The default is 150.
     /// </summary>
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
     public int? ClusterThreshold { get; set; }
 }
 
@@ -30,12 +35,14 @@ public class HierarchicalOptions
     /// Toggle the usage of the hierarchical layout system. If this option is not defined, it is set to true if any of the properties in this object are defined.
     /// The default is false.
     /// </summary>
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
     public bool? Enabled { get; set; }
 
     /// <summary>
     /// The distance between the different levels.
     /// The default is 150.
     /// </summary>
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
     public int? LevelSeparation { get; set; }
 
     /// <summary>
@@ -44,6 +51,7 @@ public class HierarchicalOptions
     /// If you enable physics, the node distance there will be the effective node distance.
     /// The default is 100.
     /// </summary>
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
     public int? NodeSpacing { get; set; }
 
     /// <summary>
@@ -51,6 +59,7 @@ public class HierarchicalOptions
     /// This is only for the initial layout. If you enable physics, the repulsion model will denote the distance between the trees.
     /// The default is 200.
     /// </summary>
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
     public int? TreeSpacing { get; set; }
 
     /// <summary>
@@ -60,6 +69,7 @@ public class HierarchicalOptions
     /// This will greatly speed up the stabilization time though!
     /// The default is true.
     /// </summary>
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
     public bool? BlockShifting { get; set; }
 
     /// <summary>
@@ -70,11 +80,13 @@ public class HierarchicalOptions
     /// This will greatly speed up the stabilization time though!
     /// The default is true.
     /// </summary>
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
     public bool? EdgeMinimization { get; set; }
 
     /// <summary>
     /// When true, the parents nodes will be centered again after the layout algorithm has been finished.
     /// </summary>
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
     public bool? ParentCentralization { get; set; }
 
     /// <summary>
@@ -82,6 +94,7 @@ public class HierarchicalOptions
     /// To simplify: up-down, down-up, left-right, right-left.
     /// The default is UD.
     /// </summary>
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
     public string? Direction { get; set; }
 
     /// <summary>
@@ -90,6 +103,7 @@ public class HierarchicalOptions
     /// Directed adheres to the to and from data of the edges.A --> B so B is a level lower than A.
     /// The default is hubSize.
     /// </summary>
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
     public string? SortMethod { get; set; }
 
     /// <summary>
@@ -97,5 +111,6 @@ public class HierarchicalOptions
     /// or all the leaves lined up at the bottom and their parents as close to their children as possible (leaves, default). 
     /// The default is roots.
     /// </summary>
+    //[JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)] 
     public string? ShakeTowards { get; set; }
 }

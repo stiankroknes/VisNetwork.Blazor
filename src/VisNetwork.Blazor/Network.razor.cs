@@ -1,9 +1,7 @@
 ﻿using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
-using System;
-using System.Collections.Generic;
+using System.Globalization;
 using System.Text.Json;
-using System.Threading.Tasks;
 using VisNetwork.Blazor.Models;
 
 namespace VisNetwork.Blazor;
@@ -11,6 +9,7 @@ namespace VisNetwork.Blazor;
 public partial class Network : IAsyncDisposable
 {
     private readonly DotNetObjectReference<Network> thisReference;
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Style", "IDE0044:Add readonly modifier", Justification = "<Pending>")]
     private ElementReference element;
     private bool firstRenderComplete;
     private string networkId;
@@ -35,7 +34,9 @@ public partial class Network : IAsyncDisposable
     /// </summary>
     [Parameter] public INetworkData Data { get; set; }
 
-    [Parameter(CaptureUnmatchedValues = true)] public Dictionary<string, object> ExtraAttributes { get; set; }
+    [Parameter(CaptureUnmatchedValues = true)]
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Usage", "CA2227:Collection properties should be read only", Justification = "<Pending>")]
+    public Dictionary<string, object> ExtraAttributes { get; set; }
 
     // Events triggered by human interaction, selection, dragging etc.
 
@@ -168,7 +169,8 @@ public partial class Network : IAsyncDisposable
         ExtraAttributes = default!;
     }
 
-    async ValueTask IAsyncDisposable.DisposeAsync()
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Usage", "CA1816:Dispose methods should call SuppressFinalize", Justification = "<Pending>")]
+    public async ValueTask DisposeAsync()
     {
         thisReference?.Dispose();
 
@@ -184,19 +186,14 @@ public partial class Network : IAsyncDisposable
 
         if (firstRenderComplete)
         {
-            var task = JS.Destroy(element);
-
             try
             {
-                await task;
-            }
-            catch when (task.IsCanceled)
-            {
-                // ignored
+                await JS.Destroy(element);
             }
             catch (JSDisconnectedException)
             {
-                // ignored
+                // Per https://learn.microsoft.com/aspnet/core/blazor/javascript-interoperability/?view=aspnetcore-7.0#javascript-interop-calls-without-a-circuit
+                // this is one of the calls that will fail if the circuit is disconnected, and we just need to catch the exception so it doesn't pollute the logs
             }
         }
     }
@@ -417,7 +414,7 @@ public partial class Network : IAsyncDisposable
     /// <param name="width"></param>
     /// <param name="height"></param>
     /// <returns></returns>
-    public async Task SetSize(int width, int height) => await JS.SetSize(element, thisReference, width.ToString(), height.ToString());
+    public async Task SetSize(int width, int height) => await JS.SetSize(element, thisReference, width.ToString(CultureInfo.InvariantCulture), height.ToString(CultureInfo.InvariantCulture));
 
     /// <summary>
     /// This function converts canvas coordinates to coordinates on the DOM. 
@@ -455,7 +452,7 @@ public partial class Network : IAsyncDisposable
     /// Returns an array of selected node ids
     /// </summary>
     /// <returns></returns>
-    public async Task<string[]> GetSelectedNodes() => await JS.GetSelectedNodes(element, thisReference);
+    public async Task<IReadOnlyCollection<string>> GetSelectedNodes() => await JS.GetSelectedNodes(element, thisReference);
 
     /// <summary>
     /// Selects the nodes corresponding to the id's in the input array. If <paramref name="highlightEdges"/> is true or null, the neighbouring edges will also be selected.
@@ -471,7 +468,7 @@ public partial class Network : IAsyncDisposable
     /// Returns an array of selected edge ids.
     /// </summary>
     /// <returns></returns>
-    public async Task<string[]> GetSelectedEdges() => await JS.GetSelectedEdges(element, thisReference);
+    public async Task<IReadOnlyCollection<string>> GetSelectedEdges() => await JS.GetSelectedEdges(element, thisReference);
 
     /// <summary>
     /// Selects the edges corresponding to the id's in the input array.

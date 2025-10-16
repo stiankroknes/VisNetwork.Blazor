@@ -5,16 +5,15 @@
 		<Copyright>Copyright Stian Kroknes</Copyright>
 		<!-- <PackageOutputPath>$(MSBuildThisFileDirectory)artifacts</PackageOutputPath> -->
 		<!-- <VersionSuffix>dev</VersionSuffix> -->
-		<LangVersion>latest</LangVersion>
+		<LangVersion>preview</LangVersion>
 		<!-- <Nullable>enable</Nullable> -->
 		<Features>strict</Features>
+		<GenerateDocumentationFile>true</GenerateDocumentationFile>
 	</PropertyGroup>
 
 	<!-- Warnings and errors -->
 	<PropertyGroup>
-		<AnalysisLevel>latest</AnalysisLevel>
-		<AnalysisModeSecurity>All</AnalysisModeSecurity>
-		<AnalysisModePerformance>Recommended</AnalysisModePerformance>
+		<AnalysisLevel>preview-all</AnalysisLevel>
 		<CodeAnalysisTreatWarningsAsErrors>true</CodeAnalysisTreatWarningsAsErrors>
 		<EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
 		<TreatWarningsAsErrors>true</TreatWarningsAsErrors>

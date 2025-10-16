@@ -1,9 +1,7 @@
 ﻿using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
-using System.Collections.Generic;
 using System.Text.Json;
 using System.Text.Json.Serialization;
-using System.Threading.Tasks;
 using VisNetwork.Blazor.Models;
 
 namespace VisNetwork.Blazor;
@@ -28,8 +26,8 @@ internal interface IJSModule
     ValueTask ClusterOutliers(ElementReference element, DotNetObjectReference<Network> component);
 
     // Selection
-    ValueTask<string[]> GetSelectedEdges(ElementReference element, DotNetObjectReference<Network> component);
-    ValueTask<string[]> GetSelectedNodes(ElementReference element, DotNetObjectReference<Network> component);
+    ValueTask<IReadOnlyCollection<string>> GetSelectedEdges(ElementReference element, DotNetObjectReference<Network> component);
+    ValueTask<IReadOnlyCollection<string>> GetSelectedNodes(ElementReference element, DotNetObjectReference<Network> component);
     ValueTask<NodeEdgeComposite> GetSelection(ElementReference element, DotNetObjectReference<Network> component);
     ValueTask SelectEdges(ElementReference element, DotNetObjectReference<Network> component, string[] edgeIds);
     ValueTask SelectNodes(ElementReference element, DotNetObjectReference<Network> component, string[] nodeIds, bool? highlightEdges = null);
@@ -58,15 +56,10 @@ internal partial class JSModule : IJSModule
     public ValueTask CreateNetwork(ElementReference element, DotNetObjectReference<Network> component, NetworkOptions options, INetworkData data) =>
         InvokeVoidAsync("create", element, component, SerializeIgnoreNull(options), SerializeIgnoreNull(data));
 
-    public ValueTask Destroy(ElementReference element)
-    {
-        if (isAsyncDisposed || moduleTask == null)
-        {
-            return ValueTask.CompletedTask;
-        }
-
-        return InvokeVoidAsync("destroy", element);
-    }
+    public ValueTask Destroy(ElementReference element) =>
+        isAsyncDisposed || moduleTask == null
+            ? ValueTask.CompletedTask
+            : InvokeVoidAsync("destroy", element);
 
     public ValueTask SetData(ElementReference element, DotNetObjectReference<Network> component, INetworkData data) =>
         InvokeVoidAsync("setData", element, SerializeIgnoreNull(data));
@@ -98,11 +91,11 @@ internal partial class JSModule : IJSModule
         InvokeVoidAsync("clusterOutliers", element, component);
 
     // Selection
-    public ValueTask<string[]> GetSelectedEdges(ElementReference element, DotNetObjectReference<Network> component) =>
-        InvokeAsync<string[]>("getSelectedEdges", element);
+    public ValueTask<IReadOnlyCollection<string>> GetSelectedEdges(ElementReference element, DotNetObjectReference<Network> component) =>
+        InvokeAsync<IReadOnlyCollection<string>>("getSelectedEdges", element);
 
-    public ValueTask<string[]> GetSelectedNodes(ElementReference element, DotNetObjectReference<Network> component) =>
-        InvokeAsync<string[]>("getSelectedNodes", element);
+    public ValueTask<IReadOnlyCollection<string>> GetSelectedNodes(ElementReference element, DotNetObjectReference<Network> component) =>
+        InvokeAsync<IReadOnlyCollection<string>>("getSelectedNodes", element);
 
     public ValueTask<NodeEdgeComposite> GetSelection(ElementReference element, DotNetObjectReference<Network> component) =>
         InvokeAsync<NodeEdgeComposite>("getSelection", element);

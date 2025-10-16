@@ -10,7 +10,7 @@ internal sealed class MultiplePage(PageTestContext pageTestContext) : BasePage(p
         await Page.GotoAsync(new Uri(new Uri(PageTestContext.RootUrl), "multiple").ToString());
 
     public async Task ClickNetwork1() => await page.Locator("#first").ClickAsync();
-    
+
     public async Task ClickNetwork2() => await page.Locator("#second").ClickAsync();
 
     public async Task<string?> GetClickedParagraph() => await page.Locator("p").TextContentAsync();

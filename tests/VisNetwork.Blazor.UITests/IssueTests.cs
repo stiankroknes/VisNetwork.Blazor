@@ -2,7 +2,7 @@ using VisNetwork.Blazor.UITests.Pages;
 
 namespace VisNetwork.Blazor.UITests;
 
-[Collection(typeof(CombinedTestCollection))]
+[Collection(typeof(CombinedTestCollectionFixture))]
 public class IssueTests(BlazorWebAssemblyWebHostFixture fixture, PlaywrightFixture playwrightFixture, ITestOutputHelper testOutputHelper)
     : TestBase(fixture, playwrightFixture, testOutputHelper)
 {

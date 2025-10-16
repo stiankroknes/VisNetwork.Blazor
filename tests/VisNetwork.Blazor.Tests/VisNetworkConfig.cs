@@ -1,9 +1,8 @@
-﻿using Bunit;
-using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.Extensions.DependencyInjection;
 
 namespace VisNetwork.Blazor.Tests;
 
-public class VisNetworkConfig
+internal static class VisNetworkConfig
 {
     public static void AddVisNetwork(BunitServiceProvider services)
     {
