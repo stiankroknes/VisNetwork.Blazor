@@ -886,8 +886,3 @@ public class NetworkTests : BunitContext
 
     private static string Serialize<T>(T data) where T : class => JsonSerializer.Serialize(data);
 }
-
-// <div class="vis-network" style="position: relative; overflow: hidden; touch-action: pan-y; user-select: none; width: 100%; height: 100%;" tabindex="900">
-// <canvas style="position: relative; touch-action: none; user-select: none; width: 100%; height: 100%;" width="2433" height="600">
-// </canvas><div class="vis-tooltip" style="left: 0px; top: 0px; visibility: hidden;"><
-// /div></div>
