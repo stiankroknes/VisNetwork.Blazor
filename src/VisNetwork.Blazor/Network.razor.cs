@@ -475,9 +475,9 @@ public partial class Network : IAsyncDisposable
     /// This method unselects all other objects before selecting its own objects.
     /// Does not fire events.
     /// </summary>
-    /// <param name="nodeIds"></param>
+    /// <param name="edgeIds"></param>
     /// <returns></returns>
-    public async Task SelectEdges(string[] nodeIds) => await JS.SelectEdges(element, thisReference, nodeIds);
+    public async Task SelectEdges(string[] edgeIds) => await JS.SelectEdges(element, thisReference, edgeIds);
 
     /// <summary>
     /// Returns an object with selected nodes and edges ids.

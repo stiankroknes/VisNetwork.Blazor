@@ -22,7 +22,7 @@ public sealed class PlaywrightFixture : IAsyncLifetime
 
     private static bool InstallBrowsers()
     {
-        var exitCode = Program.Main(args);
+        var exitCode = Microsoft.Playwright.Program.Main(args);
         if (exitCode != 0)
         {
             Environment.Exit(exitCode);

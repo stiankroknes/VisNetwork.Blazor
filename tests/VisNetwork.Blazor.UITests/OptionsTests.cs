@@ -16,6 +16,7 @@ public class OptionsTests(BlazorWebAssemblyWebHostFixture fixture, PlaywrightFix
         await page.ChangeOptionClick();
 
         var image = await page.CaptureScreenshot();
-        ScreenshotHelper.PixelMatch("options-page.png", image, BrowserName).Should().BeTrue();
+        Assert.True(ScreenshotHelper.PixelMatch("options-page.png", image, BrowserName));
+
     }
 }

@@ -15,7 +15,7 @@ public class DotParsingTests(BlazorWebAssemblyWebHostFixture fixture, Playwright
         await page.GotoAsync();
 
         var image = await page.CaptureNetworkImage();
-        ScreenshotHelper.PixelMatch("dotparse-page.png", image, BrowserName).Should().BeTrue();
+        Assert.True(ScreenshotHelper.PixelMatch("dotparse-page.png", image, BrowserName));
         //await Expect(page.Heading).ToBeVisibleAsync();
         //await Expect(page.ErrorMessage).ToContainTextAsync("OK");
     }

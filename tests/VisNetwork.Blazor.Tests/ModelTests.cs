@@ -1,5 +1,4 @@
-﻿using FluentAssertions.Execution;
-using System.Reflection;
+﻿using System.Reflection;
 
 namespace VisNetwork.Blazor.Tests;
 
@@ -14,8 +13,7 @@ public class ModelTests
             .GetTypes()
             .Where(type => type.IsClass && type.Namespace == modelNamespace)
             .ToArray();
-
-        using (new AssertionScope())
+        Assert.Multiple(() =>
         {
             foreach (var model in models)
             {
@@ -25,11 +23,11 @@ public class ModelTests
                     if (nullable)
                     {
                         var hasJsonIgnoreAttribute = property.GetCustomAttributes(typeof(System.Text.Json.Serialization.JsonIgnoreAttribute), false).Length != 0;
-                        hasJsonIgnoreAttribute.Should().BeTrue(because: $"Property '{property.Name}' in '{model.Name}' should have [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)] attribute.");
+                        Assert.True(hasJsonIgnoreAttribute, $"Property '{property.Name}' in '{model.Name}' should have [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)] attribute.");
                     }
                 }
             }
-        }
+        });
     }
 
     private static bool IsNullable(PropertyInfo info) => !info.PropertyType.IsValueType || (Nullable.GetUnderlyingType(info.PropertyType) != null);

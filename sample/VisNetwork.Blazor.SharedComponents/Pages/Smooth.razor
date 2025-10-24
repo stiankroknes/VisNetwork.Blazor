@@ -63,25 +63,29 @@
 
 	private bool isSmoothingEnabled = true;
 
-	private readonly string[] smoothnessTypes = {
-	"dynamic",
-	"continuous",
-	"discrete",
-	"diagonalCross",
-	"straightCross",
-	"horizontal",
-	"vertical",
-	"curvedCW",
-	"curvedCCW",
-	"cubicBezier",
-};
+	private readonly string[] smoothnessTypes =
+	{
+		"dynamic",
+		"continuous",
+		"discrete",
+		"diagonalCross",
+		"straightCross",
+		"horizontal",
+		"vertical",
+		"curvedCW",
+		"curvedCCW",
+		"cubicBezier",
+	};
+
 	private string smoothnessType = "dynamic";
 
-	private readonly string[] forceDirections = {
-	"horizontal",
-	"vertical",
-	"none"
-};
+	private readonly string[] forceDirections =
+	{
+		"horizontal",
+		"vertical",
+		"none"
+	};
+
 	private string forceDirection = "horizontal";
 	private double roundness = 0.5f;
 

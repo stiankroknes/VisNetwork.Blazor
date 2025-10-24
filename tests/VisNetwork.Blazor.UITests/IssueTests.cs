@@ -17,6 +17,6 @@ public class IssueTests(BlazorWebAssemblyWebHostFixture fixture, PlaywrightFixtu
         await page.Submit();
 
         var after = await page.CaptureNetworkImage();
-        after.Should().NotEqual(before);
+        Assert.NotEqual(before, after);
     }
 }

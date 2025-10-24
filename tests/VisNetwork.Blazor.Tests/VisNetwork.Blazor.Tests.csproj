@@ -1,27 +1,22 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.Razor">
 
 	<PropertyGroup>
-		<TargetFramework>net9.0</TargetFramework>
+		<TargetFramework>net10.0</TargetFramework>
 		<ImplicitUsings>enable</ImplicitUsings>
 		<IsPackable>false</IsPackable>
 		<OutputType>Exe</OutputType>
-		<TestingPlatformDotnetTestSupport>true</TestingPlatformDotnetTestSupport>
 		<UseMicrosoftTestingPlatformRunner>true</UseMicrosoftTestingPlatformRunner>
 		<TestingPlatformCaptureOutput>false</TestingPlatformCaptureOutput>
 	</PropertyGroup>
 
 	<ItemGroup>
-		<PackageReference Include="bunit" Version="2.0.55-preview" />
-		<PackageReference Include="FluentAssertions" Version="8.7.1" />
-		<PackageReference Include="xunit.v3" Version="3.1.0" />
-		<PackageReference Include="xunit.analyzers" Version="1.24.0">
+		<PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="10.0.0" />
+		<PackageReference Include="bunit" Version="2.0.66" />
+		<PackageReference Include="xunit.analyzers" Version="1.25.0">
 		  <PrivateAssets>all</PrivateAssets>
 		  <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 		</PackageReference>
-		<PackageReference Include="xunit.runner.visualstudio" Version="3.1.5">
-			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-			<PrivateAssets>all</PrivateAssets>
-		</PackageReference>
+		<PackageReference Include="xunit.v3.mtp-v2" Version="3.2.0" />
 	</ItemGroup>
 
 	<ItemGroup>

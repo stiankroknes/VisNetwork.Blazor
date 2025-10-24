@@ -1,87 +1,77 @@
-﻿<div class="top-row pl-4 navbar navbar-dark">
-	<a class="navbar-brand" href="">VisNetwork.Blazor.Sample</a>
-	<button class="navbar-toggler" @onclick="ToggleNavMenu">
-		<span class="navbar-toggler-icon"></span>
-	</button>
+﻿<div class="top-row ps-3 navbar navbar-dark">
+	<div class="container-fluid">
+		<a class="navbar-brand" href="">VisNetwork.Blazor.Sample</a>
+	</div>
 </div>
 
-<div class="@NavMenuCssClass" @onclick="ToggleNavMenu">
-	<ul class="nav flex-column">
-		<li class="nav-item px-3">
+<input type="checkbox" title="Navigation menu" class="navbar-toggler" />
+
+<div class="nav-scrollable" onclick="document.querySelector('.navbar-toggler').click()">
+	<nav class="nav flex-column">
+		<div class="nav-item px-3">
 			<NavLink class="nav-link" href="" Match="NavLinkMatch.All">
 				<span class="oi oi-home" aria-hidden="true"></span> Home
 			</NavLink>
-		</li>
-		<li class="nav-item px-3">
-			<NavLink class="nav-link" href="events" Match="NavLinkMatch.All">
+		</div>
+		<div class="nav-item px-3">
+			<NavLink class="nav-link" href="events">
 				<span class="oi oi-flash" aria-hidden="true"></span> Events
 			</NavLink>
-		</li>
-		<li class="nav-item px-3">
-			<NavLink class="nav-link" href="multiple" Match="NavLinkMatch.All">
+		</div>
+		<div class="nav-item px-3">
+			<NavLink class="nav-link" href="multiple">
 				<span class="oi oi-layers" aria-hidden="true"></span> Multiple
 			</NavLink>
-		</li>
-		<li class="nav-item px-3">
-			<NavLink class="nav-link" href="interaction" Match="NavLinkMatch.All">
+		</div>
+		<div class="nav-item px-3">
+			<NavLink class="nav-link" href="interaction">
 				<span class="oi oi-code" aria-hidden="true"></span> Interaction
 			</NavLink>
-		</li>
-		<li class="nav-item px-3">
-			<NavLink class="nav-link" href="shapes" Match="NavLinkMatch.All">
+		</div>
+		<div class="nav-item px-3">
+			<NavLink class="nav-link" href="shapes">
 				<span class="oi oi-puzzle-piece" aria-hidden="true"></span> Shapes
 			</NavLink>
-		</li>
-		<li class="nav-item px-3">
-			<NavLink class="nav-link" href="arrows" Match="NavLinkMatch.All">
+		</div>
+		<div class="nav-item px-3">
+			<NavLink class="nav-link" href="arrows">
 				<span class="oi oi-puzzle-piece" aria-hidden="true"></span> Arrows
 			</NavLink>
-		</li>
-		<li class="nav-item px-3">
-			<NavLink class="nav-link" href="smooth" Match="NavLinkMatch.All">
+		</div>
+		<div class="nav-item px-3">
+			<NavLink class="nav-link" href="smooth">
 				<span class="oi oi-puzzle-piece" aria-hidden="true"></span> Edge Smoothing
 			</NavLink>
-		</li>
-		<li class="nav-item px-3">
-			<NavLink class="nav-link" href="options" Match="NavLinkMatch.All">
+		</div>
+		<div class="nav-item px-3">
+			<NavLink class="nav-link" href="options">
 				<span class="oi oi-puzzle-piece" aria-hidden="true"></span> Options
 			</NavLink>
-		</li>
-		<li class="nav-item px-3">
-			<NavLink class="nav-link" href="dot-parsing" Match="NavLinkMatch.All">
+		</div>
+		<div class="nav-item px-3">
+			<NavLink class="nav-link" href="dot-parsing">
 				<span class="oi oi-puzzle-piece" aria-hidden="true"></span> DOT parsing
 			</NavLink>
-		</li>
-		<li class="nav-item px-3">
-			<NavLink class="nav-link" href="data-set" Match="NavLinkMatch.All">
+		</div>
+		<div class="nav-item px-3">
+			<NavLink class="nav-link" href="data-set">
 				<span class="oi oi-puzzle-piece" aria-hidden="true"></span> DataSet
 			</NavLink>
-		</li>
-		<li class="nav-item px-3">
-			<NavLink class="nav-link" href="manipulation" Match="NavLinkMatch.All">
+		</div>
+		<div class="nav-item px-3">
+			<NavLink class="nav-link" href="manipulation">
 				<span class="oi oi-puzzle-piece" aria-hidden="true"></span> Manipulation
 			</NavLink>
-		</li>
-		<li class="nav-item px-3">
-			<NavLink class="nav-link" href="information" Match="NavLinkMatch.All">
+		</div>
+		<div class="nav-item px-3">
+			<NavLink class="nav-link" href="information">
 				<span class="oi oi-puzzle-piece" aria-hidden="true"></span> Information
 			</NavLink>
-		</li>
-		<li class="nav-item px-3">
-			<NavLink class="nav-link" href="configure" Match="NavLinkMatch.All">
+		</div>
+		<div class="nav-item px-3">
+			<NavLink class="nav-link" href="configure">
 				<span class="oi oi-puzzle-piece" aria-hidden="true"></span> Configure
 			</NavLink>
-		</li>
-	</ul>
+		</div>
+	</nav>
 </div>
-
-@code {
-	private bool collapseNavMenu = true;
-
-	private string NavMenuCssClass => collapseNavMenu ? "collapse" : null;
-
-	private void ToggleNavMenu()
-	{
-		collapseNavMenu = !collapseNavMenu;
-	}
-}

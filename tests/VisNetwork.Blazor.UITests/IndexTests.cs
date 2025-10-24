@@ -21,7 +21,7 @@ public class IndexTests(BlazorWebAssemblyWebHostFixture fixture, PlaywrightFixtu
         await page.GotoAsync();
 
         var image = await page.CaptureNetworkImage();
-        ScreenshotHelper.PixelMatch("index-page.png", image, BrowserName).Should().BeTrue();
+        Assert.True(ScreenshotHelper.PixelMatch("index-page.png", image, BrowserName));
         await Expect(page.Heading).ToBeVisibleAsync();
 
         //await Context.Tracing.StopAsync(new TracingStopOptions

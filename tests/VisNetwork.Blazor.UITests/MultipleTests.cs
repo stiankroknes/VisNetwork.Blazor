@@ -14,7 +14,7 @@ public class MultipleTests(BlazorWebAssemblyWebHostFixture fixture, PlaywrightFi
         await page.GotoAsync();
 
         var image = await page.CaptureScreenshot();
-        ScreenshotHelper.PixelMatch("multiple-page.png", image, BrowserName).Should().BeTrue();
+        Assert.True(ScreenshotHelper.PixelMatch("multiple-page.png", image, BrowserName));
     }
 
     [Fact]
@@ -24,7 +24,9 @@ public class MultipleTests(BlazorWebAssemblyWebHostFixture fixture, PlaywrightFi
         await page.GotoAsync();
         await page.ClickNetwork1();
 
-        (await page.GetClickedParagraph()).Should().Contain("Network1");
+        var clickedParagraph = await page.GetClickedParagraph();
+
+        Assert.Contains("Network1", clickedParagraph, StringComparison.Ordinal);
     }
 
     [Fact]
@@ -34,6 +36,7 @@ public class MultipleTests(BlazorWebAssemblyWebHostFixture fixture, PlaywrightFi
         await page.GotoAsync();
         await page.ClickNetwork2();
 
-        (await page.GetClickedParagraph()).Should().Contain("Network2");
+        var clickedParagraph = await page.GetClickedParagraph();
+        Assert.Contains("Network2", clickedParagraph, StringComparison.Ordinal);
     }
 }

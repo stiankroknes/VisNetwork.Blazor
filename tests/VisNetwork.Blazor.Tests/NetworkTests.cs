@@ -23,7 +23,7 @@ public class NetworkTests : BunitContext
         var cut = Render<Network>();
 
         // Assert
-        cut.Find("div").Should().NotBeNull();
+        Assert.NotNull(cut.Find("div"));
         JSInterop.VerifyInvoke("create");
     }
 
@@ -154,9 +154,9 @@ public class NetworkTests : BunitContext
         // Assert 
         JSInterop.VerifyInvoke("setSize");
         var invocation = JSInterop.Invocations["setSize"].Single();
-        invocation.Arguments[0].Should().BeOfType<ElementReference>();
-        invocation.Arguments[1].Should().Be("100");
-        invocation.Arguments[2].Should().Be("200");
+        Assert.True(invocation.Arguments[0] is ElementReference);
+        Assert.Equal("100", invocation.Arguments[1]);
+        Assert.Equal("200", invocation.Arguments[2]);
     }
 
     [Fact]
@@ -173,7 +173,7 @@ public class NetworkTests : BunitContext
         JSInterop.VerifyInvoke("create");
         JSInterop.VerifyInvoke("redraw");
         var invocation = JSInterop.Invocations["redraw"].Single();
-        invocation.Arguments[0].Should().BeOfType<ElementReference>();
+        Assert.True(invocation.Arguments[0] is ElementReference);
     }
 
     [Fact]
@@ -191,10 +191,10 @@ public class NetworkTests : BunitContext
         JSInterop.VerifyInvoke("create");
         JSInterop.VerifyInvoke("canvasToDOM");
         var invocation = JSInterop.Invocations["canvasToDOM"].Single();
-        invocation.Arguments[0].Should().BeOfType<ElementReference>();
-        invocation.Arguments[1].Should().Be(positionArg);
-        result.X.Should().Be(2);
-        result.Y.Should().Be(3);
+        Assert.True(invocation.Arguments[0] is ElementReference);
+        Assert.Equal(positionArg, invocation.Arguments[1]);
+        Assert.Equal(2, result.X);
+        Assert.Equal(3, result.Y);
     }
 
     [Fact]
@@ -212,10 +212,10 @@ public class NetworkTests : BunitContext
         JSInterop.VerifyInvoke("create");
         JSInterop.VerifyInvoke("DOMToCanvas");
         var invocation = JSInterop.Invocations["DOMToCanvas"].Single();
-        invocation.Arguments[0].Should().BeOfType<ElementReference>();
-        invocation.Arguments[1].Should().Be(positionArg);
-        result.X.Should().Be(2);
-        result.Y.Should().Be(3);
+        Assert.True(invocation.Arguments[0] is ElementReference);
+        Assert.Equal(positionArg, invocation.Arguments[1]);
+        Assert.Equal(2, result.X);
+        Assert.Equal(3, result.Y);
     }
 
     // Clustering
@@ -233,7 +233,7 @@ public class NetworkTests : BunitContext
         JSInterop.VerifyInvoke("create");
         JSInterop.VerifyInvoke("clusterOutliers");
         var invocation = JSInterop.Invocations["clusterOutliers"].Single();
-        invocation.Arguments[0].Should().BeOfType<ElementReference>();
+        Assert.True(invocation.Arguments[0] is ElementReference);
     }
 
     // Import
@@ -252,8 +252,8 @@ public class NetworkTests : BunitContext
         JSInterop.VerifyInvoke("create");
         JSInterop.VerifyInvoke("populateDotNetwork");
         var invocation = JSInterop.Invocations["populateDotNetwork"].Single();
-        invocation.Arguments[0].Should().BeOfType<ElementReference>();
-        invocation.Arguments[1].Should().Be("some dot string");
+        Assert.True(invocation.Arguments[0] is ElementReference);
+        Assert.Equal("some dot string", invocation.Arguments[1]);
     }
 
     // Selection
@@ -271,7 +271,7 @@ public class NetworkTests : BunitContext
         JSInterop.VerifyInvoke("create");
         JSInterop.VerifyInvoke("getSelectedNodes");
         var invocation = JSInterop.Invocations["getSelectedNodes"].Single();
-        invocation.Arguments[0].Should().BeOfType<ElementReference>();
+        Assert.True(invocation.Arguments[0] is ElementReference);
     }
 
     [Fact]
@@ -289,8 +289,8 @@ public class NetworkTests : BunitContext
         JSInterop.VerifyInvoke("create");
         JSInterop.VerifyInvoke("selectNodes");
         var invocation = JSInterop.Invocations["selectNodes"].Single();
-        invocation.Arguments[0].Should().BeOfType<ElementReference>();
-        invocation.Arguments[1].Should().Be(args);
+        Assert.True(invocation.Arguments[0] is ElementReference);
+        Assert.Equal(args, invocation.Arguments[1]);
     }
 
     [Fact]
@@ -307,7 +307,7 @@ public class NetworkTests : BunitContext
         JSInterop.VerifyInvoke("create");
         JSInterop.VerifyInvoke("getSelectedEdges");
         var invocation = JSInterop.Invocations["getSelectedEdges"].Single();
-        invocation.Arguments[0].Should().BeOfType<ElementReference>();
+        Assert.True(invocation.Arguments[0] is ElementReference);
     }
 
     [Fact]
@@ -325,8 +325,8 @@ public class NetworkTests : BunitContext
         JSInterop.VerifyInvoke("create");
         JSInterop.VerifyInvoke("selectEdges");
         var invocation = JSInterop.Invocations["selectEdges"].Single();
-        invocation.Arguments[0].Should().BeOfType<ElementReference>();
-        invocation.Arguments[1].Should().Be(args);
+        Assert.True(invocation.Arguments[0] is ElementReference);
+        Assert.Equal(args, invocation.Arguments[1]);
     }
 
     [Fact]
@@ -343,7 +343,7 @@ public class NetworkTests : BunitContext
         JSInterop.VerifyInvoke("create");
         JSInterop.VerifyInvoke("getSelection");
         var invocation = JSInterop.Invocations["getSelection"].Single();
-        invocation.Arguments[0].Should().BeOfType<ElementReference>();
+        Assert.True(invocation.Arguments[0] is ElementReference);
     }
 
     [Fact]
@@ -361,8 +361,8 @@ public class NetworkTests : BunitContext
         JSInterop.VerifyInvoke("create");
         JSInterop.VerifyInvoke("setSelection");
         var invocation = JSInterop.Invocations["setSelection"].Single();
-        invocation.Arguments[0].Should().BeOfType<ElementReference>();
-        invocation.Arguments[1].Should().Be(args);
+        Assert.True(invocation.Arguments[0] is ElementReference);
+        Assert.Equal(args, invocation.Arguments[1]);
     }
 
 
@@ -380,7 +380,7 @@ public class NetworkTests : BunitContext
         JSInterop.VerifyInvoke("create");
         JSInterop.VerifyInvoke("unselectAll");
         var invocation = JSInterop.Invocations["unselectAll"].Single();
-        invocation.Arguments[0].Should().BeOfType<ElementReference>();
+        Assert.True(invocation.Arguments[0] is ElementReference);
     }
 
     // Manipulation
@@ -398,7 +398,7 @@ public class NetworkTests : BunitContext
         JSInterop.VerifyInvoke("create");
         JSInterop.VerifyInvoke("enableEditMode");
         var invocation = JSInterop.Invocations["enableEditMode"].Single();
-        invocation.Arguments[0].Should().BeOfType<ElementReference>();
+        Assert.True(invocation.Arguments[0] is ElementReference);
     }
 
     [Fact]
@@ -415,7 +415,7 @@ public class NetworkTests : BunitContext
         JSInterop.VerifyInvoke("create");
         JSInterop.VerifyInvoke("disableEditMode");
         var invocation = JSInterop.Invocations["disableEditMode"].Single();
-        invocation.Arguments[0].Should().BeOfType<ElementReference>();
+        Assert.True(invocation.Arguments[0] is ElementReference);
     }
 
     [Fact]
@@ -432,7 +432,7 @@ public class NetworkTests : BunitContext
         JSInterop.VerifyInvoke("create");
         JSInterop.VerifyInvoke("addNodeMode");
         var invocation = JSInterop.Invocations["addNodeMode"].Single();
-        invocation.Arguments[0].Should().BeOfType<ElementReference>();
+        Assert.True(invocation.Arguments[0] is ElementReference);
     }
 
     [Fact]
@@ -449,7 +449,7 @@ public class NetworkTests : BunitContext
         JSInterop.VerifyInvoke("create");
         JSInterop.VerifyInvoke("addEdgeMode");
         var invocation = JSInterop.Invocations["addEdgeMode"].Single();
-        invocation.Arguments[0].Should().BeOfType<ElementReference>();
+        Assert.True(invocation.Arguments[0] is ElementReference);
     }
 
     [Fact]
@@ -466,7 +466,7 @@ public class NetworkTests : BunitContext
         JSInterop.VerifyInvoke("create");
         JSInterop.VerifyInvoke("deleteSelected");
         var invocation = JSInterop.Invocations["deleteSelected"].Single();
-        invocation.Arguments[0].Should().BeOfType<ElementReference>();
+        Assert.True(invocation.Arguments[0] is ElementReference);
     }
 
     // Information 
@@ -485,8 +485,8 @@ public class NetworkTests : BunitContext
         JSInterop.VerifyInvoke("create");
         JSInterop.VerifyInvoke("getPosition");
         var invocation = JSInterop.Invocations["getPosition"].Single();
-        invocation.Arguments[0].Should().BeOfType<ElementReference>();
-        invocation.Arguments[1].Should().Be("1");
+        Assert.True(invocation.Arguments[0] is ElementReference);
+        Assert.Equal("1", invocation.Arguments[1]);
     }
 
     [Fact]
@@ -508,8 +508,8 @@ public class NetworkTests : BunitContext
         JSInterop.VerifyInvoke("create");
         JSInterop.VerifyInvoke("getPositions");
         var invocation = JSInterop.Invocations["getPositions"].Single();
-        invocation.Arguments[0].Should().BeOfType<ElementReference>();
-        invocation.Arguments[1].Should().Be(args);
+        Assert.True(invocation.Arguments[0] is ElementReference);
+        Assert.Equal(args, invocation.Arguments[1]);
     }
 
     [Fact]
@@ -526,8 +526,9 @@ public class NetworkTests : BunitContext
         JSInterop.VerifyInvoke("create");
         JSInterop.VerifyInvoke("getBoundingBox");
         var invocation = JSInterop.Invocations["getBoundingBox"].Single();
-        invocation.Arguments[0].Should().BeOfType<ElementReference>();
-        invocation.Arguments[1].Should().Be("1");
+        Assert.True(invocation.Arguments[0] is ElementReference);
+        Assert.Equal("1", invocation.Arguments[1]);
+
     }
 
 
@@ -545,8 +546,8 @@ public class NetworkTests : BunitContext
         JSInterop.VerifyInvoke("create");
         JSInterop.VerifyInvoke("getConnectedEdges");
         var invocation = JSInterop.Invocations["getConnectedEdges"].Single();
-        invocation.Arguments[0].Should().BeOfType<ElementReference>();
-        invocation.Arguments[1].Should().Be("1");
+        Assert.True(invocation.Arguments[0] is ElementReference);
+        Assert.Equal("1", invocation.Arguments[1]);
     }
 
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1034:Nested types should not be visible", Justification = "<Pending>")]
@@ -572,8 +573,8 @@ public class NetworkTests : BunitContext
             await cut.Instance.EventCallback("click", Serialize(CreateEvent<ClickEvent>(cut.Instance)));
 
             // Assert
-            cut.Find("div").Should().NotBeNull();
-            eventInvoked.Should().BeTrue();
+            Assert.NotNull(cut.Find("div"));
+            Assert.True(eventInvoked);
         }
 
         [Fact]
@@ -589,8 +590,8 @@ public class NetworkTests : BunitContext
             await cut.Instance.EventCallback("doubleClick", Serialize(CreateEvent<ClickEvent>(cut.Instance)));
 
             // Assert
-            cut.Find("div").Should().NotBeNull();
-            eventInvoked.Should().BeTrue();
+            Assert.NotNull(cut.Find("div"));
+            Assert.True(eventInvoked);
         }
 
         [Fact]
@@ -606,8 +607,8 @@ public class NetworkTests : BunitContext
             await cut.Instance.EventCallback("oncontext", Serialize(CreateEvent<ClickEvent>(cut.Instance)));
 
             // Assert
-            cut.Find("div").Should().NotBeNull();
-            eventInvoked.Should().BeTrue();
+            Assert.NotNull(cut.Find("div"));
+            Assert.True(eventInvoked);
         }
 
         [Fact]
@@ -623,8 +624,8 @@ public class NetworkTests : BunitContext
             await cut.Instance.EventCallback("hold", Serialize(CreateEvent<ClickEvent>(cut.Instance)));
 
             // Assert
-            cut.Find("div").Should().NotBeNull();
-            eventInvoked.Should().BeTrue();
+            Assert.NotNull(cut.Find("div"));
+            Assert.True(eventInvoked);
         }
 
         [Fact]
@@ -640,8 +641,8 @@ public class NetworkTests : BunitContext
             await cut.Instance.EventCallback("release", Serialize(CreateEvent<ClickEvent>(cut.Instance)));
 
             // Assert
-            cut.Find("div").Should().NotBeNull();
-            eventInvoked.Should().BeTrue();
+            Assert.NotNull(cut.Find("div"));
+            Assert.True(eventInvoked);
         }
 
         [Fact]
@@ -657,8 +658,8 @@ public class NetworkTests : BunitContext
             await cut.Instance.EventCallback("select", Serialize(CreateEvent<ClickEvent>(cut.Instance)));
 
             // Assert
-            cut.Find("div").Should().NotBeNull();
-            eventInvoked.Should().BeTrue();
+            Assert.NotNull(cut.Find("div"));
+            Assert.True(eventInvoked);
         }
 
         [Fact]
@@ -674,8 +675,8 @@ public class NetworkTests : BunitContext
             await cut.Instance.EventCallback("selectNode", Serialize(CreateEvent<ClickEvent>(cut.Instance)));
 
             // Assert
-            cut.Find("div").Should().NotBeNull();
-            eventInvoked.Should().BeTrue();
+            Assert.NotNull(cut.Find("div"));
+            Assert.True(eventInvoked);
         }
 
         [Fact]
@@ -691,8 +692,8 @@ public class NetworkTests : BunitContext
             await cut.Instance.EventCallback("deselectNode", Serialize(CreateEvent<DeselectClickEvent>(cut.Instance)));
 
             // Assert
-            cut.Find("div").Should().NotBeNull();
-            eventInvoked.Should().BeTrue();
+            Assert.NotNull(cut.Find("div"));
+            Assert.True(eventInvoked);
         }
 
         [Fact]
@@ -708,8 +709,8 @@ public class NetworkTests : BunitContext
             await cut.Instance.EventCallback("selectEdge", Serialize(CreateEvent<ClickEvent>(cut.Instance)));
 
             // Assert
-            cut.Find("div").Should().NotBeNull();
-            eventInvoked.Should().BeTrue();
+            Assert.NotNull(cut.Find("div"));
+            Assert.True(eventInvoked);
         }
 
         [Fact]
@@ -725,8 +726,8 @@ public class NetworkTests : BunitContext
             await cut.Instance.EventCallback("deselectEdge", Serialize(CreateEvent<DeselectClickEvent>(cut.Instance)));
 
             // Assert
-            cut.Find("div").Should().NotBeNull();
-            eventInvoked.Should().BeTrue();
+            Assert.NotNull(cut.Find("div"));
+            Assert.True(eventInvoked);
         }
 
         [Fact]
@@ -742,8 +743,8 @@ public class NetworkTests : BunitContext
             await cut.Instance.EventCallback("showPopup", "some data");
 
             // Assert
-            cut.Find("div").Should().NotBeNull();
-            eventInvoked.Should().BeTrue();
+            Assert.NotNull(cut.Find("div"));
+            Assert.True(eventInvoked);
         }
 
         [Fact]
@@ -759,8 +760,8 @@ public class NetworkTests : BunitContext
             await cut.Instance.EventCallback("hidePopup", "");
 
             // Assert
-            cut.Find("div").Should().NotBeNull();
-            eventInvoked.Should().BeTrue();
+            Assert.NotNull(cut.Find("div"));
+            Assert.True(eventInvoked);
         }
 
         [Fact]
@@ -776,8 +777,8 @@ public class NetworkTests : BunitContext
             await cut.Instance.EventCallback("beforeDrawing", Serialize(new DrawingEvent()));
 
             // Assert
-            cut.Find("div").Should().NotBeNull();
-            eventInvoked.Should().BeTrue();
+            Assert.NotNull(cut.Find("div"));
+            Assert.True(eventInvoked);
         }
 
         [Fact]
@@ -793,8 +794,8 @@ public class NetworkTests : BunitContext
             await cut.Instance.EventCallback("afterDrawing", Serialize(new DrawingEvent()));
 
             // Assert
-            cut.Find("div").Should().NotBeNull();
-            eventInvoked.Should().BeTrue();
+            Assert.NotNull(cut.Find("div"));
+            Assert.True(eventInvoked);
         }
 
         [Fact]
@@ -810,8 +811,8 @@ public class NetworkTests : BunitContext
             await cut.Instance.EventCallback("startStabilizing", "");
 
             // Assert
-            cut.Find("div").Should().NotBeNull();
-            eventInvoked.Should().BeTrue();
+            Assert.NotNull(cut.Find("div"));
+            Assert.True(eventInvoked);
         }
 
         [Fact]
@@ -827,8 +828,8 @@ public class NetworkTests : BunitContext
             await cut.Instance.EventCallback("stabilizationProgress", Serialize(new StabilizationProgressEvent()));
 
             // Assert
-            cut.Find("div").Should().NotBeNull();
-            eventInvoked.Should().BeTrue();
+            Assert.NotNull(cut.Find("div"));
+            Assert.True(eventInvoked);
         }
 
         [Fact]
@@ -844,8 +845,8 @@ public class NetworkTests : BunitContext
             await cut.Instance.EventCallback("stabilizationIterationsDone", "");
 
             // Assert
-            cut.Find("div").Should().NotBeNull();
-            eventInvoked.Should().BeTrue();
+            Assert.NotNull(cut.Find("div"));
+            Assert.True(eventInvoked);
         }
 
         [Fact]
@@ -861,8 +862,8 @@ public class NetworkTests : BunitContext
             await cut.Instance.EventCallback("stabilized", Serialize(new StabilizedEvent()));
 
             // Assert
-            cut.Find("div").Should().NotBeNull();
-            eventInvoked.Should().BeTrue();
+            Assert.NotNull(cut.Find("div"));
+            Assert.True(eventInvoked);
         }
 
         private static T CreateEvent<T>(Network network) where T : BaseClickEvent

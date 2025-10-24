@@ -23,7 +23,9 @@
     <File Path=".github/workflows/publish.yml" />
   </Folder>
   <Folder Name="/Sample/">
+    <Project Path="sample/VisNetwork.Blazor.AppHost/VisNetwork.Blazor.AppHost.csproj" Id="6a034ec2-f844-416b-91ef-8a49fb043d36" />
     <Project Path="sample/VisNetwork.Blazor.Server/VisNetwork.Blazor.Server.csproj" />
+    <Project Path="sample/VisNetwork.Blazor.ServiceDefaults/VisNetwork.Blazor.ServiceDefaults.csproj" />
     <Project Path="sample/VisNetwork.Blazor.SharedComponents/VisNetwork.Blazor.SharedComponents.csproj" />
     <Project Path="sample/VisNetwork.Blazor.Wasm/VisNetwork.Blazor.Wasm.csproj" />
   </Folder>
